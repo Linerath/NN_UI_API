@@ -1,0 +1,14 @@
+﻿I. Neural Network WF (Graduate Work)
+	
+	1. All Forms DataGridViews:
+		1) input validating and saving
+		2) adapt virtical size
+		3) add resizing with form
+	2. NetworkViewForm:
+		1) change columns sizing
+		2) fix decimal places
+
+
+
+II. Neural Network.Core
+	1) random through param

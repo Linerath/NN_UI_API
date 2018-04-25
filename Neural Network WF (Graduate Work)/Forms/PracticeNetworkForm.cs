@@ -13,7 +13,7 @@ using Neural_Network.Core.Extra;
 using Neural_Network.Core.Implementation;
 using Neural_Network_WF__Graduate_Work_.Forms.Dialogs;
 using Neural_Network_WF__Graduate_Work_.Forms.InputProject;
-using Neural_Network_WF__Graduate_Work_.Networks;
+using Neural_Network_WF__Graduate_Work_.Repository;
 
 namespace Neural_Network_WF__Graduate_Work_.Forms
 {
@@ -26,7 +26,7 @@ namespace Neural_Network_WF__Graduate_Work_.Forms
     {
         private EditInputSignalsForm signalsForm;
 
-        public NeuralNetworkInputProject inputProject;
+        public bool CreatedNewProject { get; set; } = false;
         private double[] signals = null;
 
         public PracticeNetworkForm()
@@ -47,7 +47,16 @@ namespace Neural_Network_WF__Graduate_Work_.Forms
             EnterProjectNameForm enterProjectName = new EnterProjectNameForm();
             enterProjectName.FormClosed += (Sender, E) =>
             {
-                InputProjectMainForm inputProjectForm = new InputProjectMainForm();
+                if (CreatedNewProject)
+                {
+                    InputProjectMainForm inputProjectForm = new InputProjectMainForm();
+                    inputProjectForm.FormClosed += (Sender0, E0) =>
+                    {
+                        Show();
+                    };
+                    inputProjectForm.Show(this);
+                    //Hide();
+                }
             };
             enterProjectName.ShowDialog(this);
         }

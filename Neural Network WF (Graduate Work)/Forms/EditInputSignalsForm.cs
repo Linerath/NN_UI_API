@@ -10,7 +10,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Neural_Network.Core.Implementation;
-using Neural_Network_WF__Graduate_Work_.Networks;
+using Neural_Network_WF__Graduate_Work_.Repository;
 
 namespace Neural_Network_WF__Graduate_Work_.Forms
 {

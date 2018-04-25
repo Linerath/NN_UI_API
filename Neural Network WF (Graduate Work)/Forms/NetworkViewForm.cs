@@ -1,5 +1,5 @@
 ﻿using Neural_Network.Core.Implementation;
-using Neural_Network_WF__Graduate_Work_.Networks;
+using Neural_Network_WF__Graduate_Work_.Repository;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;

@@ -10,7 +10,7 @@ using System.Windows.Forms;
 using Neural_Network.Core.Implementation;
 using Neural_Network_WF__Graduate_Work_.Forms;
 using Neural_Network_WF__Graduate_Work_.Forms.Dialogs;
-using Neural_Network_WF__Graduate_Work_.Networks;
+using Neural_Network_WF__Graduate_Work_.Repository;
 
 namespace Neural_Network_WF__Graduate_Work_
 {
@@ -52,33 +52,34 @@ namespace Neural_Network_WF__Graduate_Work_
         #region Events
         private void newToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            NewNetworkFormDialog form = new NewNetworkFormDialog();
-            form.FormClosing += (s, args) =>
+            NewNetworkFormDialog newNetworkForm = new NewNetworkFormDialog();
+            newNetworkForm.FormClosed += (Sender, E) =>
             {
                 RefreshInformation();
             };
-            form.ShowDialog(this);
+            newNetworkForm.ShowDialog(this);
         }
 
         private void BViewEdit_Click(object sender, EventArgs e)
         {
-            NetworkViewForm form = new NetworkViewForm();
-            form.FormClosing += (s, args) =>
+            NetworkViewForm networkViewForm = new NetworkViewForm();
+            networkViewForm.FormClosed += (Sender, E) =>
             {
                 Show();
             };
             Hide();
-            form.ShowDialog(this);
+            networkViewForm.ShowDialog(this);
         }
         private void BPractice_Click(object sender, EventArgs e)
         {
-            PracticeNetworkForm form = new PracticeNetworkForm();
-            form.FormClosing += (s, args) =>
+            PracticeNetworkForm practiceNetworkForm = new PracticeNetworkForm();
+            practiceNetworkForm.FormClosed += (Sender, E) =>
             {
+                MessageBox.Show(practiceNetworkForm.IsDisposed.ToString());
                 Show();
             };
             Hide();
-            form.ShowDialog(this);
+            practiceNetworkForm.ShowDialog(this);
         }
         #endregion
 

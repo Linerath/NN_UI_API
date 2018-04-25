@@ -1,0 +1,16 @@
+﻿1) Common variables goes to Repository folder
+2) 
+
+
+
+
+
+
+
+
+
+
+*Form.FormClosed += (Sender, E) =>
+{
+	...
+};

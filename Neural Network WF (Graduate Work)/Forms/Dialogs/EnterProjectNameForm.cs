@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Neural_Network_WF__Graduate_Work_.Repository;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -19,13 +20,15 @@ namespace Neural_Network_WF__Graduate_Work_.Forms.Dialogs
 
         private void BOk_Click(object sender, EventArgs e)
         {
+            var owner = Owner as PracticeNetworkForm;
             if (String.IsNullOrWhiteSpace(TBProjectName.Text))
             {
                 MessageBox.Show("Invalid project name. Try again.", "Error");
+                owner.CreatedNewProject = false;
                 return;
             }
-            var owner = Owner as PracticeNetworkForm;
-            owner.inputProject = new Neural_Network.Core.Extra.NeuralNetworkInputProject(TBProjectName.Text);
+            NeuralNetwork.inputProject = new Neural_Network.Core.Extra.NeuralNetworkInputProject(TBProjectName.Text);
+            owner.CreatedNewProject = true;
             Close();
         }
     }
