@@ -10,25 +10,24 @@ using System.Windows.Forms;
 using Neural_Network.Core.Implementation;
 using Neural_Network_WF__Graduate_Work_.Forms;
 using Neural_Network_WF__Graduate_Work_.Forms.Dialogs;
+using Neural_Network_WF__Graduate_Work_.Networks;
 
 namespace Neural_Network_WF__Graduate_Work_
 {
     public partial class MainForm : Form
     {
-        public FeedforwardNetworkSHL network = null;
-
         public MainForm()
         {
             InitializeComponent();
 
-            network = new FeedforwardNetworkSHL(3, 4, 2);
+            NeuralNetwork.Network = new FeedforwardNetworkSHL(3, 4, 2);
             RefreshInformation();
         }
 
         #region Methods
         private void RefreshInformation()
         {
-            if (network == null)
+            if (NeuralNetwork.Network == null)
             {
                 TBName.Enabled = false;
                 BViewEdit.Enabled = false;
@@ -37,11 +36,11 @@ namespace Neural_Network_WF__Graduate_Work_
                 return;
             }
 
-            network.SetAllRandomWeights();
+            NeuralNetwork.Network.SetAllRandomWeights();
 
-            TBName.Text = network.Name;
-            LCreationDate1.Text = network.CreationDate.ToString();
-            LType1.Text = network.NetType.ToString();
+            TBName.Text = NeuralNetwork.Network.Name;
+            LCreationDate1.Text = NeuralNetwork.Network.CreationDate.ToString();
+            LType1.Text = NeuralNetwork.Network.NetType.ToString();
             TBName.Enabled = true;
             BViewEdit.Enabled = true;
             BPractice.Enabled = true;
@@ -63,7 +62,7 @@ namespace Neural_Network_WF__Graduate_Work_
 
         private void BViewEdit_Click(object sender, EventArgs e)
         {
-            NetworkViewForm form = new NetworkViewForm(network);
+            NetworkViewForm form = new NetworkViewForm();
             form.FormClosing += (s, args) =>
             {
                 Show();
@@ -73,7 +72,7 @@ namespace Neural_Network_WF__Graduate_Work_
         }
         private void BPractice_Click(object sender, EventArgs e)
         {
-            PracticeNetworkForm form = new PracticeNetworkForm(network);
+            PracticeNetworkForm form = new PracticeNetworkForm();
             form.FormClosing += (s, args) =>
             {
                 Show();

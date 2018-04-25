@@ -12,6 +12,8 @@ using System.Windows.Forms;
 using Neural_Network.Core.Extra;
 using Neural_Network.Core.Implementation;
 using Neural_Network_WF__Graduate_Work_.Forms.Dialogs;
+using Neural_Network_WF__Graduate_Work_.Forms.InputProject;
+using Neural_Network_WF__Graduate_Work_.Networks;
 
 namespace Neural_Network_WF__Graduate_Work_.Forms
 {
@@ -22,16 +24,13 @@ namespace Neural_Network_WF__Graduate_Work_.Forms
 
     public partial class PracticeNetworkForm : Form
     {
-        private FeedforwardNetworkSHL network;
         private EditInputSignalsForm signalsForm;
 
         public NeuralNetworkInputProject inputProject;
         private double[] signals = null;
 
-        public PracticeNetworkForm(FeedforwardNetworkSHL network)
+        public PracticeNetworkForm()
         {
-            this.network = network;
-
             InitializeComponent();
         }
 
@@ -46,6 +45,10 @@ namespace Neural_Network_WF__Graduate_Work_.Forms
         private void BCreateProject_Click(object sender, EventArgs e)
         {
             EnterProjectNameForm enterProjectName = new EnterProjectNameForm();
+            enterProjectName.FormClosed += (Sender, E) =>
+            {
+                InputProjectMainForm inputProjectForm = new InputProjectMainForm();
+            };
             enterProjectName.ShowDialog(this);
         }
         private void BOpenProject_Click(object sender, EventArgs e)
@@ -56,7 +59,7 @@ namespace Neural_Network_WF__Graduate_Work_.Forms
         {
             if (signals == null)
             {
-                signals = new double[network.InputLayerSize];
+                signals = new double[NeuralNetwork.Network.InputLayerSize];
             }
             if (signalsForm != null)
                 signalsForm.Focus();
@@ -99,7 +102,7 @@ namespace Neural_Network_WF__Graduate_Work_.Forms
         #region Methods
         private void ShowManualInputForm()
         {
-            signalsForm = new EditInputSignalsForm(network, signals);
+            signalsForm = new EditInputSignalsForm(signals);
             signalsForm.FormClosed += (Sender, E) =>
             {
                 Move -= PracticeNetworkForm_Move;
@@ -138,7 +141,7 @@ namespace Neural_Network_WF__Graduate_Work_.Forms
             }
 
             int signalsCount = signals.Count();
-            int inputCount = network[0].Count();
+            int inputCount = NeuralNetwork.Network[0].Count();
             if (signalsCount < inputCount)
             {
                 var answer = MessageBox.Show("Signals count less than network input neurons count. Press 'Yes' for random filling empty signals. Press 'No' for zero (0) empty input signals. Press 'Cancel' for close this file.", "Warning", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question);
@@ -151,7 +154,7 @@ namespace Neural_Network_WF__Graduate_Work_.Forms
                 switch (answer)
                 {
                     case DialogResult.Yes:
-                        Array.Resize(ref signals, network[0].Count());
+                        Array.Resize(ref signals, NeuralNetwork.Network[0].Count());
                         break;
                     case DialogResult.No:
                         return null;

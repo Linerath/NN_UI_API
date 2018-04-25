@@ -1,4 +1,5 @@
 ﻿using Neural_Network.Core.Implementation;
+using Neural_Network_WF__Graduate_Work_.Networks;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -13,11 +14,8 @@ namespace Neural_Network_WF__Graduate_Work_.Forms
 {
     public partial class NetworkViewForm : Form
     {
-        private FeedforwardNetworkSHL network;
-        
-        public NetworkViewForm(FeedforwardNetworkSHL network)
+        public NetworkViewForm()
         {
-            this.network = network;
             InitializeComponent();
         }
 
@@ -126,23 +124,23 @@ namespace Neural_Network_WF__Graduate_Work_.Forms
             }
             void FillValues()
             {
-                for (int i = 0; i < network[0].Count(); i++)
-                    DGVInputLayer[0, i].Value = network[0][i][0];
-                for (int i = 0; i < network[1].Count(); i++)
-                    for (int j = 0; j < network[1][i].InputCount; j++)
-                        DGVHiddenLayer[j, i].Value = Math.Round(network[1][i][j], count0).ToString();
-                for (int i = 0; i < network[2].Count(); i++)
-                    for (int j = 0; j < network[2][i].InputCount; j++)
-                        DGVOutputLayer[j, i].Value = Math.Round(network[2][i][j], count1).ToString();
+                for (int i = 0; i < NeuralNetwork.Network[0].Count(); i++)
+                    DGVInputLayer[0, i].Value = NeuralNetwork.Network[0][i][0];
+                for (int i = 0; i < NeuralNetwork.Network[1].Count(); i++)
+                    for (int j = 0; j < NeuralNetwork.Network[1][i].InputCount; j++)
+                        DGVHiddenLayer[j, i].Value = Math.Round(NeuralNetwork.Network[1][i][j], count0).ToString();
+                for (int i = 0; i < NeuralNetwork.Network[2].Count(); i++)
+                    for (int j = 0; j < NeuralNetwork.Network[2][i].InputCount; j++)
+                        DGVOutputLayer[j, i].Value = Math.Round(NeuralNetwork.Network[2][i][j], count1).ToString();
             }
 
-            DGVInputLayer.RowCount = network.InputLayerSize;
+            DGVInputLayer.RowCount = NeuralNetwork.Network.InputLayerSize;
 
-            DGVHiddenLayer.RowCount = network.HiddenLayerSize;
-            DGVHiddenLayer.ColumnCount = network[1].Max(x => x.InputCount);
+            DGVHiddenLayer.RowCount = NeuralNetwork.Network.HiddenLayerSize;
+            DGVHiddenLayer.ColumnCount = NeuralNetwork.Network[1].Max(x => x.InputCount);
 
-            DGVOutputLayer.RowCount = network.OutputLayerSize;
-            DGVOutputLayer.ColumnCount = network[2].Max(x => x.InputCount);
+            DGVOutputLayer.RowCount = NeuralNetwork.Network.OutputLayerSize;
+            DGVOutputLayer.ColumnCount = NeuralNetwork.Network[2].Max(x => x.InputCount);
 
             UpdateFont();
             UpdateCellsAutoSize(DGVHiddenLayer, CBHiddenAdaptCellSize.Checked);

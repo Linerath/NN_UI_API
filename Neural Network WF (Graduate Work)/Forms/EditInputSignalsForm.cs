@@ -10,17 +10,16 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Neural_Network.Core.Implementation;
+using Neural_Network_WF__Graduate_Work_.Networks;
 
 namespace Neural_Network_WF__Graduate_Work_.Forms
 {
     public partial class EditInputSignalsForm : Form
     {
-        private FeedforwardNetworkSHL network;
         private double[] signals;
 
-        public EditInputSignalsForm(FeedforwardNetworkSHL network, double[] signals)
+        public EditInputSignalsForm(double[] signals)
         {
-            this.network = network;
             this.signals = signals;
 
             InitializeComponent();
@@ -45,10 +44,10 @@ namespace Neural_Network_WF__Graduate_Work_.Forms
         }
         private void BGo_Click(object sender, EventArgs e)
         {
-            if (network == null || signals == null)
+            if (NeuralNetwork.Network == null || signals == null)
                 return;
 
-            double[] response = network.GetResponse(signals);
+            double[] response = NeuralNetwork.Network.GetResponse(signals);
             String str = "";
             foreach (var s in response)
                 str += s + ";\n";
@@ -60,7 +59,7 @@ namespace Neural_Network_WF__Graduate_Work_.Forms
         private void UpdateNetwork(bool rewriteValues = false)
         {
             DGVInputSignals.RowCount = 1;
-            DGVInputSignals.ColumnCount = network[0].Count();
+            DGVInputSignals.ColumnCount = NeuralNetwork.Network[0].Count();
 
             if (rewriteValues)
             {
