@@ -13,6 +13,13 @@ namespace Neural_Network.Core.Implementation
         MultilayerPerceptron
     }
 
+    public enum Layers
+    {
+        Input,
+        Hidden,
+        Output
+    }
+
     [Serializable]
     public sealed class FeedforwardNetworkSHL : INeuralNetwork
     {

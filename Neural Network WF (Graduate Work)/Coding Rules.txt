@@ -10,7 +10,9 @@
 
 
 
-*Form.FormClosed += (Sender, E) =>
+1) *Form.FormClosed += (Sender, E) =>
 {
 	...
 };
+2) ArgumentNullException("Null argument({Field})");
+3) IndexOutOfRangeException("Index out of range.");

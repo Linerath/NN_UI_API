@@ -11,6 +11,6 @@ namespace Neural_Network_WF__Graduate_Work_.Repository
     public class NeuralNetwork
     {
         public static FeedforwardNetworkSHL Network { get; set; } = null;
-        public static NeuralNetworkInputProject inputProject { get; set; } = null;
+        public static NeuralNetworkInputProject InputProject { get; set; } = null;
     }
 }

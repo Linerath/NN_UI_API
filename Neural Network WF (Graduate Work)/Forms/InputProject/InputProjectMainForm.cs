@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Neural_Network_WF__Graduate_Work_.Repository;
 
 namespace Neural_Network_WF__Graduate_Work_.Forms.InputProject
 {

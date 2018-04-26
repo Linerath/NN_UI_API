@@ -75,17 +75,15 @@ namespace Neural_Network_WF__Graduate_Work_
             PracticeNetworkForm practiceNetworkForm = new PracticeNetworkForm();
             practiceNetworkForm.FormClosed += (Sender, E) =>
             {
-                MessageBox.Show(practiceNetworkForm.IsDisposed.ToString());
                 Show();
             };
             Hide();
             practiceNetworkForm.ShowDialog(this);
         }
-        #endregion
-
         private void BTraining_Click(object sender, EventArgs e)
         {
 
         }
+        #endregion
     }
 }

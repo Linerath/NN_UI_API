@@ -27,7 +27,7 @@ namespace Neural_Network_WF__Graduate_Work_.Forms.Dialogs
                 owner.CreatedNewProject = false;
                 return;
             }
-            NeuralNetwork.inputProject = new Neural_Network.Core.Extra.NeuralNetworkInputProject(TBProjectName.Text);
+            NeuralNetwork.InputProject = new Neural_Network.Core.Extra.NeuralNetworkInputProject(TBProjectName.Text, NeuralNetwork.Network);
             owner.CreatedNewProject = true;
             Close();
         }

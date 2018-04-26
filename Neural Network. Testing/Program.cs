@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Neural_Network.Core;
+using Neural_Network.Core.Extra;
 using Neural_Network.Core.Implementation;
 
 namespace Neural_Network.Testing
@@ -25,9 +26,14 @@ namespace Neural_Network.Testing
 
             #region FeedforwardNetworkTests
             //FeedforwardNetworkTests.CtorTest();
-            FeedforwardNetworkTests.SetRandomTest();
+            //FeedforwardNetworkTests.SetRandomTest();
             //FeedforwardNetworkTests.ResponseTest();
             //FeedforwardNetworkTests.PrintResponseTest();
+            #endregion
+
+            #region NeuralNetworkInputProjectTests
+            //NeuralNetworkInputProjectTests.CtorTest();
+            NeuralNetworkInputProjectTests.CreatingFieldsTest();
             #endregion
 
             ConsoleKeyInfo key;
@@ -236,6 +242,28 @@ namespace Neural_Network.Testing
                 Console.Write(")\t");
             }
             Console.WriteLine("\n");
+        }
+    }
+
+    static class NeuralNetworkInputProjectTests
+    {
+        public static void CtorTest()
+        {
+            FeedforwardNetworkSHL network = new FeedforwardNetworkSHL(3, 4, 2);
+            NeuralNetworkInputProject inputProject = new NeuralNetworkInputProject("Test name", network);
+
+            Console.WriteLine(inputProject.InputFieldsCount);
+            Console.WriteLine(inputProject.OutputFieldsCount);
+        }
+        public static void CreatingFieldsTest()
+        {
+            FeedforwardNetworkSHL network = new FeedforwardNetworkSHL(3, 4, 2);
+            NeuralNetworkInputProject inputProject = new NeuralNetworkInputProject("Test name", network);
+
+            inputProject.CreateField(Layers.Input, "MyField", 0);
+
+            var f = inputProject[Layers.Input, 1];
+            Console.WriteLine(f.Name + " " + f.NeuronIndex);
         }
     }
 }

@@ -7,6 +7,8 @@
 	2. NetworkViewForm:
 		1) change columns sizing
 		2) fix decimal places
+	3. PracticeNetworkForm
+		1) after opening the new project form (InputProjectMainForm) PracticeNetworkForm should be hidden
 
 
 
