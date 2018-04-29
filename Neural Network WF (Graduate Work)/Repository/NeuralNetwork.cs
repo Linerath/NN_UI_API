@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace NeuralNetwork_UI.Shared
+namespace Neural_Network_WF__Graduate_Work_.Repository
 {
     public class NeuralNetwork
     {

@@ -48,6 +48,18 @@
     <Compile Include="Constants\Exceptions.cs" />
     <Compile Include="Constants\Form\FormBorder.cs" />
     <Compile Include="Constants\Form\FormLayout.cs" />
+    <Compile Include="Forms\HiddenLayerForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\HiddenLayerForm.Designer.cs">
+      <DependentUpon>HiddenLayerForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\InputLayerForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\InputLayerForm.Designer.cs">
+      <DependentUpon>InputLayerForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\MainMenuForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -59,6 +71,12 @@
     </Compile>
     <Compile Include="Forms\NetworkExplorerForm.Designer.cs">
       <DependentUpon>NetworkExplorerForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\OutputLayerForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\OutputLayerForm.Designer.cs">
+      <DependentUpon>OutputLayerForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\ViewSettingsForm.cs">
       <SubType>Form</SubType>
@@ -74,6 +92,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\NetworkExplorerForm.resx">
       <DependentUpon>NetworkExplorerForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\ViewSettingsForm.resx">
+      <DependentUpon>ViewSettingsForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -102,6 +123,11 @@
       <Project>{236b3d12-05b6-44f0-9615-894ae80ad623}</Project>
       <Name>Neural Network. Core</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Other\Coding Rules.txt" />
+    <Content Include="Other\RandomInformation.txt" />
+    <Content Include="Other\ToDo List.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

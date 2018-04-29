@@ -1,6 +1,6 @@
-﻿namespace NeuralNetwork.WF.MDI.Forms
+﻿namespace NeuralNetwork_UI.Forms
 {
-    partial class MainMenuForm
+    partial class OutputLayerForm
     {
         /// <summary>
         /// Required designer variable.
@@ -28,20 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.SuspendLayout();
-            // 
-            // MainMenuForm
-            // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.components = new System.ComponentModel.Container();
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(320, 206);
-            this.MaximizeBox = false;
-            this.MinimizeBox = false;
-            this.Name = "MainMenuForm";
-            this.Text = "TopMenuForm";
-            this.Click += new System.EventHandler(this.MainMenuForm_Click);
-            this.ResumeLayout(false);
-
+            this.Text = "OutputLayerForm";
         }
 
         #endregion

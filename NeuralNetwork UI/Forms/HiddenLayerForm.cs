@@ -8,11 +8,11 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace NeuralNetwork.WF.MDI.Forms
+namespace NeuralNetwork_UI.Forms
 {
-    public partial class ViewSettingsForm : Form
+    public partial class HiddenLayerForm : Form
     {
-        public ViewSettingsForm()
+        public HiddenLayerForm()
         {
             InitializeComponent();
         }

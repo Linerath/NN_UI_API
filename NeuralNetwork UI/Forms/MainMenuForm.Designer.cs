@@ -50,7 +50,7 @@
             this.windowsToolStripMenuItem});
             this.MainMenu.Location = new System.Drawing.Point(0, 0);
             this.MainMenu.Name = "MainMenu";
-            this.MainMenu.Size = new System.Drawing.Size(1255, 28);
+            this.MainMenu.Size = new System.Drawing.Size(1348, 28);
             this.MainMenu.TabIndex = 0;
             this.MainMenu.Text = "menuStrip1";
             // 
@@ -101,6 +101,7 @@
             this.BOpen.TabIndex = 2;
             this.BOpen.Text = "O";
             this.BOpen.UseVisualStyleBackColor = true;
+            this.BOpen.Click += new System.EventHandler(this.BOpen_Click);
             // 
             // button3
             // 
@@ -115,7 +116,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1255, 122);
+            this.ClientSize = new System.Drawing.Size(1348, 122);
             this.Controls.Add(this.GBFile);
             this.Controls.Add(this.MainMenu);
             this.MainMenuStrip = this.MainMenu;

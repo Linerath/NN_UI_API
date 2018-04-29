@@ -95,6 +95,7 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repository\NeuralNetwork.cs" />
     <EmbeddedResource Include="Forms\Dialogs\EnterProjectNameForm.resx">
       <DependentUpon>EnterProjectNameForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -145,10 +146,6 @@
     <ProjectReference Include="..\Neural Network. Core\Neural Network. Core.csproj">
       <Project>{236b3d12-05b6-44f0-9615-894ae80ad623}</Project>
       <Name>Neural Network. Core</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\NeuralNetwork.WF.Shared\NeuralNetwork.WF.Shared.csproj">
-      <Project>{a330e38b-27e3-4274-ae50-eca57e87c1f1}</Project>
-      <Name>NeuralNetwork.WF.Shared</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

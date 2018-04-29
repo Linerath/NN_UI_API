@@ -1,6 +1,6 @@
 ﻿namespace NeuralNetwork_UI.Forms
 {
-    partial class ViewSettingsForm
+    partial class InputLayerForm
     {
         /// <summary>
         /// Required designer variable.
@@ -28,17 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.SuspendLayout();
-            // 
-            // ViewSettingsForm
-            // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.components = new System.ComponentModel.Container();
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(282, 482);
-            this.Name = "ViewSettingsForm";
-            this.Text = "ViewSettingsForm";
-            this.ResumeLayout(false);
-
+            this.Text = "InputLayerForm";
         }
 
         #endregion

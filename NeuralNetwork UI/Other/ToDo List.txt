@@ -20,7 +20,8 @@ II. Neural Network.Core
 
 
 
-III. NeuralNetwork.WF.V2
+III. NeuralNetwork UI
 
 	Global:
 		1) write manual exceptions
+		2) make adequate forms auto layout

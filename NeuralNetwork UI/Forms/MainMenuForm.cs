@@ -1,10 +1,12 @@
 ﻿using NeuralNetwork_UI.Constants;
 using NeuralNetwork_UI.Forms.Constants;
+using NeuralNetwork_UI.Shared;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading;
@@ -35,13 +37,36 @@ namespace NeuralNetwork_UI.Forms
         #region This
         private void MainMenuForm_Load(object sender, EventArgs e)
         {
-            LocateForm(this, FormAbsoluteLayout.TopStretch);
-            LocateForm(networkExplorerForm, this, FormRelativeLayout.BottomLeft);
-            LocateForm(viewSettingsForm, networkExplorerForm, FormRelativeLayout.BottomLeft);
+            //LocateForm(this, FormAbsoluteLayout.TopStretch);
+            //LocateForm(networkExplorerForm, this, FormRelativeLayout.BottomLeft);
+            //LocateForm(viewSettingsForm, networkExplorerForm, FormRelativeLayout.BottomLeft);
+
+            DefaultFormsLayout();
         }
         private void BNew_Click(object sender, EventArgs e)
         {
-            
+
+        }
+        private void BOpen_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog ofd = new OpenFileDialog
+            {
+                InitialDirectory = Directory.GetCurrentDirectory()
+            };
+
+            ofd.ShowDialog();
+
+            if (ofd.ShowDialog() == DialogResult.OK)
+            {
+                try
+                {
+
+                }
+                catch (IOException exp)
+                {
+                    MessageBox.Show("IOexception was thrown. Message: " + exp.Message);
+                }
+            }
         }
         #endregion
 
@@ -52,6 +77,41 @@ namespace NeuralNetwork_UI.Forms
 
         #region Methods
 
+        private Form LocateForm(Form form, Form relativeForm, FormRelativeLayout formRelativeLayout)
+        {
+            if (form == null || relativeForm == null)
+                throw new ArgumentException(Exceptions.UNKNOWN_FORM);
+
+            //relativeForm.DesktopBounds
+
+            switch (formRelativeLayout)
+            {
+                case FormRelativeLayout.TopLeft:
+                    break;
+                case FormRelativeLayout.TopRight:
+
+                    break;
+
+                case FormRelativeLayout.RightTop:
+                    form.DesktopLocation = new Point(relativeForm.DesktopBounds.X + relativeForm.DesktopBounds.Width, relativeForm.DesktopBounds.Y);
+                    break;
+                case FormRelativeLayout.RightBottom:
+                    break;
+
+                case FormRelativeLayout.BottomLeft:
+                    form.DesktopLocation = new Point(relativeForm.DesktopBounds.X, relativeForm.DesktopBounds.Y + relativeForm.DesktopBounds.Height);
+                    break;
+                case FormRelativeLayout.BottomRight:
+                    break;
+
+                case FormRelativeLayout.LeftTop:
+                    form.DesktopLocation = new Point(relativeForm.DesktopBounds.X - form.Width, relativeForm.DesktopBounds.Y);
+                    break;
+                case FormRelativeLayout.LeftBottom:
+                    break;
+            }
+            return form;
+        }
         private Form LocateForm(Form form, FormAbsoluteLayout formLayout)
         {
             if (form == null)
@@ -95,47 +155,24 @@ namespace NeuralNetwork_UI.Forms
             }
             return form;
         }
-        private Form LocateForm(Form form, Form relativeForm, FormRelativeLayout formRelativeLayout)
+        private void DefaultFormsLayout()
         {
-            if (form == null || relativeForm == null)
-                throw new ArgumentException(Exceptions.UNKNOWN_FORM);
-
-            //relativeForm.DesktopBounds
-
-            switch (formRelativeLayout)
-            {
-                case FormRelativeLayout.TopLeft:
-                    break;
-                case FormRelativeLayout.TopRight:
-
-                    break;
-
-                case FormRelativeLayout.RightTop:
-                    form.DesktopLocation = new Point(relativeForm.DesktopBounds.X + relativeForm.DesktopBounds.Width, relativeForm.DesktopBounds.Y);
-                    break;
-                case FormRelativeLayout.RightBottom:
-                    break;
-
-                case FormRelativeLayout.BottomLeft:
-                    form.DesktopLocation = new Point(relativeForm.DesktopBounds.X, relativeForm.DesktopBounds.Y + relativeForm.DesktopBounds.Height);
-                    break;
-                case FormRelativeLayout.BottomRight:
-                    break;
-
-                case FormRelativeLayout.LeftTop:
-                    form.DesktopLocation = new Point(relativeForm.DesktopBounds.X - form.Width, relativeForm.DesktopBounds.Y);
-                    break;
-                case FormRelativeLayout.LeftBottom:
-                    break;
-            }
-            return form;
+            DesktopLocation = new Point(-10, 0);
+            networkExplorerForm.Location = new Point(Location.X, Location.Y + Height);
+            viewSettingsForm.Location = new Point(Location.X, networkExplorerForm.Location.Y + networkExplorerForm.Height);
+            Size = new Size(1850, Size.Height);
+        }
+        
+        private void ReadNetwork(String filePath)
+        {
+            
         }
 
         #endregion
 
         private void MainMenuForm_Click(object sender, EventArgs e)
         {
-            
+
         }
 
 

@@ -1,6 +1,6 @@
-﻿namespace NeuralNetwork.WF.MDI.Forms
+﻿namespace NeuralNetwork_UI.Forms
 {
-    partial class ViewSettingsForm
+    partial class HiddenLayerForm
     {
         /// <summary>
         /// Required designer variable.
@@ -30,7 +30,7 @@
         {
             this.components = new System.ComponentModel.Container();
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Text = "ViewSettingsForm";
+            this.Text = "HiddenLayerForm";
         }
 
         #endregion
