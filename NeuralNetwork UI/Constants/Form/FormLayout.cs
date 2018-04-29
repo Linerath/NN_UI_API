@@ -4,28 +4,39 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace NeuralNetwork.WF.MDI.Constants
+namespace NeuralNetwork_UI.Forms.Constants
 {
-    enum FormLayout
+    enum FormAbsoluteLayout
     {
         TopStretch,
         TopLeft,
-        TopCenter,
         TopRight,
 
         RightStretch,
         RightTop,
-        RightCenter,
         RightBottom,
 
         BottomStretch,
         BottomLeft,
-        BottomCenter,
         BottomRight,
 
         LeftStretch,
         LeftTop,
-        LeftCenter,
+        LeftBottom
+    }
+
+    enum FormRelativeLayout
+    {
+        TopLeft,
+        TopRight,
+
+        RightTop,
+        RightBottom,
+
+        BottomLeft,
+        BottomRight,
+
+        LeftTop,
         LeftBottom
     }
 }

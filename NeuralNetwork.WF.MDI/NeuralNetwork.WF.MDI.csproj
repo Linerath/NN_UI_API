@@ -63,7 +63,6 @@
     <Compile Include="Constants\Exceptions.cs" />
     <Compile Include="Constants\Form\FormBorder.cs" />
     <Compile Include="Constants\Form\FormLayout.cs" />
-    <Compile Include="Constants\Form\FormType.cs" />
     <Compile Include="Forms\MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
