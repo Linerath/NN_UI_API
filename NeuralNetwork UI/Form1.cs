@@ -8,18 +8,13 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace NeuralNetwork.WF.MDI.Forms
+namespace NeuralNetwork_UI
 {
-    public partial class MainMenuForm : Form
+    public partial class Form1 : Form
     {
-        public MainMenuForm()
+        public Form1()
         {
             InitializeComponent();
-        }
-
-        private void MainMenuForm_Click(object sender, EventArgs e)
-        {
-            MessageBox.Show(Location.X.ToString());
         }
     }
 }

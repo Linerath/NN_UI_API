@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NeuralNetwork.WF.MDI", "Neu
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NeuralNetwork.WF.Shared", "NeuralNetwork.WF.Shared\NeuralNetwork.WF.Shared.csproj", "{A330E38B-27E3-4274-AE50-ECA57E87C1F1}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NeuralNetwork UI", "NeuralNetwork UI\NeuralNetwork UI.csproj", "{43570AB3-240E-4FB5-B90E-28BE9899A47C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{A330E38B-27E3-4274-AE50-ECA57E87C1F1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A330E38B-27E3-4274-AE50-ECA57E87C1F1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A330E38B-27E3-4274-AE50-ECA57E87C1F1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{43570AB3-240E-4FB5-B90E-28BE9899A47C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{43570AB3-240E-4FB5-B90E-28BE9899A47C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{43570AB3-240E-4FB5-B90E-28BE9899A47C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{43570AB3-240E-4FB5-B90E-28BE9899A47C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

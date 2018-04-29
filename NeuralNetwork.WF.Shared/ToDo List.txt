@@ -20,7 +20,7 @@ II. Neural Network.Core
 
 
 
-III. NeuralNetwork.WF.MDI
+III. NeuralNetwork.WF.V2
 
 	Global:
 		1) write manual exceptions
