@@ -262,8 +262,8 @@ namespace Neural_Network.Testing
 
             inputProject.CreateField(Layers.Input, "MyField", 0);
 
-            var f = inputProject[Layers.Input, 1];
-            Console.WriteLine(f.Name + " " + f.NeuronIndex);
+            //var f = inputProject[Layers.Input, 1];
+            //Console.WriteLine(f.Name + " " + f.NeuronIndex);
         }
     }
 }

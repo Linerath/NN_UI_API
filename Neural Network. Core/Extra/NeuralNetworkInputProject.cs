@@ -51,13 +51,17 @@ namespace Neural_Network.Core.Extra
                         if (replaceExistingField)
                         {
                             inputLayerFields[existingFieldIndex] = field;
+                            Console.WriteLine("Replaced!");
                         }
                         else
                         {
 
                         }
                     }
-                    inputLayerFields.Add(field);
+                    else
+                    {
+                        inputLayerFields.Add(field);
+                    }
                     break;
                 case Layers.Output:
                     outputLayerFields.Add(field);
@@ -73,26 +77,27 @@ namespace Neural_Network.Core.Extra
 
         }
 
-        //public Field this[Layers layer, int neuronIndex]
+        //public Field? this[Layers layer, int neuronIndex]
         //{
-        //    get
-        //    {
-        //        if (layer == Layers.Hidden)
-        //            throw new ArgumentException("You haven't access to the hidden layer");
+            //get
+            //{
+            //    if (layer == Layers.Hidden)
+            //        throw new ArgumentException("You do not have access to the hidden layer!");
 
-        //        switch (layer)
-        //        {
-        //            case Layers.Input:
-        //                //var existingFieldIndex = inputLayerFields.FindIndex(x => x.NeuronIndex == neuronIndex);
-        //                //return inputLayerFields[existingFieldIndex];
-        //                //var field = inputLayerFields.Find(x => x.NeuronIndex == neuronIndex);
-        //                return field;
-        //            case Layers.Output:
-        //                return outputLayerFields.Find(x => x.NeuronIndex == neuronIndex);
-        //            default:
-        //                return new Field("Not existing field", -1);
-        //        }
-        //    }
+            //    switch (layer)
+            //    {
+            //        case Layers.Input:
+            //            var existingFieldIndex = inputLayerFields.FindIndex(x => x.NeuronIndex == neuronIndex);
+            //            if (existingFieldIndex >= 0)
+            //                return inputLayerFields[existingFieldIndex];
+            //            else
+            //                return null;
+            //        case Layers.Output:
+            //            return outputLayerFields.Find(x => x.NeuronIndex == neuronIndex);
+            //        default:
+            //            return new Field("Not existing field", -1);
+            //    }
+            //}
         //}
         public int InputFieldsCount
         {

@@ -1,5 +1,8 @@
 ﻿I. Neural Network WF (Graduate Work)
 	
+	Global:
+		1) Make project Delphi-like. MDI Parent and a lot of forms inside
+		
 	1. All Forms DataGridViews:
 		1) input validating and saving
 		2) adapt virtical size
