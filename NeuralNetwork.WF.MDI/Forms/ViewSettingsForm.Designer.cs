@@ -1,6 +1,6 @@
-﻿namespace NeuralNetwork.WF.MDI
+﻿namespace NeuralNetwork.WF.MDI.Forms
 {
-    partial class Form1
+    partial class ViewSettingsForm
     {
         /// <summary>
         /// Required designer variable.
@@ -30,10 +30,9 @@
         {
             this.components = new System.ComponentModel.Container();
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Text = "Form1";
+            this.Text = "ViewSettingsForm";
         }
 
         #endregion
     }
 }
-

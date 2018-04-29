@@ -1,5 +1,5 @@
 ﻿1) Common variables goes to Repository folder
-2) 
+2) Every form name = id
 
 
 

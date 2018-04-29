@@ -45,6 +45,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Coding Rules.txt" />
+    <Content Include="RandomInformation.txt" />
     <Content Include="ToDo List.txt" />
   </ItemGroup>
   <ItemGroup>

@@ -8,11 +8,11 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace NeuralNetwork.WF.MDI
+namespace NeuralNetwork.WF.MDI.Forms
 {
-    public partial class Form1 : Form
+    public partial class ViewSettingsForm : Form
     {
-        public Form1()
+        public ViewSettingsForm()
         {
             InitializeComponent();
         }

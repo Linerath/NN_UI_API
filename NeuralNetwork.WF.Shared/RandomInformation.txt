@@ -1,0 +1,3 @@
+﻿All forms border size:
+	Vertical - 47px
+	Horizontal - 18px
