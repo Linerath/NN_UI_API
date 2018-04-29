@@ -147,7 +147,7 @@
       <Name>Neural Network. Core</Name>
     </ProjectReference>
     <ProjectReference Include="..\NeuralNetwork.WF.Shared\NeuralNetwork.WF.Shared.csproj">
-      <Project>{037167aa-2254-4c2e-ab28-4a5a16efd9c9}</Project>
+      <Project>{a330e38b-27e3-4274-ae50-eca57e87c1f1}</Project>
       <Name>NeuralNetwork.WF.Shared</Name>
     </ProjectReference>
   </ItemGroup>

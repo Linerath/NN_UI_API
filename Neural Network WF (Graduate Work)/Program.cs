@@ -13,7 +13,7 @@ namespace Neural_Network_WF__Graduate_Work_
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new MDI.MainForm());
+            Application.Run(new MainForm());
         }
     }
 }
