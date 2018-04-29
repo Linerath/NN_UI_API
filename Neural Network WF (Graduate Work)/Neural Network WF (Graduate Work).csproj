@@ -93,7 +93,6 @@
     <Compile Include="Forms\PracticeNetworkForm.Designer.cs">
       <DependentUpon>PracticeNetworkForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Repository\NeuralNetwork.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Forms\Dialogs\EnterProjectNameForm.resx">
@@ -147,10 +146,10 @@
       <Project>{236b3d12-05b6-44f0-9615-894ae80ad623}</Project>
       <Name>Neural Network. Core</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Coding Rules.txt" />
-    <Content Include="ToDo List.txt" />
+    <ProjectReference Include="..\NeuralNetwork.WF.Shared\NeuralNetwork.WF.Shared.csproj">
+      <Project>{037167aa-2254-4c2e-ab28-4a5a16efd9c9}</Project>
+      <Name>NeuralNetwork.WF.Shared</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
