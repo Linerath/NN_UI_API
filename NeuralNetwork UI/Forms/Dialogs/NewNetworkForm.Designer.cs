@@ -46,6 +46,7 @@
             this.LFile = new System.Windows.Forms.Label();
             this.CBRandomWeights = new System.Windows.Forms.CheckBox();
             this.CBCreateAnother = new System.Windows.Forms.CheckBox();
+            this.BCancel = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.NUDOutput)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.NUDHidden)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.NUDInput)).BeginInit();
@@ -305,11 +306,24 @@
             this.CBCreateAnother.Text = "Create another one";
             this.CBCreateAnother.UseVisualStyleBackColor = true;
             // 
+            // BCancel
+            // 
+            this.BCancel.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.BCancel.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BCancel.Location = new System.Drawing.Point(251, 491);
+            this.BCancel.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.BCancel.Name = "BCancel";
+            this.BCancel.Size = new System.Drawing.Size(77, 32);
+            this.BCancel.TabIndex = 25;
+            this.BCancel.Text = "Cancel";
+            this.BCancel.UseVisualStyleBackColor = true;
+            // 
             // NewNetworkForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(425, 534);
+            this.Controls.Add(this.BCancel);
             this.Controls.Add(this.CBCreateAnother);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox2);
@@ -356,5 +370,6 @@
         private System.Windows.Forms.Label LFile;
         private System.Windows.Forms.CheckBox CBRandomWeights;
         public System.Windows.Forms.CheckBox CBCreateAnother;
+        private System.Windows.Forms.Button BCancel;
     }
 }

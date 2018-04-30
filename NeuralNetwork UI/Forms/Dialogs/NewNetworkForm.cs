@@ -25,10 +25,10 @@ namespace NeuralNetwork_UI.Forms.Dialogs
         }
         private void BOk_Click(object sender, EventArgs e)
         {
-            String name = TBName.Text;
-            if (String.IsNullOrEmpty(name))
+            String name = TBName.Text.Trim();
+            if (name == String.Empty)
             {
-                MessageBox.Show("Invalid name.");
+                MessageBox.Show("Invalid name.", "Error");
                 TBName.Focus();
                 return;
             }

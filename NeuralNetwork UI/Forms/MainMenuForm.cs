@@ -50,7 +50,6 @@ namespace NeuralNetwork_UI.Forms
 
             networkExplorerForm.Show();
             viewSettingsForm.Show();
-            inputProjectsForm.Show();
             DefaultFormsLayout();
         }
         private void BNewNetwork_Click(object sender, EventArgs e)
