@@ -11,40 +11,40 @@ namespace NeuralNetwork_UI.Shared
 {
     static class LayersHandler
     {
-        public static void RefreshLayerValues(DataGridView dataGridView, Layers layer, int decimalPlaces, bool rewriteValues)
+        public static void RefreshLayerValues(int NetworkIndex, DataGridView dataGridView, Layers layer, int decimalPlaces, bool rewriteValues)
         {
             switch (layer)
             {
                 case Layers.Input:
-                    dataGridView.RowCount = NeuralNetwork.Network.InputLayerSize;
+                    dataGridView.RowCount = Project.Networks[NetworkIndex].InputLayerSize;
                     dataGridView.ColumnCount = 1;
 
                     if (rewriteValues)
                     {
-                        for (int i = 0; i < NeuralNetwork.Network.InputLayer.Length; i++)
-                            dataGridView[0, i].Value = NeuralNetwork.Network.InputLayer[i][0];
+                        for (int i = 0; i < Project.Networks[NetworkIndex].InputLayer.Length; i++)
+                            dataGridView[0, i].Value = Project.Networks[NetworkIndex].InputLayer[i][0];
                     }
                     break;
                 case Layers.Hidden:
-                    dataGridView.RowCount = NeuralNetwork.Network.HiddenLayerSize;
-                    dataGridView.ColumnCount = NeuralNetwork.Network.HiddenLayer.Max(x => x.InputCount);
+                    dataGridView.RowCount = Project.Networks[NetworkIndex].HiddenLayerSize;
+                    dataGridView.ColumnCount = Project.Networks[NetworkIndex].HiddenLayer.Max(x => x.InputCount);
 
                     if (rewriteValues)
                     {
-                        for (int i = 0; i < NeuralNetwork.Network.HiddenLayerSize; i++)
-                            for (int j = 0; j < NeuralNetwork.Network.HiddenLayer[i].InputCount; j++)
-                                dataGridView[j, i].Value = Math.Round(NeuralNetwork.Network.HiddenLayer[i][j], decimalPlaces);
+                        for (int i = 0; i < Project.Networks[NetworkIndex].HiddenLayerSize; i++)
+                            for (int j = 0; j < Project.Networks[NetworkIndex].HiddenLayer[i].InputCount; j++)
+                                dataGridView[j, i].Value = Math.Round(Project.Networks[NetworkIndex].HiddenLayer[i][j], decimalPlaces);
                     }
                     break;
                 case Layers.Output:
-                    dataGridView.RowCount = NeuralNetwork.Network.OutputLayerSize;
-                    dataGridView.ColumnCount = NeuralNetwork.Network.OutputLayer.Max(x => x.InputCount);
+                    dataGridView.RowCount = Project.Networks[NetworkIndex].OutputLayerSize;
+                    dataGridView.ColumnCount = Project.Networks[NetworkIndex].OutputLayer.Max(x => x.InputCount);
 
                     if (rewriteValues)
                     {
-                        for (int i = 0; i < NeuralNetwork.Network.OutputLayerSize; i++)
-                            for (int j = 0; j < NeuralNetwork.Network.OutputLayer[i].InputCount; j++)
-                                dataGridView[j, i].Value = Math.Round(NeuralNetwork.Network.OutputLayer[i][j], decimalPlaces);
+                        for (int i = 0; i < Project.Networks[NetworkIndex].OutputLayerSize; i++)
+                            for (int j = 0; j < Project.Networks[NetworkIndex].OutputLayer[i].InputCount; j++)
+                                dataGridView[j, i].Value = Math.Round(Project.Networks[NetworkIndex].OutputLayer[i][j], decimalPlaces);
                     }
                     break;
             }

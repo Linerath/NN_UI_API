@@ -15,6 +15,7 @@ namespace NeuralNetwork_UI.Forms
 {
     public partial class HiddenLayerForm : Form
     {
+        private int NetworkIndex;
         #region View settings
         public int FontSize { get; set; } = 17;
         public bool AdaptCellsSize { get; set; } = true;
@@ -23,9 +24,11 @@ namespace NeuralNetwork_UI.Forms
         public FormRelativeLayout FollowedFormRelativeLayout { get; set; }
         #endregion
 
-        public HiddenLayerForm()
+        public HiddenLayerForm(int networkIndex)
         {
             InitializeComponent();
+
+            NetworkIndex = networkIndex;
         }
 
         #region Events
@@ -67,13 +70,13 @@ namespace NeuralNetwork_UI.Forms
         #region Methods
         public void FullLayerRefresh()
         {
-            LayersHandler.RefreshLayerValues(DGVLayer, Neural_Network.Core.Implementation.Layers.Hidden, DecimalPlaces, true);
+            LayersHandler.RefreshLayerValues(NetworkIndex, DGVLayer, Neural_Network.Core.Implementation.Layers.Hidden, DecimalPlaces, true);
             LayersHandler.RefreshFontSize(DGVLayer, FontSize);
             LayersHandler.RefreshCellsAutoSize(DGVLayer, AdaptCellsSize);
         }
         public void RefreshLayerValues(bool rewriteValues = false)
         {
-            LayersHandler.RefreshLayerValues(DGVLayer, Neural_Network.Core.Implementation.Layers.Hidden, DecimalPlaces, rewriteValues);
+            LayersHandler.RefreshLayerValues(NetworkIndex, DGVLayer, Neural_Network.Core.Implementation.Layers.Hidden, DecimalPlaces, rewriteValues);
         }
         public void RefreshFontSize()
         {

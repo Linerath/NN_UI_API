@@ -32,6 +32,8 @@ namespace NeuralNetwork_UI.Forms
 
             (networkExplorerForm = new NetworkExplorerForm()).Owner = this;
             (viewSettingsForm = new ViewSettingsForm()).Owner = this;
+
+            Project.CreateNewProject();
         }
 
         #region Events
@@ -49,9 +51,9 @@ namespace NeuralNetwork_UI.Forms
         }
         private void BNew_Click(object sender, EventArgs e)
         {
-            NeuralNetwork.Network = new FeedforwardNetworkSHL(3, 4, 2);
-            NeuralNetwork.Network.SetAllRandomWeights();
-            ShowNetwork();
+            int networkIndex = Project.AddNetwork(new FeedforwardNetworkSHL(3, 4, 2));
+            Project.Networks[networkIndex].SetAllRandomWeights();
+            ShowNetwork(networkIndex);
         }
         private void BOpen_Click(object sender, EventArgs e)
         {
@@ -172,17 +174,17 @@ namespace NeuralNetwork_UI.Forms
             Size = new Size(1548, Size.Height);
         }
 
-        private void ShowNetwork()
+        private void ShowNetwork(int NetworkIndex)
         {
-            (inputLayerForm = new InputLayerForm()).Owner = this;
+            (inputLayerForm = new InputLayerForm(NetworkIndex)).Owner = this;
             inputLayerForm.Show();
             inputLayerForm.Location = new Point(networkExplorerForm.Location.X + networkExplorerForm.ClientSize.Width + 50, networkExplorerForm.Location.Y);
             
-            (hiddenLayerForm = new HiddenLayerForm()).Owner = this;
+            (hiddenLayerForm = new HiddenLayerForm(NetworkIndex)).Owner = this;
             hiddenLayerForm.Show();
             hiddenLayerForm.Location = new Point(inputLayerForm.Location.X + inputLayerForm.ClientSize.Width, inputLayerForm.Location.Y);
 
-            (outputLayerForm = new OutputLayerForm()).Owner = this;
+            (outputLayerForm = new OutputLayerForm(NetworkIndex)).Owner = this;
             outputLayerForm.Show();
             outputLayerForm.Location = new Point(hiddenLayerForm.Location.X + hiddenLayerForm.ClientSize.Width, hiddenLayerForm.Location.Y);
 

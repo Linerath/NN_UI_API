@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainMenuForm));
             this.MainMenu = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.projectToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -74,11 +75,13 @@
             // 
             // BNew
             // 
+            this.BNew.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("BNew.BackgroundImage")));
+            this.BNew.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.BNew.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.BNew.Location = new System.Drawing.Point(6, 21);
             this.BNew.Name = "BNew";
             this.BNew.Size = new System.Drawing.Size(44, 38);
             this.BNew.TabIndex = 1;
-            this.BNew.Text = "N";
             this.BNew.UseVisualStyleBackColor = true;
             this.BNew.Click += new System.EventHandler(this.BNew_Click);
             // 
@@ -92,6 +95,7 @@
             this.GBFile.Size = new System.Drawing.Size(245, 72);
             this.GBFile.TabIndex = 2;
             this.GBFile.TabStop = false;
+            this.GBFile.Text = "Neural network";
             // 
             // button3
             // 
