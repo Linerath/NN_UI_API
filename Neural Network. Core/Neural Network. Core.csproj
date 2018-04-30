@@ -41,6 +41,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Extra\NeuralNetworkInputProject.cs" />
+    <Compile Include="Extra\NeuralNetworkService.cs" />
     <Compile Include="Implementations\NeuralNetwork.cs" />
     <Compile Include="Interfaces\INeuralNetwork.cs" />
     <Compile Include="Interfaces\INeuron.cs" />

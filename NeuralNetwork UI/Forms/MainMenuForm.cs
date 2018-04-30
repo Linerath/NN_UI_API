@@ -13,6 +13,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Neural_Network.Core.Implementation;
+using NeuralNetwork_UI.Forms.Dialogs;
 
 namespace NeuralNetwork_UI.Forms
 {
@@ -49,11 +50,12 @@ namespace NeuralNetwork_UI.Forms
             viewSettingsForm.Show();
             DefaultFormsLayout();
         }
-        private void BNew_Click(object sender, EventArgs e)
+        private void BNewNetwork_Click(object sender, EventArgs e)
         {
-            int networkIndex = Project.AddNetwork(new FeedforwardNetworkSHL(3, 4, 2));
+            int networkIndex = Project.AddNetwork(new FeedforwardNetworkSHL("Net_" + (Project.NetworksCount).ToString(), 3, 4, 2));
             Project.Networks[networkIndex].SetAllRandomWeights();
             ShowNetwork(networkIndex);
+            networkExplorerForm.RefreshTree();
         }
         private void BOpen_Click(object sender, EventArgs e)
         {
@@ -76,10 +78,28 @@ namespace NeuralNetwork_UI.Forms
                 }
             }
         }
+        private void BNewInputProj_Click(object sender, EventArgs e)
+        {
+            if (Project.NetworksCount < 1)
+            {
+                MessageBox.Show("There are no neural networks in project. Please, create network at first.", "Attention", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
+                return;
+            }
+
+            SelectNetworkForm selectNetworkForm = new SelectNetworkForm
+            {
+                Owner = this,
+            };
+            selectNetworkForm.FormClosed += (Sender, E) =>
+            {
+                networkExplorerForm.RefreshTree();
+            };
+            selectNetworkForm.ShowDialog();
+        }
         #endregion
 
         #region ExtraForms
-        
+
         #endregion
 
         #endregion
@@ -206,7 +226,6 @@ namespace NeuralNetwork_UI.Forms
 
         private void MainMenuForm_Click(object sender, EventArgs e)
         {
-
         }
 
 

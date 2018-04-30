@@ -12,7 +12,7 @@ namespace Neural_Network.Core.Extra
     {
         public String Name { get; set; }
 
-        private FeedforwardNetworkSHL network;
+        public FeedforwardNetworkSHL Network { get; set; }
         public List<Field> inputLayerFields;
         private List<Field> outputLayerFields;
 
@@ -22,7 +22,7 @@ namespace Neural_Network.Core.Extra
             outputLayerFields = new List<Field>();
 
             Name = name;
-            this.network = network ?? throw new ArgumentNullException("Null argument (FeedforwardNetworkSHL)");
+            Network = network ?? throw new ArgumentNullException("Null argument (FeedforwardNetworkSHL)");
         }
 
         #region Tested

@@ -28,23 +28,24 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.treeView1 = new System.Windows.Forms.TreeView();
+            this.TVNetworks = new System.Windows.Forms.TreeView();
             this.SuspendLayout();
             // 
-            // treeView1
+            // TVNetworks
             // 
-            this.treeView1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.treeView1.Location = new System.Drawing.Point(0, 23);
-            this.treeView1.Name = "treeView1";
-            this.treeView1.Size = new System.Drawing.Size(282, 230);
-            this.treeView1.TabIndex = 0;
+            this.TVNetworks.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.TVNetworks.Location = new System.Drawing.Point(0, 23);
+            this.TVNetworks.Name = "TVNetworks";
+            this.TVNetworks.Size = new System.Drawing.Size(282, 230);
+            this.TVNetworks.TabIndex = 0;
+            this.TVNetworks.NodeMouseDoubleClick += new System.Windows.Forms.TreeNodeMouseClickEventHandler(this.TVNetworks_NodeMouseDoubleClick);
             // 
             // NetworkExplorerForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(282, 253);
-            this.Controls.Add(this.treeView1);
+            this.Controls.Add(this.TVNetworks);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "NetworkExplorerForm";
@@ -55,6 +56,6 @@
 
         #endregion
 
-        private System.Windows.Forms.TreeView treeView1;
+        private System.Windows.Forms.TreeView TVNetworks;
     }
 }

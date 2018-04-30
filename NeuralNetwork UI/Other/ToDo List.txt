@@ -25,3 +25,6 @@ III. NeuralNetwork UI
 	Global:
 		1) write manual exceptions
 		2) make adequate forms auto layout
+
+	NetworksForms:
+		1) close all forms when one is closed

@@ -34,6 +34,11 @@ namespace Neural_Network.Core.Implementation
         private const double RANDOM_MIN_VALUE = 0.1;
         private const double RANDOM_MAX_VALUE = 0.9;
 
+        public FeedforwardNetworkSHL(String name, int inputLayerSize, int hiddenLayerSize, int outputLayerSize)
+            :this(inputLayerSize, hiddenLayerSize, outputLayerSize)
+        {
+            Name = name;
+        }
         public FeedforwardNetworkSHL(int inputLayerSize, int hiddenLayerSize, int outputLayerSize)
         {
             if (inputLayerSize < 1 || hiddenLayerSize < 1 || outputLayerSize < 1)
@@ -57,7 +62,6 @@ namespace Neural_Network.Core.Implementation
                 outputLayer.Add(new Neuron(hiddenLayerSize));
             }
 
-            Name = "Unnamed";
             CreationDate = DateTime.Now;
             NetType = NetsTypes.SingleLayerPerceptron;
         }

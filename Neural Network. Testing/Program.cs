@@ -33,7 +33,11 @@ namespace Neural_Network.Testing
 
             #region NeuralNetworkInputProjectTests
             //NeuralNetworkInputProjectTests.CtorTest();
-            NeuralNetworkInputProjectTests.CreatingFieldsTest();
+            //NeuralNetworkInputProjectTests.CreatingFieldsTest();
+            #endregion
+
+            #region NeuralNetworkServiceTests
+            NeuralNetworkServiceTests.GetInputProjectsTest();
             #endregion
 
             ConsoleKeyInfo key;
@@ -264,6 +268,30 @@ namespace Neural_Network.Testing
 
             //var f = inputProject[Layers.Input, 1];
             //Console.WriteLine(f.Name + " " + f.NeuronIndex);
+        }
+    }
+
+    static class NeuralNetworkServiceTests
+    {
+        public static void GetInputProjectsTest()
+        {
+            FeedforwardNetworkSHL network0 = new FeedforwardNetworkSHL("Mynet", 3, 4, 2);
+            FeedforwardNetworkSHL network1 = new FeedforwardNetworkSHL("iNet", 3, 4, 2);
+            FeedforwardNetworkSHL network2 = new FeedforwardNetworkSHL("SkyNet", 3, 4, 2);
+
+            NeuralNetworkInputProject[] inputProjects = new NeuralNetworkInputProject[]
+            {
+                new NeuralNetworkInputProject("MyProj0", network0),
+                new NeuralNetworkInputProject("MyProj1", network0),
+                new NeuralNetworkInputProject("iProj", network1),
+                new NeuralNetworkInputProject("SkyProj", network2),
+            };
+
+            var projects = NeuralNetworkService.GetInputProjectsForNetwork(inputProjects, network0);
+            foreach (var proj in projects)
+            {
+                Console.WriteLine(proj.Network.Name + " " + proj.Name);
+            }
         }
     }
 }

@@ -31,5 +31,20 @@ namespace NeuralNetwork_UI.Shared
         {
             InputProjects.Add(inputProject);
         }
+
+        public static int NetworksCount
+        {
+            get
+            {
+                return Networks.Count();
+            }
+        }
+        public static int InputProjectsCount
+        {
+            get
+            {
+                return InputProjects.Count();
+            }
+        }
     }
 }
