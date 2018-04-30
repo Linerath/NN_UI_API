@@ -49,6 +49,7 @@
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "NetworkExplorerForm";
+            this.ShowIcon = false;
             this.Text = "NetworkExplorerForm";
             this.ResumeLayout(false);
 

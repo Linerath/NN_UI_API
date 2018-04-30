@@ -196,15 +196,27 @@ namespace NeuralNetwork_UI.Forms
 
         private void ShowNetwork(int NetworkIndex)
         {
-            (inputLayerForm = new InputLayerForm(NetworkIndex)).Owner = this;
+            inputLayerForm = new InputLayerForm(NetworkIndex)
+            {
+                Owner = this,
+                Text = "Input Layer (" + Project.Networks[NetworkIndex].Name + ")",
+            };
             inputLayerForm.Show();
             inputLayerForm.Location = new Point(networkExplorerForm.Location.X + networkExplorerForm.ClientSize.Width + 50, networkExplorerForm.Location.Y);
-            
-            (hiddenLayerForm = new HiddenLayerForm(NetworkIndex)).Owner = this;
+
+            hiddenLayerForm = new HiddenLayerForm(NetworkIndex)
+            {
+                Owner = this,
+                Text = "Hidden Layer (" + Project.Networks[NetworkIndex].Name + ")",
+            };
             hiddenLayerForm.Show();
             hiddenLayerForm.Location = new Point(inputLayerForm.Location.X + inputLayerForm.ClientSize.Width, inputLayerForm.Location.Y);
 
-            (outputLayerForm = new OutputLayerForm(NetworkIndex)).Owner = this;
+            outputLayerForm = new OutputLayerForm(NetworkIndex)
+            {
+                Owner = this,
+                Text = "Output Layer (" + Project.Networks[NetworkIndex].Name + ")",
+            };
             outputLayerForm.Show();
             outputLayerForm.Location = new Point(hiddenLayerForm.Location.X + hiddenLayerForm.ClientSize.Width, hiddenLayerForm.Location.Y);
 

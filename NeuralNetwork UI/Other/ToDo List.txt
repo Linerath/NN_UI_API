@@ -28,3 +28,6 @@ III. NeuralNetwork UI
 
 	NetworksForms:
 		1) close all forms when one is closed
+
+	NetworkExplorerForm:
+		1) select input project when user created it
