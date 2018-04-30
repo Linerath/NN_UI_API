@@ -35,8 +35,11 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(282, 482);
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "ViewSettingsForm";
-            this.Text = "ViewSettingsForm";
+            this.ShowIcon = false;
+            this.Text = "View Settings";
             this.ResumeLayout(false);
 
         }

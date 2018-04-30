@@ -86,12 +86,23 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Shared\GlobalEventsHandler.cs" />
+    <Compile Include="Shared\LayersHandler.cs" />
     <Compile Include="Shared\NeuralNetwork.cs" />
+    <EmbeddedResource Include="Forms\HiddenLayerForm.resx">
+      <DependentUpon>HiddenLayerForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\InputLayerForm.resx">
+      <DependentUpon>InputLayerForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\MainMenuForm.resx">
       <DependentUpon>MainMenuForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\NetworkExplorerForm.resx">
       <DependentUpon>NetworkExplorerForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\OutputLayerForm.resx">
+      <DependentUpon>OutputLayerForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\ViewSettingsForm.resx">
       <DependentUpon>ViewSettingsForm.cs</DependentUpon>

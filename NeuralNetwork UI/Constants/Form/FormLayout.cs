@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace NeuralNetwork_UI.Forms.Constants
 {
-    enum FormAbsoluteLayout
+    public enum FormAbsoluteLayout
     {
         TopStretch,
         TopLeft,
@@ -25,7 +25,7 @@ namespace NeuralNetwork_UI.Forms.Constants
         LeftBottom
     }
 
-    enum FormRelativeLayout
+    public enum FormRelativeLayout
     {
         TopLeft,
         TopRight,

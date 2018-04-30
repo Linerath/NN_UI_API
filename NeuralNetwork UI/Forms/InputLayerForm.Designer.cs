@@ -28,11 +28,44 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
+            this.DGVLayer = new System.Windows.Forms.DataGridView();
+            ((System.ComponentModel.ISupportInitialize)(this.DGVLayer)).BeginInit();
+            this.SuspendLayout();
+            // 
+            // DGVLayer
+            // 
+            this.DGVLayer.AllowUserToAddRows = false;
+            this.DGVLayer.AllowUserToDeleteRows = false;
+            this.DGVLayer.AllowUserToOrderColumns = true;
+            this.DGVLayer.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.DGVLayer.ColumnHeadersVisible = false;
+            this.DGVLayer.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.DGVLayer.Location = new System.Drawing.Point(0, 0);
+            this.DGVLayer.Name = "DGVLayer";
+            this.DGVLayer.RowHeadersVisible = false;
+            this.DGVLayer.RowTemplate.Height = 24;
+            this.DGVLayer.Size = new System.Drawing.Size(282, 253);
+            this.DGVLayer.TabIndex = 0;
+            // 
+            // InputLayerForm
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Text = "InputLayerForm";
+            this.ClientSize = new System.Drawing.Size(282, 253);
+            this.Controls.Add(this.DGVLayer);
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
+            this.Name = "InputLayerForm";
+            this.ShowIcon = false;
+            this.Text = "Input Layer";
+            this.Load += new System.EventHandler(this.InputLayerForm_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.DGVLayer)).EndInit();
+            this.ResumeLayout(false);
+
         }
 
         #endregion
+
+        private System.Windows.Forms.DataGridView DGVLayer;
     }
 }

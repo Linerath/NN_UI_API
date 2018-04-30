@@ -8,7 +8,7 @@ namespace NeuralNetwork_UI.Constants
 {
     static class Exceptions
     {
-        //Argument Exception
         public static readonly String UNKNOWN_FORM = "Unknown form name";
+        public static readonly String NULL_ARGUMENT = "Null argument";
     }
 }

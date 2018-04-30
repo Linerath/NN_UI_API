@@ -12,6 +12,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Neural_Network.Core.Implementation;
 
 namespace NeuralNetwork_UI.Forms
 {
@@ -20,6 +21,9 @@ namespace NeuralNetwork_UI.Forms
         #region Forms
         private NetworkExplorerForm networkExplorerForm;
         private ViewSettingsForm viewSettingsForm;
+        private InputLayerForm inputLayerForm;
+        private HiddenLayerForm hiddenLayerForm;
+        private OutputLayerForm outputLayerForm;
         #endregion
 
         public MainMenuForm()
@@ -27,9 +31,7 @@ namespace NeuralNetwork_UI.Forms
             InitializeComponent();
 
             (networkExplorerForm = new NetworkExplorerForm()).Owner = this;
-            networkExplorerForm.Show();
             (viewSettingsForm = new ViewSettingsForm()).Owner = this;
-            viewSettingsForm.Show();
         }
 
         #region Events
@@ -41,11 +43,15 @@ namespace NeuralNetwork_UI.Forms
             //LocateForm(networkExplorerForm, this, FormRelativeLayout.BottomLeft);
             //LocateForm(viewSettingsForm, networkExplorerForm, FormRelativeLayout.BottomLeft);
 
+            networkExplorerForm.Show();
+            viewSettingsForm.Show();
             DefaultFormsLayout();
         }
         private void BNew_Click(object sender, EventArgs e)
         {
-
+            NeuralNetwork.Network = new FeedforwardNetworkSHL(3, 4, 2);
+            NeuralNetwork.Network.SetAllRandomWeights();
+            ShowNetwork();
         }
         private void BOpen_Click(object sender, EventArgs e)
         {
@@ -71,12 +77,14 @@ namespace NeuralNetwork_UI.Forms
         #endregion
 
         #region ExtraForms
+        
         #endregion
 
         #endregion
 
         #region Methods
 
+        // Not-ended trash
         private Form LocateForm(Form form, Form relativeForm, FormRelativeLayout formRelativeLayout)
         {
             if (form == null || relativeForm == null)
@@ -112,6 +120,7 @@ namespace NeuralNetwork_UI.Forms
             }
             return form;
         }
+        // Not-ended trash
         private Form LocateForm(Form form, FormAbsoluteLayout formLayout)
         {
             if (form == null)
@@ -157,15 +166,38 @@ namespace NeuralNetwork_UI.Forms
         }
         private void DefaultFormsLayout()
         {
-            DesktopLocation = new Point(-10, 0);
+            DesktopLocation = new Point(-6, 0);
             networkExplorerForm.Location = new Point(Location.X, Location.Y + Height);
             viewSettingsForm.Location = new Point(Location.X, networkExplorerForm.Location.Y + networkExplorerForm.Height);
-            Size = new Size(1850, Size.Height);
+            Size = new Size(1548, Size.Height);
         }
-        
+
+        private void ShowNetwork()
+        {
+            (inputLayerForm = new InputLayerForm()).Owner = this;
+            inputLayerForm.Show();
+            inputLayerForm.Location = new Point(networkExplorerForm.Location.X + networkExplorerForm.ClientSize.Width + 50, networkExplorerForm.Location.Y);
+            
+            (hiddenLayerForm = new HiddenLayerForm()).Owner = this;
+            hiddenLayerForm.Show();
+            hiddenLayerForm.Location = new Point(inputLayerForm.Location.X + inputLayerForm.ClientSize.Width, inputLayerForm.Location.Y);
+
+            (outputLayerForm = new OutputLayerForm()).Owner = this;
+            outputLayerForm.Show();
+            outputLayerForm.Location = new Point(hiddenLayerForm.Location.X + hiddenLayerForm.ClientSize.Width, hiddenLayerForm.Location.Y);
+
+            inputLayerForm.FullLayerRefresh();
+            hiddenLayerForm.FullLayerRefresh();
+            outputLayerForm.FullLayerRefresh();
+            inputLayerForm.SetFollowedForm(hiddenLayerForm, FormRelativeLayout.LeftTop);
+            outputLayerForm.SetFollowedForm(hiddenLayerForm, FormRelativeLayout.RightTop);
+
+            hiddenLayerForm.Focus();
+        }
+
         private void ReadNetwork(String filePath)
         {
-            
+
         }
 
         #endregion

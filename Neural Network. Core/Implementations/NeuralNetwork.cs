@@ -108,9 +108,6 @@ namespace Neural_Network.Core.Implementation
         {
             get
             {
-                //if (index < 0 || index > 2)
-                //    throw new IndexOutOfRangeException("Invalid layer index.");
-
                 switch (index)
                 {
                     case 0:
@@ -122,6 +119,27 @@ namespace Neural_Network.Core.Implementation
                     default:
                         return null;
                 }
+            }
+        }
+        public Neuron[] InputLayer
+        {
+            get
+            {
+                return this[0];
+            }
+        }
+        public Neuron[] HiddenLayer
+        {
+            get
+            {
+                return this[1];
+            }
+        }
+        public Neuron[] OutputLayer
+        {
+            get
+            {
+                return this[2];
             }
         }
         public int InputLayerSize

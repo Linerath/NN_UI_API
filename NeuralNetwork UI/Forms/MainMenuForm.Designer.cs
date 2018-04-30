@@ -34,8 +34,8 @@
             this.windowsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.BNew = new System.Windows.Forms.Button();
             this.GBFile = new System.Windows.Forms.GroupBox();
-            this.BOpen = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
+            this.BOpen = new System.Windows.Forms.Button();
             this.MainMenu.SuspendLayout();
             this.GBFile.SuspendLayout();
             this.SuspendLayout();
@@ -93,6 +93,15 @@
             this.GBFile.TabIndex = 2;
             this.GBFile.TabStop = false;
             // 
+            // button3
+            // 
+            this.button3.Location = new System.Drawing.Point(106, 21);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(44, 38);
+            this.button3.TabIndex = 3;
+            this.button3.Text = "S";
+            this.button3.UseVisualStyleBackColor = true;
+            // 
             // BOpen
             // 
             this.BOpen.Location = new System.Drawing.Point(56, 21);
@@ -103,15 +112,6 @@
             this.BOpen.UseVisualStyleBackColor = true;
             this.BOpen.Click += new System.EventHandler(this.BOpen_Click);
             // 
-            // button3
-            // 
-            this.button3.Location = new System.Drawing.Point(106, 21);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(44, 38);
-            this.button3.TabIndex = 3;
-            this.button3.Text = "S";
-            this.button3.UseVisualStyleBackColor = true;
-            // 
             // MainMenuForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -120,9 +120,11 @@
             this.Controls.Add(this.GBFile);
             this.Controls.Add(this.MainMenu);
             this.MainMenuStrip = this.MainMenu;
+            this.MaximizeBox = false;
             this.Name = "MainMenuForm";
+            this.ShowIcon = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "MainMenuForm";
+            this.Text = "Main Menu";
             this.Load += new System.EventHandler(this.MainMenuForm_Load);
             this.Click += new System.EventHandler(this.MainMenuForm_Click);
             this.MainMenu.ResumeLayout(false);
