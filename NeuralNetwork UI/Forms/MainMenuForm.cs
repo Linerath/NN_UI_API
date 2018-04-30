@@ -25,6 +25,7 @@ namespace NeuralNetwork_UI.Forms
         private InputLayerForm inputLayerForm;
         private HiddenLayerForm hiddenLayerForm;
         private OutputLayerForm outputLayerForm;
+        private InputProjectsForm inputProjectsForm;
         #endregion
 
         public MainMenuForm()
@@ -33,6 +34,7 @@ namespace NeuralNetwork_UI.Forms
 
             (networkExplorerForm = new NetworkExplorerForm()).Owner = this;
             (viewSettingsForm = new ViewSettingsForm()).Owner = this;
+            (inputProjectsForm = new InputProjectsForm()).Owner = this;
 
             Project.CreateNewProject();
         }
@@ -48,6 +50,7 @@ namespace NeuralNetwork_UI.Forms
 
             networkExplorerForm.Show();
             viewSettingsForm.Show();
+            inputProjectsForm.Show();
             DefaultFormsLayout();
         }
         private void BNewNetwork_Click(object sender, EventArgs e)
@@ -93,6 +96,7 @@ namespace NeuralNetwork_UI.Forms
             selectNetworkForm.FormClosed += (Sender, E) =>
             {
                 networkExplorerForm.RefreshTree();
+
             };
             selectNetworkForm.ShowDialog();
         }
@@ -191,6 +195,10 @@ namespace NeuralNetwork_UI.Forms
             DesktopLocation = new Point(-6, 0);
             networkExplorerForm.Location = new Point(Location.X, Location.Y + Height);
             viewSettingsForm.Location = new Point(Location.X, networkExplorerForm.Location.Y + networkExplorerForm.Height);
+            inputProjectsForm.Location = new Point(viewSettingsForm.Location.X + viewSettingsForm.Size.Width - 5, viewSettingsForm.Location.Y);
+
+            inputProjectsForm.Size = new Size(inputProjectsForm.Width, viewSettingsForm.Size.Height);
+
             Size = new Size(1548, Size.Height);
         }
 
@@ -227,6 +235,10 @@ namespace NeuralNetwork_UI.Forms
             outputLayerForm.SetFollowedForm(hiddenLayerForm, FormRelativeLayout.RightTop);
 
             hiddenLayerForm.Focus();
+        }
+        private void ShowInputProject(int inputProjectIndex)
+        {
+
         }
 
         private void ReadNetwork(String filePath)

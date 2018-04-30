@@ -66,6 +66,12 @@
     <Compile Include="Forms\InputLayerForm.Designer.cs">
       <DependentUpon>InputLayerForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\InputProjectsForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\InputProjectsForm.Designer.cs">
+      <DependentUpon>InputProjectsForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\MainMenuForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -103,6 +109,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\InputLayerForm.resx">
       <DependentUpon>InputLayerForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\InputProjectsForm.resx">
+      <DependentUpon>InputProjectsForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\MainMenuForm.resx">
       <DependentUpon>MainMenuForm.cs</DependentUpon>
