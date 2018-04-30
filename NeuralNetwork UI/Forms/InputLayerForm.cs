@@ -37,33 +37,7 @@ namespace NeuralNetwork_UI.Forms
         }
         private void FollowedForm_Move(object sender, EventArgs e)
         {
-            if (FollowedForm == null)
-                return;
-
-            switch (FollowedFormRelativeLayout)
-            {
-                case FormRelativeLayout.TopLeft:
-                    break;
-                case FormRelativeLayout.TopRight:
-                    break;
-
-                case FormRelativeLayout.RightTop:
-                    Location = new Point(FollowedForm.Location.X + FollowedForm.ClientSize.Width, FollowedForm.Location.Y);
-                    break;
-                case FormRelativeLayout.RightBottom:
-                    break;
-
-                case FormRelativeLayout.BottomLeft:
-                    break;
-                case FormRelativeLayout.BottomRight:
-                    break;
-
-                case FormRelativeLayout.LeftTop:
-                    Location = new Point(FollowedForm.Location.X - ClientSize.Width, FollowedForm.Location.Y);
-                    break;
-                case FormRelativeLayout.LeftBottom:
-                    break;
-            }
+            LayersHandler.OnFollowedForm_Move(this, FollowedForm, FollowedFormRelativeLayout);
         }
         #endregion
 
@@ -92,9 +66,13 @@ namespace NeuralNetwork_UI.Forms
             FollowedFormRelativeLayout = relativeLayout;
 
             if (FollowedForm != null)
+            {
                 FollowedForm.Move -= FollowedForm_Move;
+                FollowedForm.Resize -= FollowedForm_Move;
+            }
 
             FollowedForm.Move += FollowedForm_Move;
+            FollowedForm.Resize += FollowedForm_Move;
         }
         #endregion
     }

@@ -1,4 +1,5 @@
 ﻿using Neural_Network.Core.Implementation;
+using NeuralNetwork_UI.Forms.Constants;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
@@ -73,5 +74,35 @@ namespace NeuralNetwork_UI.Shared
             }
         }
 
+        public static void OnFollowedForm_Move(Form baseForm, Form followedForm, FormRelativeLayout followedFormRelativeLayout)
+        {
+            if (followedForm == null)
+                return;
+
+            switch (followedFormRelativeLayout)
+            {
+                case FormRelativeLayout.TopLeft:
+                    break;
+                case FormRelativeLayout.TopRight:
+                    break;
+
+                case FormRelativeLayout.RightTop:
+                    baseForm.Location = new Point(followedForm.Location.X + followedForm.ClientSize.Width, followedForm.Location.Y);
+                    break;
+                case FormRelativeLayout.RightBottom:
+                    break;
+
+                case FormRelativeLayout.BottomLeft:
+                    break;
+                case FormRelativeLayout.BottomRight:
+                    break;
+
+                case FormRelativeLayout.LeftTop:
+                    baseForm.Location = new Point(followedForm.Location.X - baseForm.ClientSize.Width, followedForm.Location.Y);
+                    break;
+                case FormRelativeLayout.LeftBottom:
+                    break;
+            }
+        }
     }
 }
