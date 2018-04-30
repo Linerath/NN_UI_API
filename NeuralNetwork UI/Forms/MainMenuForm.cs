@@ -200,14 +200,14 @@ namespace NeuralNetwork_UI.Forms
         }
         private void DefaultFormsLayout()
         {
-            DesktopLocation = new Point(-6, 0);
+            DesktopLocation = new Point(0, 0);
             networkExplorerForm.Location = new Point(Location.X, Location.Y + Height);
             viewSettingsForm.Location = new Point(Location.X, networkExplorerForm.Location.Y + networkExplorerForm.Height);
             inputProjectsForm.Location = new Point(viewSettingsForm.Location.X + viewSettingsForm.Size.Width - 5, viewSettingsForm.Location.Y);
 
             inputProjectsForm.Size = new Size(inputProjectsForm.Width, viewSettingsForm.Size.Height);
 
-            Size = new Size(1548, Size.Height);
+            Size = new Size(Screen.PrimaryScreen.Bounds.Width, Size.Height);
         }
 
         public void ShowNetwork(int NetworkIndex)

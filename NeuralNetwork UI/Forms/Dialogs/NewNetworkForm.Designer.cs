@@ -317,6 +317,7 @@
             this.BCancel.TabIndex = 25;
             this.BCancel.Text = "Cancel";
             this.BCancel.UseVisualStyleBackColor = true;
+            this.BCancel.Click += new System.EventHandler(this.BCancel_Click);
             // 
             // NewNetworkForm
             // 

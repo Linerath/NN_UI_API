@@ -104,7 +104,6 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Shared\GlobalEventsHandler.cs" />
     <Compile Include="Shared\LayersHandler.cs" />
     <Compile Include="Shared\Project.cs" />
     <EmbeddedResource Include="Forms\Dialogs\NewNetworkForm.resx">

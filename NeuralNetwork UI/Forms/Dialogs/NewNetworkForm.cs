@@ -55,6 +55,10 @@ namespace NeuralNetwork_UI.Forms.Dialogs
                 Close();
             }
         }
+        private void BCancel_Click(object sender, EventArgs e)
+        {
+            Close();
+        }
         #endregion
 
         #region Methods
