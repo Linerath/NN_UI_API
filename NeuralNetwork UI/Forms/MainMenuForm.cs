@@ -55,10 +55,20 @@ namespace NeuralNetwork_UI.Forms
         }
         private void BNewNetwork_Click(object sender, EventArgs e)
         {
-            int networkIndex = Project.AddNetwork(new FeedforwardNetworkSHL("Net_" + (Project.NetworksCount).ToString(), 3, 4, 2));
-            Project.Networks[networkIndex].SetAllRandomWeights();
-            ShowNetwork(networkIndex);
-            networkExplorerForm.RefreshTree();
+            NewNetworkForm newNetworkForm = new NewNetworkForm
+            {
+                Owner = this,
+            };
+            newNetworkForm.FormClosed += (Sender, E) =>
+            {
+                networkExplorerForm.RefreshTree();
+            };
+            newNetworkForm.ShowDialog();
+
+            //int networkIndex = Project.AddNetwork(new FeedforwardNetworkSHL("Net_" + (Project.NetworksCount).ToString(), 3, 4, 2));
+            //Project.Networks[networkIndex].SetAllRandomWeights();
+            //ShowNetwork(networkIndex);
+            //networkExplorerForm.RefreshTree();
         }
         private void BOpen_Click(object sender, EventArgs e)
         {
@@ -96,7 +106,6 @@ namespace NeuralNetwork_UI.Forms
             selectNetworkForm.FormClosed += (Sender, E) =>
             {
                 networkExplorerForm.RefreshTree();
-
             };
             selectNetworkForm.ShowDialog();
         }
@@ -202,7 +211,7 @@ namespace NeuralNetwork_UI.Forms
             Size = new Size(1548, Size.Height);
         }
 
-        private void ShowNetwork(int NetworkIndex)
+        public void ShowNetwork(int NetworkIndex)
         {
             inputLayerForm = new InputLayerForm(NetworkIndex)
             {
@@ -236,7 +245,7 @@ namespace NeuralNetwork_UI.Forms
 
             hiddenLayerForm.Focus();
         }
-        private void ShowInputProject(int inputProjectIndex)
+        public void ShowInputProject(int inputProjectIndex)
         {
 
         }

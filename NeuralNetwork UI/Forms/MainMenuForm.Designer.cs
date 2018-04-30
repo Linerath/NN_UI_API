@@ -181,11 +181,11 @@
         private System.Windows.Forms.ToolStripMenuItem fileToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem projectToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem windowsToolStripMenuItem;
-        private System.Windows.Forms.Button BNewNetwork;
         private System.Windows.Forms.GroupBox GBNetwork;
         private System.Windows.Forms.Button BOpen;
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.GroupBox GBInputProj;
         private System.Windows.Forms.Button BNewInputProj;
+        private System.Windows.Forms.Button BNewNetwork;
     }
 }

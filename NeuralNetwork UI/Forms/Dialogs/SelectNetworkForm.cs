@@ -31,6 +31,7 @@ namespace NeuralNetwork_UI.Forms.Dialogs
             if (String.IsNullOrWhiteSpace(name))
             {
                 MessageBox.Show("Invalid name.");
+                TBName.Focus();
                 return;
             }
 

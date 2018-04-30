@@ -48,6 +48,12 @@
     <Compile Include="Constants\Exceptions.cs" />
     <Compile Include="Constants\Form\FormBorder.cs" />
     <Compile Include="Constants\Form\FormLayout.cs" />
+    <Compile Include="Forms\Dialogs\NewNetworkForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Dialogs\NewNetworkForm.Designer.cs">
+      <DependentUpon>NewNetworkForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\Dialogs\SelectNetworkForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -101,6 +107,9 @@
     <Compile Include="Shared\GlobalEventsHandler.cs" />
     <Compile Include="Shared\LayersHandler.cs" />
     <Compile Include="Shared\Project.cs" />
+    <EmbeddedResource Include="Forms\Dialogs\NewNetworkForm.resx">
+      <DependentUpon>NewNetworkForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\Dialogs\SelectNetworkForm.resx">
       <DependentUpon>SelectNetworkForm.cs</DependentUpon>
     </EmbeddedResource>
