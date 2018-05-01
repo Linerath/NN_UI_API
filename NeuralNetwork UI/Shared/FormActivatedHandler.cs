@@ -1,4 +1,5 @@
 ﻿using Neural_Network.Core.Implementation;
+using NeuralNetwork_UI.Constants;
 using NeuralNetwork_UI.Forms;
 using System;
 using System.Collections.Generic;
@@ -9,91 +10,48 @@ using System.Windows.Forms;
 
 namespace NeuralNetwork_UI.Shared
 {
-    static class FormActivatedHandler
+    public class FormActivatedHandler
     {
-        public static ViewSettingsForm SettingsForm { get; set; }
+        private ViewSettingsForm settingsForm;
+        private List<Form> forms;
 
-        public static void OnForm_Activated(Form form)
+        public FormActivatedHandler(ViewSettingsForm settingsForm)
         {
-            if (form is LayerForm layerForm)
+            this.settingsForm = settingsForm ?? throw new ArgumentNullException(Exceptions.NULL_ARGUMENT + "(Form: ViewSettingsForm)");
+            forms = new List<Form>();
+            settingsForm.PGLayers.PropertyValueChanged += PGLayers_PropertyValueChanged;
+        }
+
+        private void PGLayers_PropertyValueChanged(object s, PropertyValueChangedEventArgs e)
+        {
+            if (forms.Count() < 1)
+                return;
+
+            PropertyGrid propertyGrid = s as PropertyGrid;
+            int networkIndex = (int)propertyGrid.Tag;
+
+            var mainForm = settingsForm.Owner as MainMenuForm;
+            mainForm.RefreshNetworkLayer(networkIndex);
+        }
+
+        private void LayerForm_Activated(object sender, EventArgs e)
+        {
+            if (settingsForm == null || settingsForm.IsDisposed)
+                return;
+            if (sender is LayerForm layerForm)
             {
-                SettingsForm.PGLayers.SelectedObject = layerForm.ViewSettings;
+                settingsForm.PGLayers.SelectedObject = layerForm.ViewSettings;
+                settingsForm.PGLayers.Tag = layerForm.NetworkIndex;
             }
         }
 
-        private static void RefreshSettings()
+        public void RegisterForm(Form form)
         {
-            if (SettingsForm == null)
-                return;
-        }
-        private static void RefreshSettingsForLayer(int fontSize, bool adaptCellSize, int decimalPlaces)
-        {
-            if (SettingsForm == null)
-                return;
-
-            //SettingsForm.PLayersSettings.Visible = true;
-            //var dgv = SettingsForm.DGVLayersSettings;
-
-            //dgv.Columns.Clear();
-            //dgv.Rows.Clear();
-            //dgv.RowCount = 3;
-
-            //DataGridViewCell[] keys = new DataGridViewCell[]
-            //{
-            //    new DataGridViewCell
-            //};
-
-            //dgv.Rows[0].Cells[0].
-            //dgv.Columns.AddRange(new DataGridViewColumn[] {
-            //    new DataGridViewColumn(),
-            //    new DataGridViewColumn(),
-            //});
-
+            if (form is LayerForm layerForm)
+            {
+                layerForm.Activated += LayerForm_Activated;
+                forms.Add(layerForm);
+            }
         }
     }
 }
-
-/*
-    class Setting<TName, TValue, TType> 
-        where TType : Type
-    {
-        private TName Name;
-        private TValue Value;
-        private TType Type;
-
-        private TValue MinValue;
-        private TValue MaxValue;
-        private List<TValue> ValuesArray;
-
-        public Setting(TName name, TValue value, TType type)
-        {
-            Name = name;
-            Value = value;
-            Type = type;
-        }
-        public Setting(TName name, TValue value, TType type, TValue minValue, TValue maxValue)
-        {
-            Name = name;
-            Value = value;
-            Type = type;
-            MinValue = minValue;
-            MaxValue = maxValue;
-        }
-        public Setting(TName name, TValue value, TType type, IEnumerable<TValue> valuesRange)
-        {
-            Name = name;
-            Value = value;
-            Type = type;
-            ValuesArray = valuesRange.ToList();
-        }
-    }
-}
-
-settings = new List<Setting<string, object, Type>>
-                {
-                    new Setting<string, object, Type>("Font size", inputLayerForm.FontSize, typeof(int), 17, 35),
-                    new Setting<string, object, Type>("Adapt cells size", inputLayerForm.AdaptCellsSize, typeof(bool)),
-                    new Setting<string, object, Type>("Decimal places", inputLayerForm.DecimalPlaces, typeof(decimal), 0, 9),
-                    //new Setting<string, object, Type>("Followed form", inputLayerForm.FollowedForm, typeof(Form), {  }),
-                };
- */

@@ -22,10 +22,13 @@ namespace NeuralNetwork_UI.Forms
         #region Forms
         private NetworkExplorerForm networkExplorerForm;
         private ViewSettingsForm viewSettingsForm;
-        private LayerForm inputLayerForm;
-        private LayerForm hiddenLayerForm;
-        private LayerForm outputLayerForm;
+        private List<LayerForm> inputLayerForms;
+        private List<LayerForm> hiddenLayerForms;
+        private List<LayerForm> outputLayerForms;
         private InputProjectsForm inputProjectsForm;
+        #endregion
+        #region Shared
+        private FormActivatedHandler formActivatedHandler;
         #endregion
 
         public MainMenuForm()
@@ -34,9 +37,12 @@ namespace NeuralNetwork_UI.Forms
 
             (networkExplorerForm = new NetworkExplorerForm()).Owner = this;
             (viewSettingsForm = new ViewSettingsForm()).Owner = this;
+            inputLayerForms = new List<LayerForm>();
+            hiddenLayerForms = new List<LayerForm>();
+            outputLayerForms = new List<LayerForm>();
             (inputProjectsForm = new InputProjectsForm()).Owner = this;
 
-            FormActivatedHandler.SettingsForm = viewSettingsForm;
+            formActivatedHandler = new FormActivatedHandler(viewSettingsForm);
             Project.CreateNewProject();
         }
 
@@ -220,43 +226,45 @@ namespace NeuralNetwork_UI.Forms
             };
 
             if (registerActivatedEvent)
-                RegisterActivatedEvent(layerForm);
+                formActivatedHandler.RegisterForm(layerForm);
 
             return layerForm;
         }
         public void ShowNetwork(int networkIndex)
         {
-            inputLayerForm = CreateLayerForm(Layers.Input, networkIndex, "Input Layer (" + Project.Networks[networkIndex].Name + ")");
-            inputLayerForm.Show();
-            inputLayerForm.Location = new Point(networkExplorerForm.Location.X + networkExplorerForm.ClientSize.Width + 50, networkExplorerForm.Location.Y);
+            LayerForm newLayerForm = CreateLayerForm(Layers.Input, networkIndex, "Input Layer (" + Project.Networks[networkIndex].Name + ")");
+            inputLayerForms.Add(newLayerForm);
+            newLayerForm.Show();
+            newLayerForm.Location = new Point(networkExplorerForm.Location.X + networkExplorerForm.ClientSize.Width + 50, networkExplorerForm.Location.Y);
+            newLayerForm.FullLayerRefresh();
 
-            hiddenLayerForm = CreateLayerForm(Layers.Hidden, networkIndex, "Hidden Layer (" + Project.Networks[networkIndex].Name + ")");
-            hiddenLayerForm.Show();
-            hiddenLayerForm.Location = new Point(inputLayerForm.Location.X + inputLayerForm.ClientSize.Width, inputLayerForm.Location.Y);
+            newLayerForm = CreateLayerForm(Layers.Hidden, networkIndex, "Hidden Layer (" + Project.Networks[networkIndex].Name + ")");
+            hiddenLayerForms.Add(newLayerForm);
+            newLayerForm.Show();
+            newLayerForm.Location = new Point(inputLayerForms[inputLayerForms.Count() - 1].Location.X + inputLayerForms[inputLayerForms.Count() - 1].ClientSize.Width, inputLayerForms[inputLayerForms.Count() - 1].Location.Y);
+            newLayerForm.FullLayerRefresh();
 
-            outputLayerForm = CreateLayerForm(Layers.Output, networkIndex, "Output Layer (" + Project.Networks[networkIndex].Name + ")");
-            outputLayerForm.Show();
-            outputLayerForm.Location = new Point(hiddenLayerForm.Location.X + hiddenLayerForm.ClientSize.Width, hiddenLayerForm.Location.Y);
+            newLayerForm = CreateLayerForm(Layers.Output, networkIndex, "Output Layer (" + Project.Networks[networkIndex].Name + ")");
+            outputLayerForms.Add(newLayerForm);
+            newLayerForm.Show();
+            newLayerForm.Location = new Point(hiddenLayerForms[inputLayerForms.Count() - 1].Location.X + hiddenLayerForms[inputLayerForms.Count() - 1].ClientSize.Width, hiddenLayerForms[inputLayerForms.Count() - 1].Location.Y);
+            newLayerForm.FullLayerRefresh();
 
-            inputLayerForm.FullLayerRefresh();
-            hiddenLayerForm.FullLayerRefresh();
-            outputLayerForm.FullLayerRefresh();
-            inputLayerForm.SetFollowedForm(hiddenLayerForm, FormRelativeLayout.LeftTop);
-            outputLayerForm.SetFollowedForm(hiddenLayerForm, FormRelativeLayout.RightTop);
+            inputLayerForms[inputLayerForms.Count() - 1].SetFollowedForm(hiddenLayerForms[inputLayerForms.Count() - 1], FormRelativeLayout.LeftTop);
+            newLayerForm.SetFollowedForm(hiddenLayerForms[inputLayerForms.Count() - 1], FormRelativeLayout.RightTop);
 
-            hiddenLayerForm.Focus();
+            hiddenLayerForms[inputLayerForms.Count() - 1].Focus();
         }
         public void ShowInputProject(int inputProjectIndex)
         {
 
         }
 
-        private void RegisterActivatedEvent(Form form)
+        public void RefreshNetworkLayer(int networkIndex)
         {
-            form.Activated += (Sender, E) =>
-            {
-                FormActivatedHandler.OnForm_Activated(form);
-            };
+            inputLayerForms[networkIndex].FullLayerRefresh();
+            hiddenLayerForms[networkIndex].FullLayerRefresh();
+            outputLayerForms[networkIndex].FullLayerRefresh();
         }
 
         #endregion

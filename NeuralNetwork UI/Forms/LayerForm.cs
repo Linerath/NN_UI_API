@@ -66,7 +66,7 @@ namespace NeuralNetwork_UI.Forms
         public void FullLayerRefresh()
         {
             RefreshLayerValues(true);
-            RefreshFontSize();
+            RefreshFont();
             RefreshCellsAutoSize();
         }
         public void RefreshLayerValues(bool rewriteValues = false)
@@ -107,7 +107,7 @@ namespace NeuralNetwork_UI.Forms
                     break;
             }
         }
-        public void RefreshFontSize()
+        public void RefreshFont()
         {
             foreach (DataGridViewColumn col in DGVLayer.Columns)
             {
