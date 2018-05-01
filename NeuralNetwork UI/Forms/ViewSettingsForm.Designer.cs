@@ -84,6 +84,6 @@
 
         private System.Windows.Forms.ComboBox comboBox1;
         private System.Windows.Forms.Panel PLayers;
-        private System.Windows.Forms.PropertyGrid PGLayers;
+        public System.Windows.Forms.PropertyGrid PGLayers;
     }
 }

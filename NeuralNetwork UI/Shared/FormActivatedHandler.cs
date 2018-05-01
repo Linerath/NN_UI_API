@@ -1,4 +1,5 @@
-﻿using NeuralNetwork_UI.Forms;
+﻿using Neural_Network.Core.Implementation;
+using NeuralNetwork_UI.Forms;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,24 +15,10 @@ namespace NeuralNetwork_UI.Shared
 
         public static void OnForm_Activated(Form form)
         {
-            //if (form is InputLayerForm inputLayerForm)
-            //{
-
-            //}
-            //else if (form is HiddenLayerForm hiddenLayerForm)
-            //{
-
-            //}
-            //else if (form is OutputLayerForm outputLayerForm)
-            //{
-
-            //}
-            //else
-            //{
-            //    return;
-            //}
-
-            RefreshSettings();
+            if (form is LayerForm layerForm)
+            {
+                SettingsForm.PGLayers.SelectedObject = layerForm.ViewSettings;
+            }
         }
 
         private static void RefreshSettings()

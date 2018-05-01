@@ -10,13 +10,6 @@ using System.Windows.Forms;
 
 namespace NeuralNetwork_UI.Forms
 {
-    public enum DisplayTypes
-    {
-        TextBox,
-        CheckBox,
-        DropDownList
-    }
-
     public partial class ViewSettingsForm : Form
     {
         public ViewSettingsForm()
@@ -28,10 +21,6 @@ namespace NeuralNetwork_UI.Forms
         #endregion
 
         #region Methods
-        public void RefreshSettings(Form form, Type[] types, DisplayTypes[] displayTypes)
-        {
-
-        }
         #endregion
     }
 }
