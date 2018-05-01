@@ -37,8 +37,8 @@ namespace NeuralNetwork_UI.Forms
             TVNetworks.Nodes.Clear();
 
             TVNetworks.Nodes.AddRange(
-                Project.Networks.Select(n => new TreeNode(n.Name,
-                    (NeuralNetworkService.GetInputProjectsForNetwork(Project.InputProjects.ToArray(), n))
+                UIRepository.Project.Networks.Select(n => new TreeNode(n.Name,
+                    (NeuralNetworkService.GetInputProjectsForNetwork(UIRepository.Project.InputProjects.ToArray(), n))
                         .Select(p => new TreeNode(p.Name)).ToArray()
                 )).ToArray());
         }

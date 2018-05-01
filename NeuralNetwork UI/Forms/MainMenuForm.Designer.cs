@@ -38,6 +38,7 @@
             this.BOpen = new System.Windows.Forms.Button();
             this.GBInputProj = new System.Windows.Forms.GroupBox();
             this.BNewInputProj = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
             this.MainMenu.SuspendLayout();
             this.GBNetwork.SuspendLayout();
             this.GBInputProj.SuspendLayout();
@@ -131,7 +132,7 @@
             this.GBInputProj.Controls.Add(this.BNewInputProj);
             this.GBInputProj.Location = new System.Drawing.Point(263, 31);
             this.GBInputProj.Name = "GBInputProj";
-            this.GBInputProj.Size = new System.Drawing.Size(245, 72);
+            this.GBInputProj.Size = new System.Drawing.Size(133, 72);
             this.GBInputProj.TabIndex = 4;
             this.GBInputProj.TabStop = false;
             this.GBInputProj.Text = "Input project";
@@ -150,11 +151,25 @@
             this.BNewInputProj.UseVisualStyleBackColor = false;
             this.BNewInputProj.Click += new System.EventHandler(this.BNewInputProj_Click);
             // 
+            // button1
+            // 
+            this.button1.BackColor = System.Drawing.SystemColors.Control;
+            this.button1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.button1.Font = new System.Drawing.Font("Consolas", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button1.Location = new System.Drawing.Point(402, 44);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(159, 56);
+            this.button1.TabIndex = 2;
+            this.button1.Text = "Training mode";
+            this.button1.UseVisualStyleBackColor = false;
+            // 
             // MainMenuForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1348, 122);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.GBInputProj);
             this.Controls.Add(this.GBNetwork);
             this.Controls.Add(this.MainMenu);
@@ -187,5 +202,6 @@
         private System.Windows.Forms.GroupBox GBInputProj;
         private System.Windows.Forms.Button BNewInputProj;
         private System.Windows.Forms.Button BNewNetwork;
+        private System.Windows.Forms.Button button1;
     }
 }

@@ -95,6 +95,7 @@
     <Compile Include="Shared\FormActivatedHandler.cs" />
     <Compile Include="Shared\LayerFormViewSettings.cs" />
     <Compile Include="Shared\Project.cs" />
+    <Compile Include="Shared\UIRepository.cs" />
     <EmbeddedResource Include="Forms\Dialogs\NewNetworkForm.resx">
       <DependentUpon>NewNetworkForm.cs</DependentUpon>
     </EmbeddedResource>

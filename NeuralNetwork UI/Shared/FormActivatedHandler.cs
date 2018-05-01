@@ -14,11 +14,14 @@ namespace NeuralNetwork_UI.Shared
     {
         private ViewSettingsForm settingsForm;
         private List<Form> forms;
+        private Form lastForm;
 
         public FormActivatedHandler(ViewSettingsForm settingsForm)
         {
             this.settingsForm = settingsForm ?? throw new ArgumentNullException(Exceptions.NULL_ARGUMENT + "(Form: ViewSettingsForm)");
             forms = new List<Form>();
+            lastForm = null;
+
             settingsForm.PGLayers.PropertyValueChanged += PGLayers_PropertyValueChanged;
         }
 
@@ -38,11 +41,15 @@ namespace NeuralNetwork_UI.Shared
         {
             if (settingsForm == null || settingsForm.IsDisposed)
                 return;
-            if (sender is LayerForm layerForm)
+            Form activatedForm = sender as Form;
+            if (lastForm == activatedForm)
+                return;
+            if (activatedForm is LayerForm layerForm)
             {
                 settingsForm.PGLayers.SelectedObject = layerForm.ViewSettings;
                 settingsForm.PGLayers.Tag = layerForm.NetworkIndex;
             }
+            lastForm = activatedForm;
         }
 
         public void RegisterForm(Form form)

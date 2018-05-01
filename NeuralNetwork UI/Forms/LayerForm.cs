@@ -68,41 +68,42 @@ namespace NeuralNetwork_UI.Forms
             RefreshLayerValues(true);
             RefreshFont();
             RefreshCellsAutoSize();
+            RefreshMinMaxSize();
         }
         public void RefreshLayerValues(bool rewriteValues = false)
         {
             switch (layer)
             {
                 case Layers.Input:
-                    DGVLayer.RowCount = Project.Networks[NetworkIndex].InputLayerSize;
+                    DGVLayer.RowCount = UIRepository.Project.Networks[NetworkIndex].InputLayerSize;
                     DGVLayer.ColumnCount = 1;
 
                     if (rewriteValues)
                     {
-                        for (int i = 0; i < Project.Networks[NetworkIndex].InputLayer.Length; i++)
-                            DGVLayer[0, i].Value = Project.Networks[NetworkIndex].InputLayer[i][0];
+                        for (int i = 0; i < UIRepository.Project.Networks[NetworkIndex].InputLayer.Length; i++)
+                            DGVLayer[0, i].Value = UIRepository.Project.Networks[NetworkIndex].InputLayer[i][0];
                     }
                     break;
                 case Layers.Hidden:
-                    DGVLayer.RowCount = Project.Networks[NetworkIndex].HiddenLayerSize;
-                    DGVLayer.ColumnCount = Project.Networks[NetworkIndex].HiddenLayer.Max(x => x.InputCount);
+                    DGVLayer.RowCount = UIRepository.Project.Networks[NetworkIndex].HiddenLayerSize;
+                    DGVLayer.ColumnCount = UIRepository.Project.Networks[NetworkIndex].HiddenLayer.Max(x => x.InputCount);
 
                     if (rewriteValues)
                     {
-                        for (int i = 0; i < Project.Networks[NetworkIndex].HiddenLayerSize; i++)
-                            for (int j = 0; j < Project.Networks[NetworkIndex].HiddenLayer[i].InputCount; j++)
-                                DGVLayer[j, i].Value = Math.Round(Project.Networks[NetworkIndex].HiddenLayer[i][j], ViewSettings.DecimalPlaces);
+                        for (int i = 0; i < UIRepository.Project.Networks[NetworkIndex].HiddenLayerSize; i++)
+                            for (int j = 0; j < UIRepository.Project.Networks[NetworkIndex].HiddenLayer[i].InputCount; j++)
+                                DGVLayer[j, i].Value = Math.Round(UIRepository.Project.Networks[NetworkIndex].HiddenLayer[i][j], ViewSettings.DecimalPlaces);
                     }
                     break;
                 case Layers.Output:
-                    DGVLayer.RowCount = Project.Networks[NetworkIndex].OutputLayerSize;
-                    DGVLayer.ColumnCount = Project.Networks[NetworkIndex].OutputLayer.Max(x => x.InputCount);
+                    DGVLayer.RowCount = UIRepository.Project.Networks[NetworkIndex].OutputLayerSize;
+                    DGVLayer.ColumnCount = UIRepository.Project.Networks[NetworkIndex].OutputLayer.Max(x => x.InputCount);
 
                     if (rewriteValues)
                     {
-                        for (int i = 0; i < Project.Networks[NetworkIndex].OutputLayerSize; i++)
-                            for (int j = 0; j < Project.Networks[NetworkIndex].OutputLayer[i].InputCount; j++)
-                                DGVLayer[j, i].Value = Math.Round(Project.Networks[NetworkIndex].OutputLayer[i][j], ViewSettings.DecimalPlaces);
+                        for (int i = 0; i < UIRepository.Project.Networks[NetworkIndex].OutputLayerSize; i++)
+                            for (int j = 0; j < UIRepository.Project.Networks[NetworkIndex].OutputLayer[i].InputCount; j++)
+                                DGVLayer[j, i].Value = Math.Round(UIRepository.Project.Networks[NetworkIndex].OutputLayer[i][j], ViewSettings.DecimalPlaces);
                     }
                     break;
             }
@@ -129,6 +130,10 @@ namespace NeuralNetwork_UI.Forms
                     col.Width = oldWidth;
                 }
             }
+        }
+        public void RefreshMinMaxSize()
+        {
+
         }
         public void SetFollowedForm(Form form, FormRelativeLayout relativeLayout)
         {

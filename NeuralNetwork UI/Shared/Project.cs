@@ -9,37 +9,37 @@ using System.Threading.Tasks;
 
 namespace NeuralNetwork_UI.Shared
 {
-    public static class Project
+    public class Project
     {
-        public static List<FeedforwardNetworkSHL> Networks { get; private set; } 
+        public List<FeedforwardNetworkSHL> Networks { get; private set; } 
             = new List<FeedforwardNetworkSHL>();
-        public static List<NeuralNetworkInputProject> InputProjects { get; private set; } 
+        public List<NeuralNetworkInputProject> InputProjects { get; private set; } 
             = new List<NeuralNetworkInputProject>();
 
-        public static void CreateNewProject()
+        public Project()
         {
             Networks = new List<FeedforwardNetworkSHL>();
             InputProjects = new List<NeuralNetworkInputProject>();
         }
 
-        public static int AddNetwork(FeedforwardNetworkSHL network)
+        public int AddNetwork(FeedforwardNetworkSHL network)
         {
             Networks.Add(network);
             return Networks.Count() - 1;
         }
-        public static void AddInputProject(NeuralNetworkInputProject inputProject)
+        public void AddInputProject(NeuralNetworkInputProject inputProject)
         {
             InputProjects.Add(inputProject);
         }
 
-        public static int NetworksCount
+        public int NetworksCount
         {
             get
             {
                 return Networks.Count();
             }
         }
-        public static int InputProjectsCount
+        public int InputProjectsCount
         {
             get
             {

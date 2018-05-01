@@ -21,7 +21,7 @@ namespace NeuralNetwork_UI.Forms.Dialogs
         #region Events
         private void SelectNetworkForm_Load(object sender, EventArgs e)
         {
-            TBName.Text = "InputProj_" + Project.InputProjectsCount;
+            TBName.Text = "InputProj_" + UIRepository.Project.InputProjectsCount;
 
             RefreshNetworks();
         }
@@ -39,7 +39,7 @@ namespace NeuralNetwork_UI.Forms.Dialogs
 
             if (index >= 0)
             {
-                Project.AddInputProject(new Neural_Network.Core.Extra.NeuralNetworkInputProject(name, Project.Networks[index]));
+                UIRepository.Project.AddInputProject(new Neural_Network.Core.Extra.NeuralNetworkInputProject(name, UIRepository.Project.Networks[index]));
                 Close();
             }
             else
@@ -57,8 +57,8 @@ namespace NeuralNetwork_UI.Forms.Dialogs
         public void RefreshNetworks()
         {
             LBNetworks.Items.Clear();
-            LBNetworks.Items.AddRange(Project.Networks.Select(x => x.Name).ToArray());
-            if (Project.NetworksCount > 0)
+            LBNetworks.Items.AddRange(UIRepository.Project.Networks.Select(x => x.Name).ToArray());
+            if (UIRepository.Project.NetworksCount > 0)
                 LBNetworks.SetSelected(0, true);
         }
         #endregion

@@ -21,7 +21,7 @@ namespace NeuralNetwork_UI.Forms.Dialogs
         #region Events
         private void NewNetworkForm_Load(object sender, EventArgs e)
         {
-            TBName.Text += "_" + Project.NetworksCount;
+            TBName.Text += "_" + UIRepository.Project.NetworksCount;
         }
         private void BOk_Click(object sender, EventArgs e)
         {
@@ -37,17 +37,17 @@ namespace NeuralNetwork_UI.Forms.Dialogs
             int hiddenCount = (int)NUDHidden.Value;
             int outputCount = (int)NUDOutput.Value;
 
-            int index = Project.AddNetwork(new Neural_Network.Core.Implementation.FeedforwardNetworkSHL(name, inputCount, hiddenCount, outputCount));
+            int index = UIRepository.Project.AddNetwork(new Neural_Network.Core.Implementation.FeedforwardNetworkSHL(name, inputCount, hiddenCount, outputCount));
 
             if (CBRandomWeights.Checked)
-                Project.Networks[index].SetAllRandomWeights();
+                UIRepository.Project.Networks[index].SetAllRandomWeights();
 
             var owner = Owner as MainMenuForm;
             owner.ShowNetwork(index);
 
             if (CBCreateAnother.Checked)
             {
-                TBName.Text = "Net_" + Project.NetworksCount;
+                TBName.Text = "Net_" + UIRepository.Project.NetworksCount;
                 Focus();
             }
             else

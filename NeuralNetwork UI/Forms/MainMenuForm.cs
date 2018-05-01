@@ -43,7 +43,6 @@ namespace NeuralNetwork_UI.Forms
             (inputProjectsForm = new InputProjectsForm()).Owner = this;
 
             formActivatedHandler = new FormActivatedHandler(viewSettingsForm);
-            Project.CreateNewProject();
         }
 
         #region Events
@@ -99,9 +98,9 @@ namespace NeuralNetwork_UI.Forms
         }
         private void BNewInputProj_Click(object sender, EventArgs e)
         {
-            if (Project.NetworksCount < 1)
+            if (UIRepository.Project.NetworksCount < 1)
             {
-                MessageBox.Show("There are no neural networks in project. Please, create network at first.", "Attention", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
+                MessageBox.Show("There are no neural networks in project. Create network at first.", "Attention", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
                 return;
             }
 
@@ -232,19 +231,19 @@ namespace NeuralNetwork_UI.Forms
         }
         public void ShowNetwork(int networkIndex)
         {
-            LayerForm newLayerForm = CreateLayerForm(Layers.Input, networkIndex, "Input Layer (" + Project.Networks[networkIndex].Name + ")");
+            LayerForm newLayerForm = CreateLayerForm(Layers.Input, networkIndex, "Input Layer (" + UIRepository.Project.Networks[networkIndex].Name + ")");
             inputLayerForms.Add(newLayerForm);
             newLayerForm.Show();
             newLayerForm.Location = new Point(networkExplorerForm.Location.X + networkExplorerForm.ClientSize.Width + 50, networkExplorerForm.Location.Y);
             newLayerForm.FullLayerRefresh();
 
-            newLayerForm = CreateLayerForm(Layers.Hidden, networkIndex, "Hidden Layer (" + Project.Networks[networkIndex].Name + ")");
+            newLayerForm = CreateLayerForm(Layers.Hidden, networkIndex, "Hidden Layer (" + UIRepository.Project.Networks[networkIndex].Name + ")");
             hiddenLayerForms.Add(newLayerForm);
             newLayerForm.Show();
             newLayerForm.Location = new Point(inputLayerForms[inputLayerForms.Count() - 1].Location.X + inputLayerForms[inputLayerForms.Count() - 1].ClientSize.Width, inputLayerForms[inputLayerForms.Count() - 1].Location.Y);
             newLayerForm.FullLayerRefresh();
 
-            newLayerForm = CreateLayerForm(Layers.Output, networkIndex, "Output Layer (" + Project.Networks[networkIndex].Name + ")");
+            newLayerForm = CreateLayerForm(Layers.Output, networkIndex, "Output Layer (" + UIRepository.Project.Networks[networkIndex].Name + ")");
             outputLayerForms.Add(newLayerForm);
             newLayerForm.Show();
             newLayerForm.Location = new Point(hiddenLayerForms[inputLayerForms.Count() - 1].Location.X + hiddenLayerForms[inputLayerForms.Count() - 1].ClientSize.Width, hiddenLayerForms[inputLayerForms.Count() - 1].Location.Y);
