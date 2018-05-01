@@ -1,4 +1,5 @@
-﻿using NeuralNetwork_UI.Constants;
+﻿using Neural_Network.Core.Implementation;
+using NeuralNetwork_UI.Constants;
 using NeuralNetwork_UI.Forms.Constants;
 using NeuralNetwork_UI.Shared;
 using System;
@@ -13,9 +14,10 @@ using System.Windows.Forms;
 
 namespace NeuralNetwork_UI.Forms
 {
-    public partial class HiddenLayerForm : Form
+    public partial class LayerForm : Form
     {
-        private int NetworkIndex;
+        private Layers layer;
+        public int NetworkIndex { get; private set; }
         #region View settings
         public int FontSize { get; set; } = 17;
         public bool AdaptCellsSize { get; set; } = true;
@@ -24,17 +26,15 @@ namespace NeuralNetwork_UI.Forms
         public FormRelativeLayout FollowedFormRelativeLayout { get; set; }
         #endregion
 
-        public HiddenLayerForm(int networkIndex)
+        public LayerForm(Layers layer, int networkIndex)
         {
             InitializeComponent();
 
+            this.layer = layer;
             NetworkIndex = networkIndex;
         }
 
         #region Events
-        private void InputLayerForm_Load(object sender, EventArgs e)
-        {
-        }
         private void FollowedForm_Move(object sender, EventArgs e)
         {
             LayersHandler.OnFollowedForm_Move(this, FollowedForm, FollowedFormRelativeLayout);
@@ -44,13 +44,13 @@ namespace NeuralNetwork_UI.Forms
         #region Methods
         public void FullLayerRefresh()
         {
-            LayersHandler.RefreshLayerValues(NetworkIndex, DGVLayer, Neural_Network.Core.Implementation.Layers.Hidden, DecimalPlaces, true);
+            LayersHandler.RefreshLayerValues(NetworkIndex, DGVLayer, layer, DecimalPlaces, true);
             LayersHandler.RefreshFontSize(DGVLayer, FontSize);
             LayersHandler.RefreshCellsAutoSize(DGVLayer, AdaptCellsSize);
         }
         public void RefreshLayerValues(bool rewriteValues = false)
         {
-            LayersHandler.RefreshLayerValues(NetworkIndex, DGVLayer, Neural_Network.Core.Implementation.Layers.Hidden, DecimalPlaces, rewriteValues);
+            LayersHandler.RefreshLayerValues(NetworkIndex, DGVLayer, layer, DecimalPlaces, rewriteValues);
         }
         public void RefreshFontSize()
         {

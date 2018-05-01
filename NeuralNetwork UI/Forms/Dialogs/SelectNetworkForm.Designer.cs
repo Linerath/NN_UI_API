@@ -48,6 +48,7 @@
             // 
             // BOk
             // 
+            this.BOk.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.BOk.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BOk.Location = new System.Drawing.Point(226, 93);
             this.BOk.Name = "BOk";
@@ -85,6 +86,7 @@
             // 
             // BCancel
             // 
+            this.BCancel.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.BCancel.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BCancel.Location = new System.Drawing.Point(226, 129);
             this.BCancel.Name = "BCancel";

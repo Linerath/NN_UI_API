@@ -22,9 +22,9 @@ namespace NeuralNetwork_UI.Forms
         #region Forms
         private NetworkExplorerForm networkExplorerForm;
         private ViewSettingsForm viewSettingsForm;
-        private InputLayerForm inputLayerForm;
-        private HiddenLayerForm hiddenLayerForm;
-        private OutputLayerForm outputLayerForm;
+        private LayerForm inputLayerForm;
+        private LayerForm hiddenLayerForm;
+        private LayerForm outputLayerForm;
         private InputProjectsForm inputProjectsForm;
         #endregion
 
@@ -36,6 +36,7 @@ namespace NeuralNetwork_UI.Forms
             (viewSettingsForm = new ViewSettingsForm()).Owner = this;
             (inputProjectsForm = new InputProjectsForm()).Owner = this;
 
+            FormActivatedHandler.SettingsForm = viewSettingsForm;
             Project.CreateNewProject();
         }
 
@@ -210,29 +211,30 @@ namespace NeuralNetwork_UI.Forms
             Size = new Size(Screen.PrimaryScreen.Bounds.Width, Size.Height);
         }
 
-        public void ShowNetwork(int NetworkIndex)
+        private LayerForm CreateLayerForm(Layers layer, int networkIndex, String text, bool registerActivatedEvent = true)
         {
-            inputLayerForm = new InputLayerForm(NetworkIndex)
+            var layerForm = new LayerForm(layer, networkIndex)
             {
                 Owner = this,
-                Text = "Input Layer (" + Project.Networks[NetworkIndex].Name + ")",
+                Text = text,
             };
+
+            if (registerActivatedEvent)
+                RegisterActivatedEvent(layerForm);
+
+            return layerForm;
+        }
+        public void ShowNetwork(int networkIndex)
+        {
+            inputLayerForm = CreateLayerForm(Layers.Input, networkIndex, "Input Layer (" + Project.Networks[networkIndex].Name + ")");
             inputLayerForm.Show();
             inputLayerForm.Location = new Point(networkExplorerForm.Location.X + networkExplorerForm.ClientSize.Width + 50, networkExplorerForm.Location.Y);
 
-            hiddenLayerForm = new HiddenLayerForm(NetworkIndex)
-            {
-                Owner = this,
-                Text = "Hidden Layer (" + Project.Networks[NetworkIndex].Name + ")",
-            };
+            hiddenLayerForm = CreateLayerForm(Layers.Hidden, networkIndex, "Hidden Layer (" + Project.Networks[networkIndex].Name + ")");
             hiddenLayerForm.Show();
             hiddenLayerForm.Location = new Point(inputLayerForm.Location.X + inputLayerForm.ClientSize.Width, inputLayerForm.Location.Y);
 
-            outputLayerForm = new OutputLayerForm(NetworkIndex)
-            {
-                Owner = this,
-                Text = "Output Layer (" + Project.Networks[NetworkIndex].Name + ")",
-            };
+            outputLayerForm = CreateLayerForm(Layers.Output, networkIndex, "Output Layer (" + Project.Networks[networkIndex].Name + ")");
             outputLayerForm.Show();
             outputLayerForm.Location = new Point(hiddenLayerForm.Location.X + hiddenLayerForm.ClientSize.Width, hiddenLayerForm.Location.Y);
 
@@ -249,9 +251,12 @@ namespace NeuralNetwork_UI.Forms
 
         }
 
-        private void ReadNetwork(String filePath)
+        private void RegisterActivatedEvent(Form form)
         {
-
+            form.Activated += (Sender, E) =>
+            {
+                FormActivatedHandler.OnForm_Activated(form);
+            };
         }
 
         #endregion

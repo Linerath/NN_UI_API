@@ -1,6 +1,6 @@
 ﻿namespace NeuralNetwork_UI.Forms
 {
-    partial class InputLayerForm
+    partial class LayerForm
     {
         /// <summary>
         /// Required designer variable.
@@ -45,9 +45,9 @@
             this.DGVLayer.RowHeadersVisible = false;
             this.DGVLayer.RowTemplate.Height = 24;
             this.DGVLayer.Size = new System.Drawing.Size(282, 253);
-            this.DGVLayer.TabIndex = 0;
+            this.DGVLayer.TabIndex = 1;
             // 
-            // InputLayerForm
+            // LayerForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -55,10 +55,9 @@
             this.Controls.Add(this.DGVLayer);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
-            this.Name = "InputLayerForm";
+            this.Name = "LayerForm";
             this.ShowIcon = false;
-            this.Text = "Input Layer";
-            this.Load += new System.EventHandler(this.InputLayerForm_Load);
+            this.Text = "LayerForm";
             ((System.ComponentModel.ISupportInitialize)(this.DGVLayer)).EndInit();
             this.ResumeLayout(false);
 
