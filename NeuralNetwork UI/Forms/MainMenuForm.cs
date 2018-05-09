@@ -35,14 +35,7 @@ namespace NeuralNetwork_UI.Forms
         {
             InitializeComponent();
 
-            (networkExplorerForm = new NetworkExplorerForm()).Owner = this;
-            (viewSettingsForm = new ViewSettingsForm()).Owner = this;
-            inputLayerForms = new List<LayerForm>();
-            hiddenLayerForms = new List<LayerForm>();
-            outputLayerForms = new List<LayerForm>();
-            (inputProjectsForm = new InputProjectsForm()).Owner = this;
-
-            formActivatedHandler = new FormActivatedHandler(viewSettingsForm);
+            NewProject();
         }
 
         #region Events
@@ -53,10 +46,6 @@ namespace NeuralNetwork_UI.Forms
             //LocateForm(this, FormAbsoluteLayout.TopStretch);
             //LocateForm(networkExplorerForm, this, FormRelativeLayout.BottomLeft);
             //LocateForm(viewSettingsForm, networkExplorerForm, FormRelativeLayout.BottomLeft);
-
-            networkExplorerForm.Show();
-            viewSettingsForm.Show();
-            DefaultFormsLayout();
         }
         private void BNewNetwork_Click(object sender, EventArgs e)
         {
@@ -81,8 +70,6 @@ namespace NeuralNetwork_UI.Forms
             {
                 InitialDirectory = Directory.GetCurrentDirectory()
             };
-
-            ofd.ShowDialog();
 
             if (ofd.ShowDialog() == DialogResult.OK)
             {
@@ -114,6 +101,50 @@ namespace NeuralNetwork_UI.Forms
             };
             selectNetworkForm.ShowDialog();
         }
+        private void openToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog ofd = new OpenFileDialog
+            {
+                InitialDirectory = Directory.GetCurrentDirectory(),
+                Filter = "Neural network project(*.nnproj)|*.nnproj",
+                FileName = "*.nnproj"
+            };
+
+            if (ofd.ShowDialog() == DialogResult.OK)
+            {
+                if (UIRepository.Project.TryOpen(ofd.FileName))
+                {
+                    networkExplorerForm.RefreshTree();
+                    ShowAllNetworks();
+                }
+            }
+        }
+        private void saveToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (UIRepository.Project.FilePath != null)
+            {
+                UIRepository.Project.TrySave();
+            }
+            else
+            {
+                saveAsToolStripMenuItem.PerformClick();
+            }
+        }
+        private void saveAsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            SaveFileDialog sfd = new SaveFileDialog
+            {
+                InitialDirectory = Directory.GetCurrentDirectory(),
+                Filter = "Neural network project(*.nnproj)|*.nnproj",
+                FileName = "*.nnproj"
+            };
+
+            if (sfd.ShowDialog() == DialogResult.OK)
+            {
+                networkExplorerForm.RefreshTree();
+                UIRepository.Project.TrySaveTo(sfd.FileName);
+            }
+        }
         #endregion
 
         #region ExtraForms
@@ -123,6 +154,22 @@ namespace NeuralNetwork_UI.Forms
         #endregion
 
         #region Methods
+
+        private void NewProject()
+        {
+            (networkExplorerForm = new NetworkExplorerForm()).Owner = this;
+            (viewSettingsForm = new ViewSettingsForm()).Owner = this;
+            inputLayerForms = new List<LayerForm>();
+            hiddenLayerForms = new List<LayerForm>();
+            outputLayerForms = new List<LayerForm>();
+            (inputProjectsForm = new InputProjectsForm()).Owner = this;
+
+            formActivatedHandler = new FormActivatedHandler(viewSettingsForm);
+
+            networkExplorerForm.Show();
+            viewSettingsForm.Show();
+            DefaultFormsLayout();
+        }
 
         // Not-ended trash
         private Form LocateForm(Form form, Form relativeForm, FormRelativeLayout formRelativeLayout)
@@ -229,6 +276,13 @@ namespace NeuralNetwork_UI.Forms
 
             return layerForm;
         }
+        public void ShowAllNetworks()
+        {
+            for (int i = 0; i < UIRepository.Project.NetworksCount; i++)
+            {
+                ShowNetwork(i);
+            }
+        }
         public void ShowNetwork(int networkIndex)
         {
             LayerForm newLayerForm = CreateLayerForm(Layers.Input, networkIndex, "Input Layer (" + UIRepository.Project.Networks[networkIndex].Name + ")");
@@ -267,31 +321,5 @@ namespace NeuralNetwork_UI.Forms
         }
 
         #endregion
-
-        private void MainMenuForm_Click(object sender, EventArgs e)
-        {
-        }
-
-
-
-        private void panel1_Click(object sender, EventArgs e)
-        {
-            //MessageBox.Show(DesktopBounds.Width + "x" + DesktopBounds.Height);
-
-            //int oldW = Width;
-            //int oldH = Height;
-            //int pOldW = panel1.Width;
-            //int pOldH = panel1.Height;
-
-            //Size = new Size(373, 296);
-
-            //int newW = Width;
-            //int newH = Height;
-            //int pNewW = panel1.Width;
-            //int pNewH = panel1.Height;
-
-            //MessageBox.Show("Old size:\n" + oldW + "x" + oldH + ". " + pOldW + "x" + pOldH + "\nNew size:\n" + 
-            //    newW + "x" + newH + ". " + pNewW + "x" + pNewH);
-        }
     }
 }

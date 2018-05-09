@@ -38,7 +38,10 @@
             this.BOpen = new System.Windows.Forms.Button();
             this.GBInputProj = new System.Windows.Forms.GroupBox();
             this.BNewInputProj = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
+            this.BTrainingMode = new System.Windows.Forms.Button();
+            this.openToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.saveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.saveAsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.MainMenu.SuspendLayout();
             this.GBNetwork.SuspendLayout();
             this.GBInputProj.SuspendLayout();
@@ -66,6 +69,10 @@
             // 
             // projectToolStripMenuItem
             // 
+            this.projectToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.openToolStripMenuItem,
+            this.saveToolStripMenuItem,
+            this.saveAsToolStripMenuItem});
             this.projectToolStripMenuItem.Name = "projectToolStripMenuItem";
             this.projectToolStripMenuItem.Size = new System.Drawing.Size(67, 24);
             this.projectToolStripMenuItem.Text = "Project";
@@ -151,25 +158,50 @@
             this.BNewInputProj.UseVisualStyleBackColor = false;
             this.BNewInputProj.Click += new System.EventHandler(this.BNewInputProj_Click);
             // 
-            // button1
+            // BTrainingMode
             // 
-            this.button1.BackColor = System.Drawing.SystemColors.Control;
-            this.button1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.button1.Font = new System.Drawing.Font("Consolas", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.Location = new System.Drawing.Point(402, 44);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(159, 56);
-            this.button1.TabIndex = 2;
-            this.button1.Text = "Training mode";
-            this.button1.UseVisualStyleBackColor = false;
+            this.BTrainingMode.BackColor = System.Drawing.SystemColors.Control;
+            this.BTrainingMode.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.BTrainingMode.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.BTrainingMode.Font = new System.Drawing.Font("Consolas", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BTrainingMode.Location = new System.Drawing.Point(402, 45);
+            this.BTrainingMode.Name = "BTrainingMode";
+            this.BTrainingMode.Size = new System.Drawing.Size(130, 55);
+            this.BTrainingMode.TabIndex = 2;
+            this.BTrainingMode.Text = "Training mode";
+            this.BTrainingMode.UseVisualStyleBackColor = false;
+            // 
+            // openToolStripMenuItem
+            // 
+            this.openToolStripMenuItem.Name = "openToolStripMenuItem";
+            this.openToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.O)));
+            this.openToolStripMenuItem.Size = new System.Drawing.Size(232, 26);
+            this.openToolStripMenuItem.Text = "Open...";
+            this.openToolStripMenuItem.Click += new System.EventHandler(this.openToolStripMenuItem_Click);
+            // 
+            // saveToolStripMenuItem
+            // 
+            this.saveToolStripMenuItem.Name = "saveToolStripMenuItem";
+            this.saveToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.S)));
+            this.saveToolStripMenuItem.Size = new System.Drawing.Size(232, 26);
+            this.saveToolStripMenuItem.Text = "Save";
+            this.saveToolStripMenuItem.Click += new System.EventHandler(this.saveToolStripMenuItem_Click);
+            // 
+            // saveAsToolStripMenuItem
+            // 
+            this.saveAsToolStripMenuItem.Name = "saveAsToolStripMenuItem";
+            this.saveAsToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)(((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Shift) 
+            | System.Windows.Forms.Keys.S)));
+            this.saveAsToolStripMenuItem.Size = new System.Drawing.Size(232, 26);
+            this.saveAsToolStripMenuItem.Text = "Save as...";
+            this.saveAsToolStripMenuItem.Click += new System.EventHandler(this.saveAsToolStripMenuItem_Click);
             // 
             // MainMenuForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1348, 122);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.BTrainingMode);
             this.Controls.Add(this.GBInputProj);
             this.Controls.Add(this.GBNetwork);
             this.Controls.Add(this.MainMenu);
@@ -180,7 +212,6 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Main Menu";
             this.Load += new System.EventHandler(this.MainMenuForm_Load);
-            this.Click += new System.EventHandler(this.MainMenuForm_Click);
             this.MainMenu.ResumeLayout(false);
             this.MainMenu.PerformLayout();
             this.GBNetwork.ResumeLayout(false);
@@ -202,6 +233,9 @@
         private System.Windows.Forms.GroupBox GBInputProj;
         private System.Windows.Forms.Button BNewInputProj;
         private System.Windows.Forms.Button BNewNetwork;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button BTrainingMode;
+        private System.Windows.Forms.ToolStripMenuItem openToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem saveToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem saveAsToolStripMenuItem;
     }
 }

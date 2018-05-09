@@ -116,6 +116,7 @@ namespace Neural_Network.Core.Extra
         #endregion
     }
 
+    [Serializable]
     public struct Field
     {
         private String name;
