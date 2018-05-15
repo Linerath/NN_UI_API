@@ -124,23 +124,23 @@ namespace Neural_Network_WF__Graduate_Work_.Forms
             }
             void FillValues()
             {
-                for (int i = 0; i < NeuralNetwork.Network[0].Count(); i++)
-                    DGVInputLayer[0, i].Value = NeuralNetwork.Network[0][i][0];
-                for (int i = 0; i < NeuralNetwork.Network[1].Count(); i++)
-                    for (int j = 0; j < NeuralNetwork.Network[1][i].InputCount; j++)
-                        DGVHiddenLayer[j, i].Value = Math.Round(NeuralNetwork.Network[1][i][j], count0).ToString();
-                for (int i = 0; i < NeuralNetwork.Network[2].Count(); i++)
-                    for (int j = 0; j < NeuralNetwork.Network[2][i].InputCount; j++)
-                        DGVOutputLayer[j, i].Value = Math.Round(NeuralNetwork.Network[2][i][j], count1).ToString();
+                for (int i = 0; i < NeuralNetwork.Network[Layers.Input].Count(); i++)
+                    DGVInputLayer[0, i].Value = NeuralNetwork.Network[Layers.Input][i][0];
+                for (int i = 0; i < NeuralNetwork.Network[Layers.Hidden].Count(); i++)
+                    for (int j = 0; j < NeuralNetwork.Network[Layers.Hidden][i].InputCount; j++)
+                        DGVHiddenLayer[j, i].Value = Math.Round(NeuralNetwork.Network[Layers.Hidden][i][j], count0).ToString();
+                for (int i = 0; i < NeuralNetwork.Network[Layers.Output].Count(); i++)
+                    for (int j = 0; j < NeuralNetwork.Network[Layers.Output][i].InputCount; j++)
+                        DGVOutputLayer[j, i].Value = Math.Round(NeuralNetwork.Network[Layers.Output][i][j], count1).ToString();
             }
 
             DGVInputLayer.RowCount = NeuralNetwork.Network.InputLayerSize;
 
             DGVHiddenLayer.RowCount = NeuralNetwork.Network.HiddenLayerSize;
-            DGVHiddenLayer.ColumnCount = NeuralNetwork.Network[1].Max(x => x.InputCount);
+            DGVHiddenLayer.ColumnCount = NeuralNetwork.Network[Layers.Hidden].Max(x => x.InputCount);
 
             DGVOutputLayer.RowCount = NeuralNetwork.Network.OutputLayerSize;
-            DGVOutputLayer.ColumnCount = NeuralNetwork.Network[2].Max(x => x.InputCount);
+            DGVOutputLayer.ColumnCount = NeuralNetwork.Network[Layers.Output].Max(x => x.InputCount);
 
             UpdateFont();
             UpdateCellsAutoSize(DGVHiddenLayer, CBHiddenAdaptCellSize.Checked);

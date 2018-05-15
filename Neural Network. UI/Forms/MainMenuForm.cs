@@ -26,6 +26,7 @@ namespace Neural_Network.UI.Forms
         private List<LayerForm> hiddenLayerForms;
         private List<LayerForm> outputLayerForms;
         private InputProjectsForm inputProjectsForm;
+        private TrainingForm trainingForm;
         #endregion
         #region Shared
         private FormActivatedHandler formActivatedHandler;
@@ -46,6 +47,12 @@ namespace Neural_Network.UI.Forms
             //LocateForm(this, FormAbsoluteLayout.TopStretch);
             //LocateForm(networkExplorerForm, this, FormRelativeLayout.BottomLeft);
             //LocateForm(viewSettingsForm, networkExplorerForm, FormRelativeLayout.BottomLeft);
+
+            if (UIRepository.Project.TryOpen(@"E:\Programming\C#\Neural Network WF (Graduate Work)\Neural Network. UI\bin\Debug\hades.nnproj"))
+            {
+                networkExplorerForm.RefreshTree();
+                ShowAllNetworks();
+            }
         }
         private void BNewProj_Click(object sender, EventArgs e)
         {
@@ -110,20 +117,38 @@ namespace Neural_Network.UI.Forms
                 return;
             }
 
+            NewInputProjectForm newInputProjectForm = new NewInputProjectForm
+            {
+                Owner = this,
+            };
+            newInputProjectForm.FormClosed += (Sender, E) =>
+            {
+                networkExplorerForm.RefreshTree();
+            };
+            newInputProjectForm.ShowDialog();
+        }
+        private void BOpenInputProj_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("In development", "Warning");
+            return;
+        }
+        private void BTraining_Click(object sender, EventArgs e)
+        {
+            if (UIRepository.Project.NetworksCount < 1)
+            {
+                MessageBox.Show("There are no neural networks in project. Create network at first.", "Attention", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
+                return;
+            }
+
             SelectNetworkForm selectNetworkForm = new SelectNetworkForm
             {
                 Owner = this,
             };
             selectNetworkForm.FormClosed += (Sender, E) =>
             {
-                networkExplorerForm.RefreshTree();
+
             };
             selectNetworkForm.ShowDialog();
-        }
-        private void BOpenInputProj_Click(object sender, EventArgs e)
-        {
-            MessageBox.Show("In development", "Warning");
-            return;
         }
         private void BGetResponse_Click(object sender, EventArgs e)
         {
@@ -191,7 +216,7 @@ namespace Neural_Network.UI.Forms
 
             networkExplorerForm.Show();
             viewSettingsForm.Show();
-            inputProjectsForm.Show();
+            //inputProjectsForm.Show();
             DefaultFormsLayout();
         }
 
@@ -312,7 +337,7 @@ namespace Neural_Network.UI.Forms
             LayerForm newLayerForm = CreateLayerForm(Layers.Input, networkIndex, "Input Layer (" + UIRepository.Project.Networks[networkIndex].Name + ")");
             inputLayerForms.Add(newLayerForm);
             newLayerForm.Show();
-            newLayerForm.Location = new Point(networkExplorerForm.Location.X + networkExplorerForm.ClientSize.Width + 50, networkExplorerForm.Location.Y);
+            newLayerForm.Location = new Point(networkExplorerForm.Location.X + networkExplorerForm.ClientSize.Width + 250, networkExplorerForm.Location.Y);
             newLayerForm.FullLayerRefresh();
 
             newLayerForm = CreateLayerForm(Layers.Hidden, networkIndex, "Hidden Layer (" + UIRepository.Project.Networks[networkIndex].Name + ")");
@@ -334,6 +359,16 @@ namespace Neural_Network.UI.Forms
         }
         public void ShowInputProject(int inputProjectIndex)
         {
+
+        }
+        
+        public void ShowTrainingForm(int networkIndex)
+        {
+            trainingForm = new TrainingForm(networkIndex)
+            {
+                Owner = this,
+            };
+            trainingForm.Show();
         }
 
         public void RefreshNetworkLayer(int networkIndex)

@@ -40,14 +40,14 @@
             this.TCProjects.Location = new System.Drawing.Point(0, 0);
             this.TCProjects.Name = "TCProjects";
             this.TCProjects.SelectedIndex = 0;
-            this.TCProjects.Size = new System.Drawing.Size(1164, 482);
+            this.TCProjects.Size = new System.Drawing.Size(1182, 482);
             this.TCProjects.TabIndex = 0;
             // 
             // tabPage1
             // 
             this.tabPage1.Location = new System.Drawing.Point(4, 29);
             this.tabPage1.Name = "tabPage1";
-            this.tabPage1.Size = new System.Drawing.Size(1156, 449);
+            this.tabPage1.Size = new System.Drawing.Size(1174, 449);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "tabPage1";
             this.tabPage1.UseVisualStyleBackColor = true;
@@ -56,7 +56,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1164, 482);
+            this.ClientSize = new System.Drawing.Size(1182, 482);
             this.Controls.Add(this.TCProjects);
             this.Font = new System.Drawing.Font("Consolas", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);

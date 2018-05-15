@@ -43,8 +43,8 @@
             this.GBInputProj = new System.Windows.Forms.GroupBox();
             this.BOpenInputProj = new System.Windows.Forms.Button();
             this.BNewInputProj = new System.Windows.Forms.Button();
-            this.BTrainingMode = new System.Windows.Forms.Button();
             this.GBActions = new System.Windows.Forms.GroupBox();
+            this.BTraining = new System.Windows.Forms.Button();
             this.GBProj = new System.Windows.Forms.GroupBox();
             this.BSaveProjAs = new System.Windows.Forms.Button();
             this.BSaveProj = new System.Windows.Forms.Button();
@@ -161,7 +161,7 @@
             this.BGetResponse.BackColor = System.Drawing.Color.Aquamarine;
             this.BGetResponse.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.BGetResponse.Font = new System.Drawing.Font("Consolas", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BGetResponse.Location = new System.Drawing.Point(15, 24);
+            this.BGetResponse.Location = new System.Drawing.Point(61, 24);
             this.BGetResponse.Name = "BGetResponse";
             this.BGetResponse.Size = new System.Drawing.Size(40, 35);
             this.BGetResponse.TabIndex = 3;
@@ -207,28 +207,29 @@
             this.BNewInputProj.UseVisualStyleBackColor = false;
             this.BNewInputProj.Click += new System.EventHandler(this.BNewInputProj_Click);
             // 
-            // BTrainingMode
-            // 
-            this.BTrainingMode.BackColor = System.Drawing.SystemColors.Control;
-            this.BTrainingMode.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.BTrainingMode.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.BTrainingMode.Font = new System.Drawing.Font("Consolas", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BTrainingMode.Location = new System.Drawing.Point(581, 31);
-            this.BTrainingMode.Name = "BTrainingMode";
-            this.BTrainingMode.Size = new System.Drawing.Size(130, 72);
-            this.BTrainingMode.TabIndex = 2;
-            this.BTrainingMode.Text = "Training mode";
-            this.BTrainingMode.UseVisualStyleBackColor = false;
-            // 
             // GBActions
             // 
+            this.GBActions.Controls.Add(this.BTraining);
             this.GBActions.Controls.Add(this.BGetResponse);
             this.GBActions.Location = new System.Drawing.Point(495, 31);
             this.GBActions.Name = "GBActions";
-            this.GBActions.Size = new System.Drawing.Size(80, 72);
+            this.GBActions.Size = new System.Drawing.Size(119, 72);
             this.GBActions.TabIndex = 5;
             this.GBActions.TabStop = false;
             this.GBActions.Text = "Actions";
+            // 
+            // BTraining
+            // 
+            this.BTraining.BackColor = System.Drawing.Color.OrangeRed;
+            this.BTraining.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.BTraining.Font = new System.Drawing.Font("Consolas", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BTraining.Location = new System.Drawing.Point(15, 24);
+            this.BTraining.Name = "BTraining";
+            this.BTraining.Size = new System.Drawing.Size(40, 35);
+            this.BTraining.TabIndex = 4;
+            this.BTraining.Text = "T";
+            this.BTraining.UseVisualStyleBackColor = false;
+            this.BTraining.Click += new System.EventHandler(this.BTraining_Click);
             // 
             // GBProj
             // 
@@ -309,7 +310,6 @@
             this.ClientSize = new System.Drawing.Size(1348, 122);
             this.Controls.Add(this.GBProj);
             this.Controls.Add(this.GBActions);
-            this.Controls.Add(this.BTrainingMode);
             this.Controls.Add(this.GBInputProj);
             this.Controls.Add(this.GBNetwork);
             this.Controls.Add(this.MainMenu);
@@ -343,7 +343,6 @@
         private System.Windows.Forms.GroupBox GBInputProj;
         private System.Windows.Forms.Button BNewInputProj;
         private System.Windows.Forms.Button BNewNetwork;
-        private System.Windows.Forms.Button BTrainingMode;
         private System.Windows.Forms.ToolStripMenuItem openProjToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem saveProjToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem saveProjAsToolStripMenuItem;
@@ -354,5 +353,6 @@
         private System.Windows.Forms.Button BNewProj;
         private System.Windows.Forms.Button BSaveProj;
         private System.Windows.Forms.Button BSaveProjAs;
+        private System.Windows.Forms.Button BTraining;
     }
 }

@@ -1,4 +1,5 @@
-﻿using Neural_Network.UI.Shared;
+﻿using Neural_Network.Core.Extra;
+using Neural_Network.UI.Shared;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -11,9 +12,9 @@ using System.Windows.Forms;
 
 namespace Neural_Network.UI.Forms.Dialogs
 {
-    public partial class SelectNetworkForm : Form
+    public partial class NewInputProjectForm : Form
     {
-        public SelectNetworkForm()
+        public NewInputProjectForm()
         {
             InitializeComponent();
         }
@@ -21,16 +22,27 @@ namespace Neural_Network.UI.Forms.Dialogs
         #region Events
         private void SelectNetworkForm_Load(object sender, EventArgs e)
         {
+            TBName.Text = "InputProj_" + UIRepository.Project.InputProjectsCount;
+
             RefreshNetworks();
         }
         private void BOk_Click(object sender, EventArgs e)
         {
+            String name = TBName.Text.Trim();
+            if (name == String.Empty)
+            {
+                MessageBox.Show("Invalid name.", "Error");
+                TBName.Focus();
+                return;
+            }
+
             int networkIndex = LBNetworks.SelectedIndex;
 
             if (networkIndex >= 0)
             {
+                int index = UIRepository.Project.AddInputProject(new NeuralNetworkInputProject(name, UIRepository.Project.Networks[networkIndex]));
                 var owner = Owner as MainMenuForm;
-                owner.ShowTrainingForm(networkIndex);
+                owner?.ShowInputProject(index);
 
                 Close();
             }

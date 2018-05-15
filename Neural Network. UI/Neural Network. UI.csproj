@@ -55,6 +55,12 @@
     <Compile Include="Forms\Dialogs\NewNetworkForm.Designer.cs">
       <DependentUpon>NewNetworkForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\Dialogs\NewInputProjectForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Dialogs\NewInputProjectForm.Designer.cs">
+      <DependentUpon>NewInputProjectForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\Dialogs\SelectNetworkForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -85,6 +91,12 @@
     <Compile Include="Forms\NetworkExplorerForm.Designer.cs">
       <DependentUpon>NetworkExplorerForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\TrainingForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\TrainingForm.Designer.cs">
+      <DependentUpon>TrainingForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\ViewSettingsForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -103,6 +115,9 @@
     <EmbeddedResource Include="Forms\Dialogs\NewNetworkForm.resx">
       <DependentUpon>NewNetworkForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Dialogs\NewInputProjectForm.resx">
+      <DependentUpon>NewInputProjectForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\Dialogs\SelectNetworkForm.resx">
       <DependentUpon>SelectNetworkForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -117,6 +132,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\NetworkExplorerForm.resx">
       <DependentUpon>NetworkExplorerForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\TrainingForm.resx">
+      <DependentUpon>TrainingForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\ViewSettingsForm.resx">
       <DependentUpon>ViewSettingsForm.cs</DependentUpon>
