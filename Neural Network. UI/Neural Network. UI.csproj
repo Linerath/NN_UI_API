@@ -4,10 +4,10 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{578A99FF-DD58-4526-ACBC-04741D94FCE2}</ProjectGuid>
+    <ProjectGuid>{43570AB3-240E-4FB5-B90E-28BE9899A47C}</ProjectGuid>
     <OutputType>WinExe</OutputType>
-    <RootNamespace>Neural_Network_WF__Graduate_Work_</RootNamespace>
-    <AssemblyName>Neural Network WF %28Graduate Work%29</AssemblyName>
+    <RootNamespace>Neural_Network.UI</RootNamespace>
+    <AssemblyName>Neural_Network.UI</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -45,80 +45,77 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Forms\Dialogs\EnterProjectNameForm.cs">
+    <Compile Include="Constants\Exceptions.cs" />
+    <Compile Include="Constants\Form\FormBorder.cs" />
+    <Compile Include="Constants\Form\FormLayout.cs" />
+    <Compile Include="Forms\Dialogs\NewNetworkForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\Dialogs\EnterProjectNameForm.Designer.cs">
-      <DependentUpon>EnterProjectNameForm.cs</DependentUpon>
+    <Compile Include="Forms\Dialogs\NewNetworkForm.Designer.cs">
+      <DependentUpon>NewNetworkForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\Dialogs\NewNetworkFormDialog.cs">
+    <Compile Include="Forms\Dialogs\SelectNetworkForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\Dialogs\NewNetworkFormDialog.Designer.cs">
-      <DependentUpon>NewNetworkFormDialog.cs</DependentUpon>
+    <Compile Include="Forms\Dialogs\SelectNetworkForm.Designer.cs">
+      <DependentUpon>SelectNetworkForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\EditInputSignalsForm.cs">
+    <Compile Include="Forms\InputProjectsForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\EditInputSignalsForm.Designer.cs">
-      <DependentUpon>EditInputSignalsForm.cs</DependentUpon>
+    <Compile Include="Forms\InputProjectsForm.Designer.cs">
+      <DependentUpon>InputProjectsForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\InputProject\InputProjectMainForm.cs">
+    <Compile Include="Forms\LayerForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\InputProject\InputProjectMainForm.Designer.cs">
-      <DependentUpon>InputProjectMainForm.cs</DependentUpon>
+    <Compile Include="Forms\LayerForm.Designer.cs">
+      <DependentUpon>LayerForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\MainForm.cs">
+    <Compile Include="Forms\MainMenuForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\MainForm.Designer.cs">
-      <DependentUpon>MainForm.cs</DependentUpon>
+    <Compile Include="Forms\MainMenuForm.Designer.cs">
+      <DependentUpon>MainMenuForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\NetworkSchemeForm.cs">
+    <Compile Include="Forms\NetworkExplorerForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\NetworkSchemeForm.Designer.cs">
-      <DependentUpon>NetworkSchemeForm.cs</DependentUpon>
+    <Compile Include="Forms\NetworkExplorerForm.Designer.cs">
+      <DependentUpon>NetworkExplorerForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\NetworkViewForm.cs">
+    <Compile Include="Forms\ViewSettingsForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\NetworkViewForm.Designer.cs">
-      <DependentUpon>NetworkViewForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\PracticeNetworkForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\PracticeNetworkForm.Designer.cs">
-      <DependentUpon>PracticeNetworkForm.cs</DependentUpon>
+    <Compile Include="Forms\ViewSettingsForm.Designer.cs">
+      <DependentUpon>ViewSettingsForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Repository\NeuralNetwork.cs" />
-    <EmbeddedResource Include="Forms\Dialogs\EnterProjectNameForm.resx">
-      <DependentUpon>EnterProjectNameForm.cs</DependentUpon>
+    <Compile Include="Shared\FormActivatedHandler.cs" />
+    <Compile Include="Shared\LayerFormViewSettings.cs" />
+    <Compile Include="Shared\Project.cs" />
+    <Compile Include="Shared\UIRepository.cs" />
+    <EmbeddedResource Include="Forms\Dialogs\NewNetworkForm.resx">
+      <DependentUpon>NewNetworkForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\Dialogs\NewNetworkFormDialog.resx">
-      <DependentUpon>NewNetworkFormDialog.cs</DependentUpon>
+    <EmbeddedResource Include="Forms\Dialogs\SelectNetworkForm.resx">
+      <DependentUpon>SelectNetworkForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\EditInputSignalsForm.resx">
-      <DependentUpon>EditInputSignalsForm.cs</DependentUpon>
+    <EmbeddedResource Include="Forms\InputProjectsForm.resx">
+      <DependentUpon>InputProjectsForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\InputProject\InputProjectMainForm.resx">
-      <DependentUpon>InputProjectMainForm.cs</DependentUpon>
+    <EmbeddedResource Include="Forms\LayerForm.resx">
+      <DependentUpon>LayerForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\MainForm.resx">
-      <DependentUpon>MainForm.cs</DependentUpon>
+    <EmbeddedResource Include="Forms\MainMenuForm.resx">
+      <DependentUpon>MainMenuForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\NetworkSchemeForm.resx">
-      <DependentUpon>NetworkSchemeForm.cs</DependentUpon>
+    <EmbeddedResource Include="Forms\NetworkExplorerForm.resx">
+      <DependentUpon>NetworkExplorerForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\NetworkViewForm.resx">
-      <DependentUpon>NetworkViewForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\PracticeNetworkForm.resx">
-      <DependentUpon>PracticeNetworkForm.cs</DependentUpon>
+    <EmbeddedResource Include="Forms\ViewSettingsForm.resx">
+      <DependentUpon>ViewSettingsForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -148,6 +145,14 @@
       <Project>{236b3d12-05b6-44f0-9615-894ae80ad623}</Project>
       <Name>Neural Network. Core</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Other\Coding Rules.txt" />
+    <Content Include="Other\RandomInformation.txt" />
+    <Content Include="Other\ToDo List.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Images\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

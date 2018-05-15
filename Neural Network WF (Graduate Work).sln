@@ -9,7 +9,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Neural Network. Core", "Neu
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Neural Network. Testing", "Neural Network. Testing\Neural Network. Testing.csproj", "{58605D4A-DEA8-4E3B-8AB7-0A9F6D70CBB5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NeuralNetwork UI", "NeuralNetwork UI\NeuralNetwork UI.csproj", "{43570AB3-240E-4FB5-B90E-28BE9899A47C}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Neural Network. UI", "Neural Network. UI\Neural Network. UI.csproj", "{43570AB3-240E-4FB5-B90E-28BE9899A47C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -1,0 +1,37 @@
+﻿I. Neural Network WF (Graduate Work)
+	
+	Global:
+		1) make project Delphi-like. MDI Parent and a lot of forms inside
+		
+	1. All Forms DataGridViews:
+		1) input validating and saving
+		2) adapt virtical size
+		3) add resizing with form
+	2. NetworkViewForm:
+		1) change columns sizing
+		2) fix decimal places
+	3. PracticeNetworkForm
+		1) after opening the new project form (InputProjectMainForm) PracticeNetworkForm should be hidden
+
+
+
+II. Neural Network.Core
+	1) random through param
+
+
+
+III. NeuralNetwork UI
+
+	Global:
+		1) write manual exceptions
+		2) make adequate forms auto layout
+		3) make log file
+
+	1. NetworksForms:
+		1) close all forms when one is closed
+
+	2. NetworkExplorerForm:
+		1) select input project when user created it
+
+	3. FormActivatedHandler:
+		1) Refresh only selected layer

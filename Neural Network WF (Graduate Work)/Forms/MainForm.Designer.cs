@@ -1,4 +1,4 @@
-﻿namespace Neural_Network_WF__Graduate_Work_
+﻿namespace Neural_Network_WF__Graduate_Work_.Forms
 {
     partial class MainForm
     {
@@ -91,7 +91,7 @@
             // loadFromDatabToolStripMenuItem
             // 
             this.loadFromDatabToolStripMenuItem.Name = "loadFromDatabToolStripMenuItem";
-            this.loadFromDatabToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)(((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Shift) 
+            this.loadFromDatabToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)(((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Shift)
             | System.Windows.Forms.Keys.O)));
             this.loadFromDatabToolStripMenuItem.Size = new System.Drawing.Size(311, 26);
             this.loadFromDatabToolStripMenuItem.Text = "Load from database";
