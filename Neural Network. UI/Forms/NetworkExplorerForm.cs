@@ -23,6 +23,27 @@ namespace Neural_Network.UI.Forms
         private void TVNetworks_NodeMouseDoubleClick(object sender, TreeNodeMouseClickEventArgs e)
         {
         }
+        private void BRemove_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("In development", "Warning");
+            return;
+            if (TVNetworks.SelectedNode == null)
+                    return;
+            MessageBox.Show(TVNetworks.SelectedNode.Text);
+
+            var dialogResult = MessageBox.Show(
+                "Are you sure want to delete selected network (" + TVNetworks.SelectedNode.Text + ")", 
+                "Deleteing", 
+                MessageBoxButtons.YesNo, 
+                MessageBoxIcon.Question, 
+                MessageBoxDefaultButton.Button2
+                );
+
+            if (dialogResult == DialogResult.Yes)
+            {
+
+            }
+        }
         #endregion
 
         #region Methods

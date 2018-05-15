@@ -36,6 +36,7 @@ namespace Neural_Network.UI.Forms
             InitializeComponent();
 
             NewProject();
+            RefreshProjName();
         }
 
         #region Events
@@ -66,6 +67,8 @@ namespace Neural_Network.UI.Forms
         }
         private void BOpen_Click(object sender, EventArgs e)
         {
+            MessageBox.Show("In development", "Warning");
+            return;
             OpenFileDialog ofd = new OpenFileDialog
             {
                 InitialDirectory = Directory.GetCurrentDirectory()
@@ -100,6 +103,16 @@ namespace Neural_Network.UI.Forms
                 networkExplorerForm.RefreshTree();
             };
             selectNetworkForm.ShowDialog();
+        }
+        private void BOpenInputProj_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("In development", "Warning");
+            return;
+        }
+        private void BGetResponse_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("In development", "Warning");
+            return;
         }
         private void openToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -318,6 +331,10 @@ namespace Neural_Network.UI.Forms
             inputLayerForms[networkIndex].FullLayerRefresh();
             hiddenLayerForms[networkIndex].FullLayerRefresh();
             outputLayerForms[networkIndex].FullLayerRefresh();
+        }
+        public void RefreshProjName()
+        {
+            Text = UIRepository.Project.Name + " - Main Menu";
         }
 
         #endregion

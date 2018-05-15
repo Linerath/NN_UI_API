@@ -15,12 +15,18 @@ namespace Neural_Network.UI.Shared
     [Serializable]
     public class Project
     {
+        public String Name { get; set; }
         public List<FeedforwardNetworkSHL> Networks { get; private set; }
         public List<NeuralNetworkInputProject> InputProjects { get; private set; }
         public String FilePath { get; set; } = null;
 
-        public Project()
+        public Project(String name = "UnnamedProj")
         {
+            if (String.IsNullOrWhiteSpace(name))
+                Name = "UnnamedProj";
+            else
+                Name = name;
+
             Networks = new List<FeedforwardNetworkSHL>();
             InputProjects = new List<NeuralNetworkInputProject>();
         }
