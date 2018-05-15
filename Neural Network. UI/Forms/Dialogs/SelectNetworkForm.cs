@@ -1,4 +1,5 @@
-﻿using Neural_Network.UI.Shared;
+﻿using Neural_Network.Core.Extra;
+using Neural_Network.UI.Shared;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -35,11 +36,14 @@ namespace Neural_Network.UI.Forms.Dialogs
                 return;
             }
 
-            int index = LBNetworks.SelectedIndex;
+            int networkIndex = LBNetworks.SelectedIndex;
 
-            if (index >= 0)
+            if (networkIndex >= 0)
             {
-                UIRepository.Project.AddInputProject(new Neural_Network.Core.Extra.NeuralNetworkInputProject(name, UIRepository.Project.Networks[index]));
+                int index = UIRepository.Project.AddInputProject(new NeuralNetworkInputProject(name, UIRepository.Project.Networks[networkIndex]));
+                var owner = Owner as MainMenuForm;
+                owner?.ShowInputProject(index);
+
                 Close();
             }
             else

@@ -28,12 +28,13 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainMenuForm));
             this.MainMenu = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.projectToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.openToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.saveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.saveAsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.openProjToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.saveProjToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.saveProjAsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.windowsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.BNewNetwork = new System.Windows.Forms.Button();
             this.GBNetwork = new System.Windows.Forms.GroupBox();
@@ -44,10 +45,16 @@
             this.BNewInputProj = new System.Windows.Forms.Button();
             this.BTrainingMode = new System.Windows.Forms.Button();
             this.GBActions = new System.Windows.Forms.GroupBox();
+            this.GBProj = new System.Windows.Forms.GroupBox();
+            this.BSaveProjAs = new System.Windows.Forms.Button();
+            this.BSaveProj = new System.Windows.Forms.Button();
+            this.BOpenProj = new System.Windows.Forms.Button();
+            this.BNewProj = new System.Windows.Forms.Button();
             this.MainMenu.SuspendLayout();
             this.GBNetwork.SuspendLayout();
             this.GBInputProj.SuspendLayout();
             this.GBActions.SuspendLayout();
+            this.GBProj.SuspendLayout();
             this.SuspendLayout();
             // 
             // MainMenu
@@ -73,37 +80,37 @@
             // projectToolStripMenuItem
             // 
             this.projectToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.openToolStripMenuItem,
-            this.saveToolStripMenuItem,
-            this.saveAsToolStripMenuItem});
+            this.openProjToolStripMenuItem,
+            this.saveProjToolStripMenuItem,
+            this.saveProjAsToolStripMenuItem});
             this.projectToolStripMenuItem.Name = "projectToolStripMenuItem";
             this.projectToolStripMenuItem.Size = new System.Drawing.Size(67, 24);
             this.projectToolStripMenuItem.Text = "Project";
             // 
-            // openToolStripMenuItem
+            // openProjToolStripMenuItem
             // 
-            this.openToolStripMenuItem.Name = "openToolStripMenuItem";
-            this.openToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.O)));
-            this.openToolStripMenuItem.Size = new System.Drawing.Size(232, 26);
-            this.openToolStripMenuItem.Text = "Open...";
-            this.openToolStripMenuItem.Click += new System.EventHandler(this.openToolStripMenuItem_Click);
+            this.openProjToolStripMenuItem.Name = "openProjToolStripMenuItem";
+            this.openProjToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.O)));
+            this.openProjToolStripMenuItem.Size = new System.Drawing.Size(232, 26);
+            this.openProjToolStripMenuItem.Text = "Open...";
+            this.openProjToolStripMenuItem.Click += new System.EventHandler(this.openProjToolStripMenuItem_Click);
             // 
-            // saveToolStripMenuItem
+            // saveProjToolStripMenuItem
             // 
-            this.saveToolStripMenuItem.Name = "saveToolStripMenuItem";
-            this.saveToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.S)));
-            this.saveToolStripMenuItem.Size = new System.Drawing.Size(232, 26);
-            this.saveToolStripMenuItem.Text = "Save";
-            this.saveToolStripMenuItem.Click += new System.EventHandler(this.saveToolStripMenuItem_Click);
+            this.saveProjToolStripMenuItem.Name = "saveProjToolStripMenuItem";
+            this.saveProjToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.S)));
+            this.saveProjToolStripMenuItem.Size = new System.Drawing.Size(232, 26);
+            this.saveProjToolStripMenuItem.Text = "Save";
+            this.saveProjToolStripMenuItem.Click += new System.EventHandler(this.saveProjToolStripMenuItem_Click);
             // 
-            // saveAsToolStripMenuItem
+            // saveProjAsToolStripMenuItem
             // 
-            this.saveAsToolStripMenuItem.Name = "saveAsToolStripMenuItem";
-            this.saveAsToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)(((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Shift) 
+            this.saveProjAsToolStripMenuItem.Name = "saveProjAsToolStripMenuItem";
+            this.saveProjAsToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)(((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Shift) 
             | System.Windows.Forms.Keys.S)));
-            this.saveAsToolStripMenuItem.Size = new System.Drawing.Size(232, 26);
-            this.saveAsToolStripMenuItem.Text = "Save as...";
-            this.saveAsToolStripMenuItem.Click += new System.EventHandler(this.saveAsToolStripMenuItem_Click);
+            this.saveProjAsToolStripMenuItem.Size = new System.Drawing.Size(232, 26);
+            this.saveProjAsToolStripMenuItem.Text = "Save as...";
+            this.saveProjAsToolStripMenuItem.Click += new System.EventHandler(this.saveProjAsToolStripMenuItem_Click);
             // 
             // windowsToolStripMenuItem
             // 
@@ -129,7 +136,7 @@
             // 
             this.GBNetwork.Controls.Add(this.BOpenNetwork);
             this.GBNetwork.Controls.Add(this.BNewNetwork);
-            this.GBNetwork.Location = new System.Drawing.Point(12, 31);
+            this.GBNetwork.Location = new System.Drawing.Point(233, 31);
             this.GBNetwork.Name = "GBNetwork";
             this.GBNetwork.Size = new System.Drawing.Size(125, 72);
             this.GBNetwork.TabIndex = 2;
@@ -166,7 +173,7 @@
             // 
             this.GBInputProj.Controls.Add(this.BOpenInputProj);
             this.GBInputProj.Controls.Add(this.BNewInputProj);
-            this.GBInputProj.Location = new System.Drawing.Point(143, 31);
+            this.GBInputProj.Location = new System.Drawing.Point(364, 31);
             this.GBInputProj.Name = "GBInputProj";
             this.GBInputProj.Size = new System.Drawing.Size(125, 72);
             this.GBInputProj.TabIndex = 4;
@@ -206,7 +213,7 @@
             this.BTrainingMode.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.BTrainingMode.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.BTrainingMode.Font = new System.Drawing.Font("Consolas", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BTrainingMode.Location = new System.Drawing.Point(360, 31);
+            this.BTrainingMode.Location = new System.Drawing.Point(581, 31);
             this.BTrainingMode.Name = "BTrainingMode";
             this.BTrainingMode.Size = new System.Drawing.Size(130, 72);
             this.BTrainingMode.TabIndex = 2;
@@ -216,18 +223,91 @@
             // GBActions
             // 
             this.GBActions.Controls.Add(this.BGetResponse);
-            this.GBActions.Location = new System.Drawing.Point(274, 31);
+            this.GBActions.Location = new System.Drawing.Point(495, 31);
             this.GBActions.Name = "GBActions";
             this.GBActions.Size = new System.Drawing.Size(80, 72);
             this.GBActions.TabIndex = 5;
             this.GBActions.TabStop = false;
             this.GBActions.Text = "Actions";
             // 
+            // GBProj
+            // 
+            this.GBProj.Controls.Add(this.BSaveProjAs);
+            this.GBProj.Controls.Add(this.BSaveProj);
+            this.GBProj.Controls.Add(this.BOpenProj);
+            this.GBProj.Controls.Add(this.BNewProj);
+            this.GBProj.Location = new System.Drawing.Point(12, 31);
+            this.GBProj.Name = "GBProj";
+            this.GBProj.Size = new System.Drawing.Size(215, 72);
+            this.GBProj.TabIndex = 3;
+            this.GBProj.TabStop = false;
+            this.GBProj.Text = "Project";
+            // 
+            // BSaveProjAs
+            // 
+            this.BSaveProjAs.BackColor = System.Drawing.Color.Transparent;
+            this.BSaveProjAs.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("BSaveProjAs.BackgroundImage")));
+            this.BSaveProjAs.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.BSaveProjAs.FlatAppearance.BorderSize = 0;
+            this.BSaveProjAs.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
+            this.BSaveProjAs.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.BSaveProjAs.Font = new System.Drawing.Font("Consolas", 10.8F, System.Drawing.FontStyle.Bold);
+            this.BSaveProjAs.Location = new System.Drawing.Point(153, 24);
+            this.BSaveProjAs.Name = "BSaveProjAs";
+            this.BSaveProjAs.Size = new System.Drawing.Size(40, 35);
+            this.BSaveProjAs.TabIndex = 4;
+            this.BSaveProjAs.UseVisualStyleBackColor = false;
+            this.BSaveProjAs.Click += new System.EventHandler(this.BSaveProjAs_Click);
+            // 
+            // BSaveProj
+            // 
+            this.BSaveProj.BackColor = System.Drawing.Color.Transparent;
+            this.BSaveProj.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("BSaveProj.BackgroundImage")));
+            this.BSaveProj.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.BSaveProj.FlatAppearance.BorderSize = 0;
+            this.BSaveProj.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
+            this.BSaveProj.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.BSaveProj.Font = new System.Drawing.Font("Consolas", 10.8F, System.Drawing.FontStyle.Bold);
+            this.BSaveProj.Location = new System.Drawing.Point(107, 24);
+            this.BSaveProj.Name = "BSaveProj";
+            this.BSaveProj.Size = new System.Drawing.Size(40, 35);
+            this.BSaveProj.TabIndex = 3;
+            this.BSaveProj.UseVisualStyleBackColor = false;
+            this.BSaveProj.Click += new System.EventHandler(this.BSaveProj_Click);
+            // 
+            // BOpenProj
+            // 
+            this.BOpenProj.BackColor = System.Drawing.Color.Yellow;
+            this.BOpenProj.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.BOpenProj.Font = new System.Drawing.Font("Consolas", 10.8F, System.Drawing.FontStyle.Bold);
+            this.BOpenProj.Location = new System.Drawing.Point(61, 24);
+            this.BOpenProj.Name = "BOpenProj";
+            this.BOpenProj.Size = new System.Drawing.Size(40, 35);
+            this.BOpenProj.TabIndex = 2;
+            this.BOpenProj.Text = "O";
+            this.BOpenProj.UseVisualStyleBackColor = false;
+            this.BOpenProj.Click += new System.EventHandler(this.BOpenProj_Click);
+            // 
+            // BNewProj
+            // 
+            this.BNewProj.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
+            this.BNewProj.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.BNewProj.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.BNewProj.Font = new System.Drawing.Font("Consolas", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BNewProj.Location = new System.Drawing.Point(15, 24);
+            this.BNewProj.Name = "BNewProj";
+            this.BNewProj.Size = new System.Drawing.Size(40, 35);
+            this.BNewProj.TabIndex = 1;
+            this.BNewProj.Text = "N";
+            this.BNewProj.UseVisualStyleBackColor = false;
+            this.BNewProj.Click += new System.EventHandler(this.BNewProj_Click);
+            // 
             // MainMenuForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1348, 122);
+            this.Controls.Add(this.GBProj);
             this.Controls.Add(this.GBActions);
             this.Controls.Add(this.BTrainingMode);
             this.Controls.Add(this.GBInputProj);
@@ -245,6 +325,7 @@
             this.GBNetwork.ResumeLayout(false);
             this.GBInputProj.ResumeLayout(false);
             this.GBActions.ResumeLayout(false);
+            this.GBProj.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -263,10 +344,15 @@
         private System.Windows.Forms.Button BNewInputProj;
         private System.Windows.Forms.Button BNewNetwork;
         private System.Windows.Forms.Button BTrainingMode;
-        private System.Windows.Forms.ToolStripMenuItem openToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem saveToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem saveAsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem openProjToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem saveProjToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem saveProjAsToolStripMenuItem;
         private System.Windows.Forms.Button BOpenInputProj;
         private System.Windows.Forms.GroupBox GBActions;
+        private System.Windows.Forms.GroupBox GBProj;
+        private System.Windows.Forms.Button BOpenProj;
+        private System.Windows.Forms.Button BNewProj;
+        private System.Windows.Forms.Button BSaveProj;
+        private System.Windows.Forms.Button BSaveProjAs;
     }
 }

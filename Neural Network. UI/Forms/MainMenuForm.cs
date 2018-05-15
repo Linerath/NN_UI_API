@@ -41,12 +41,28 @@ namespace Neural_Network.UI.Forms
 
         #region Events
 
-        #region This
         private void MainMenuForm_Load(object sender, EventArgs e)
         {
             //LocateForm(this, FormAbsoluteLayout.TopStretch);
             //LocateForm(networkExplorerForm, this, FormRelativeLayout.BottomLeft);
             //LocateForm(viewSettingsForm, networkExplorerForm, FormRelativeLayout.BottomLeft);
+        }
+        private void BNewProj_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("In development", "Warning");
+            return;
+        }
+        private void BOpenProj_Click(object sender, EventArgs e)
+        {
+            openProjToolStripMenuItem.PerformClick();
+        }
+        private void BSaveProj_Click(object sender, EventArgs e)
+        {
+            saveProjToolStripMenuItem.PerformClick();
+        }
+        private void BSaveProjAs_Click(object sender, EventArgs e)
+        {
+            saveProjAsToolStripMenuItem.PerformClick();
         }
         private void BNewNetwork_Click(object sender, EventArgs e)
         {
@@ -114,13 +130,12 @@ namespace Neural_Network.UI.Forms
             MessageBox.Show("In development", "Warning");
             return;
         }
-        private void openToolStripMenuItem_Click(object sender, EventArgs e)
+        private void openProjToolStripMenuItem_Click(object sender, EventArgs e)
         {
             OpenFileDialog ofd = new OpenFileDialog
             {
                 InitialDirectory = Directory.GetCurrentDirectory(),
                 Filter = "Neural network project(*.nnproj)|*.nnproj",
-                FileName = "*.nnproj"
             };
 
             if (ofd.ShowDialog() == DialogResult.OK)
@@ -132,7 +147,7 @@ namespace Neural_Network.UI.Forms
                 }
             }
         }
-        private void saveToolStripMenuItem_Click(object sender, EventArgs e)
+        private void saveProjToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (UIRepository.Project.FilePath != null)
             {
@@ -140,16 +155,16 @@ namespace Neural_Network.UI.Forms
             }
             else
             {
-                saveAsToolStripMenuItem.PerformClick();
+                saveProjAsToolStripMenuItem.PerformClick();
             }
         }
-        private void saveAsToolStripMenuItem_Click(object sender, EventArgs e)
+        private void saveProjAsToolStripMenuItem_Click(object sender, EventArgs e)
         {
             SaveFileDialog sfd = new SaveFileDialog
             {
                 InitialDirectory = Directory.GetCurrentDirectory(),
                 Filter = "Neural network project(*.nnproj)|*.nnproj",
-                FileName = "*.nnproj"
+                FileName = UIRepository.Project.Name + ".nnproj"
             };
 
             if (sfd.ShowDialog() == DialogResult.OK)
@@ -160,11 +175,6 @@ namespace Neural_Network.UI.Forms
         }
         #endregion
 
-        #region ExtraForms
-
-        #endregion
-
-        #endregion
 
         #region Methods
 
@@ -181,6 +191,7 @@ namespace Neural_Network.UI.Forms
 
             networkExplorerForm.Show();
             viewSettingsForm.Show();
+            inputProjectsForm.Show();
             DefaultFormsLayout();
         }
 
@@ -323,7 +334,6 @@ namespace Neural_Network.UI.Forms
         }
         public void ShowInputProject(int inputProjectIndex)
         {
-
         }
 
         public void RefreshNetworkLayer(int networkIndex)

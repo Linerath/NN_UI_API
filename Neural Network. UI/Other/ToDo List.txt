@@ -34,4 +34,7 @@ III. NeuralNetwork UI
 		1) select input project when user created it
 
 	3. FormActivatedHandler:
-		1) Refresh only selected layer
+		1) refresh only selected layer
+
+	4. MainMenuForm:
+		1) read proj name after opening proj

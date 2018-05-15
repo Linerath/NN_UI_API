@@ -36,9 +36,10 @@ namespace Neural_Network.UI.Shared
             Networks.Add(network);
             return Networks.Count() - 1;
         }
-        public void AddInputProject(NeuralNetworkInputProject inputProject)
+        public int AddInputProject(NeuralNetworkInputProject inputProject)
         {
             InputProjects.Add(inputProject);
+            return InputProjects.Count() - 1;
         }
 
         public bool TryOpen(String filePath)
