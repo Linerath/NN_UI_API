@@ -22,7 +22,7 @@ namespace Neural_Network.Core.Extra
             outputLayerFields = new List<Field>();
 
             Name = name;
-            Network = network ?? throw new ArgumentNullException("Null argument (FeedforwardNetworkSHL)");
+            Network = network ?? throw new ArgumentNullException("FeedforwardNetworkSHL");
         }
 
         #region Tested
@@ -124,7 +124,9 @@ namespace Neural_Network.Core.Extra
 
         public Field(String name, int neuronIndex)
         {
-            this.name = name ?? throw new ArgumentNullException("Null argument (Field name)");
+            if (String.IsNullOrWhiteSpace(name))
+                throw new ArgumentException("Invalid name");
+            this.name = name;
             this.neuronIndex = (neuronIndex >= 0) ? neuronIndex : throw new IndexOutOfRangeException("Index out of range.");
         }
 
@@ -136,11 +138,8 @@ namespace Neural_Network.Core.Extra
             }
             set
             {
-                if (value == null)
-                    throw new ArgumentNullException("Null argument (InputProject Field name)");
-                if (value.Trim() == String.Empty)
-                    throw new ArgumentException("Empty field name");
-
+                if (String.IsNullOrWhiteSpace(value))
+                    throw new ArgumentException("Invalid name");
                 name = value;
             }
         }
@@ -153,7 +152,7 @@ namespace Neural_Network.Core.Extra
             set
             {
                 if (value < 0)
-                    throw new IndexOutOfRangeException("Index out of range.");
+                    throw new IndexOutOfRangeException("Index out of range (NeuronIndex)");
                 neuronIndex = value;
             }
         }

@@ -32,15 +32,17 @@ namespace Neural_Network.Core
         }
         
         #region Tested
-        public void SetWeights(double[] weights)
+        public void SetWeights(double[] newWeights)
         {
-            if (weights == null)
-                throw new ArgumentNullException("Null argument (weights).");
-            if (weights.Length != this.weights.Length)
-                throw new ArgumentException("Weight count must be equals to neuron weight count.");
+            if (newWeights == null)
+                throw new ArgumentNullException("newWeights");
 
-            for (int i = 0; i < this.weights.Length; i++)
-                this.weights[i] = weights[i];
+            int length = newWeights.Length;
+            if (InputCount < length)
+                length = InputCount;
+
+            for (int i = 0; i < length; i++)
+                weights[i] = newWeights[i];
         }
         public void SetRandomWeights(Random random, double minValue, double maxValue)
         {
@@ -56,16 +58,16 @@ namespace Neural_Network.Core
         public double GetResponse(double[] signals)
         {
             if (signals == null)
-                throw new ArgumentNullException("Null argument (signals).");
-            if (signals.Length != weights.Length)
-                throw new ArgumentException("Signal count must be equals to neuron weight count.");
+                throw new ArgumentNullException("signals");
+
+            int length = signals.Length;
+            if (InputCount < length)
+                length = InputCount;
             
             double response = 0;
 
-            for (int i = 0; i < weights.Length; i++)
-            {
+            for (int i = 0; i < length; i++)
                 response += weights[i] * signals[i];
-            }
 
             if (ActivationFunction != Functions.None)
                 response = ApplyActivationFunction(response);
@@ -75,7 +77,7 @@ namespace Neural_Network.Core
         public void Resize(int newSize)
         {
             if (newSize < 1)
-                throw new ArgumentException("Invalid new size.");
+                throw new ArgumentException("ArgumentException (new size)");
 
             Array.Resize(ref weights, newSize);
         }
@@ -94,7 +96,6 @@ namespace Neural_Network.Core
 
         #region Not tested
         #endregion
-
 
 
         public int InputCount => weights.Length;

@@ -34,12 +34,12 @@ namespace Neural_Network.Core.Implementation
         private const double RANDOM_MIN_VALUE = 0.1;
         private const double RANDOM_MAX_VALUE = 0.9;
 
-        public FeedforwardNetworkSHL(String name, int inputLayerSize, int hiddenLayerSize, int outputLayerSize)
-            :this(inputLayerSize, hiddenLayerSize, outputLayerSize)
+        public FeedforwardNetworkSHL(String name, int inputLayerSize, int hiddenLayerSize, int outputLayerSize, Functions activationFunction = Functions.None)
+            : this(inputLayerSize, hiddenLayerSize, outputLayerSize, activationFunction)
         {
             Name = name;
         }
-        public FeedforwardNetworkSHL(int inputLayerSize, int hiddenLayerSize, int outputLayerSize)
+        public FeedforwardNetworkSHL(int inputLayerSize, int hiddenLayerSize, int outputLayerSize, Functions activationFunction = Functions.None)
         {
             if (inputLayerSize < 1 || hiddenLayerSize < 1 || outputLayerSize < 1)
                 throw new ArgumentException("Layer size cannot be less than 1.");
@@ -50,16 +50,16 @@ namespace Neural_Network.Core.Implementation
 
             for (int i = 0; i < inputLayerSize; i++)
             {
-                inputLayer.Add(new Neuron(1));
+                inputLayer.Add(new Neuron(1, activationFunction));
                 inputLayer[i][0] = 1;
             }
             for (int i = 0; i < hiddenLayerSize; i++)
             {
-                hiddenLayer.Add(new Neuron(inputLayerSize));
+                hiddenLayer.Add(new Neuron(inputLayerSize, activationFunction));
             }
             for (int i = 0; i < outputLayerSize; i++)
             {
-                outputLayer.Add(new Neuron(hiddenLayerSize));
+                outputLayer.Add(new Neuron(hiddenLayerSize, activationFunction));
             }
 
             CreationDate = DateTime.Now;
@@ -74,6 +74,26 @@ namespace Neural_Network.Core.Implementation
                 neuron.SetRandomWeights(random, RANDOM_MIN_VALUE, RANDOM_MAX_VALUE);
             foreach (var neuron in outputLayer)
                 neuron.SetRandomWeights(random, RANDOM_MIN_VALUE, RANDOM_MAX_VALUE);
+        }
+        public void SetWeights(Layers layer, int neuronIndex, double[] weights)
+        {
+            if (weights == null)
+                throw new ArgumentNullException("Weights");
+
+            int length = weights.Length;
+            switch (layer)
+            {
+                case Layers.Hidden:
+                    if (neuronIndex < 0 || neuronIndex >= HiddenLayerSize)
+                        throw new IndexOutOfRangeException("Index out of range (neuronIndex)");
+                    hiddenLayer[neuronIndex].SetWeights(weights);
+                    break;
+                case Layers.Output:
+                    if (neuronIndex < 0 || neuronIndex >= OutputLayerSize)
+                        throw new IndexOutOfRangeException("Index out of range (neuronIndex)");
+                    outputLayer[neuronIndex].SetWeights(weights);
+                    break;
+            }
         }
         #endregion
 
@@ -108,17 +128,17 @@ namespace Neural_Network.Core.Implementation
             return $"{Name} ({NetType.ToString()}). Creation Date: {CreationDate.ToString()}.";
         }
 
-        public Neuron[] this[int index]
+        public Neuron[] this[Layers layer]
         {
             get
             {
-                switch (index)
+                switch (layer)
                 {
-                    case 0:
+                    case Layers.Input:
                         return inputLayer.ToArray();
-                    case 1:
+                    case Layers.Hidden:
                         return hiddenLayer.ToArray();
-                    case 2:
+                    case Layers.Output:
                         return outputLayer.ToArray();
                     default:
                         return null;
@@ -129,21 +149,21 @@ namespace Neural_Network.Core.Implementation
         {
             get
             {
-                return this[0];
+                return this[Layers.Input];
             }
         }
         public Neuron[] HiddenLayer
         {
             get
             {
-                return this[1];
+                return this[Layers.Hidden];
             }
         }
         public Neuron[] OutputLayer
         {
             get
             {
-                return this[2];
+                return this[Layers.Output];
             }
         }
         public int InputLayerSize
@@ -171,62 +191,62 @@ namespace Neural_Network.Core.Implementation
 
     //internal sealed class FeedforwardNetwork
     //{
-        //    public void SetRandomNullWeights()
-        //    {
-        //        Random random = new Random();
-        //        for (Int32 i = 0; i < hiddenLayer.Count; i++)
-        //            hiddenLayer[i].SetRandomNullWeights(MIN_RANDOM_VALUE, MAX_RANDOM_VALUE, random);
-        //        for (Int32 i = 0; i < outputLayer.Count; i++)
-        //            outputLayer[i].SetRandomNullWeights(MIN_RANDOM_VALUE, MAX_RANDOM_VALUE, random);
-        //    }
+    //    public void SetRandomNullWeights()
+    //    {
+    //        Random random = new Random();
+    //        for (Int32 i = 0; i < hiddenLayer.Count; i++)
+    //            hiddenLayer[i].SetRandomNullWeights(MIN_RANDOM_VALUE, MAX_RANDOM_VALUE, random);
+    //        for (Int32 i = 0; i < outputLayer.Count; i++)
+    //            outputLayer[i].SetRandomNullWeights(MIN_RANDOM_VALUE, MAX_RANDOM_VALUE, random);
+    //    }
 
-        //    public void Resize(Int32 layerIndex, Int32 newNeuronCount)
-        //    {
-        //        if (layerIndex < 0 || layerIndex >= LayerCount)
-        //            throw new ArgumentOutOfRangeException("Invalid layer index");
-        //        if (newNeuronCount < 0)
-        //            throw new ArgumentException("Invalid size.");
+    //    public void Resize(Int32 layerIndex, Int32 newNeuronCount)
+    //    {
+    //        if (layerIndex < 0 || layerIndex >= LayerCount)
+    //            throw new ArgumentOutOfRangeException("Invalid layer index");
+    //        if (newNeuronCount < 0)
+    //            throw new ArgumentException("Invalid size.");
 
-        //        if (layerIndex == 0)
-        //        {
-        //            if (newNeuronCount > inputLayer.Count)
-        //            {
-        //                while (newNeuronCount > inputLayer.Count)
-        //                    inputLayer.Add(new OldNeuron(1));
-        //            }
-        //            else if (newNeuronCount < inputLayer.Count)
-        //            {
-        //                while (newNeuronCount < inputLayer.Count)
-        //                    inputLayer.RemoveAt(inputLayer.Count - 1);
-        //            }
-        //        }
-        //        else if (layerIndex == 1)
-        //        {
-        //            if (newNeuronCount > hiddenLayer.Count)
-        //            {
-        //                while (newNeuronCount > hiddenLayer.Count)
-        //                    hiddenLayer.Add(new OldNeuron(inputLayer.Count, true));
-        //            }
-        //            else if (newNeuronCount < hiddenLayer.Count)
-        //            {
-        //                while (newNeuronCount < hiddenLayer.Count)
-        //                    hiddenLayer.RemoveAt(hiddenLayer.Count - 1);
-        //            }
-        //        }
-        //        else if (layerIndex == 2)
-        //        {
-        //            if (newNeuronCount > outputLayer.Count)
-        //            {
-        //                while (newNeuronCount > outputLayer.Count)
-        //                    outputLayer.Add(new OldNeuron(hiddenLayer.Count, true));
-        //            }
-        //            else if (newNeuronCount < outputLayer.Count)
-        //            {
-        //                while (newNeuronCount < outputLayer.Count)
-        //                    outputLayer.RemoveAt(outputLayer.Count - 1);
-        //            }
-        //        }
-        //    }
-        
+    //        if (layerIndex == 0)
+    //        {
+    //            if (newNeuronCount > inputLayer.Count)
+    //            {
+    //                while (newNeuronCount > inputLayer.Count)
+    //                    inputLayer.Add(new OldNeuron(1));
+    //            }
+    //            else if (newNeuronCount < inputLayer.Count)
+    //            {
+    //                while (newNeuronCount < inputLayer.Count)
+    //                    inputLayer.RemoveAt(inputLayer.Count - 1);
+    //            }
+    //        }
+    //        else if (layerIndex == 1)
+    //        {
+    //            if (newNeuronCount > hiddenLayer.Count)
+    //            {
+    //                while (newNeuronCount > hiddenLayer.Count)
+    //                    hiddenLayer.Add(new OldNeuron(inputLayer.Count, true));
+    //            }
+    //            else if (newNeuronCount < hiddenLayer.Count)
+    //            {
+    //                while (newNeuronCount < hiddenLayer.Count)
+    //                    hiddenLayer.RemoveAt(hiddenLayer.Count - 1);
+    //            }
+    //        }
+    //        else if (layerIndex == 2)
+    //        {
+    //            if (newNeuronCount > outputLayer.Count)
+    //            {
+    //                while (newNeuronCount > outputLayer.Count)
+    //                    outputLayer.Add(new OldNeuron(hiddenLayer.Count, true));
+    //            }
+    //            else if (newNeuronCount < outputLayer.Count)
+    //            {
+    //                while (newNeuronCount < outputLayer.Count)
+    //                    outputLayer.RemoveAt(outputLayer.Count - 1);
+    //            }
+    //        }
+    //    }
+
     //}
 }
