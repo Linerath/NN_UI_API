@@ -28,9 +28,14 @@ namespace Neural_Network.Testing
             //FeedforwardNetworkTests.Ctor();
             //FeedforwardNetworkTests.SetRandom();
             //FeedforwardNetworkTests.Response0();
-            FeedforwardNetworkTests.Response1();
+            //FeedforwardNetworkTests.Response1();
+            //FeedforwardNetworkTests.Response2();
+            //FeedforwardNetworkTests.Response3();
             //FeedforwardNetworkTests.PrintResponse();
             //FeedforwardNetworkTests.SetWeights();
+            //FeedforwardNetworkTests.Leaur0();
+            //FeedforwardNetworkTests.Learn1();
+            FeedforwardNetworkTests.Learn2();
             #endregion
 
             #region NeuralNetworkInputProjectTests
@@ -192,6 +197,43 @@ namespace Neural_Network.Testing
             foreach (var r in rs)
                 Console.Write(r + " ");
         }
+        public static void Response2()
+        {
+            FeedforwardNetworkSHL f = new FeedforwardNetworkSHL(3, 2, 1, Functions.Sigmoid);
+            
+            f.SetWeights(Layers.Hidden, 0, new double[]{ 0.79, 0.44, 0.43 });
+            f.SetWeights(Layers.Hidden, 1, new double[]{ 0.85, 0.43, 0.29 });
+
+            f.SetWeights(Layers.Output, 0, new double[] { 0.5, 0.52 });
+
+
+            ShowNetwork(f);
+
+            var rs = f.GetResponse(new double[] { 1, 1, 0 });
+
+            Console.WriteLine("Response:");
+            foreach (var r in rs)
+                Console.Write(r + " ");
+        }
+        public static void Response3()
+        {
+            FeedforwardNetworkSHL f = new FeedforwardNetworkSHL(2, 3, 2, Functions.Sigmoid);
+            
+            f.SetWeights(Layers.Hidden, 0, new double[]{ 0.3, 0.1 });
+            f.SetWeights(Layers.Hidden, 1, new double[]{ 0.2, 0.4 });
+            f.SetWeights(Layers.Hidden, 2, new double[]{ 0.6, 0.5 });
+
+            f.SetWeights(Layers.Output, 0, new double[] { 0.7, 0.3, 0.5 });
+            f.SetWeights(Layers.Output, 1, new double[] { 0.7, 0.1, 0.2 });
+
+            ShowNetwork(f);
+
+            var rs = f.GetResponse(new double[] { 0.3, 0.5 });
+
+            Console.WriteLine("Response:");
+            foreach (var r in rs)
+                Console.Write(r + " ");
+        }
         public static void PrintResponse()
         {
             StreamWriter sw = new StreamWriter(@"E:\net.txt");
@@ -223,6 +265,75 @@ namespace Neural_Network.Testing
             //f.SetWeights(Layers.Output, 0, new double[] { 0.9, 0.3, 0, 228, 1337 });
             //f.SetWeights(Layers.Output, 0, null);
             ShowNetwork(f);
+        }
+        public static void Learn0()
+        {
+            FeedforwardNetworkSHL f = new FeedforwardNetworkSHL(2, 2, 2);
+            f.SetWeights(Layers.Hidden, 0, new double[] { 3, 2 });
+            f.SetWeights(Layers.Hidden, 1, new double[] { 1, 7 });
+            f.SetWeights(Layers.Output, 0, new double[] { 2, 3 });
+            f.SetWeights(Layers.Output, 1, new double[] { 1, 4 });
+            ShowNetwork(f);
+
+            //0.9, 0.1, 0.8
+        }
+        public static void Learn1()
+        {
+            FeedforwardNetworkSHL f = new FeedforwardNetworkSHL(3, 2, 1, Functions.Sigmoid);
+
+            f.SetWeights(Layers.Hidden, 0, new double[] { 0.79, 0.44, 0.43 });
+            f.SetWeights(Layers.Hidden, 1, new double[] { 0.85, 0.43, 0.29 });
+            f.SetWeights(Layers.Output, 0, new double[] { 0.5, 0.52 });
+            f.SetAllRandomWeights();
+
+            ShowNetwork(f);
+
+            double x = 0.01;
+            double y = 0.9;
+
+            ShowResponse(f, new double[] { x, x, x });
+
+            for (int i = 0; i < 5000; i++)
+            {
+                f.Learn(new double[] { x, x, x }, new double[] { x });
+                f.Learn(new double[] { x, x, y }, new double[] { y });
+                f.Learn(new double[] { x, y, x }, new double[] { x });
+                f.Learn(new double[] { x, y, y }, new double[] { y });
+                f.Learn(new double[] { y, x, x }, new double[] { x });
+                f.Learn(new double[] { y, x, y }, new double[] { y });
+                f.Learn(new double[] { y, y, x }, new double[] { x });
+                f.Learn(new double[] { y, y, y }, new double[] { y });
+            }
+
+            ShowNetwork(f);
+
+            ShowResponse(f, new double[] { x, x, x });
+            //ShowResponse(f, new double[] { 0.9, 0.9, 0.9 });
+        }
+        public static void Learn2()
+        {
+            FeedforwardNetworkSHL f = new FeedforwardNetworkSHL(2, 3, 2, Functions.Sigmoid);
+
+            //f.SetWeights(Layers.Hidden, 0, new double[] { 0.3, 0.1 });
+            //f.SetWeights(Layers.Hidden, 1, new double[] { 0.2, 0.4 });
+            //f.SetWeights(Layers.Hidden, 2, new double[] { 0.6, 0.5 });
+            //f.SetWeights(Layers.Output, 0, new double[] { 0.7, 0.3, 0.5 });
+            //f.SetWeights(Layers.Output, 1, new double[] { 0.7, 0.1, 0.2 });
+            f.SetAllRandomWeights();
+
+            ShowNetwork(f);
+            ShowResponse(f, new double[] { 0.7, 0.3 });
+            ShowResponse(f, new double[] { 0.2, 0.6 });
+
+            for (int i = 0; i < 10000; i++)
+            {
+                f.Learn(new double[] { 0.7, 0.3 }, new double[] { 0.5, 0.5 });
+                f.Learn(new double[] { 0.2, 0.6 }, new double[] { 0.3, 0.9 });
+            }
+
+            ShowNetwork(f);
+            ShowResponse(f, new double[] { 0.7, 0.3 });
+            ShowResponse(f, new double[] { 0.2, 0.6 });
         }
 
         public static void PrintNetwork(FeedforwardNetworkSHL n, StreamWriter sw)
@@ -282,6 +393,18 @@ namespace Neural_Network.Testing
                 }
                 Console.Write(")\t");
             }
+            Console.WriteLine("\n");
+        }
+        public static void ShowResponse(FeedforwardNetworkSHL f, double[] signals)
+        {
+            var rs = f.GetResponse(signals);
+
+            Console.WriteLine(new String('*', 50));
+            Console.WriteLine("Response:");
+            foreach (var r in rs)
+                Console.Write(r + " ");
+            Console.WriteLine("\n");
+            Console.Write(new String('*', 50));
             Console.WriteLine("\n");
         }
     }

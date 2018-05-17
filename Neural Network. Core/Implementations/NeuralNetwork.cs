@@ -117,6 +117,66 @@ namespace Neural_Network.Core.Implementation
 
             return outputLayerSignals;
         }
+        // FOR MULTILAYER
+        //private double[] GetHiddenLayerErorrs(double[] nextLayerErrors, double[,] nextLayerWeights)
+        //{
+        //    int count = hiddenLayer.Count();
+        //    double[] errors = new double[count];
+        //    double[] outputLayerWeightsSum = outputLayer.Select(x => x.GetWeightsSum()).ToArray();
+
+        //    for (int i = 0; i < count; i++)
+        //    {
+        //        for (int j = 0; j < outputLayer.Count(); j++)
+        //        {
+        //            errors[i] += (nextLayerErrors[j] * nextLayerWeights[j, i]) / outputLayerWeightsSum[j];
+        //        }
+        //    }
+        //    return errors;
+        //}
+        private double[] GetHiddenLayerErorrs(double[] nextLayerErrors)
+        {
+            int count = hiddenLayer.Count();
+            double[] errors = new double[count];
+            double[] outputLayerWeightsSum = outputLayer.Select(x => x.GetWeightsSum()).ToArray();
+
+            for (int i = 0; i < count; i++)
+            {
+                for (int j = 0; j < outputLayer.Count(); j++)
+                    errors[i] += (nextLayerErrors[j] * outputLayer[j][i]) / outputLayerWeightsSum[j];
+            }
+            return errors;
+        }
+        public void Learn(double[] signals, double[] expectedOutputs, double learningRate = 0.1)
+        {
+            if (signals == null)
+                throw new ArgumentNullException("signals");
+
+            int hiddenCount = hiddenLayer.Count();
+            int outputCount = outputLayer.Count();
+
+            // 0
+            double[] hiddenLayerSignals = new double[hiddenCount];
+            for (int i = 0; i < hiddenCount; i++)
+                hiddenLayerSignals[i] = hiddenLayer[i].GetResponse(signals);
+
+            double[] outputLayerSignals = new double[outputCount];
+            for (int i = 0; i < outputCount; i++)
+                outputLayerSignals[i] = outputLayer[i].GetResponse(hiddenLayerSignals);
+
+            // 1
+            double[] outputErrors = new double[outputCount];
+            for (int i = 0; i < outputErrors.Length; i++)
+                outputErrors[i] = expectedOutputs[i] - outputLayerSignals[i];
+
+            double[] hiddenErrors = GetHiddenLayerErorrs(outputErrors);
+
+            // 2
+            for (int i = 0; i < outputCount; i++)
+                outputLayer[i].Learn(hiddenLayerSignals, outputErrors[i], learningRate);
+
+            for (int i = 0; i < hiddenCount; i++)
+                hiddenLayer[i].Learn(signals, hiddenErrors[i], learningRate);
+        }
         public void Normalize(double[] signals)
         {
             throw new NotImplementedException();

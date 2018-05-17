@@ -38,8 +38,8 @@ namespace Neural_Network.Core
                 throw new ArgumentNullException("newWeights");
 
             int length = newWeights.Length;
-            if (InputCount < length)
-                length = InputCount;
+            if (weights.Length < length)
+                length = weights.Length;
 
             for (int i = 0; i < length; i++)
                 weights[i] = newWeights[i];
@@ -55,14 +55,18 @@ namespace Neural_Network.Core
             weights.CopyTo(copy, 0);
             return copy;
         }
+        public double GetWeightsSum()
+        {
+            return weights.Sum();
+        }
         public double GetResponse(double[] signals)
         {
             if (signals == null)
                 throw new ArgumentNullException("signals");
 
             int length = signals.Length;
-            if (InputCount < length)
-                length = InputCount;
+            if (weights.Length < length)
+                length = weights.Length;
             
             double response = 0;
 
@@ -95,6 +99,13 @@ namespace Neural_Network.Core
 
 
         #region Not tested
+        public void Learn(double[] signals, double error, double learningRate)
+        {
+            double response = GetResponse(signals);
+            double delta = -error * response * (1 - response);
+            for (int i = 0; i < weights.Length; i++)
+                weights[i] = weights[i] - learningRate * (signals[i] * delta);
+        }
         #endregion
 
 
@@ -103,14 +114,14 @@ namespace Neural_Network.Core
         {
             get
             {
-                if (index < 0 || index >= InputCount)
+                if (index < 0 || index >= weights.Length)
                     throw new IndexOutOfRangeException("Index out of range.");
 
                 return weights[index];
             }
             set
             {
-                if (index < 0 || index >= InputCount)
+                if (index < 0 || index >= weights.Length)
                     throw new IndexOutOfRangeException("Index out of range.");
 
                 weights[index] = value;
