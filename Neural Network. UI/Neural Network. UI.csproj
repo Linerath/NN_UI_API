@@ -106,11 +106,12 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Shared\Controls\FocusedTreeView.cs">
+    <Compile Include="Shared\Controls\NonFocusButton.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Shared\TableHandler.cs" />
     <Compile Include="Shared\FormActivatedHandler.cs" />
-    <Compile Include="Shared\LayerFormViewSettings.cs" />
+    <Compile Include="Shared\TableViewSettings.cs" />
     <Compile Include="Shared\Project.cs" />
     <Compile Include="Shared\UIRepository.cs" />
     <EmbeddedResource Include="Forms\Dialogs\NewNetworkForm.resx">

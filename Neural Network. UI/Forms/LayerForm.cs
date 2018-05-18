@@ -18,7 +18,7 @@ namespace Neural_Network.UI.Forms
     {
         private Layers layer;
         public int NetworkIndex { get; private set; }
-        public LayerFormViewSettings ViewSettings { get; private set; }
+        public TableViewSettings ViewSettings { get; private set; }
 
         public LayerForm(Layers layer, int networkIndex)
         {
@@ -26,7 +26,7 @@ namespace Neural_Network.UI.Forms
 
             this.layer = layer;
             NetworkIndex = networkIndex;
-            ViewSettings = new LayerFormViewSettings();
+            ViewSettings = new TableViewSettings();
         }
 
         #region Events
@@ -73,7 +73,6 @@ namespace Neural_Network.UI.Forms
             RefreshLayerValues(true);
             RefreshFont();
             RefreshCellsAutoSize();
-            RefreshMinMaxSize();
         }
         public void RefreshLayerValues(bool rewriteValues = false)
         {
@@ -115,30 +114,11 @@ namespace Neural_Network.UI.Forms
         }
         public void RefreshFont()
         {
-            foreach (DataGridViewColumn col in DGVLayer.Columns)
-            {
-                col.DefaultCellStyle.Font = ViewSettings.Font;
-            }
+            TableHandler.RefreshFont(DGVLayer, ViewSettings);
         }
         public void RefreshCellsAutoSize()
         {
-            foreach (DataGridViewColumn col in DGVLayer.Columns)
-            {
-                if (ViewSettings.AdaptCellsSize)
-                {
-                    col.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
-                }
-                else
-                {
-                    int oldWidth = col.Width;
-                    col.AutoSizeMode = DataGridViewAutoSizeColumnMode.None;
-                    col.Width = oldWidth;
-                }
-            }
-        }
-        public void RefreshMinMaxSize()
-        {
-
+            TableHandler.RefreshCellsAutoSize(DGVLayer, ViewSettings);
         }
         public void SetFollowedForm(Form form, FormRelativeLayout relativeLayout)
         {

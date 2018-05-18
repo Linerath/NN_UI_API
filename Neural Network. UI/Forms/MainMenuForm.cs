@@ -325,7 +325,7 @@ namespace Neural_Network.UI.Forms
             };
 
             if (registerActivatedEvent)
-                formActivatedHandler.RegisterForm(layerForm);
+                formActivatedHandler.RegisterForm(layerForm, RefreshNetworkLayer);
 
             return layerForm;
         }
@@ -372,14 +372,19 @@ namespace Neural_Network.UI.Forms
             {
                 Owner = this,
             };
+            formActivatedHandler.RegisterForm(trainingForm, RefreshTrainingFormTables);
             trainingForm.Show();
         }
 
         public void RefreshNetworkLayer(int networkIndex)
         {
-            inputLayerForms[networkIndex].FullLayerRefresh();
-            hiddenLayerForms[networkIndex].FullLayerRefresh();
-            outputLayerForms[networkIndex].FullLayerRefresh();
+            inputLayerForms[networkIndex]?.FullLayerRefresh();
+            hiddenLayerForms[networkIndex]?.FullLayerRefresh();
+            outputLayerForms[networkIndex]?.FullLayerRefresh();
+        }
+        public void RefreshTrainingFormTables(int networkIndex)
+        {
+            trainingForm?.FullTablesRefresh();
         }
         public void RefreshProjName()
         {

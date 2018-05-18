@@ -10,7 +10,7 @@ using System.Windows.Forms;
 
 namespace Neural_Network.UI.Shared
 {
-    public class LayerFormViewSettings
+    public class TableViewSettings
     {
         [Category("Appearance")]
         [DisplayName("Adapt cells size")]

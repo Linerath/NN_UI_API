@@ -10,16 +10,20 @@ using System.Windows.Forms;
 
 namespace Neural_Network.UI.Shared
 {
+    // don't f**king change anything here without goin' to church...
+
     public class FormActivatedHandler
     {
         private ViewSettingsForm settingsForm;
         private List<Form> forms;
+        private List<Action<int>> OnPropertyChangedActions;
         private Form lastForm;
 
         public FormActivatedHandler(ViewSettingsForm settingsForm)
         {
             this.settingsForm = settingsForm ?? throw new ArgumentNullException(Exceptions.NULL_ARGUMENT + "(Form: ViewSettingsForm)");
             forms = new List<Form>();
+            OnPropertyChangedActions = new List<Action<int>>();
             lastForm = null;
 
             settingsForm.PGLayers.PropertyValueChanged += PGLayers_PropertyValueChanged;
@@ -31,34 +35,45 @@ namespace Neural_Network.UI.Shared
                 return;
 
             PropertyGrid propertyGrid = s as PropertyGrid;
-            int networkIndex = (int)propertyGrid.Tag;
 
-            var mainForm = settingsForm.Owner as MainMenuForm;
-            mainForm.RefreshNetworkLayer(networkIndex);
+            String[] data = propertyGrid.Tag.ToString().Split(';');
+            int index = Int32.Parse(data[0]);
+            int networkIndex = Int32.Parse(data[1]);
+
+            OnPropertyChangedActions[index](networkIndex);
         }
 
-        private void LayerForm_Activated(object sender, EventArgs e)
+        private void Form_Activated(object sender, EventArgs e)
         {
             if (settingsForm == null || settingsForm.IsDisposed)
                 return;
+
             Form activatedForm = sender as Form;
             if (lastForm == activatedForm)
                 return;
+
+            settingsForm.PGLayers.Tag = activatedForm.Tag;
+
             if (activatedForm is LayerForm layerForm)
             {
                 settingsForm.PGLayers.SelectedObject = layerForm.ViewSettings;
-                settingsForm.PGLayers.Tag = layerForm.NetworkIndex;
+                settingsForm.PGLayers.Tag += ";" + layerForm.NetworkIndex;
+            }
+            else if (activatedForm is TrainingForm trainingForm)
+            {
+                settingsForm.PGLayers.SelectedObject = trainingForm.ViewSettings;
+                settingsForm.PGLayers.Tag += ";" + trainingForm.NetworkIndex;
             }
             lastForm = activatedForm;
         }
 
-        public void RegisterForm(Form form)
+        public void RegisterForm(Form form, Action<int> onPropertyChange)
         {
-            if (form is LayerForm layerForm)
-            {
-                layerForm.Activated += LayerForm_Activated;
-                forms.Add(layerForm);
-            }
+            forms.Add(form);
+            OnPropertyChangedActions.Add(onPropertyChange);
+            int index = forms.Count() - 1;
+            forms[index].Tag = index;
+            form.Activated += Form_Activated;
         }
     }
 }
