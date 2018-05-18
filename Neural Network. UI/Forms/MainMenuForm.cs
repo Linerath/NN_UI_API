@@ -53,6 +53,7 @@ namespace Neural_Network.UI.Forms
                 networkExplorerForm.RefreshTree();
                 ShowAllNetworks();
             }
+            BTraining.PerformClick();
         }
         private void BNewProj_Click(object sender, EventArgs e)
         {
@@ -176,7 +177,10 @@ namespace Neural_Network.UI.Forms
         {
             if (UIRepository.Project.FilePath != null)
             {
-                UIRepository.Project.TrySave();
+                if (!UIRepository.Project.TrySave())
+                {
+                    MessageBox.Show("no");
+                }
             }
             else
             {

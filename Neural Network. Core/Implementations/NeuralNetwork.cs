@@ -31,15 +31,18 @@ namespace Neural_Network.Core.Implementation
         private List<Neuron> hiddenLayer;
         private List<Neuron> outputLayer;
 
+        private double learningRate;
+        public int LearningEpochs { get; private set; }
+
         private const double RANDOM_MIN_VALUE = 0.1;
         private const double RANDOM_MAX_VALUE = 0.9;
 
-        public FeedforwardNetworkSHL(String name, int inputLayerSize, int hiddenLayerSize, int outputLayerSize, Functions activationFunction = Functions.None)
-            : this(inputLayerSize, hiddenLayerSize, outputLayerSize, activationFunction)
+        public FeedforwardNetworkSHL(String name, int inputLayerSize, int hiddenLayerSize, int outputLayerSize, Functions activationFunction = Functions.None, double learningRate = 0.1)
+            : this(inputLayerSize, hiddenLayerSize, outputLayerSize, activationFunction, learningRate)
         {
             Name = name;
         }
-        public FeedforwardNetworkSHL(int inputLayerSize, int hiddenLayerSize, int outputLayerSize, Functions activationFunction = Functions.None)
+        public FeedforwardNetworkSHL(int inputLayerSize, int hiddenLayerSize, int outputLayerSize, Functions activationFunction = Functions.None, double learningRate = 0.1)
         {
             if (inputLayerSize < 1 || hiddenLayerSize < 1 || outputLayerSize < 1)
                 throw new ArgumentException("Layer size cannot be less than 1.");
@@ -62,8 +65,11 @@ namespace Neural_Network.Core.Implementation
                 outputLayer.Add(new Neuron(hiddenLayerSize, activationFunction));
             }
 
+            this.learningRate = learningRate;
+
             CreationDate = DateTime.Now;
             NetType = NetsTypes.SingleLayerPerceptron;
+            LearningEpochs = 0;
         }
 
         #region Tested
@@ -146,7 +152,7 @@ namespace Neural_Network.Core.Implementation
             }
             return errors;
         }
-        public void Learn(double[] signals, double[] expectedOutputs, double learningRate = 0.1)
+        public void Learn(double[] signals, double[] expectedOutputs)
         {
             if (signals == null)
                 throw new ArgumentNullException("signals");
@@ -247,19 +253,22 @@ namespace Neural_Network.Core.Implementation
                 return outputLayer.Count;
             }
         }
+        public double LearningRate
+        {
+            get
+            {
+                return learningRate;
+            }
+            set
+            {
+                learningRate = (value > 0 && value <= 1) ? 
+                    value : throw new ArgumentException("Learning rate must be in the interval (0;1]");
+            }
+        }
     }
 
     //internal sealed class FeedforwardNetwork
     //{
-    //    public void SetRandomNullWeights()
-    //    {
-    //        Random random = new Random();
-    //        for (Int32 i = 0; i < hiddenLayer.Count; i++)
-    //            hiddenLayer[i].SetRandomNullWeights(MIN_RANDOM_VALUE, MAX_RANDOM_VALUE, random);
-    //        for (Int32 i = 0; i < outputLayer.Count; i++)
-    //            outputLayer[i].SetRandomNullWeights(MIN_RANDOM_VALUE, MAX_RANDOM_VALUE, random);
-    //    }
-
     //    public void Resize(Int32 layerIndex, Int32 newNeuronCount)
     //    {
     //        if (layerIndex < 0 || layerIndex >= LayerCount)

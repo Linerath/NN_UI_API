@@ -20,7 +20,6 @@ namespace Neural_Network.Core
 
         private double[] weights;
         private double bias;
-        private bool usingActivationFunction;
 
         public Neuron(int inputCount, Functions activationFunction = Functions.None)
         {
@@ -81,7 +80,7 @@ namespace Neural_Network.Core
         public void Resize(int newSize)
         {
             if (newSize < 1)
-                throw new ArgumentException("ArgumentException (new size)");
+                throw new ArgumentException("New size must be more than 0");
 
             Array.Resize(ref weights, newSize);
         }
@@ -108,7 +107,6 @@ namespace Neural_Network.Core
         }
         #endregion
 
-
         public int InputCount => weights.Length;
         public double this[int index]
         {
@@ -127,48 +125,5 @@ namespace Neural_Network.Core
                 weights[index] = value;
             }
         }
-    }
-
-    public class OldNeuron
-    {
-        private Boolean useActivationFunction;
-        private Double[] weights;
-        private Double bias;
-        private Functions function = Functions.Sigmoid;
-
-        public void Learn(Double[] signals, Double expectedResponse, Double learningRate)
-        {
-            //if (signals == null)
-            //    throw new ArgumentNullException("Null argument.");
-            //if (signals.Length != weights.Length)
-            //    throw new ArgumentException("Signals count must be equal to weights count.");
-
-            //Double response = GetResponse(signals);
-
-            //Double error = expectedResponse - response;
-
-            //for (Int32 i = 0; i < weights.Length; i++)
-            //{
-            //    weights[i] = signals[i] * error * learningRate;
-            //}
-        }
-        
-        public void SetRandomNullWeights(Double min, Double max, Random random)
-        {
-            //for (Int32 i = 0; i < weights.Length; i++)
-            //{
-            //    if (weights[i] == nullLink)
-            //        weights[i] = (random.NextDouble() * (max - min) + min);
-            //}
-        }
-
-        //public object Clone()
-        //{
-            //return new OldNeuron(InputCount)
-            //{
-            //    weights = weights,
-            //    bias = bias
-            //};
-        //}
     }
 }

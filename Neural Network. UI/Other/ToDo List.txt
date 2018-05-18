@@ -27,14 +27,15 @@ III. NeuralNetwork UI
 		2) make adequate forms auto layout
 		3) make log file
 
-	1. NetworksForms:
-		1) close all forms when one is closed
-
-	2. NetworkExplorerForm:
+	1. NetworkExplorerForm:
 		1) select input project when user created it
 
-	3. FormActivatedHandler:
+	2. FormActivatedHandler:
 		1) refresh only selected layer
 
-	4. MainMenuForm:
+	3. MainMenuForm:
 		1) read proj name after opening proj
+
+	4. LayerForm:
+		1) close all forms when one is closed
+		2) make input validating

@@ -46,6 +46,7 @@
             this.DGVLayer.RowTemplate.Height = 24;
             this.DGVLayer.Size = new System.Drawing.Size(282, 253);
             this.DGVLayer.TabIndex = 1;
+            this.DGVLayer.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.DGVLayer_CellEndEdit);
             // 
             // LayerForm
             // 

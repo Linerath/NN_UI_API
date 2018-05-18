@@ -60,6 +60,11 @@ namespace Neural_Network.UI.Forms
                     break;
             }
         }
+        private void DGVLayer_CellEndEdit(object sender, DataGridViewCellEventArgs e)
+        {
+            double value = Double.Parse(DGVLayer[e.ColumnIndex, e.RowIndex].Value.ToString());
+            UIRepository.Project.Networks[NetworkIndex][layer][e.RowIndex][e.ColumnIndex] = value;
+        }
         #endregion
 
         #region Methods
@@ -151,6 +156,4 @@ namespace Neural_Network.UI.Forms
         }
         #endregion
     }
-
-
 }
