@@ -178,9 +178,7 @@ namespace Neural_Network.UI.Forms
             if (UIRepository.Project.FilePath != null)
             {
                 if (!UIRepository.Project.TrySave())
-                {
-                    MessageBox.Show("no");
-                }
+                    MessageBox.Show("Project was not saved.", "Error");
             }
             else
             {

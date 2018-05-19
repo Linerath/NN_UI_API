@@ -34,8 +34,8 @@ namespace Neural_Network.Core.Implementation
         private double learningRate;
         public int LearningEpochs { get; private set; }
 
-        private const double RANDOM_MIN_VALUE = 0.1;
-        private const double RANDOM_MAX_VALUE = 0.9;
+        public const double RANDOM_MIN_VALUE = 0.1;
+        public const double RANDOM_MAX_VALUE = 0.9;
 
         public FeedforwardNetworkSHL(String name, int inputLayerSize, int hiddenLayerSize, int outputLayerSize, Functions activationFunction = Functions.None, double learningRate = 0.1)
             : this(inputLayerSize, hiddenLayerSize, outputLayerSize, activationFunction, learningRate)

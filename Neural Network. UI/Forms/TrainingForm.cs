@@ -1,4 +1,5 @@
-﻿using Neural_Network.UI.Shared;
+﻿using Neural_Network.Core.Implementation;
+using Neural_Network.UI.Shared;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -18,14 +19,17 @@ namespace Neural_Network.UI.Forms
         private List<double[]> correctOutputSignals;
         public int NetworkIndex { get; set; }
         public TableViewSettings ViewSettings { get; private set; }
-
+        private String FilePath { get; set; } = null;
 
         public TrainingForm(int networkIndex)
         {
             inputSignals = new List<double[]>();
             correctOutputSignals = new List<double[]>();
-            this.NetworkIndex = networkIndex;
-            ViewSettings = new TableViewSettings();
+            NetworkIndex = networkIndex;
+            ViewSettings = new TableViewSettings()
+            {
+                NeuronsSorting = NeuronsSorting.Vertical,
+            };
 
             InitializeComponent();
         }
@@ -52,39 +56,81 @@ namespace Neural_Network.UI.Forms
                     FullTablesRefresh();
             }
         }
+        private void NFBSave_Click(object sender, EventArgs e)
+        {
+            if (FilePath != null)
+            {
+                if (!TrySave())
+                    MessageBox.Show("Training data was not saved.", "Error");
+            }
+            else
+            {
+                SaveAs();
+            }
+        }
+        private void NFBSaveAs_Click(object sender, EventArgs e)
+        {
+            SaveAs();
+        }
+        private void NFBRandomize0_Click(object sender, EventArgs e)
+        {
+            Random random = new Random();
+            for (int i = 0;i < inputSignals.Count(); i++)
+                for (int j = 0; j < inputSignals[i].Length; j++)
+                    inputSignals[i][j] = GetRandomValue(random, FeedforwardNetworkSHL.RANDOM_MIN_VALUE, FeedforwardNetworkSHL.RANDOM_MAX_VALUE);
+            RefreshSignals(true);
+        }
+        private void NFBRandomize1_Click(object sender, EventArgs e)
+        {
+            Random random = new Random();
+            for (int i = 0; i < correctOutputSignals.Count(); i++)
+                for (int j = 0; j < correctOutputSignals[i].Length; j++)
+                    correctOutputSignals[i][j] = GetRandomValue(random, FeedforwardNetworkSHL.RANDOM_MIN_VALUE, FeedforwardNetworkSHL.RANDOM_MAX_VALUE);
+            RefreshSignals(true);
+        }
         private void NFBAdd_Click(object sender, EventArgs e)
         {
-
+            inputSignals.Add(new double[UIRepository.Project.Networks[NetworkIndex].InputLayerSize]);
+            correctOutputSignals.Add(new double[UIRepository.Project.Networks[NetworkIndex].OutputLayerSize]);
+            FullTablesRefresh();
         }
         private void NFBRemove_Click(object sender, EventArgs e)
         {
-
+            if (inputSignals.Count() < 2) return;
+            inputSignals.RemoveAt(inputSignals.Count() - 1);
+            correctOutputSignals.RemoveAt(correctOutputSignals.Count() - 1);
+            FullTablesRefresh();
         }
         #endregion
 
         #region Methods
         private void RefreshSignals(bool rewriteValues = false)
         {
-            DGVInputSignals.RowCount = UIRepository.Project.Networks[NetworkIndex].InputLayerSize;
-            DGVCorrectOutputSignals.RowCount = UIRepository.Project.Networks[NetworkIndex].OutputLayerSize;
-
             if (correctOutputSignals.Count() < 1)
             {
-                DGVInputSignals.ColumnCount = 1;
+                inputSignals.Add(new double[UIRepository.Project.Networks[NetworkIndex].InputLayerSize]);
+                correctOutputSignals.Add(new double[UIRepository.Project.Networks[NetworkIndex].OutputLayerSize]);
+            }
 
-                for (int i = 0; i < DGVInputSignals.RowCount; i++)
-                    for (int j = 0; j < DGVInputSignals.ColumnCount; j++)
-                        DGVInputSignals[j, i].Value = 0;
+            if (ViewSettings.NeuronsSorting == NeuronsSorting.Horizontal)
+            {
+                DGVInputSignals.RowCount = inputSignals.Count();
+                DGVInputSignals.ColumnCount = UIRepository.Project.Networks[NetworkIndex].InputLayerSize;
+                DGVCorrectOutputSignals.RowCount = correctOutputSignals.Count();
+                DGVCorrectOutputSignals.ColumnCount = UIRepository.Project.Networks[NetworkIndex].OutputLayerSize;
 
-                DGVCorrectOutputSignals.ColumnCount = 1;
-
-                for (int i = 0; i < DGVCorrectOutputSignals.RowCount; i++)
-                    for (int j = 0; j < DGVCorrectOutputSignals.ColumnCount; j++)
-                        DGVCorrectOutputSignals[j, i].Value = 0;
+                for (int i = 0; i < inputSignals.Count(); i++)
+                    for (int j = 0; j < inputSignals[i].Length; j++)
+                        DGVInputSignals[j, i].Value = Math.Round(inputSignals[i][j], ViewSettings.DecimalPlaces).ToString();
+                for (int i = 0; i < correctOutputSignals.Count(); i++)
+                    for (int j = 0; j < correctOutputSignals[i].Length; j++)
+                        DGVCorrectOutputSignals[j, i].Value = Math.Round(correctOutputSignals[i][j], ViewSettings.DecimalPlaces).ToString();
             }
             else
             {
+                DGVInputSignals.RowCount = UIRepository.Project.Networks[NetworkIndex].InputLayerSize;
                 DGVInputSignals.ColumnCount = inputSignals.Count();
+                DGVCorrectOutputSignals.RowCount = UIRepository.Project.Networks[NetworkIndex].OutputLayerSize;
                 DGVCorrectOutputSignals.ColumnCount = correctOutputSignals.Count();
 
                 for (int i = 0; i < inputSignals.Count(); i++)
@@ -106,9 +152,16 @@ namespace Neural_Network.UI.Forms
             int startIndex, endIndex;
             double[] input, output;
             int count = 0;
+            List<double[]> tempInput = new List<double[]>();
+            List<double[]> tempOutput = new List<double[]>();
 
             while ((startIndex = text.IndexOf('{')) >= 0 && (endIndex = text.IndexOf('}')) >= 0)
             {
+                if (startIndex >= endIndex)
+                {
+                    MessageBox.Show("Incorrect file format.", "Error");
+                    return false;
+                }
                 var example = text.Substring(startIndex + 1, endIndex - startIndex - 1);
                 if (!example.Contains(':'))
                 {
@@ -135,8 +188,8 @@ namespace Neural_Network.UI.Forms
                 if (output.Length != UIRepository.Project.Networks[NetworkIndex].OutputLayerSize)
                     Array.Resize(ref output, UIRepository.Project.Networks[NetworkIndex].OutputLayerSize);
 
-                inputSignals.Add(input);
-                correctOutputSignals.Add(output);
+                tempInput.Add(input);
+                tempOutput.Add(output);
                 count++;
 
                 text = text.Remove(startIndex, endIndex - startIndex + 1);
@@ -146,6 +199,8 @@ namespace Neural_Network.UI.Forms
                 MessageBox.Show("Incorrect file format.", "Error");
                 return false;
             }
+            inputSignals = tempInput;
+            correctOutputSignals = tempOutput;
             return true;
         }
 
@@ -165,6 +220,66 @@ namespace Neural_Network.UI.Forms
             TableHandler.RefreshCellsAutoSize(DGVInputSignals, ViewSettings);
             TableHandler.RefreshCellsAutoSize(DGVCorrectOutputSignals, ViewSettings);
         }
+
+        private void SaveAs()
+        {
+            SaveFileDialog sfd = new SaveFileDialog
+            {
+                InitialDirectory = Directory.GetCurrentDirectory(),
+                Filter = "Text files (*.txt)|*.txt|All files (*.*)|*.*",
+                FileName = "*.txt"
+            };
+
+            if (sfd.ShowDialog() == DialogResult.OK)
+            {
+                TrySaveTo(sfd.FileName);
+            }
+        }
+        private bool TrySave()
+        {
+            if (FilePath != null)
+            {
+                return TrySaveTo(FilePath);
+            }
+            return false;
+        }
+        private bool TrySaveTo(String filePath)
+        {
+            StreamWriter streamWriter;
+
+            using (streamWriter = new StreamWriter(filePath))
+            {
+                for (int i = 0; i < inputSignals.Count(); i++)
+                {
+                    streamWriter.Write("{");
+                    for (int j = 0; j < inputSignals[i].Length; j++)
+                    {
+                        if (j != inputSignals[i].Length - 1)
+                            streamWriter.Write(inputSignals[i][j] + ",");
+                        else
+                            streamWriter.Write(inputSignals[i][j]);
+                    }
+                    streamWriter.Write(":");
+                    for (int j = 0; j < correctOutputSignals[i].Length; j++)
+                    {
+                        if (j != correctOutputSignals[i].Length - 1)
+                            streamWriter.Write(correctOutputSignals[i][j] + ",");
+                        else
+                            streamWriter.Write(correctOutputSignals[i][j]);
+                    }
+                    streamWriter.Write("}");
+                }
+            }
+
+            FilePath = filePath;
+            return true;
+        }
+        
+        private double GetRandomValue(Random random, double minValue, double maxValue)
+        {
+            return (random.NextDouble() * (maxValue - minValue) + minValue);
+        }
         #endregion
+
     }
 }

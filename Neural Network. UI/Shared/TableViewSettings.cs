@@ -10,6 +10,12 @@ using System.Windows.Forms;
 
 namespace Neural_Network.UI.Shared
 {
+    public enum NeuronsSorting
+    {
+        Vertical,
+        Horizontal
+    }
+
     public class TableViewSettings
     {
         [Category("Appearance")]
@@ -22,6 +28,9 @@ namespace Neural_Network.UI.Shared
 
         [Category("Appearance")]
         public Font Font { get; set; } = new Font("Consolas", 13, GraphicsUnit.Point);
+
+        [Category("Appearance")]
+        public NeuronsSorting NeuronsSorting { get; set; } = NeuronsSorting.Horizontal;
 
         [Browsable(false)]
         public Form FollowedForm { get; set; }
