@@ -1,4 +1,5 @@
-﻿using Neural_Network.Core.Implementation;
+﻿using Neural_Network.Core.Extra;
+using Neural_Network.Core.Implementation;
 using Neural_Network.UI.Shared;
 using System;
 using System.Collections.Generic;
@@ -75,10 +76,10 @@ namespace Neural_Network.UI.Forms
         private void NFBRandomize0_Click(object sender, EventArgs e)
         {
             Random random = new Random();
-            for (int i = 0;i < inputSignals.Count(); i++)
+            for (int i = 0; i < inputSignals.Count(); i++)
                 for (int j = 0; j < inputSignals[i].Length; j++)
                     inputSignals[i][j] = GetRandomValue(random, FeedforwardNetworkSHL.RANDOM_MIN_VALUE, FeedforwardNetworkSHL.RANDOM_MAX_VALUE);
-            RefreshSignals(true);
+            RefreshSignals();
         }
         private void NFBRandomize1_Click(object sender, EventArgs e)
         {
@@ -86,7 +87,7 @@ namespace Neural_Network.UI.Forms
             for (int i = 0; i < correctOutputSignals.Count(); i++)
                 for (int j = 0; j < correctOutputSignals[i].Length; j++)
                     correctOutputSignals[i][j] = GetRandomValue(random, FeedforwardNetworkSHL.RANDOM_MIN_VALUE, FeedforwardNetworkSHL.RANDOM_MAX_VALUE);
-            RefreshSignals(true);
+            RefreshSignals();
         }
         private void NFBAdd_Click(object sender, EventArgs e)
         {
@@ -101,12 +102,37 @@ namespace Neural_Network.UI.Forms
             correctOutputSignals.RemoveAt(correctOutputSignals.Count() - 1);
             FullTablesRefresh();
         }
+        private void BLearn_Click(object sender, EventArgs e)
+        {
+            double learningRate = (double)NUDLearningRate.Value;
+            int epochs = (int)NUDEpochs.Value;
+            bool randomize = CBRandomize.Checked;
+
+            var network = UIRepository.Project.Networks[NetworkIndex];
+
+            PBLearningProgress.Maximum = epochs - 1;
+            NeuralNetworkService.TrainNetwork(
+                network,
+                inputSignals, correctOutputSignals,
+                epochs,
+                learningRate,
+                randomize,
+                out double startError, out double endError,
+                x => PBLearningProgress.Value = x);
+
+            LStartError1.Text = Math.Round(startError, 4).ToString();
+            LEndError1.Text = Math.Round(endError, 4).ToString();
+
+            LCompleted1.Text = epochs.ToString();
+            LLearningEpochs1.Text = network.LearningEpochs.ToString();
+            GlobalNetworkRefresh();
+        }
         #endregion
 
         #region Methods
-        private void RefreshSignals(bool rewriteValues = false)
+        private void RefreshSignals()
         {
-            if (correctOutputSignals.Count() < 1)
+            if (inputSignals.Count() < 1)
             {
                 inputSignals.Add(new double[UIRepository.Project.Networks[NetworkIndex].InputLayerSize]);
                 correctOutputSignals.Add(new double[UIRepository.Project.Networks[NetworkIndex].OutputLayerSize]);
@@ -206,7 +232,7 @@ namespace Neural_Network.UI.Forms
 
         public void FullTablesRefresh()
         {
-            RefreshSignals(true);
+            RefreshSignals();
             RefreshFont();
             RefreshCellsAutoSize();
         }
@@ -219,6 +245,12 @@ namespace Neural_Network.UI.Forms
         {
             TableHandler.RefreshCellsAutoSize(DGVInputSignals, ViewSettings);
             TableHandler.RefreshCellsAutoSize(DGVCorrectOutputSignals, ViewSettings);
+        }
+
+        private void GlobalNetworkRefresh()
+        {
+            var owner = Owner as MainMenuForm;
+            owner?.RefreshNetworkLayer(NetworkIndex);
         }
 
         private void SaveAs()
@@ -274,12 +306,11 @@ namespace Neural_Network.UI.Forms
             FilePath = filePath;
             return true;
         }
-        
+
         private double GetRandomValue(Random random, double minValue, double maxValue)
         {
             return (random.NextDouble() * (maxValue - minValue) + minValue);
         }
         #endregion
-
     }
 }

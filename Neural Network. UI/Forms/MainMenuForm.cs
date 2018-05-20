@@ -168,6 +168,7 @@ namespace Neural_Network.UI.Forms
             {
                 if (UIRepository.Project.TryOpen(ofd.FileName))
                 {
+                    NewProject();
                     networkExplorerForm.RefreshTree();
                     ShowAllNetworks();
                 }
@@ -207,6 +208,18 @@ namespace Neural_Network.UI.Forms
 
         private void NewProject()
         {
+            networkExplorerForm?.Close();
+            viewSettingsForm?.Close();
+
+            if (inputLayerForms != null && inputLayerForms.Count() > 0)
+            {
+                inputLayerForms.ForEach(x => x.Close());
+                hiddenLayerForms.ForEach(x => x.Close());
+                outputLayerForms.ForEach(x => x.Close());
+            }
+            inputProjectsForm?.Close();
+            trainingForm?.Close();
+
             (networkExplorerForm = new NetworkExplorerForm()).Owner = this;
             (viewSettingsForm = new ViewSettingsForm()).Owner = this;
             inputLayerForms = new List<LayerForm>();

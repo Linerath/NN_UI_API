@@ -2,8 +2,6 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Neural_Network.Core.Extra
 {
@@ -15,7 +13,7 @@ namespace Neural_Network.Core.Extra
                 return null;
 
             List<NeuralNetworkInputProject> projects = new List<NeuralNetworkInputProject>();
-            
+
             foreach (var proj in inputProjects)
             {
                 if (network == proj.Network)
@@ -24,5 +22,58 @@ namespace Neural_Network.Core.Extra
 
             return projects.ToArray();
         }
+
+        public static void TrainNetwork(
+            FeedforwardNetworkSHL network,
+            List<double[]> inputSignals,
+            List<double[]> correctOutputSignals,
+            int epochs,
+            double learningRate,
+            bool randomize,
+            out double startError,
+            out double endError,
+            Action<int> progressAction)
+        {
+            startError = 0;
+            endError = 0;
+
+            double[] startErrors = new double[correctOutputSignals.Count()];
+            for (int i = 0; i < inputSignals.Count(); i++)
+                startErrors[i] = network.GetErrors(inputSignals[i], correctOutputSignals[i]).Average();
+            startError = startErrors.Average();
+
+            Random random = new Random();
+            for (int i = 0; i < epochs; i++)
+            {
+                if (randomize)
+                    Shuffle(inputSignals, correctOutputSignals, random);
+
+                for (int j = 0; j < inputSignals.Count(); j++)
+                {
+                    network.Learn(inputSignals[j], correctOutputSignals[j], learningRate, (j == inputSignals.Count() - 1));
+                }
+
+                progressAction?.Invoke(i);
+            }
+
+            double[] endErrors = new double[correctOutputSignals.Count()];
+            for (int i = 0; i < inputSignals.Count(); i++)
+                endErrors[i] = network.GetErrors(inputSignals[i], correctOutputSignals[i]).Average();
+            endError += endErrors.Average();
+        }
+        private static void Shuffle(List<double[]> input, List<double[]> output, Random random)
+        {
+            for (int i = input.Count() - 1; i >= 1; i--)
+            {
+                int j = random.Next(i + 1);
+                var temp0 = input[j];
+                var temp1 = output[j];
+                input[j] = input[i];
+                input[i] = temp0;
+                output[j] = output[i];
+                output[i] = temp1;
+            }
+        }
+
     }
 }

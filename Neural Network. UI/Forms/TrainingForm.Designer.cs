@@ -28,9 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea5 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend5 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series5 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(TrainingForm));
             this.LCreationDate0 = new System.Windows.Forms.Label();
             this.LLearningEpochs1 = new System.Windows.Forms.Label();
@@ -43,25 +43,25 @@
             this.LStartError1 = new System.Windows.Forms.Label();
             this.LEndError0 = new System.Windows.Forms.Label();
             this.LStartError0 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.LCompleted = new System.Windows.Forms.Label();
+            this.LCompleted1 = new System.Windows.Forms.Label();
+            this.LCompleted0 = new System.Windows.Forms.Label();
             this.CBRandomize = new System.Windows.Forms.CheckBox();
             this.LLearningRate = new System.Windows.Forms.Label();
             this.NUDLearningRate = new System.Windows.Forms.NumericUpDown();
             this.LEpochs = new System.Windows.Forms.Label();
             this.NUDEpochs = new System.Windows.Forms.NumericUpDown();
             this.CLearningChart = new System.Windows.Forms.DataVisualization.Charting.Chart();
-            this.button2 = new System.Windows.Forms.Button();
+            this.BLearn = new System.Windows.Forms.Button();
             this.PBLearningProgress = new System.Windows.Forms.ProgressBar();
             this.DGVCorrectOutputSignals = new System.Windows.Forms.DataGridView();
             this.DGVInputSignals = new System.Windows.Forms.DataGridView();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.NFBRandomize1 = new Neural_Network.UI.Shared.Controls.NonFocusButton();
+            this.NFBSave = new Neural_Network.UI.Shared.Controls.NonFocusButton();
+            this.NFBRandomize0 = new Neural_Network.UI.Shared.Controls.NonFocusButton();
+            this.NFBSaveAs = new Neural_Network.UI.Shared.Controls.NonFocusButton();
             this.NFBRemove = new Neural_Network.UI.Shared.Controls.NonFocusButton();
             this.NFBAdd = new Neural_Network.UI.Shared.Controls.NonFocusButton();
-            this.NFBSaveAs = new Neural_Network.UI.Shared.Controls.NonFocusButton();
-            this.NFBRandomize0 = new Neural_Network.UI.Shared.Controls.NonFocusButton();
-            this.NFBSave = new Neural_Network.UI.Shared.Controls.NonFocusButton();
-            this.NFBRandomize1 = new Neural_Network.UI.Shared.Controls.NonFocusButton();
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.NUDLearningRate)).BeginInit();
@@ -111,7 +111,7 @@
             // BSelectFile
             // 
             this.BSelectFile.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.BSelectFile.Location = new System.Drawing.Point(182, 105);
+            this.BSelectFile.Location = new System.Drawing.Point(182, 115);
             this.BSelectFile.Name = "BSelectFile";
             this.BSelectFile.Size = new System.Drawing.Size(143, 38);
             this.BSelectFile.TabIndex = 1;
@@ -124,9 +124,9 @@
             this.groupBox2.Controls.Add(this.BSelectFile);
             this.groupBox2.Controls.Add(this.label1);
             this.groupBox2.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox2.Location = new System.Drawing.Point(12, 59);
+            this.groupBox2.Location = new System.Drawing.Point(12, 52);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(523, 156);
+            this.groupBox2.Size = new System.Drawing.Size(523, 163);
             this.groupBox2.TabIndex = 3;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "File";
@@ -136,7 +136,7 @@
             this.label1.Dock = System.Windows.Forms.DockStyle.Top;
             this.label1.Location = new System.Drawing.Point(3, 21);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(517, 81);
+            this.label1.Size = new System.Drawing.Size(517, 95);
             this.label1.TabIndex = 0;
             this.label1.Text = "You can load training data from file. Input signals and correct output signals mu" +
     "st correspond to the following format:\r\n{ x1,x2,x3:y1,y2,y3 }, where x - input s" +
@@ -152,16 +152,16 @@
             this.groupBox1.Controls.Add(this.LEndError0);
             this.groupBox1.Controls.Add(this.LLearningEpochs1);
             this.groupBox1.Controls.Add(this.LStartError0);
-            this.groupBox1.Controls.Add(this.label3);
+            this.groupBox1.Controls.Add(this.LCompleted1);
             this.groupBox1.Controls.Add(this.LLearningEpochs0);
-            this.groupBox1.Controls.Add(this.LCompleted);
+            this.groupBox1.Controls.Add(this.LCompleted0);
             this.groupBox1.Controls.Add(this.CBRandomize);
             this.groupBox1.Controls.Add(this.LLearningRate);
             this.groupBox1.Controls.Add(this.NUDLearningRate);
             this.groupBox1.Controls.Add(this.LEpochs);
             this.groupBox1.Controls.Add(this.NUDEpochs);
             this.groupBox1.Controls.Add(this.CLearningChart);
-            this.groupBox1.Controls.Add(this.button2);
+            this.groupBox1.Controls.Add(this.BLearn);
             this.groupBox1.Controls.Add(this.PBLearningProgress);
             this.groupBox1.Location = new System.Drawing.Point(541, 9);
             this.groupBox1.Name = "groupBox1";
@@ -175,11 +175,11 @@
             this.LEndError1.AutoSize = true;
             this.LEndError1.Font = new System.Drawing.Font("Consolas", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.LEndError1.ForeColor = System.Drawing.Color.Red;
-            this.LEndError1.Location = new System.Drawing.Point(471, 358);
+            this.LEndError1.Location = new System.Drawing.Point(506, 358);
             this.LEndError1.Name = "LEndError1";
-            this.LEndError1.Size = new System.Drawing.Size(54, 20);
+            this.LEndError1.Size = new System.Drawing.Size(18, 20);
             this.LEndError1.TabIndex = 13;
-            this.LEndError1.Text = "0.228";
+            this.LEndError1.Text = "0";
             // 
             // LStartError1
             // 
@@ -187,18 +187,18 @@
             this.LStartError1.AutoSize = true;
             this.LStartError1.Font = new System.Drawing.Font("Consolas", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.LStartError1.ForeColor = System.Drawing.Color.Red;
-            this.LStartError1.Location = new System.Drawing.Point(471, 328);
+            this.LStartError1.Location = new System.Drawing.Point(506, 328);
             this.LStartError1.Name = "LStartError1";
-            this.LStartError1.Size = new System.Drawing.Size(54, 20);
+            this.LStartError1.Size = new System.Drawing.Size(18, 20);
             this.LStartError1.TabIndex = 12;
-            this.LStartError1.Text = "0.228";
+            this.LStartError1.Text = "0";
             // 
             // LEndError0
             // 
             this.LEndError0.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.LEndError0.AutoSize = true;
             this.LEndError0.Font = new System.Drawing.Font("Consolas", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LEndError0.Location = new System.Drawing.Point(355, 358);
+            this.LEndError0.Location = new System.Drawing.Point(390, 358);
             this.LEndError0.Name = "LEndError0";
             this.LEndError0.Size = new System.Drawing.Size(99, 20);
             this.LEndError0.TabIndex = 11;
@@ -209,34 +209,34 @@
             this.LStartError0.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.LStartError0.AutoSize = true;
             this.LStartError0.Font = new System.Drawing.Font("Consolas", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LStartError0.Location = new System.Drawing.Point(337, 328);
+            this.LStartError0.Location = new System.Drawing.Point(372, 328);
             this.LStartError0.Name = "LStartError0";
             this.LStartError0.Size = new System.Drawing.Size(117, 20);
             this.LStartError0.TabIndex = 10;
             this.LStartError0.Text = "Start error:";
             // 
-            // label3
+            // LCompleted1
             // 
-            this.label3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Consolas", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.ForeColor = System.Drawing.Color.Green;
-            this.label3.Location = new System.Drawing.Point(192, 507);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(18, 20);
-            this.label3.TabIndex = 9;
-            this.label3.Text = "0";
+            this.LCompleted1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.LCompleted1.AutoSize = true;
+            this.LCompleted1.Font = new System.Drawing.Font("Consolas", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LCompleted1.ForeColor = System.Drawing.Color.Green;
+            this.LCompleted1.Location = new System.Drawing.Point(192, 507);
+            this.LCompleted1.Name = "LCompleted1";
+            this.LCompleted1.Size = new System.Drawing.Size(18, 20);
+            this.LCompleted1.TabIndex = 9;
+            this.LCompleted1.Text = "0";
             // 
-            // LCompleted
+            // LCompleted0
             // 
-            this.LCompleted.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.LCompleted.AutoSize = true;
-            this.LCompleted.Font = new System.Drawing.Font("Consolas", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LCompleted.Location = new System.Drawing.Point(6, 507);
-            this.LCompleted.Name = "LCompleted";
-            this.LCompleted.Size = new System.Drawing.Size(162, 20);
-            this.LCompleted.TabIndex = 8;
-            this.LCompleted.Text = "Completed epochs:";
+            this.LCompleted0.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.LCompleted0.AutoSize = true;
+            this.LCompleted0.Font = new System.Drawing.Font("Consolas", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LCompleted0.Location = new System.Drawing.Point(6, 507);
+            this.LCompleted0.Name = "LCompleted0";
+            this.LCompleted0.Size = new System.Drawing.Size(162, 20);
+            this.LCompleted0.TabIndex = 8;
+            this.LCompleted0.Text = "Completed epochs:";
             // 
             // CBRandomize
             // 
@@ -333,30 +333,31 @@
             this.CLearningChart.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            chartArea5.Name = "ChartArea1";
-            this.CLearningChart.ChartAreas.Add(chartArea5);
-            legend5.Name = "Legend1";
-            this.CLearningChart.Legends.Add(legend5);
+            chartArea2.Name = "ChartArea1";
+            this.CLearningChart.ChartAreas.Add(chartArea2);
+            legend2.Name = "Legend1";
+            this.CLearningChart.Legends.Add(legend2);
             this.CLearningChart.Location = new System.Drawing.Point(6, 21);
             this.CLearningChart.Name = "CLearningChart";
-            series5.ChartArea = "ChartArea1";
-            series5.Legend = "Legend1";
-            series5.Name = "Error";
-            this.CLearningChart.Series.Add(series5);
+            series2.ChartArea = "ChartArea1";
+            series2.Legend = "Legend1";
+            series2.Name = "Error";
+            this.CLearningChart.Series.Add(series2);
             this.CLearningChart.Size = new System.Drawing.Size(614, 286);
             this.CLearningChart.TabIndex = 2;
             // 
-            // button2
+            // BLearn
             // 
-            this.button2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.button2.Font = new System.Drawing.Font("Consolas", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button2.Location = new System.Drawing.Point(528, 529);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(92, 38);
-            this.button2.TabIndex = 7;
-            this.button2.Text = "Learn";
-            this.button2.UseVisualStyleBackColor = true;
+            this.BLearn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.BLearn.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.BLearn.Font = new System.Drawing.Font("Consolas", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BLearn.Location = new System.Drawing.Point(528, 529);
+            this.BLearn.Name = "BLearn";
+            this.BLearn.Size = new System.Drawing.Size(92, 38);
+            this.BLearn.TabIndex = 7;
+            this.BLearn.Text = "Learn";
+            this.BLearn.UseVisualStyleBackColor = true;
+            this.BLearn.Click += new System.EventHandler(this.BLearn_Click);
             // 
             // PBLearningProgress
             // 
@@ -418,6 +419,70 @@
             this.tableLayoutPanel1.Size = new System.Drawing.Size(523, 373);
             this.tableLayoutPanel1.TabIndex = 11;
             // 
+            // NFBRandomize1
+            // 
+            this.NFBRandomize1.BackColor = System.Drawing.Color.Transparent;
+            this.NFBRandomize1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("NFBRandomize1.BackgroundImage")));
+            this.NFBRandomize1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.NFBRandomize1.FlatAppearance.BorderSize = 0;
+            this.NFBRandomize1.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(210)))), ((int)(((byte)(210)))), ((int)(((byte)(210)))));
+            this.NFBRandomize1.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(229)))), ((int)(((byte)(229)))), ((int)(((byte)(229)))));
+            this.NFBRandomize1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.NFBRandomize1.Location = new System.Drawing.Point(163, 219);
+            this.NFBRandomize1.Name = "NFBRandomize1";
+            this.NFBRandomize1.Size = new System.Drawing.Size(34, 30);
+            this.NFBRandomize1.TabIndex = 17;
+            this.NFBRandomize1.UseVisualStyleBackColor = false;
+            this.NFBRandomize1.Click += new System.EventHandler(this.NFBRandomize1_Click);
+            // 
+            // NFBSave
+            // 
+            this.NFBSave.BackColor = System.Drawing.Color.Transparent;
+            this.NFBSave.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("NFBSave.BackgroundImage")));
+            this.NFBSave.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.NFBSave.FlatAppearance.BorderSize = 0;
+            this.NFBSave.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(210)))), ((int)(((byte)(210)))), ((int)(((byte)(210)))));
+            this.NFBSave.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(229)))), ((int)(((byte)(229)))), ((int)(((byte)(229)))));
+            this.NFBSave.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.NFBSave.Location = new System.Drawing.Point(12, 219);
+            this.NFBSave.Name = "NFBSave";
+            this.NFBSave.Size = new System.Drawing.Size(34, 30);
+            this.NFBSave.TabIndex = 16;
+            this.NFBSave.UseVisualStyleBackColor = false;
+            this.NFBSave.Click += new System.EventHandler(this.NFBSave_Click);
+            // 
+            // NFBRandomize0
+            // 
+            this.NFBRandomize0.BackColor = System.Drawing.Color.Transparent;
+            this.NFBRandomize0.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("NFBRandomize0.BackgroundImage")));
+            this.NFBRandomize0.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.NFBRandomize0.FlatAppearance.BorderSize = 0;
+            this.NFBRandomize0.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(210)))), ((int)(((byte)(210)))), ((int)(((byte)(210)))));
+            this.NFBRandomize0.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(229)))), ((int)(((byte)(229)))), ((int)(((byte)(229)))));
+            this.NFBRandomize0.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.NFBRandomize0.Location = new System.Drawing.Point(123, 219);
+            this.NFBRandomize0.Name = "NFBRandomize0";
+            this.NFBRandomize0.Size = new System.Drawing.Size(34, 30);
+            this.NFBRandomize0.TabIndex = 15;
+            this.NFBRandomize0.UseVisualStyleBackColor = false;
+            this.NFBRandomize0.Click += new System.EventHandler(this.NFBRandomize0_Click);
+            // 
+            // NFBSaveAs
+            // 
+            this.NFBSaveAs.BackColor = System.Drawing.Color.Transparent;
+            this.NFBSaveAs.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("NFBSaveAs.BackgroundImage")));
+            this.NFBSaveAs.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.NFBSaveAs.FlatAppearance.BorderSize = 0;
+            this.NFBSaveAs.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(210)))), ((int)(((byte)(210)))), ((int)(((byte)(210)))));
+            this.NFBSaveAs.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(229)))), ((int)(((byte)(229)))), ((int)(((byte)(229)))));
+            this.NFBSaveAs.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.NFBSaveAs.Location = new System.Drawing.Point(52, 219);
+            this.NFBSaveAs.Name = "NFBSaveAs";
+            this.NFBSaveAs.Size = new System.Drawing.Size(34, 30);
+            this.NFBSaveAs.TabIndex = 14;
+            this.NFBSaveAs.UseVisualStyleBackColor = false;
+            this.NFBSaveAs.Click += new System.EventHandler(this.NFBSaveAs_Click);
+            // 
             // NFBRemove
             // 
             this.NFBRemove.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
@@ -451,70 +516,6 @@
             this.NFBAdd.TabIndex = 12;
             this.NFBAdd.UseVisualStyleBackColor = false;
             this.NFBAdd.Click += new System.EventHandler(this.NFBAdd_Click);
-            // 
-            // NFBSaveAs
-            // 
-            this.NFBSaveAs.BackColor = System.Drawing.Color.Transparent;
-            this.NFBSaveAs.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("NFBSaveAs.BackgroundImage")));
-            this.NFBSaveAs.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.NFBSaveAs.FlatAppearance.BorderSize = 0;
-            this.NFBSaveAs.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(210)))), ((int)(((byte)(210)))), ((int)(((byte)(210)))));
-            this.NFBSaveAs.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(229)))), ((int)(((byte)(229)))), ((int)(((byte)(229)))));
-            this.NFBSaveAs.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.NFBSaveAs.Location = new System.Drawing.Point(52, 219);
-            this.NFBSaveAs.Name = "NFBSaveAs";
-            this.NFBSaveAs.Size = new System.Drawing.Size(34, 30);
-            this.NFBSaveAs.TabIndex = 14;
-            this.NFBSaveAs.UseVisualStyleBackColor = false;
-            this.NFBSaveAs.Click += new System.EventHandler(this.NFBSaveAs_Click);
-            // 
-            // NFBRandomize0
-            // 
-            this.NFBRandomize0.BackColor = System.Drawing.Color.Transparent;
-            this.NFBRandomize0.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("NFBRandomize0.BackgroundImage")));
-            this.NFBRandomize0.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.NFBRandomize0.FlatAppearance.BorderSize = 0;
-            this.NFBRandomize0.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(210)))), ((int)(((byte)(210)))), ((int)(((byte)(210)))));
-            this.NFBRandomize0.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(229)))), ((int)(((byte)(229)))), ((int)(((byte)(229)))));
-            this.NFBRandomize0.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.NFBRandomize0.Location = new System.Drawing.Point(123, 219);
-            this.NFBRandomize0.Name = "NFBRandomize0";
-            this.NFBRandomize0.Size = new System.Drawing.Size(34, 30);
-            this.NFBRandomize0.TabIndex = 15;
-            this.NFBRandomize0.UseVisualStyleBackColor = false;
-            this.NFBRandomize0.Click += new System.EventHandler(this.NFBRandomize0_Click);
-            // 
-            // NFBSave
-            // 
-            this.NFBSave.BackColor = System.Drawing.Color.Transparent;
-            this.NFBSave.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("NFBSave.BackgroundImage")));
-            this.NFBSave.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.NFBSave.FlatAppearance.BorderSize = 0;
-            this.NFBSave.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(210)))), ((int)(((byte)(210)))), ((int)(((byte)(210)))));
-            this.NFBSave.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(229)))), ((int)(((byte)(229)))), ((int)(((byte)(229)))));
-            this.NFBSave.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.NFBSave.Location = new System.Drawing.Point(12, 219);
-            this.NFBSave.Name = "NFBSave";
-            this.NFBSave.Size = new System.Drawing.Size(34, 30);
-            this.NFBSave.TabIndex = 16;
-            this.NFBSave.UseVisualStyleBackColor = false;
-            this.NFBSave.Click += new System.EventHandler(this.NFBSave_Click);
-            // 
-            // NFBRandomize1
-            // 
-            this.NFBRandomize1.BackColor = System.Drawing.Color.Transparent;
-            this.NFBRandomize1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("NFBRandomize1.BackgroundImage")));
-            this.NFBRandomize1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.NFBRandomize1.FlatAppearance.BorderSize = 0;
-            this.NFBRandomize1.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(210)))), ((int)(((byte)(210)))), ((int)(((byte)(210)))));
-            this.NFBRandomize1.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(229)))), ((int)(((byte)(229)))), ((int)(((byte)(229)))));
-            this.NFBRandomize1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.NFBRandomize1.Location = new System.Drawing.Point(163, 219);
-            this.NFBRandomize1.Name = "NFBRandomize1";
-            this.NFBRandomize1.Size = new System.Drawing.Size(34, 30);
-            this.NFBRandomize1.TabIndex = 17;
-            this.NFBRandomize1.UseVisualStyleBackColor = false;
-            this.NFBRandomize1.Click += new System.EventHandler(this.NFBRandomize1_Click);
             // 
             // TrainingForm
             // 
@@ -563,15 +564,15 @@
         private System.Windows.Forms.DataGridView DGVCorrectOutputSignals;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private System.Windows.Forms.DataVisualization.Charting.Chart CLearningChart;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button BLearn;
         private System.Windows.Forms.ProgressBar PBLearningProgress;
         private System.Windows.Forms.Label LLearningRate;
         private System.Windows.Forms.NumericUpDown NUDLearningRate;
         private System.Windows.Forms.Label LEpochs;
         private System.Windows.Forms.NumericUpDown NUDEpochs;
         private System.Windows.Forms.CheckBox CBRandomize;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label LCompleted;
+        private System.Windows.Forms.Label LCompleted1;
+        private System.Windows.Forms.Label LCompleted0;
         private System.Windows.Forms.Label LEndError1;
         private System.Windows.Forms.Label LStartError1;
         private System.Windows.Forms.Label LEndError0;

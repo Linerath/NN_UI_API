@@ -321,19 +321,27 @@ namespace Neural_Network.Testing
             //f.SetWeights(Layers.Output, 1, new double[] { 0.7, 0.1, 0.2 });
             f.SetAllRandomWeights();
 
-            ShowNetwork(f);
-            ShowResponse(f, new double[] { 0.7, 0.3 });
-            ShowResponse(f, new double[] { 0.2, 0.6 });
+            var in0 = new double[] { 0.7, 0.3 };
+            var in1 = new double[] { 0.2, 0.6 };
+            var out0 = new double[] { 0.5, 0.5 };
+            var out1 = new double[] { 0.3, 0.9 };
+
+            //ShowNetwork(f);
+            ShowResponseAndError(f, in0, out0);
+            ShowResponseAndError(f, in1, out1);
 
             for (int i = 0; i < 10000; i++)
             {
-                f.Learn(new double[] { 0.7, 0.3 }, new double[] { 0.5, 0.5 });
-                f.Learn(new double[] { 0.2, 0.6 }, new double[] { 0.3, 0.9 });
+                f.Learn(in0, out0);
+                f.Learn(in1, out1);
             }
 
-            ShowNetwork(f);
-            ShowResponse(f, new double[] { 0.7, 0.3 });
-            ShowResponse(f, new double[] { 0.2, 0.6 });
+            //ShowNetwork(f);
+            Console.WriteLine(new String('/', 100));
+            Console.WriteLine("Learnt...");
+            Console.WriteLine(new String('/', 100) + "\n");
+            ShowResponseAndError(f, in0, out0, false);
+            ShowResponseAndError(f, in1, out1, false);
         }
 
         public static void PrintNetwork(FeedforwardNetworkSHL n, StreamWriter sw)
@@ -400,10 +408,44 @@ namespace Neural_Network.Testing
             var rs = f.GetResponse(signals);
 
             Console.WriteLine(new String('*', 50));
+
+            Console.Write("Input: ");
+            Array.ForEach(signals, x => Console.Write(x + "  "));
+            Console.WriteLine();
+
             Console.WriteLine("Response:");
             foreach (var r in rs)
                 Console.Write(r + " ");
             Console.WriteLine("\n");
+            Console.Write(new String('*', 50));
+            Console.WriteLine("\n");
+        }
+        public static void ShowResponseAndError(FeedforwardNetworkSHL f, double[] signals, double[] expectedOutputs, bool round = true)
+        {
+            var rs = f.GetResponse(signals);
+
+            Console.WriteLine(new String('*', 50));
+
+            Console.Write("Input: ");
+            Array.ForEach(signals, x => Console.Write(x + "  "));
+            Console.WriteLine();
+
+            Console.WriteLine("Response:");
+            foreach (var r in rs)
+                Console.Write(r + " ");
+            Console.WriteLine();
+
+            var errors = f.GetErrors(signals, expectedOutputs);
+            Console.WriteLine("Errors:");
+            foreach (var e in errors)
+            {
+                if (round)
+                    Console.Write("{0:#.##} ", e);
+                else
+                    Console.Write(e + " ");
+            }
+            Console.WriteLine("");
+
             Console.Write(new String('*', 50));
             Console.WriteLine("\n");
         }
