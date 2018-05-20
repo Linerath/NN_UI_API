@@ -29,24 +29,9 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(NetworkExplorerForm));
-            this.BRemove = new System.Windows.Forms.Button();
             this.TVNetworks = new System.Windows.Forms.TreeView();
+            this.NFBRemove = new Neural_Network.UI.Shared.Controls.NonFocusButton();
             this.SuspendLayout();
-            // 
-            // BRemove
-            // 
-            this.BRemove.BackColor = System.Drawing.Color.Transparent;
-            this.BRemove.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("BRemove.BackgroundImage")));
-            this.BRemove.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.BRemove.FlatAppearance.BorderSize = 0;
-            this.BRemove.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.BRemove.Font = new System.Drawing.Font("Consolas", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BRemove.Location = new System.Drawing.Point(5, 5);
-            this.BRemove.Name = "BRemove";
-            this.BRemove.Size = new System.Drawing.Size(34, 30);
-            this.BRemove.TabIndex = 2;
-            this.BRemove.UseVisualStyleBackColor = false;
-            this.BRemove.Click += new System.EventHandler(this.BRemove_Click);
             // 
             // TVNetworks
             // 
@@ -60,12 +45,28 @@
             this.TVNetworks.TabIndex = 0;
             this.TVNetworks.NodeMouseDoubleClick += new System.Windows.Forms.TreeNodeMouseClickEventHandler(this.TVNetworks_NodeMouseDoubleClick);
             // 
+            // NFBRemove
+            // 
+            this.NFBRemove.BackColor = System.Drawing.Color.Transparent;
+            this.NFBRemove.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("NFBRemove.BackgroundImage")));
+            this.NFBRemove.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.NFBRemove.FlatAppearance.BorderSize = 0;
+            this.NFBRemove.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(210)))), ((int)(((byte)(210)))), ((int)(((byte)(210)))));
+            this.NFBRemove.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(229)))), ((int)(((byte)(229)))), ((int)(((byte)(229)))));
+            this.NFBRemove.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.NFBRemove.Location = new System.Drawing.Point(5, 5);
+            this.NFBRemove.Name = "NFBRemove";
+            this.NFBRemove.Size = new System.Drawing.Size(34, 30);
+            this.NFBRemove.TabIndex = 3;
+            this.NFBRemove.UseVisualStyleBackColor = false;
+            this.NFBRemove.Click += new System.EventHandler(this.BRemove_Click);
+            // 
             // NetworkExplorerForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(282, 277);
-            this.Controls.Add(this.BRemove);
+            this.Controls.Add(this.NFBRemove);
             this.Controls.Add(this.TVNetworks);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
@@ -77,7 +78,7 @@
         }
 
         #endregion
-        private System.Windows.Forms.Button BRemove;
         private System.Windows.Forms.TreeView TVNetworks;
+        private Shared.Controls.NonFocusButton NFBRemove;
     }
 }

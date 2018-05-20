@@ -22,9 +22,6 @@ namespace Neural_Network.UI.Forms.Dialogs
         private void SelectNetworkForm_Load(object sender, EventArgs e)
         {
             RefreshNetworks();
-
-            LBNetworks.SelectedIndex = 1;
-            BOk.PerformClick();
         }
         private void BOk_Click(object sender, EventArgs e)
         {

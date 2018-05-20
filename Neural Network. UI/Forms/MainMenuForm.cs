@@ -53,7 +53,6 @@ namespace Neural_Network.UI.Forms
                 networkExplorerForm.RefreshTree();
                 ShowAllNetworks();
             }
-            BTraining.PerformClick();
         }
         private void BNewProj_Click(object sender, EventArgs e)
         {

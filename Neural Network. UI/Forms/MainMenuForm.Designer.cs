@@ -120,15 +120,17 @@
             // 
             // BNewNetwork
             // 
-            this.BNewNetwork.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
+            this.BNewNetwork.BackColor = System.Drawing.Color.Transparent;
+            this.BNewNetwork.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("BNewNetwork.BackgroundImage")));
             this.BNewNetwork.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.BNewNetwork.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(210)))), ((int)(((byte)(210)))), ((int)(((byte)(210)))));
+            this.BNewNetwork.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(229)))), ((int)(((byte)(229)))), ((int)(((byte)(229)))));
             this.BNewNetwork.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.BNewNetwork.Font = new System.Drawing.Font("Consolas", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BNewNetwork.Location = new System.Drawing.Point(15, 24);
             this.BNewNetwork.Name = "BNewNetwork";
             this.BNewNetwork.Size = new System.Drawing.Size(40, 35);
             this.BNewNetwork.TabIndex = 1;
-            this.BNewNetwork.Text = "N";
             this.BNewNetwork.UseVisualStyleBackColor = false;
             this.BNewNetwork.Click += new System.EventHandler(this.BNewNetwork_Click);
             // 
@@ -216,18 +218,20 @@
             this.GBActions.Size = new System.Drawing.Size(119, 72);
             this.GBActions.TabIndex = 5;
             this.GBActions.TabStop = false;
-            this.GBActions.Text = "Actions";
             // 
             // BTraining
             // 
-            this.BTraining.BackColor = System.Drawing.Color.OrangeRed;
+            this.BTraining.BackColor = System.Drawing.Color.Transparent;
+            this.BTraining.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("BTraining.BackgroundImage")));
+            this.BTraining.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.BTraining.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(210)))), ((int)(((byte)(210)))), ((int)(((byte)(210)))));
+            this.BTraining.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(229)))), ((int)(((byte)(229)))), ((int)(((byte)(229)))));
             this.BTraining.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.BTraining.Font = new System.Drawing.Font("Consolas", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BTraining.Location = new System.Drawing.Point(15, 24);
             this.BTraining.Name = "BTraining";
             this.BTraining.Size = new System.Drawing.Size(40, 35);
             this.BTraining.TabIndex = 4;
-            this.BTraining.Text = "T";
             this.BTraining.UseVisualStyleBackColor = false;
             this.BTraining.Click += new System.EventHandler(this.BTraining_Click);
             // 
@@ -250,7 +254,8 @@
             this.BSaveProjAs.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("BSaveProjAs.BackgroundImage")));
             this.BSaveProjAs.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.BSaveProjAs.FlatAppearance.BorderSize = 0;
-            this.BSaveProjAs.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
+            this.BSaveProjAs.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(210)))), ((int)(((byte)(210)))), ((int)(((byte)(210)))));
+            this.BSaveProjAs.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(229)))), ((int)(((byte)(229)))), ((int)(((byte)(229)))));
             this.BSaveProjAs.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.BSaveProjAs.Font = new System.Drawing.Font("Consolas", 10.8F, System.Drawing.FontStyle.Bold);
             this.BSaveProjAs.Location = new System.Drawing.Point(153, 24);
@@ -266,7 +271,8 @@
             this.BSaveProj.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("BSaveProj.BackgroundImage")));
             this.BSaveProj.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.BSaveProj.FlatAppearance.BorderSize = 0;
-            this.BSaveProj.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
+            this.BSaveProj.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(210)))), ((int)(((byte)(210)))), ((int)(((byte)(210)))));
+            this.BSaveProj.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(229)))), ((int)(((byte)(229)))), ((int)(((byte)(229)))));
             this.BSaveProj.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.BSaveProj.Font = new System.Drawing.Font("Consolas", 10.8F, System.Drawing.FontStyle.Bold);
             this.BSaveProj.Location = new System.Drawing.Point(107, 24);
@@ -351,8 +357,8 @@
         private System.Windows.Forms.GroupBox GBProj;
         private System.Windows.Forms.Button BOpenProj;
         private System.Windows.Forms.Button BNewProj;
-        private System.Windows.Forms.Button BSaveProj;
-        private System.Windows.Forms.Button BSaveProjAs;
         private System.Windows.Forms.Button BTraining;
+        private System.Windows.Forms.Button BSaveProjAs;
+        private System.Windows.Forms.Button BSaveProj;
     }
 }

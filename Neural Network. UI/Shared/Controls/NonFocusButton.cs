@@ -17,6 +17,9 @@ namespace Neural_Network.UI.Shared.Controls
             FlatStyle = FlatStyle.Flat;
             BackgroundImageLayout = ImageLayout.Stretch;
             BackColor = Color.Transparent;
+            FlatAppearance.MouseOverBackColor = Color.FromArgb(229, 229, 229);
+            FlatAppearance.MouseDownBackColor = Color.FromArgb(210, 210, 210);
+            FlatAppearance.BorderSize = 0;
         }
     }
 }
