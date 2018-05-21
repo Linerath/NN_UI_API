@@ -26,10 +26,10 @@ namespace Neural_Network.UI.Shared
             OnPropertyChangedActions = new List<Action<int>>();
             lastForm = null;
 
-            settingsForm.PGLayers.PropertyValueChanged += PGLayers_PropertyValueChanged;
+            settingsForm.PGProperties.PropertyValueChanged += PGProperties_PropertyValueChanged;
         }
 
-        private void PGLayers_PropertyValueChanged(object s, PropertyValueChangedEventArgs e)
+        private void PGProperties_PropertyValueChanged(object s, PropertyValueChangedEventArgs e)
         {
             if (forms.Count() < 1)
                 return;
@@ -52,17 +52,17 @@ namespace Neural_Network.UI.Shared
             if (lastForm == activatedForm)
                 return;
 
-            settingsForm.PGLayers.Tag = activatedForm.Tag;
+            settingsForm.PGProperties.Tag = activatedForm.Tag.ToString().Split(' ')[1];
 
-            if (activatedForm is LayerForm layerForm)
+            if (activatedForm is NetworkForm networkForm)
             {
-                settingsForm.PGLayers.SelectedObject = layerForm.ViewSettings;
-                settingsForm.PGLayers.Tag += ";" + layerForm.NetworkIndex;
+                settingsForm.PGProperties.SelectedObject = networkForm.ViewSettings;
+                settingsForm.PGProperties.Tag += ";" + networkForm.NetworkIndex;
             }
             else if (activatedForm is TrainingForm trainingForm)
             {
-                settingsForm.PGLayers.SelectedObject = trainingForm.ViewSettings;
-                settingsForm.PGLayers.Tag += ";" + trainingForm.NetworkIndex;
+                settingsForm.PGProperties.SelectedObject = trainingForm.ViewSettings;
+                settingsForm.PGProperties.Tag += ";" + trainingForm.NetworkIndex;
             }
             lastForm = activatedForm;
         }
@@ -72,8 +72,41 @@ namespace Neural_Network.UI.Shared
             forms.Add(form);
             OnPropertyChangedActions.Add(onPropertyChange);
             int index = forms.Count() - 1;
-            forms[index].Tag = index;
+            forms[index].Tag += " " + index;
             form.Activated += Form_Activated;
+        }
+        public void UnregisterForm(Form form)
+        {
+            int index = -1;
+            for (int i = 0; i < forms.Count(); i++)
+            {
+                if (forms[i] == form)
+                {
+                    index = i;
+                    break;
+                }
+            }
+            if (index >= 0)
+            {
+                forms[index].Activated -= Form_Activated;
+                forms.RemoveAt(index);
+                OnPropertyChangedActions.RemoveAt(index);
+            }
+        }
+        public void UnregisterForm(int networkIndex, bool close = false)
+        {
+            for (int i = 0; i < forms.Count(); i++)
+            {
+                if (forms[i].Tag.ToString().Split(' ')[0] == networkIndex.ToString())
+                {
+                    forms[i].Activated -= Form_Activated;
+                    if (close)
+                        forms[i].Close();
+                    forms.RemoveAt(i);
+                    OnPropertyChangedActions.RemoveAt(i);
+                    i--;
+                }
+            }
         }
     }
 }

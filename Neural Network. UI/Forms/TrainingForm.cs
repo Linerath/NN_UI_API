@@ -250,7 +250,7 @@ namespace Neural_Network.UI.Forms
         private void GlobalNetworkRefresh()
         {
             var owner = Owner as MainMenuForm;
-            owner?.RefreshNetworkLayer(NetworkIndex);
+            owner?.RefreshNetwork(NetworkIndex);
         }
 
         private void SaveAs()

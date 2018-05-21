@@ -29,26 +29,26 @@
         private void InitializeComponent()
         {
             this.PLayers = new System.Windows.Forms.Panel();
-            this.PGLayers = new System.Windows.Forms.PropertyGrid();
+            this.PGProperties = new System.Windows.Forms.PropertyGrid();
             this.PLayers.SuspendLayout();
             this.SuspendLayout();
             // 
             // PLayers
             // 
-            this.PLayers.Controls.Add(this.PGLayers);
+            this.PLayers.Controls.Add(this.PGProperties);
             this.PLayers.Dock = System.Windows.Forms.DockStyle.Fill;
             this.PLayers.Location = new System.Drawing.Point(0, 0);
             this.PLayers.Name = "PLayers";
             this.PLayers.Size = new System.Drawing.Size(282, 423);
             this.PLayers.TabIndex = 1;
             // 
-            // PGLayers
+            // PGProperties
             // 
-            this.PGLayers.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.PGLayers.Location = new System.Drawing.Point(0, 0);
-            this.PGLayers.Name = "PGLayers";
-            this.PGLayers.Size = new System.Drawing.Size(282, 423);
-            this.PGLayers.TabIndex = 2;
+            this.PGProperties.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.PGProperties.Location = new System.Drawing.Point(0, 0);
+            this.PGProperties.Name = "PGProperties";
+            this.PGProperties.Size = new System.Drawing.Size(282, 423);
+            this.PGProperties.TabIndex = 2;
             // 
             // ViewSettingsForm
             // 
@@ -69,6 +69,6 @@
 
         #endregion
         private System.Windows.Forms.Panel PLayers;
-        public System.Windows.Forms.PropertyGrid PGLayers;
+        public System.Windows.Forms.PropertyGrid PGProperties;
     }
 }

@@ -25,23 +25,30 @@ namespace Neural_Network.UI.Forms
         }
         private void BRemove_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("In development", "Warning");
-            return;
             if (TVNetworks.SelectedNode == null)
-                    return;
-            MessageBox.Show(TVNetworks.SelectedNode.Text);
+                return;
+            var networkIndex = TVNetworks.SelectedNode.Index;
+            if (networkIndex < 0)
+                return;
+
+            var network = UIRepository.Project.Networks[networkIndex];
 
             var dialogResult = MessageBox.Show(
-                "Are you sure want to delete selected network (" + TVNetworks.SelectedNode.Text + ")", 
-                "Deleteing", 
-                MessageBoxButtons.YesNo, 
-                MessageBoxIcon.Question, 
+                "Are you sure want to delete selected network:\n" + network.Name + " " +
+                network.InputLayerSize.ToString() + " " + network.HiddenLayerSize.ToString() + " " + network.OutputLayerSize.ToString() + ".\nCreated on " +
+                network.CreationDate.ToString(),
+                "Deleting",
+                MessageBoxButtons.YesNo,
+                MessageBoxIcon.Question,
                 MessageBoxDefaultButton.Button2
                 );
 
             if (dialogResult == DialogResult.Yes)
             {
-
+                UIRepository.Project.Networks.RemoveAt(networkIndex);
+                RefreshTree();
+                var owner = Owner as MainMenuForm;
+                owner.CloseNetwork(networkIndex);
             }
         }
         #endregion

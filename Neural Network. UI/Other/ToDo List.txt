@@ -36,6 +36,6 @@ III. NeuralNetwork UI
 	3. MainMenuForm:
 		1) read proj name after opening proj
 
-	4. LayerForm:
+	4. NetworkForm:
 		1) close all forms when one is closed
 		2) make input validating

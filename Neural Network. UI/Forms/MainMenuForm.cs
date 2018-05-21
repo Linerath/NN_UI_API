@@ -22,9 +22,7 @@ namespace Neural_Network.UI.Forms
         #region Forms
         private NetworkExplorerForm networkExplorerForm;
         private ViewSettingsForm viewSettingsForm;
-        private List<LayerForm> inputLayerForms;
-        private List<LayerForm> hiddenLayerForms;
-        private List<LayerForm> outputLayerForms;
+        private List<NetworkForm> networkForms;
         private InputProjectsForm inputProjectsForm;
         private TrainingForm trainingForm;
         #endregion
@@ -210,20 +208,14 @@ namespace Neural_Network.UI.Forms
             networkExplorerForm?.Close();
             viewSettingsForm?.Close();
 
-            if (inputLayerForms != null && inputLayerForms.Count() > 0)
-            {
-                inputLayerForms.ForEach(x => x.Close());
-                hiddenLayerForms.ForEach(x => x.Close());
-                outputLayerForms.ForEach(x => x.Close());
-            }
+            if (networkForms != null && networkForms.Count() > 0)
+                networkForms.ForEach(x => x.Close());
             inputProjectsForm?.Close();
             trainingForm?.Close();
 
             (networkExplorerForm = new NetworkExplorerForm()).Owner = this;
             (viewSettingsForm = new ViewSettingsForm()).Owner = this;
-            inputLayerForms = new List<LayerForm>();
-            hiddenLayerForms = new List<LayerForm>();
-            outputLayerForms = new List<LayerForm>();
+            networkForms = new List<NetworkForm>();
             (inputProjectsForm = new InputProjectsForm()).Owner = this;
 
             formActivatedHandler = new FormActivatedHandler(viewSettingsForm);
@@ -326,51 +318,45 @@ namespace Neural_Network.UI.Forms
             Size = new Size(Screen.PrimaryScreen.Bounds.Width, Size.Height);
         }
 
-        private LayerForm CreateLayerForm(Layers layer, int networkIndex, String text, bool registerActivatedEvent = true)
-        {
-            var layerForm = new LayerForm(layer, networkIndex)
-            {
-                Owner = this,
-                Text = text,
-            };
-
-            if (registerActivatedEvent)
-                formActivatedHandler.RegisterForm(layerForm, RefreshNetworkLayer);
-
-            return layerForm;
-        }
         public void ShowAllNetworks()
         {
             for (int i = 0; i < UIRepository.Project.NetworksCount; i++)
-            {
                 ShowNetwork(i);
-            }
         }
         public void ShowNetwork(int networkIndex)
         {
-            LayerForm newLayerForm = CreateLayerForm(Layers.Input, networkIndex, "Input Layer (" + UIRepository.Project.Networks[networkIndex].Name + ")");
-            inputLayerForms.Add(newLayerForm);
-            newLayerForm.Show();
-            newLayerForm.Location = new Point(networkExplorerForm.Location.X + networkExplorerForm.ClientSize.Width + 250, networkExplorerForm.Location.Y);
-            newLayerForm.FullLayerRefresh();
+            NetworkForm networkForm = new NetworkForm(networkIndex)
+            {
+                Owner = this,
+                Text = UIRepository.Project.Networks[networkIndex].Name,
+                Tag = networkIndex.ToString(),
+            };
+            formActivatedHandler.RegisterForm(networkForm, RefreshNetwork);
 
-            newLayerForm = CreateLayerForm(Layers.Hidden, networkIndex, "Hidden Layer (" + UIRepository.Project.Networks[networkIndex].Name + ")");
-            hiddenLayerForms.Add(newLayerForm);
-            newLayerForm.Show();
-            newLayerForm.Location = new Point(inputLayerForms[inputLayerForms.Count() - 1].Location.X + inputLayerForms[inputLayerForms.Count() - 1].ClientSize.Width, inputLayerForms[inputLayerForms.Count() - 1].Location.Y);
-            newLayerForm.FullLayerRefresh();
-
-            newLayerForm = CreateLayerForm(Layers.Output, networkIndex, "Output Layer (" + UIRepository.Project.Networks[networkIndex].Name + ")");
-            outputLayerForms.Add(newLayerForm);
-            newLayerForm.Show();
-            newLayerForm.Location = new Point(hiddenLayerForms[inputLayerForms.Count() - 1].Location.X + hiddenLayerForms[inputLayerForms.Count() - 1].ClientSize.Width, hiddenLayerForms[inputLayerForms.Count() - 1].Location.Y);
-            newLayerForm.FullLayerRefresh();
-
-            inputLayerForms[inputLayerForms.Count() - 1].SetFollowedForm(hiddenLayerForms[inputLayerForms.Count() - 1], FormRelativeLayout.LeftTop);
-            newLayerForm.SetFollowedForm(hiddenLayerForms[inputLayerForms.Count() - 1], FormRelativeLayout.RightTop);
-
-            hiddenLayerForms[inputLayerForms.Count() - 1].Focus();
+            networkForms.Add(networkForm);
+            networkForm.Show();
+            networkForm.Location = new Point(networkExplorerForm.Location.X + networkExplorerForm.ClientSize.Width + 250, networkExplorerForm.Location.Y);
+            networkForm.FullNetworkRefresh();
         }
+        public void CloseNetwork(int networkIndex)
+        {
+            //int formNetworkIndex = GetNetworkFormIndex(networkIndex);
+            //if (formNetworkIndex >= 0)
+            //{
+            //    formActivatedHandler.UnregisterForm(formNetworkIndex, true);
+            //    networkForms.RemoveAt(formNetworkIndex);
+            //}
+        }
+        //public int GetNetworkFormIndex(int networkIndex)
+        //{
+            //for (int i = 0; i < networkForms.Count(); i++)
+            //{
+            //    if (networkForms[i].Tag.ToString().Split(' ')[0] == networkIndex.ToString())
+            //        return i;
+            //}
+            //return -1;
+        //}
+
         public void ShowInputProject(int inputProjectIndex)
         {
 
@@ -386,11 +372,9 @@ namespace Neural_Network.UI.Forms
             trainingForm.Show();
         }
 
-        public void RefreshNetworkLayer(int networkIndex)
+        public void RefreshNetwork(int networkIndex)
         {
-            inputLayerForms[networkIndex]?.FullLayerRefresh();
-            hiddenLayerForms[networkIndex]?.FullLayerRefresh();
-            outputLayerForms[networkIndex]?.FullLayerRefresh();
+            networkForms[networkIndex]?.FullNetworkRefresh();
         }
         public void RefreshTrainingFormTables(int networkIndex)
         {
