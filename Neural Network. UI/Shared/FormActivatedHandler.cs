@@ -70,11 +70,11 @@ namespace Neural_Network.UI.Shared
             OnPropertyChangedActions.Add(onPropertyChange);
             form.Activated += Form_Activated;
         }
-        public void UnregisterForm(int networkIndex, bool close = false)
+        public void UnregisterForm(Form form, bool close = false)
         {
             for (int i = 0; i < forms.Count(); i++)
             {
-                if (forms[i].Tag.ToString().Split(' ')[0] == networkIndex.ToString())
+                if (forms[i] == form)
                 {
                     forms[i].Activated -= Form_Activated;
                     if (close)

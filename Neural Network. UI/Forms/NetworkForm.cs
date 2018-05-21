@@ -153,6 +153,11 @@ namespace Neural_Network.UI.Forms
                 TableHandler.RefreshCellsAutoSize(dgvHidden[i], ViewSettings);
             TableHandler.RefreshCellsAutoSize(dgvOutput, ViewSettings);
         }
+        public void DecreaseNetworkIndex()
+        {
+            NetworkIndex--;
+            Tag = NetworkIndex.ToString();
+        }
         #endregion
 
         private void button1_Click(object sender, EventArgs e)

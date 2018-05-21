@@ -45,10 +45,10 @@ namespace Neural_Network.UI.Forms
 
             if (dialogResult == DialogResult.Yes)
             {
-                UIRepository.Project.Networks.RemoveAt(networkIndex);
-                RefreshTree();
                 var owner = Owner as MainMenuForm;
                 owner.CloseNetwork(networkIndex);
+                UIRepository.Project.Networks.RemoveAt(networkIndex);
+                RefreshTree();
             }
         }
         #endregion
@@ -56,7 +56,8 @@ namespace Neural_Network.UI.Forms
         #region Methods
         public void RefreshTree()
         {
-            // Readable
+            // More Readable
+
             //TreeNode[] nodes = new TreeNode[Project.NetworksCount];
             //for (int i = 0; i < Project.NetworksCount; i++)
             //{

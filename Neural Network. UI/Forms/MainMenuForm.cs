@@ -336,22 +336,24 @@ namespace Neural_Network.UI.Forms
         }
         public void CloseNetwork(int networkIndex)
         {
-            //int formNetworkIndex = GetNetworkFormIndex(networkIndex);
-            //if (formNetworkIndex >= 0)
-            //{
-            //    formActivatedHandler.UnregisterForm(formNetworkIndex, true);
-            //    networkForms.RemoveAt(formNetworkIndex);
-            //}
+            int formNetworkIndex = GetNetworkFormIndex(networkIndex);
+            if (formNetworkIndex >= 0)
+            {
+                for (int i = formNetworkIndex; i < networkForms.Count(); i++)
+                    networkForms[i].DecreaseNetworkIndex();
+                formActivatedHandler.UnregisterForm(networkForms[formNetworkIndex], true);
+                networkForms.RemoveAt(formNetworkIndex);
+            }
         }
-        //public int GetNetworkFormIndex(int networkIndex)
-        //{
-        //for (int i = 0; i < networkForms.Count(); i++)
-        //{
-        //    if (networkForms[i].Tag.ToString().Split(' ')[0] == networkIndex.ToString())
-        //        return i;
-        //}
-        //return -1;
-        //}
+        public int GetNetworkFormIndex(int networkIndex)
+        {
+            for (int i = 0; i < networkForms.Count(); i++)
+            {
+                if (networkForms[i].NetworkIndex == networkIndex)
+                    return i;
+            }
+            return -1;
+        }
 
         public void ShowInputProject(int inputProjectIndex)
         {
