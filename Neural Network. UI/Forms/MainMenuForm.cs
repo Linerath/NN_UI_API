@@ -142,10 +142,6 @@ namespace Neural_Network.UI.Forms
             {
                 Owner = this,
             };
-            selectNetworkForm.FormClosed += (Sender, E) =>
-            {
-
-            };
             selectNetworkForm.ShowDialog();
         }
         private void BGetResponse_Click(object sender, EventArgs e)
@@ -349,24 +345,39 @@ namespace Neural_Network.UI.Forms
         }
         //public int GetNetworkFormIndex(int networkIndex)
         //{
-            //for (int i = 0; i < networkForms.Count(); i++)
-            //{
-            //    if (networkForms[i].Tag.ToString().Split(' ')[0] == networkIndex.ToString())
-            //        return i;
-            //}
-            //return -1;
+        //for (int i = 0; i < networkForms.Count(); i++)
+        //{
+        //    if (networkForms[i].Tag.ToString().Split(' ')[0] == networkIndex.ToString())
+        //        return i;
+        //}
+        //return -1;
         //}
 
         public void ShowInputProject(int inputProjectIndex)
         {
 
         }
-        
+
         public void ShowTrainingForm(int networkIndex)
         {
+            if (trainingForm != null)
+            {
+                if (trainingForm.NetworkIndex == networkIndex)
+                {
+                    MessageBox.Show("Training form is already opened!", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    trainingForm.Focus();
+                    return;
+                }
+                else
+                {
+                    trainingForm.Close();
+                }
+            }
             trainingForm = new TrainingForm(networkIndex)
             {
                 Owner = this,
+                Text = UIRepository.Project.Networks[networkIndex].Name + ". Training",
+                Tag = networkIndex.ToString(),
             };
             formActivatedHandler.RegisterForm(trainingForm, RefreshTrainingFormTables);
             trainingForm.Show();

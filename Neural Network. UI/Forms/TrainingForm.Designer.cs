@@ -62,6 +62,7 @@
             this.NFBSaveAs = new Neural_Network.UI.Shared.Controls.NonFocusButton();
             this.NFBRemove = new Neural_Network.UI.Shared.Controls.NonFocusButton();
             this.NFBAdd = new Neural_Network.UI.Shared.Controls.NonFocusButton();
+            this.label2 = new System.Windows.Forms.Label();
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.NUDLearningRate)).BeginInit();
@@ -147,6 +148,7 @@
             // 
             this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.Controls.Add(this.LEndError1);
             this.groupBox1.Controls.Add(this.LStartError1);
             this.groupBox1.Controls.Add(this.LEndError0);
@@ -345,6 +347,7 @@
             this.CLearningChart.Series.Add(series2);
             this.CLearningChart.Size = new System.Drawing.Size(614, 286);
             this.CLearningChart.TabIndex = 2;
+            this.CLearningChart.Visible = false;
             // 
             // BLearn
             // 
@@ -517,6 +520,15 @@
             this.NFBAdd.UseVisualStyleBackColor = false;
             this.NFBAdd.Click += new System.EventHandler(this.NFBAdd_Click);
             // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(248, 162);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(102, 17);
+            this.label2.TabIndex = 14;
+            this.label2.Text = "Coming soon...";
+            // 
             // TrainingForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -583,5 +595,6 @@
         private Shared.Controls.NonFocusButton NFBRandomize0;
         private Shared.Controls.NonFocusButton NFBSave;
         private Shared.Controls.NonFocusButton NFBRandomize1;
+        private System.Windows.Forms.Label label2;
     }
 }
