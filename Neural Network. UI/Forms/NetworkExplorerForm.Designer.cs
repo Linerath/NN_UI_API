@@ -31,6 +31,7 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(NetworkExplorerForm));
             this.TVNetworks = new System.Windows.Forms.TreeView();
             this.NFBRemove = new Neural_Network.UI.Shared.Controls.NonFocusButton();
+            this.NFBView = new Neural_Network.UI.Shared.Controls.NonFocusButton();
             this.SuspendLayout();
             // 
             // TVNetworks
@@ -54,18 +55,34 @@
             this.NFBRemove.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(210)))), ((int)(((byte)(210)))), ((int)(((byte)(210)))));
             this.NFBRemove.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(229)))), ((int)(((byte)(229)))), ((int)(((byte)(229)))));
             this.NFBRemove.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.NFBRemove.Location = new System.Drawing.Point(5, 5);
+            this.NFBRemove.Location = new System.Drawing.Point(45, 5);
             this.NFBRemove.Name = "NFBRemove";
             this.NFBRemove.Size = new System.Drawing.Size(34, 30);
             this.NFBRemove.TabIndex = 3;
             this.NFBRemove.UseVisualStyleBackColor = false;
             this.NFBRemove.Click += new System.EventHandler(this.BRemove_Click);
             // 
+            // NFBView
+            // 
+            this.NFBView.BackColor = System.Drawing.Color.Transparent;
+            this.NFBView.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("NFBView.BackgroundImage")));
+            this.NFBView.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.NFBView.FlatAppearance.BorderSize = 0;
+            this.NFBView.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(210)))), ((int)(((byte)(210)))), ((int)(((byte)(210)))));
+            this.NFBView.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(229)))), ((int)(((byte)(229)))), ((int)(((byte)(229)))));
+            this.NFBView.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.NFBView.Location = new System.Drawing.Point(5, 5);
+            this.NFBView.Name = "NFBView";
+            this.NFBView.Size = new System.Drawing.Size(34, 30);
+            this.NFBView.TabIndex = 4;
+            this.NFBView.UseVisualStyleBackColor = false;
+            // 
             // NetworkExplorerForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(282, 277);
+            this.Controls.Add(this.NFBView);
             this.Controls.Add(this.NFBRemove);
             this.Controls.Add(this.TVNetworks);
             this.MaximizeBox = false;
@@ -80,5 +97,6 @@
         #endregion
         private System.Windows.Forms.TreeView TVNetworks;
         private Shared.Controls.NonFocusButton NFBRemove;
+        private Shared.Controls.NonFocusButton NFBView;
     }
 }

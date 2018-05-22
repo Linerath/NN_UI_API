@@ -36,6 +36,8 @@
             this.saveProjToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.saveProjAsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.windowsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.networkExplorerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.viewSettingsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.BNewNetwork = new System.Windows.Forms.Button();
             this.GBNetwork = new System.Windows.Forms.GroupBox();
             this.BOpenNetwork = new System.Windows.Forms.Button();
@@ -114,9 +116,26 @@
             // 
             // windowsToolStripMenuItem
             // 
+            this.windowsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.networkExplorerToolStripMenuItem,
+            this.viewSettingsToolStripMenuItem});
             this.windowsToolStripMenuItem.Name = "windowsToolStripMenuItem";
             this.windowsToolStripMenuItem.Size = new System.Drawing.Size(82, 24);
             this.windowsToolStripMenuItem.Text = "Windows";
+            // 
+            // networkExplorerToolStripMenuItem
+            // 
+            this.networkExplorerToolStripMenuItem.Name = "networkExplorerToolStripMenuItem";
+            this.networkExplorerToolStripMenuItem.Size = new System.Drawing.Size(199, 26);
+            this.networkExplorerToolStripMenuItem.Text = "Network explorer";
+            this.networkExplorerToolStripMenuItem.Click += new System.EventHandler(this.networkExplorerToolStripMenuItem_Click);
+            // 
+            // viewSettingsToolStripMenuItem
+            // 
+            this.viewSettingsToolStripMenuItem.Name = "viewSettingsToolStripMenuItem";
+            this.viewSettingsToolStripMenuItem.Size = new System.Drawing.Size(199, 26);
+            this.viewSettingsToolStripMenuItem.Text = "View settings";
+            this.viewSettingsToolStripMenuItem.Click += new System.EventHandler(this.viewSettingsToolStripMenuItem_Click);
             // 
             // BNewNetwork
             // 
@@ -360,5 +379,7 @@
         private System.Windows.Forms.Button BTraining;
         private System.Windows.Forms.Button BSaveProjAs;
         private System.Windows.Forms.Button BSaveProj;
+        private System.Windows.Forms.ToolStripMenuItem networkExplorerToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem viewSettingsToolStripMenuItem;
     }
 }

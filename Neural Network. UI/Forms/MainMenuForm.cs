@@ -39,7 +39,6 @@ namespace Neural_Network.UI.Forms
         }
 
         #region Events
-
         private void MainMenuForm_Load(object sender, EventArgs e)
         {
             //LocateForm(this, FormAbsoluteLayout.TopStretch);
@@ -149,6 +148,8 @@ namespace Neural_Network.UI.Forms
             MessageBox.Show("In development", "Warning");
             return;
         }
+
+
         private void openProjToolStripMenuItem_Click(object sender, EventArgs e)
         {
             OpenFileDialog ofd = new OpenFileDialog
@@ -193,6 +194,14 @@ namespace Neural_Network.UI.Forms
                 networkExplorerForm.RefreshTree();
                 UIRepository.Project.TrySaveTo(sfd.FileName);
             }
+        }
+        private void networkExplorerToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            networkExplorerForm?.Show();
+        }
+        private void viewSettingsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            viewSettingsForm?.Show();
         }
         #endregion
 
@@ -345,6 +354,10 @@ namespace Neural_Network.UI.Forms
                 networkForms.RemoveAt(formNetworkIndex);
             }
         }
+        public void RefreshNetwork(int networkIndex)
+        {
+            networkForms[networkIndex]?.FullNetworkRefresh();
+        }
         public int GetNetworkFormIndex(int networkIndex)
         {
             for (int i = 0; i < networkForms.Count(); i++)
@@ -384,15 +397,11 @@ namespace Neural_Network.UI.Forms
             formActivatedHandler.RegisterForm(trainingForm, RefreshTrainingFormTables);
             trainingForm.Show();
         }
-
-        public void RefreshNetwork(int networkIndex)
-        {
-            networkForms[networkIndex]?.FullNetworkRefresh();
-        }
         public void RefreshTrainingFormTables(int networkIndex)
         {
             trainingForm?.FullTablesRefresh();
         }
+
         public void RefreshProjName()
         {
             Text = UIRepository.Project.Name + " - Main Menu";
