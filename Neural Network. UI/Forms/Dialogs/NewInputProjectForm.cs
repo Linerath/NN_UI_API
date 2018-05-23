@@ -42,7 +42,7 @@ namespace Neural_Network.UI.Forms.Dialogs
             {
                 int index = UIRepository.Project.AddInputProject(new NeuralNetworkInputProject(name, UIRepository.Project.Networks[networkIndex]));
                 var owner = Owner as MainMenuForm;
-                owner?.ShowInputProject(index);
+                owner?.ShowInputProject(networkIndex, index);
 
                 Close();
             }

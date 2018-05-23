@@ -23,6 +23,16 @@ namespace Neural_Network.Core.Extra
             return projects.ToArray();
         }
 
+        public static int GetNetworkIndexForInputProject(NeuralNetworkInputProject inputProject, FeedforwardNetworkSHL[] networks)
+        {
+            for (int i = 0; i < networks.Length; i++)
+            {
+                if (inputProject.Network == networks[i])
+                    return i;
+            }
+            return -1;
+        }
+
         public static void TrainNetwork(
             FeedforwardNetworkSHL network,
             List<double[]> inputSignals,

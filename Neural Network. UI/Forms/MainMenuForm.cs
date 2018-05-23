@@ -14,6 +14,7 @@ using System.Windows.Forms;
 using Neural_Network.Core.Implementation;
 using Neural_Network.UI.Forms.Dialogs;
 using Neural_Network.UI.Constants.Form;
+using Neural_Network.Core.Extra;
 
 namespace Neural_Network.UI.Forms
 {
@@ -23,7 +24,7 @@ namespace Neural_Network.UI.Forms
         private NetworkExplorerForm networkExplorerForm;
         private ViewSettingsForm viewSettingsForm;
         private List<NetworkForm> networkForms;
-        private InputProjectsForm inputProjectsForm;
+        private List<InputProjectForm> inputProjectForms;
         private TrainingForm trainingForm;
         #endregion
         #region Shared
@@ -41,14 +42,11 @@ namespace Neural_Network.UI.Forms
         #region Events
         private void MainMenuForm_Load(object sender, EventArgs e)
         {
-            //LocateForm(this, FormAbsoluteLayout.TopStretch);
-            //LocateForm(networkExplorerForm, this, FormRelativeLayout.BottomLeft);
-            //LocateForm(viewSettingsForm, networkExplorerForm, FormRelativeLayout.BottomLeft);
-
             if (UIRepository.Project.TryOpen(@"E:\Programming\C#\Neural Network WF (Graduate Work)\Neural Network. UI\bin\Debug\hades.nnproj"))
             {
                 networkExplorerForm.RefreshTree();
                 ShowAllNetworks();
+                ShowAllInputProjects();
             }
         }
         private void BNewProj_Click(object sender, EventArgs e)
@@ -215,19 +213,20 @@ namespace Neural_Network.UI.Forms
 
             if (networkForms != null && networkForms.Count() > 0)
                 networkForms.ForEach(x => x.Close());
-            inputProjectsForm?.Close();
+            if (inputProjectForms != null && inputProjectForms.Count() > 0)
+                inputProjectForms.ForEach(x => x.Close());
             trainingForm?.Close();
 
             (networkExplorerForm = new NetworkExplorerForm()).Owner = this;
             (viewSettingsForm = new ViewSettingsForm()).Owner = this;
             networkForms = new List<NetworkForm>();
-            (inputProjectsForm = new InputProjectsForm()).Owner = this;
+            inputProjectForms = new List<InputProjectForm>();
 
             formActivatedHandler = new FormActivatedHandler(viewSettingsForm);
 
             networkExplorerForm.Show();
             viewSettingsForm.Show();
-            //inputProjectsForm.Show();
+
             DefaultFormsLayout();
         }
 
@@ -316,9 +315,6 @@ namespace Neural_Network.UI.Forms
             DesktopLocation = new Point(0, 0);
             networkExplorerForm.Location = new Point(Location.X, Location.Y + Height);
             viewSettingsForm.Location = new Point(Location.X, networkExplorerForm.Location.Y + networkExplorerForm.Height);
-            inputProjectsForm.Location = new Point(viewSettingsForm.Location.X + viewSettingsForm.Size.Width - 5, viewSettingsForm.Location.Y);
-
-            inputProjectsForm.Size = new Size(inputProjectsForm.Width, viewSettingsForm.Size.Height);
 
             Size = new Size(Screen.PrimaryScreen.Bounds.Width, Size.Height);
         }
@@ -368,9 +364,24 @@ namespace Neural_Network.UI.Forms
             return -1;
         }
 
-        public void ShowInputProject(int inputProjectIndex)
+        public void ShowAllInputProjects()
         {
+            for (int i = 0; i < UIRepository.Project.InputProjectsCount; i++)
+                ShowInputProject(NeuralNetworkService.GetNetworkIndexForInputProject(UIRepository.Project.InputProjects[i], UIRepository.Project.Networks.ToArray()), i);
+        }
+        public void ShowInputProject(int networkIndex, int inputProjIndex)
+        {
+            InputProjectForm projForm = new InputProjectForm(networkIndex, inputProjIndex)
+            {
+                Owner = this,
+                Text = UIRepository.Project.Networks[networkIndex].Name + ". " + UIRepository.Project.InputProjects[inputProjIndex].Name,
+            };
 
+            inputProjectForms.Add(projForm);
+            projForm.Show();
+            projForm.Location = new Point(viewSettingsForm.Location.X + viewSettingsForm.Size.Width - 5, viewSettingsForm.Location.Y);
+            projForm.Size = new Size(Size.Width - viewSettingsForm.Width, viewSettingsForm.Size.Height);
+            projForm.FullRefresh();
         }
 
         public void ShowTrainingForm(int networkIndex)

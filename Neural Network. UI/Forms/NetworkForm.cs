@@ -159,10 +159,5 @@ namespace Neural_Network.UI.Forms
             Tag = NetworkIndex.ToString();
         }
         #endregion
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-            TLPPanel.ColumnCount++;
-        }
     }
 }
