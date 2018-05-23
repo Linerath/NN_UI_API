@@ -322,9 +322,9 @@ namespace Neural_Network.UI.Forms
         public void ShowAllNetworks()
         {
             for (int i = 0; i < UIRepository.Project.NetworksCount; i++)
-                ShowNetwork(i);
+                ShowNetwork(i, i == 0);
         }
-        public void ShowNetwork(int networkIndex)
+        public void ShowNetwork(int networkIndex, bool first = false)
         {
             NetworkForm networkForm = new NetworkForm(networkIndex)
             {
@@ -334,9 +334,12 @@ namespace Neural_Network.UI.Forms
             };
             formActivatedHandler.RegisterForm(networkForm, RefreshNetwork);
 
-            networkForms.Add(networkForm);
             networkForm.Show();
-            networkForm.Location = new Point(networkExplorerForm.Location.X + networkExplorerForm.ClientSize.Width + 250, networkExplorerForm.Location.Y);
+            if (networkForms != null && networkForms.Count() > 0 && !first)
+                networkForm.Location = new Point(networkForms[networkForms.Count() - 1].Location.X + 20, networkForms[networkForms.Count() - 1].Location.Y + 20);
+            else
+                networkForm.Location = new Point(networkExplorerForm.Location.X + networkExplorerForm.Size.Width - 5, networkExplorerForm.Location.Y);
+            networkForms.Add(networkForm);
             networkForm.FullNetworkRefresh();
         }
         public void CloseNetwork(int networkIndex)
@@ -367,9 +370,9 @@ namespace Neural_Network.UI.Forms
         public void ShowAllInputProjects()
         {
             for (int i = 0; i < UIRepository.Project.InputProjectsCount; i++)
-                ShowInputProject(NeuralNetworkService.GetNetworkIndexForInputProject(UIRepository.Project.InputProjects[i], UIRepository.Project.Networks.ToArray()), i);
+                ShowInputProject(NeuralNetworkService.GetNetworkIndexForInputProject(UIRepository.Project.InputProjects[i], UIRepository.Project.Networks.ToArray()), i, i == 0);
         }
-        public void ShowInputProject(int networkIndex, int inputProjIndex)
+        public void ShowInputProject(int networkIndex, int inputProjIndex, bool first = false)
         {
             InputProjectForm projForm = new InputProjectForm(networkIndex, inputProjIndex)
             {
@@ -377,10 +380,12 @@ namespace Neural_Network.UI.Forms
                 Text = UIRepository.Project.Networks[networkIndex].Name + ". " + UIRepository.Project.InputProjects[inputProjIndex].Name,
             };
 
-            inputProjectForms.Add(projForm);
             projForm.Show();
-            projForm.Location = new Point(viewSettingsForm.Location.X + viewSettingsForm.Size.Width - 5, viewSettingsForm.Location.Y);
-            projForm.Size = new Size(Size.Width - viewSettingsForm.Width, viewSettingsForm.Size.Height);
+            if (inputProjectForms != null && inputProjectForms.Count() > 0 && !first)
+                projForm.Location = new Point(inputProjectForms[inputProjectForms.Count()-1].Location.X + 20, inputProjectForms[inputProjectForms.Count() - 1].Location.Y + 20);
+            else
+                projForm.Location = new Point(viewSettingsForm.Location.X + viewSettingsForm.Size.Width - 5, viewSettingsForm.Location.Y);
+            inputProjectForms.Add(projForm);
             projForm.FullRefresh();
         }
 
