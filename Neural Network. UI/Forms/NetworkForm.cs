@@ -75,6 +75,7 @@ namespace Neural_Network.UI.Forms
                 {
                     ColumnHeadersVisible = false,
                     RowHeadersVisible = false,
+                    AllowUserToAddRows = false,
                     Anchor = AnchorStyles.Top | AnchorStyles.Right | AnchorStyles.Bottom | AnchorStyles.Left,
                     Size = new Size(width, ClientSize.Height),
                 };

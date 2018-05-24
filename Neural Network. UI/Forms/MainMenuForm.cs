@@ -83,7 +83,7 @@ namespace Neural_Network.UI.Forms
             //ShowNetwork(networkIndex);
             //networkExplorerForm.RefreshTree();
         }
-        private void BOpen_Click(object sender, EventArgs e)
+        private void BOpenNetwork_Click(object sender, EventArgs e)
         {
             MessageBox.Show("In development", "Warning");
             return;
@@ -140,11 +140,6 @@ namespace Neural_Network.UI.Forms
                 Owner = this,
             };
             selectNetworkForm.ShowDialog();
-        }
-        private void BGetResponse_Click(object sender, EventArgs e)
-        {
-            MessageBox.Show("In development", "Warning");
-            return;
         }
 
 

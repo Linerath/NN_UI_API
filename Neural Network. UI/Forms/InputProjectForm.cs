@@ -45,7 +45,7 @@ namespace Neural_Network.UI.Forms
 
             DGVInputFields.RowCount = 0;
             DGVOutputFields.RowCount = 0;
-
+             
             DGVInputFields.RowCount = proj.InputFieldsCount;
             DGVOutputFields.RowCount = proj.OutputFieldsCount;
 

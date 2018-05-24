@@ -13,7 +13,7 @@ namespace Neural_Network.Core.Extra
         public String Name { get; set; }
 
         public FeedforwardNetworkSHL Network { get; set; }
-        public List<Field> inputLayerFields;
+        private List<Field> inputLayerFields;
         private List<Field> outputLayerFields;
 
         public NeuralNetworkInputProject(String name, FeedforwardNetworkSHL network)
@@ -103,14 +103,16 @@ namespace Neural_Network.Core.Extra
         {
             get
             {
-                return inputLayerFields.Count();
+                //return inputLayerFields.Count();
+                return Network.InputLayerSize;
             }
         }
         public int OutputFieldsCount
         {
             get
             {
-                return outputLayerFields.Count();
+                return Network.OutputLayerSize;
+                //return outputLayerFields.Count();
             }
         }
         #endregion

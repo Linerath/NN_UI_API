@@ -76,6 +76,7 @@
             this.NFBView.Size = new System.Drawing.Size(34, 30);
             this.NFBView.TabIndex = 4;
             this.NFBView.UseVisualStyleBackColor = false;
+            this.NFBView.Click += new System.EventHandler(this.NFBView_Click);
             // 
             // NetworkExplorerForm
             // 

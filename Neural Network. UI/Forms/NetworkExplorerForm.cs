@@ -23,6 +23,10 @@ namespace Neural_Network.UI.Forms
         private void TVNetworks_NodeMouseDoubleClick(object sender, TreeNodeMouseClickEventArgs e)
         {
         }
+        private void NFBView_Click(object sender, EventArgs e)
+        {
+
+        }
         private void BRemove_Click(object sender, EventArgs e)
         {
             if (TVNetworks.SelectedNode == null)
