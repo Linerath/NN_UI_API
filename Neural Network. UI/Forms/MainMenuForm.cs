@@ -377,7 +377,7 @@ namespace Neural_Network.UI.Forms
 
             projForm.Show();
             if (inputProjectForms != null && inputProjectForms.Count() > 0 && !first)
-                projForm.Location = new Point(inputProjectForms[inputProjectForms.Count()-1].Location.X + 20, inputProjectForms[inputProjectForms.Count() - 1].Location.Y + 20);
+                projForm.Location = new Point(inputProjectForms[inputProjectForms.Count() - 1].Location.X + 20, inputProjectForms[inputProjectForms.Count() - 1].Location.Y + 20);
             else
                 projForm.Location = new Point(viewSettingsForm.Location.X + viewSettingsForm.Size.Width - 5, viewSettingsForm.Location.Y);
             inputProjectForms.Add(projForm);

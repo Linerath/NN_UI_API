@@ -62,6 +62,7 @@
             this.Name = "ViewSettingsForm";
             this.ShowIcon = false;
             this.Text = "View Settings";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.ViewSettingsForm_FormClosing);
             this.PLayers.ResumeLayout(false);
             this.ResumeLayout(false);
 

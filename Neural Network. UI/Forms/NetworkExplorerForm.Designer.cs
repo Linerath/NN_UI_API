@@ -91,6 +91,7 @@
             this.Name = "NetworkExplorerForm";
             this.ShowIcon = false;
             this.Text = "Network Explorer";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.NetworkExplorerForm_FormClosing);
             this.ResumeLayout(false);
 
         }

@@ -18,6 +18,14 @@ namespace Neural_Network.UI.Forms
         }
 
         #region Events
+        private void ViewSettingsForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (e.CloseReason == CloseReason.UserClosing)
+            {
+                e.Cancel = true;
+                Hide();
+            }
+        }
         #endregion
 
         #region Methods
