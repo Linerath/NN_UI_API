@@ -68,11 +68,11 @@
     <Compile Include="Forms\Dialogs\SelectNetworkForm.Designer.cs">
       <DependentUpon>SelectNetworkForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\FieldsProductionForm.cs">
+    <Compile Include="Forms\Dialogs\NewProductionProjectForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\FieldsProductionForm.Designer.cs">
-      <DependentUpon>FieldsProductionForm.cs</DependentUpon>
+    <Compile Include="Forms\Dialogs\NewProductionProjectForm.Designer.cs">
+      <DependentUpon>NewProductionProjectForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\InputProjectForm.cs">
       <SubType>Form</SubType>
@@ -135,8 +135,8 @@
     <EmbeddedResource Include="Forms\Dialogs\SelectNetworkForm.resx">
       <DependentUpon>SelectNetworkForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\FieldsProductionForm.resx">
-      <DependentUpon>FieldsProductionForm.cs</DependentUpon>
+    <EmbeddedResource Include="Forms\Dialogs\NewProductionProjectForm.resx">
+      <DependentUpon>NewProductionProjectForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\InputProjectForm.resx">
       <DependentUpon>InputProjectForm.cs</DependentUpon>

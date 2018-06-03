@@ -143,11 +143,11 @@ namespace Neural_Network.UI.Forms
         }
         private void BProduction_Click(object sender, EventArgs e)
         {
-            FieldsProductionForm fieldsProductionForm = new FieldsProductionForm
+            NewProductionProjectForm newProductionProjectForm = new NewProductionProjectForm
             {
                 Owner = this
             };
-            fieldsProductionForm.ShowDialog();
+            newProductionProjectForm.ShowDialog();
         }
 
 
