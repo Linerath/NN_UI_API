@@ -12,9 +12,21 @@ namespace Neural_Network.UI.Forms
 {
     public partial class ProductionForm : Form
     {
-        public ProductionForm()
+        private int orderingNetworkIndex;
+        private int forecastingNetworkIndex;
+
+        public ProductionForm(int? orderingNetworkIndex, int? forecastingNetworkIndex)
         {
             InitializeComponent();
+
+            this.orderingNetworkIndex = orderingNetworkIndex ?? -1;
+            this.forecastingNetworkIndex = forecastingNetworkIndex ?? -1;
         }
+
+        #region Events
+        #endregion
+
+        #region Methods
+        #endregion
     }
 }

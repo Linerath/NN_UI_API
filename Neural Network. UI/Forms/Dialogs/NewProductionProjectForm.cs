@@ -50,15 +50,22 @@ namespace Neural_Network.UI.Forms
             int detailsTypesCount = 3;
             //!!!!!!
 
+            int? orderingNetworkIndex, forecastingNetworkIndex;
+            orderingNetworkIndex = forecastingNetworkIndex = null;
             if (CBOrdering.Checked)
             {
-                FeedforwardNetworkSHL network = new FeedforwardNetworkSHL(name + "_Ordering", inputCount, inputCount * 2, detailsTypesCount, Core.Functions.Sigmoid, 0.07);
+                FeedforwardNetworkSHL network = new FeedforwardNetworkSHL(name + "_Ordering", inputCount, inputCount * 2, detailsTypesCount, Core.Functions.Sigmoid, 0.05);
+                orderingNetworkIndex = UIRepository.Project.AddNetwork(network);
             }
             if (CBForecasting.Checked)
-            {   
-
+            {
+                FeedforwardNetworkSHL network = new FeedforwardNetworkSHL(name + "_Forecasting", inputCount, inputCount * 2, 2, Core.Functions.Sigmoid, 0.05);
+                forecastingNetworkIndex = UIRepository.Project.AddNetwork(network);
             }
+            var owner = Owner as MainMenuForm;
+            owner.ShowProductionForm(name, orderingNetworkIndex, forecastingNetworkIndex);
 
+            Close();
         }
     }
 }

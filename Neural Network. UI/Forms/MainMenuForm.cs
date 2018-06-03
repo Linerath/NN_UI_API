@@ -25,6 +25,7 @@ namespace Neural_Network.UI.Forms
         private ViewSettingsForm viewSettingsForm;
         private List<NetworkForm> networkForms;
         private List<InputProjectForm> inputProjectForms;
+        private List<ProductionForm> productionForms;
         private TrainingForm trainingForm;
         #endregion
         #region Shared
@@ -147,6 +148,10 @@ namespace Neural_Network.UI.Forms
             {
                 Owner = this
             };
+            newProductionProjectForm.FormClosed += (Sender, E) =>
+            {
+                networkExplorerForm.RefreshTree();
+            };
             newProductionProjectForm.ShowDialog();
         }
 
@@ -218,12 +223,15 @@ namespace Neural_Network.UI.Forms
                 networkForms.ForEach(x => x.Close());
             if (inputProjectForms != null && inputProjectForms.Count() > 0)
                 inputProjectForms.ForEach(x => x.Close());
+            if (productionForms != null && productionForms.Count() > 0)
+                productionForms.ForEach(x => x.Close());
             trainingForm?.Close();
 
             (networkExplorerForm = new NetworkExplorerForm()).Owner = this;
             (viewSettingsForm = new ViewSettingsForm()).Owner = this;
             networkForms = new List<NetworkForm>();
             inputProjectForms = new List<InputProjectForm>();
+            productionForms = new List<ProductionForm>();
 
             formActivatedHandler = new FormActivatedHandler(viewSettingsForm);
 
@@ -419,6 +427,17 @@ namespace Neural_Network.UI.Forms
         public void RefreshTrainingFormTables(int networkIndex)
         {
             trainingForm?.FullTablesRefresh();
+        }
+
+        public void ShowProductionForm(String name, int? orderingNetworkIndex, int? forecastingNetworkIndex)
+        {
+            ProductionForm productionForm = new ProductionForm(orderingNetworkIndex, forecastingNetworkIndex)
+            {
+                Owner = this,
+                Text = name
+            };
+            productionForm.Show();
+            productionForms.Add(productionForm);
         }
 
         public void RefreshProjName()
