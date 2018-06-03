@@ -121,6 +121,7 @@
     <Compile Include="Shared\Controls\NonFocusButton.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Shared\Production.cs" />
     <Compile Include="Shared\TableHandler.cs" />
     <Compile Include="Shared\FormActivatedHandler.cs" />
     <Compile Include="Shared\TableViewSettings.cs" />

@@ -429,12 +429,12 @@ namespace Neural_Network.UI.Forms
             trainingForm?.FullTablesRefresh();
         }
 
-        public void ShowProductionForm(String name, int? orderingNetworkIndex, int? forecastingNetworkIndex)
+        public void ShowProductionForm(Production production)
         {
-            ProductionForm productionForm = new ProductionForm(orderingNetworkIndex, forecastingNetworkIndex)
+            ProductionForm productionForm = new ProductionForm(production)
             {
                 Owner = this,
-                Text = name
+                Text = production.Name
             };
             productionForm.Show();
             productionForms.Add(productionForm);

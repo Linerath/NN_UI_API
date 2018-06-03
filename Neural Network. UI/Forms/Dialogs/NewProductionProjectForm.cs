@@ -63,7 +63,8 @@ namespace Neural_Network.UI.Forms
                 forecastingNetworkIndex = UIRepository.Project.AddNetwork(network);
             }
             var owner = Owner as MainMenuForm;
-            owner.ShowProductionForm(name, orderingNetworkIndex, forecastingNetworkIndex);
+            Production production = new Production { Name = name, OrderingNetworkIndex = orderingNetworkIndex, ForecastingNetworkIndex = forecastingNetworkIndex };
+            owner.ShowProductionForm(production);
 
             Close();
         }

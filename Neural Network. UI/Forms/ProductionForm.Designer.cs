@@ -193,7 +193,7 @@
             this.Name = "ProductionForm";
             this.ShowIcon = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "ProductionForm";
+            this.Text = "Production";
             ((System.ComponentModel.ISupportInitialize)(this.NUDDetails)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();

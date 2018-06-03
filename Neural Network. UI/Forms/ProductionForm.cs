@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Neural_Network.UI.Shared;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -12,15 +13,17 @@ namespace Neural_Network.UI.Forms
 {
     public partial class ProductionForm : Form
     {
-        private int orderingNetworkIndex;
-        private int forecastingNetworkIndex;
+        private Production production;
 
-        public ProductionForm(int? orderingNetworkIndex, int? forecastingNetworkIndex)
+        public ProductionForm(Production production)
         {
             InitializeComponent();
 
-            this.orderingNetworkIndex = orderingNetworkIndex ?? -1;
-            this.forecastingNetworkIndex = forecastingNetworkIndex ?? -1;
+            NUDDetails.Value = production.Details;
+            NUDSpeed.Value = production.Speed;
+            NUDEmployeees.Value = production.Employees;
+            NUDRhythm.Value = production.Rhythm;
+            NUDTact.Value = production.Tact;
         }
 
         #region Events
