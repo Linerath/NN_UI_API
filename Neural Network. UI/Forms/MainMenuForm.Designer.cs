@@ -40,18 +40,18 @@
             this.viewSettingsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.BNewNetwork = new System.Windows.Forms.Button();
             this.GBNetwork = new System.Windows.Forms.GroupBox();
+            this.BOpenNetwork = new System.Windows.Forms.Button();
             this.GBInputProj = new System.Windows.Forms.GroupBox();
             this.BOpenInputProj = new System.Windows.Forms.Button();
             this.BNewInputProj = new System.Windows.Forms.Button();
             this.GBActions = new System.Windows.Forms.GroupBox();
-            this.button1 = new System.Windows.Forms.Button();
+            this.BProduction = new System.Windows.Forms.Button();
             this.BTraining = new System.Windows.Forms.Button();
             this.GBProj = new System.Windows.Forms.GroupBox();
             this.BSaveProjAs = new System.Windows.Forms.Button();
             this.BSaveProj = new System.Windows.Forms.Button();
             this.BOpenProj = new System.Windows.Forms.Button();
             this.BNewProj = new System.Windows.Forms.Button();
-            this.BOpenNetwork = new System.Windows.Forms.Button();
             this.MainMenu.SuspendLayout();
             this.GBNetwork.SuspendLayout();
             this.GBInputProj.SuspendLayout();
@@ -164,6 +164,22 @@
             this.GBNetwork.TabStop = false;
             this.GBNetwork.Text = "Neural network";
             // 
+            // BOpenNetwork
+            // 
+            this.BOpenNetwork.BackColor = System.Drawing.Color.Transparent;
+            this.BOpenNetwork.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("BOpenNetwork.BackgroundImage")));
+            this.BOpenNetwork.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.BOpenNetwork.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(210)))), ((int)(((byte)(210)))), ((int)(((byte)(210)))));
+            this.BOpenNetwork.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(229)))), ((int)(((byte)(229)))), ((int)(((byte)(229)))));
+            this.BOpenNetwork.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.BOpenNetwork.Font = new System.Drawing.Font("Consolas", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BOpenNetwork.Location = new System.Drawing.Point(61, 24);
+            this.BOpenNetwork.Name = "BOpenNetwork";
+            this.BOpenNetwork.Size = new System.Drawing.Size(40, 35);
+            this.BOpenNetwork.TabIndex = 2;
+            this.BOpenNetwork.UseVisualStyleBackColor = false;
+            this.BOpenNetwork.Click += new System.EventHandler(this.BOpenNetwork_Click);
+            // 
             // GBInputProj
             // 
             this.GBInputProj.Controls.Add(this.BOpenInputProj);
@@ -209,7 +225,7 @@
             // 
             // GBActions
             // 
-            this.GBActions.Controls.Add(this.button1);
+            this.GBActions.Controls.Add(this.BProduction);
             this.GBActions.Controls.Add(this.BTraining);
             this.GBActions.Location = new System.Drawing.Point(495, 31);
             this.GBActions.Name = "GBActions";
@@ -217,20 +233,21 @@
             this.GBActions.TabIndex = 5;
             this.GBActions.TabStop = false;
             // 
-            // button1
+            // BProduction
             // 
-            this.button1.BackColor = System.Drawing.Color.Transparent;
-            this.button1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("button1.BackgroundImage")));
-            this.button1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.button1.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(210)))), ((int)(((byte)(210)))), ((int)(((byte)(210)))));
-            this.button1.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(229)))), ((int)(((byte)(229)))), ((int)(((byte)(229)))));
-            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button1.Font = new System.Drawing.Font("Consolas", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.Location = new System.Drawing.Point(61, 24);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(40, 35);
-            this.button1.TabIndex = 5;
-            this.button1.UseVisualStyleBackColor = false;
+            this.BProduction.BackColor = System.Drawing.Color.Transparent;
+            this.BProduction.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("BProduction.BackgroundImage")));
+            this.BProduction.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.BProduction.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(210)))), ((int)(((byte)(210)))), ((int)(((byte)(210)))));
+            this.BProduction.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(229)))), ((int)(((byte)(229)))), ((int)(((byte)(229)))));
+            this.BProduction.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.BProduction.Font = new System.Drawing.Font("Consolas", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BProduction.Location = new System.Drawing.Point(61, 24);
+            this.BProduction.Name = "BProduction";
+            this.BProduction.Size = new System.Drawing.Size(40, 35);
+            this.BProduction.TabIndex = 5;
+            this.BProduction.UseVisualStyleBackColor = false;
+            this.BProduction.Click += new System.EventHandler(this.BProduction_Click);
             // 
             // BTraining
             // 
@@ -322,22 +339,6 @@
             this.BNewProj.UseVisualStyleBackColor = false;
             this.BNewProj.Click += new System.EventHandler(this.BNewProj_Click);
             // 
-            // BOpenNetwork
-            // 
-            this.BOpenNetwork.BackColor = System.Drawing.Color.Transparent;
-            this.BOpenNetwork.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("BOpenNetwork.BackgroundImage")));
-            this.BOpenNetwork.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.BOpenNetwork.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(210)))), ((int)(((byte)(210)))), ((int)(((byte)(210)))));
-            this.BOpenNetwork.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(229)))), ((int)(((byte)(229)))), ((int)(((byte)(229)))));
-            this.BOpenNetwork.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.BOpenNetwork.Font = new System.Drawing.Font("Consolas", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BOpenNetwork.Location = new System.Drawing.Point(61, 24);
-            this.BOpenNetwork.Name = "BOpenNetwork";
-            this.BOpenNetwork.Size = new System.Drawing.Size(40, 35);
-            this.BOpenNetwork.TabIndex = 2;
-            this.BOpenNetwork.UseVisualStyleBackColor = false;
-            this.BOpenNetwork.Click += new System.EventHandler(this.BOpenNetwork_Click);
-            // 
             // MainMenuForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -387,7 +388,7 @@
         private System.Windows.Forms.Button BSaveProj;
         private System.Windows.Forms.ToolStripMenuItem networkExplorerToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem viewSettingsToolStripMenuItem;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button BProduction;
         private System.Windows.Forms.Button BNewInputProj;
         private System.Windows.Forms.Button BOpenInputProj;
         private System.Windows.Forms.Button BOpenNetwork;

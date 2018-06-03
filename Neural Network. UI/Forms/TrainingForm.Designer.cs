@@ -28,9 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(TrainingForm));
             this.LCreationDate0 = new System.Windows.Forms.Label();
             this.LLearningEpochs1 = new System.Windows.Forms.Label();
@@ -62,7 +62,6 @@
             this.NFBSaveAs = new Neural_Network.UI.Shared.Controls.NonFocusButton();
             this.NFBRemove = new Neural_Network.UI.Shared.Controls.NonFocusButton();
             this.NFBAdd = new Neural_Network.UI.Shared.Controls.NonFocusButton();
-            this.label2 = new System.Windows.Forms.Label();
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.NUDLearningRate)).BeginInit();
@@ -148,7 +147,6 @@
             // 
             this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.Controls.Add(this.LEndError1);
             this.groupBox1.Controls.Add(this.LStartError1);
             this.groupBox1.Controls.Add(this.LEndError0);
@@ -335,16 +333,16 @@
             this.CLearningChart.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            chartArea2.Name = "ChartArea1";
-            this.CLearningChart.ChartAreas.Add(chartArea2);
-            legend2.Name = "Legend1";
-            this.CLearningChart.Legends.Add(legend2);
+            chartArea1.Name = "ChartArea1";
+            this.CLearningChart.ChartAreas.Add(chartArea1);
+            legend1.Name = "Legend1";
+            this.CLearningChart.Legends.Add(legend1);
             this.CLearningChart.Location = new System.Drawing.Point(6, 21);
             this.CLearningChart.Name = "CLearningChart";
-            series2.ChartArea = "ChartArea1";
-            series2.Legend = "Legend1";
-            series2.Name = "Error";
-            this.CLearningChart.Series.Add(series2);
+            series1.ChartArea = "ChartArea1";
+            series1.Legend = "Legend1";
+            series1.Name = "Error";
+            this.CLearningChart.Series.Add(series1);
             this.CLearningChart.Size = new System.Drawing.Size(614, 286);
             this.CLearningChart.TabIndex = 2;
             this.CLearningChart.Visible = false;
@@ -520,15 +518,6 @@
             this.NFBAdd.UseVisualStyleBackColor = false;
             this.NFBAdd.Click += new System.EventHandler(this.NFBAdd_Click);
             // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(248, 162);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(102, 17);
-            this.label2.TabIndex = 14;
-            this.label2.Text = "Coming soon...";
-            // 
             // TrainingForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -595,6 +584,5 @@
         private Shared.Controls.NonFocusButton NFBRandomize0;
         private Shared.Controls.NonFocusButton NFBSave;
         private Shared.Controls.NonFocusButton NFBRandomize1;
-        private System.Windows.Forms.Label label2;
     }
 }

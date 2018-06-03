@@ -141,6 +141,14 @@ namespace Neural_Network.UI.Forms
             };
             selectNetworkForm.ShowDialog();
         }
+        private void BProduction_Click(object sender, EventArgs e)
+        {
+            FieldsProductionForm fieldsProductionForm = new FieldsProductionForm
+            {
+                Owner = this
+            };
+            fieldsProductionForm.ShowDialog();
+        }
 
 
         private void openProjToolStripMenuItem_Click(object sender, EventArgs e)

@@ -50,9 +50,9 @@ namespace Neural_Network.UI.Forms
             DGVOutputFields.RowCount = proj.OutputFieldsCount;
 
             for (int i = 0; i < DGVInputFields.RowCount; i++)
-            {
                 DGVInputFields[0, i].Value = (i + 1).ToString();
-            }
+            for (int i = 0; i < DGVOutputFields.RowCount; i++)
+                DGVOutputFields[0, i].Value = (i + 1).ToString();
         }
         public void RefreshFont()
         {

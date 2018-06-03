@@ -68,6 +68,12 @@
     <Compile Include="Forms\Dialogs\SelectNetworkForm.Designer.cs">
       <DependentUpon>SelectNetworkForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\FieldsProductionForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FieldsProductionForm.Designer.cs">
+      <DependentUpon>FieldsProductionForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\InputProjectForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -91,6 +97,12 @@
     </Compile>
     <Compile Include="Forms\NetworkExplorerForm.Designer.cs">
       <DependentUpon>NetworkExplorerForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\ProductionForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\ProductionForm.Designer.cs">
+      <DependentUpon>ProductionForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\TrainingForm.cs">
       <SubType>Form</SubType>
@@ -123,6 +135,9 @@
     <EmbeddedResource Include="Forms\Dialogs\SelectNetworkForm.resx">
       <DependentUpon>SelectNetworkForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FieldsProductionForm.resx">
+      <DependentUpon>FieldsProductionForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\InputProjectForm.resx">
       <DependentUpon>InputProjectForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -134,6 +149,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\NetworkExplorerForm.resx">
       <DependentUpon>NetworkExplorerForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\ProductionForm.resx">
+      <DependentUpon>ProductionForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\TrainingForm.resx">
       <DependentUpon>TrainingForm.cs</DependentUpon>

@@ -3,8 +3,6 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.27130.2024
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Neural Network WF (Graduate Work)", "Neural Network WF (Graduate Work)\Neural Network WF (Graduate Work).csproj", "{578A99FF-DD58-4526-ACBC-04741D94FCE2}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Neural Network. Core", "Neural Network. Core\Neural Network. Core.csproj", "{236B3D12-05B6-44F0-9615-894AE80AD623}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Neural Network. Testing", "Neural Network. Testing\Neural Network. Testing.csproj", "{58605D4A-DEA8-4E3B-8AB7-0A9F6D70CBB5}"
@@ -17,10 +15,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{578A99FF-DD58-4526-ACBC-04741D94FCE2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{578A99FF-DD58-4526-ACBC-04741D94FCE2}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{578A99FF-DD58-4526-ACBC-04741D94FCE2}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{578A99FF-DD58-4526-ACBC-04741D94FCE2}.Release|Any CPU.Build.0 = Release|Any CPU
 		{236B3D12-05B6-44F0-9615-894AE80AD623}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{236B3D12-05B6-44F0-9615-894AE80AD623}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{236B3D12-05B6-44F0-9615-894AE80AD623}.Release|Any CPU.ActiveCfg = Release|Any CPU
