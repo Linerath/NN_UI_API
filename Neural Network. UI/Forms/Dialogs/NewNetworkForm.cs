@@ -38,7 +38,8 @@ namespace Neural_Network.UI.Forms.Dialogs
             int hiddenCount = (int)NUDHidden.Value;
             int outputCount = (int)NUDOutput.Value;
 
-            int index = UIRepository.Project.AddNetwork(new FeedforwardNetworkSHL(name, inputCount, hiddenCount, outputCount));
+            var network = new FeedforwardNetworkSHL(name, inputCount, hiddenCount, outputCount);
+            int index = UIRepository.Project.AddNetwork(network);
 
             if (CBRandomWeights.Checked)
                 UIRepository.Project.Networks[index].SetAllRandomWeights();

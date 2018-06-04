@@ -18,17 +18,16 @@ namespace Neural_Network.UI.Shared
         public String Name { get; set; }
         public List<FeedforwardNetworkSHL> Networks { get; private set; }
         public List<NeuralNetworkInputProject> InputProjects { get; private set; }
+        public List<Production> ProductionProjects { get; private set; }
         public String FilePath { get; set; } = null;
 
         public Project(String name = "UnnamedProj")
         {
-            if (String.IsNullOrWhiteSpace(name))
-                Name = "UnnamedProj";
-            else
-                Name = name;
+            Name = String.IsNullOrWhiteSpace(name) ? "UnnamedProj" : name;
 
             Networks = new List<FeedforwardNetworkSHL>();
             InputProjects = new List<NeuralNetworkInputProject>();
+            ProductionProjects = new List<Production>();
         }
 
         public int AddNetwork(FeedforwardNetworkSHL network)
@@ -40,6 +39,11 @@ namespace Neural_Network.UI.Shared
         {
             InputProjects.Add(inputProject);
             return InputProjects.Count() - 1;
+        }
+        public int AddProductionProject(Production production)
+        {
+            ProductionProjects.Add(production);
+            return ProductionProjects.Count() - 1;
         }
 
         public bool TryOpen(String filePath)
@@ -127,6 +131,13 @@ namespace Neural_Network.UI.Shared
             get
             {
                 return InputProjects.Count();
+            }
+        }
+        public int ProductionProjectsCount
+        {
+            get
+            {
+                return ProductionProjects.Count();
             }
         }
     }

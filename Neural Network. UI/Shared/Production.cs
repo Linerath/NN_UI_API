@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace Neural_Network.UI.Shared
 {
+    [Serializable]
     public class Production
     {
         public String Name { get; set; }

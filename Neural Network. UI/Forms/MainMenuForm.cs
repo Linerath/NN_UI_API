@@ -43,11 +43,12 @@ namespace Neural_Network.UI.Forms
         #region Events
         private void MainMenuForm_Load(object sender, EventArgs e)
         {
-            if (UIRepository.Project.TryOpen(@"E:\Programming\C#\Neural Network WF (Graduate Work)\Neural Network. UI\bin\Debug\hades.nnproj"))
+            if (UIRepository.Project.TryOpen(@"D:\Programming\C#\NeuralNetwork_Core_UI\Neural Network. UI\bin\Debug\hades.nnproj"))
             {
                 networkExplorerForm.RefreshTree();
                 ShowAllNetworks();
                 ShowAllInputProjects();
+                ShowAllProductionProjects();
             }
         }
         private void BNewProj_Click(object sender, EventArgs e)
@@ -171,6 +172,8 @@ namespace Neural_Network.UI.Forms
                     NewProject();
                     networkExplorerForm.RefreshTree();
                     ShowAllNetworks();
+                    ShowAllInputProjects();
+                    ShowAllProductionProjects();
                 }
             }
         }
@@ -219,11 +222,11 @@ namespace Neural_Network.UI.Forms
             networkExplorerForm?.Close();
             viewSettingsForm?.Close();
 
-            if (networkForms != null && networkForms.Count() > 0)
+            if (networkForms != null && networkForms.Any())
                 networkForms.ForEach(x => x.Close());
-            if (inputProjectForms != null && inputProjectForms.Count() > 0)
+            if (inputProjectForms != null && inputProjectForms.Any())
                 inputProjectForms.ForEach(x => x.Close());
-            if (productionForms != null && productionForms.Count() > 0)
+            if (productionForms != null && productionForms.Any())
                 productionForms.ForEach(x => x.Close());
             trainingForm?.Close();
 
@@ -346,8 +349,11 @@ namespace Neural_Network.UI.Forms
             formActivatedHandler.RegisterForm(networkForm, RefreshNetwork);
 
             networkForm.Show();
-            if (networkForms != null && networkForms.Count() > 0 && !first)
-                networkForm.Location = new Point(networkForms[networkForms.Count() - 1].Location.X + 20, networkForms[networkForms.Count() - 1].Location.Y + 20);
+            if (networkForms.Any() && !first)
+            {
+                if (networkForms.Count > networkForms.Count() - 1)
+                    networkForm.Location = new Point(networkForms.Last().Location.X + 20, networkForms.Last().Location.Y + 20);
+            }
             else
                 networkForm.Location = new Point(networkExplorerForm.Location.X + networkExplorerForm.Size.Width - 5, networkExplorerForm.Location.Y);
             networkForms.Add(networkForm);
@@ -392,13 +398,33 @@ namespace Neural_Network.UI.Forms
             };
 
             projForm.Show();
-            if (inputProjectForms != null && inputProjectForms.Count() > 0 && !first)
-                projForm.Location = new Point(inputProjectForms[inputProjectForms.Count() - 1].Location.X + 20, inputProjectForms[inputProjectForms.Count() - 1].Location.Y + 20);
+            if (inputProjectForms.Any() && !first)
+                projForm.Location = new Point(inputProjectForms.Last().Location.X + 20, inputProjectForms.Last().Location.Y + 20);
             else
                 projForm.Location = new Point(viewSettingsForm.Location.X + viewSettingsForm.Size.Width - 5, viewSettingsForm.Location.Y);
             inputProjectForms.Add(projForm);
             projForm.FullRefresh();
         }
+
+        public void ShowAllProductionProjects()
+        {
+            for (int i = 0; i < UIRepository.Project.ProductionProjectsCount; i++)
+                ShowProductionForm(i);
+        }
+        public void ShowProductionForm(int productionProjIndex, bool first = false)
+        {
+            ProductionForm productionForm = new ProductionForm(productionProjIndex)
+            {
+                Owner = this,
+                Text = UIRepository.Project.ProductionProjects[productionProjIndex].Name
+            };
+            productionForm.Show();
+            if (productionForms.Any() && !first)
+                productionForm.Location = new Point(productionForms.Last().Location.X + 20, productionForms.Last().Location.Y+20);
+            else
+                productionForms.Add(productionForm);
+        }
+
 
         public void ShowTrainingForm(int networkIndex)
         {
@@ -410,10 +436,7 @@ namespace Neural_Network.UI.Forms
                     trainingForm.Focus();
                     return;
                 }
-                else
-                {
-                    trainingForm.Close();
-                }
+                trainingForm.Close();
             }
             trainingForm = new TrainingForm(networkIndex)
             {
@@ -427,17 +450,6 @@ namespace Neural_Network.UI.Forms
         public void RefreshTrainingFormTables(int networkIndex)
         {
             trainingForm?.FullTablesRefresh();
-        }
-
-        public void ShowProductionForm(Production production)
-        {
-            ProductionForm productionForm = new ProductionForm(production)
-            {
-                Owner = this,
-                Text = production.Name
-            };
-            productionForm.Show();
-            productionForms.Add(productionForm);
         }
 
         public void RefreshProjName()

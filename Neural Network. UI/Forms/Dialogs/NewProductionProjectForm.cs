@@ -54,17 +54,29 @@ namespace Neural_Network.UI.Forms
             orderingNetworkIndex = forecastingNetworkIndex = null;
             if (CBOrdering.Checked)
             {
-                FeedforwardNetworkSHL network = new FeedforwardNetworkSHL(name + "_Ordering", inputCount, inputCount * 2, detailsTypesCount, Core.Functions.Sigmoid, 0.05);
+                var network = new FeedforwardNetworkSHL(name + "_Ordering", inputCount, inputCount * 2, detailsTypesCount, Core.Functions.Sigmoid, 0.05);
+                network.SetAllRandomWeights();
                 orderingNetworkIndex = UIRepository.Project.AddNetwork(network);
             }
             if (CBForecasting.Checked)
             {
-                FeedforwardNetworkSHL network = new FeedforwardNetworkSHL(name + "_Forecasting", inputCount, inputCount * 2, 2, Core.Functions.Sigmoid, 0.05);
+                var network = new FeedforwardNetworkSHL(name + "_Forecasting", inputCount, inputCount * 2, 2, Core.Functions.Sigmoid, 0.05);
+                network.SetAllRandomWeights();
                 forecastingNetworkIndex = UIRepository.Project.AddNetwork(network);
             }
             var owner = Owner as MainMenuForm;
-            Production production = new Production { Name = name, OrderingNetworkIndex = orderingNetworkIndex, ForecastingNetworkIndex = forecastingNetworkIndex };
-            owner.ShowProductionForm(production);
+            var production = new Production
+            {
+                Name = name,
+                OrderingNetworkIndex = orderingNetworkIndex,
+                ForecastingNetworkIndex = forecastingNetworkIndex
+            };
+            int productionProjIndex = UIRepository.Project.AddProductionProject(production);
+            if (orderingNetworkIndex.HasValue)
+                owner?.ShowNetwork(orderingNetworkIndex.Value);
+            if (forecastingNetworkIndex.HasValue)
+                owner?.ShowNetwork(forecastingNetworkIndex.Value);
+            owner?.ShowProductionForm(productionProjIndex);
 
             Close();
         }
