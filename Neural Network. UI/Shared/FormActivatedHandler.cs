@@ -10,8 +10,6 @@ using System.Windows.Forms;
 
 namespace Neural_Network.UI.Shared
 {
-    // don't f**king change anything here without goin' to church...
-
     public class FormActivatedHandler
     {
         private ViewSettingsForm settingsForm;

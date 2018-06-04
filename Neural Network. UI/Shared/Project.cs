@@ -35,6 +35,7 @@ namespace Neural_Network.UI.Shared
             InputProjects.RemoveAll(x => x.Network == network);
             Networks.Remove(network);
         }
+
         public NeuralNetworkInputProject[] GetNetworkInputProjects(FeedforwardNetworkSHL network)
         {
             return InputProjects.Where(x => x.Network == network).ToArray();

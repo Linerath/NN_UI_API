@@ -29,51 +29,75 @@ namespace Neural_Network.UI.Forms
         }
         private void BRemove_Click(object sender, EventArgs e)
         {
-            if (TVNetworks.SelectedNode == null)
-                return;
-            var networkIndex = TVNetworks.SelectedNode.Index;
-
-            if (networkIndex < 0)
+            if (TVNetworks.SelectedNode == null || TVNetworks.SelectedNode.Parent == null)
                 return;
 
-            if (TVNetworks.SelectedNode.Parent == null)
+            TreeNode node = TVNetworks.SelectedNode;
+            while (node.Parent != null)
+                node = node.Parent;
+
+            var index = TVNetworks.SelectedNode.Index;
+            if (index < 0)
+                return;
+
+            if (node.Text == "Neural networks")
             {
-                var network = UIRepository.Project.Networks[networkIndex];
-                var dialogResult = MessageBox.Show(
-                "Are you sure want to delete selected network:\n" + network.Name + " " +
-                network.InputLayerSize.ToString() + " " + network.HiddenLayerSize.ToString() + " " + network.OutputLayerSize.ToString() + ".\nCreated on " +
-                network.CreationDate.ToString(),
-                "Deleting",
-                MessageBoxButtons.YesNo,
-                MessageBoxIcon.Question,
-                MessageBoxDefaultButton.Button2
-                );
-
-                if (dialogResult == DialogResult.Yes)
+                if (TVNetworks.SelectedNode.Parent.Parent == null)
                 {
-                    var owner = Owner as MainMenuForm;
-                    owner.CloseNetwork(network);
+                    var network = UIRepository.Project.Networks[index];
+                    var dialogResult = MessageBox.Show(
+                    "Are you sure want to delete selected network:\n" + network.Name + " " +
+                    network.InputLayerSize.ToString() + " " + network.HiddenLayerSize.ToString() + " " + network.OutputLayerSize.ToString() + ".\nCreated on " +
+                    network.CreationDate.ToString(),
+                    "Deleting",
+                    MessageBoxButtons.YesNo,
+                    MessageBoxIcon.Question,
+                    MessageBoxDefaultButton.Button2
+                    );
+
+                    if (dialogResult == DialogResult.Yes)
+                    {
+                        var owner = Owner as MainMenuForm;
+                        owner.CloseNetwork(network);
+                    }
+                }
+                else
+                {
+                    var parentIndex = TVNetworks.SelectedNode.Parent.Index;
+                    var network = UIRepository.Project.Networks[parentIndex];
+                    var inputProj = UIRepository.Project.GetNetworkInputProjects(network)[TVNetworks.SelectedNode.Index];
+
+                    var dialogResult = MessageBox.Show(
+                    "Are you sure want to delete selected input project:\n" + inputProj.Name + " " +
+                    "\n" + inputProj.InputFieldsCount.ToString() + " " + inputProj.OutputFieldsCount.ToString(),
+                    "Deleting",
+                    MessageBoxButtons.YesNo,
+                    MessageBoxIcon.Question,
+                    MessageBoxDefaultButton.Button2
+                    );
+
+                    if (dialogResult == DialogResult.Yes)
+                    {
+                        var owner = Owner as MainMenuForm;
+                        owner.CloseInputProject(inputProj);
+                    }
                 }
             }
-            else
+            else if (node.Text == "Productions")
             {
-                var parentIndex = TVNetworks.SelectedNode.Parent.Index;
-                var network = UIRepository.Project.Networks[parentIndex];
-                var inputProj = UIRepository.Project.GetNetworkInputProjects(network)[TVNetworks.SelectedNode.Index];
-
+                var production = UIRepository.Project.ProductionProjects[index];
                 var dialogResult = MessageBox.Show(
-                "Are you sure want to delete selected input project:\n" + inputProj.Name + " " +
-                "\n" + inputProj.InputFieldsCount.ToString() + " " + inputProj.OutputFieldsCount.ToString(),
-                "Deleting",
-                MessageBoxButtons.YesNo,
-                MessageBoxIcon.Question,
-                MessageBoxDefaultButton.Button2
-                );
+                    "Are you sure want to delete selected production project:\n" + production.Name,
+                    "Deleting",
+                    MessageBoxButtons.YesNo,
+                    MessageBoxIcon.Question,
+                    MessageBoxDefaultButton.Button2
+                    );
 
                 if (dialogResult == DialogResult.Yes)
                 {
                     var owner = Owner as MainMenuForm;
-                    owner.CloseInputProject(inputProj);
+                    owner.CloseProductionProject(production);
                 }
             }
         }
@@ -88,25 +112,41 @@ namespace Neural_Network.UI.Forms
         #endregion
 
         #region Methods
-        public void RefreshTree()
+        public void RefreshTree(bool expand = false)
         {
-            // More Readable
-
-            //TreeNode[] nodes = new TreeNode[Project.NetworksCount];
-            //for (int i = 0; i < Project.NetworksCount; i++)
-            //{
-            //    var projects = (NeuralNetworkService.GetInputProjectsForNetwork(Project.InputProjects.ToArray(), Project.Networks[i])).Select(x => new TreeNode(x.Name)).ToArray();
-            //    nodes[i] = new TreeNode(Project.Networks[i].Name, projects);
-            //}
-            //TVNetworks.Nodes.AddRange(nodes);
-
             TVNetworks.Nodes.Clear();
 
-            TVNetworks.Nodes.AddRange(
-                UIRepository.Project.Networks.Select(n => new TreeNode(n.Name,
-                    (NeuralNetworkService.GetInputProjectsForNetwork(UIRepository.Project.InputProjects.ToArray(), n))
-                        .Select(p => new TreeNode(p.Name)).ToArray()
-                )).ToArray());
+            TreeNode networkSection = new TreeNode("Neural networks");
+            TreeNode productionSection = new TreeNode("Productions");
+
+            TreeNode[] networks = new TreeNode[UIRepository.Project.NetworksCount];
+            for (int i = 0; i < UIRepository.Project.NetworksCount; i++)
+            {
+                var projects = (NeuralNetworkService.GetInputProjectsForNetwork(
+                    UIRepository.Project.InputProjects.ToArray(),
+                    UIRepository.Project.Networks[i]))
+                    .Select(x => new TreeNode(x.Name)).ToArray();
+                networks[i] = new TreeNode(UIRepository.Project.Networks[i].Name, projects);
+            }
+            networkSection.Nodes.AddRange(networks);
+
+            TreeNode[] productionProjects = new TreeNode[UIRepository.Project.ProductionProjectsCount];
+            var prodProjects = UIRepository.Project.ProductionProjects;
+            for (int i = 0; i < prodProjects.Count(); i++)
+                productionProjects[i] = new TreeNode(prodProjects[i].Name);
+            productionSection.Nodes.AddRange(productionProjects);
+
+            TVNetworks.Nodes.Add(networkSection);
+            TVNetworks.Nodes.Add(productionSection);
+
+            if (expand)
+                TVNetworks.ExpandAll();
+
+            //TVNetworks.Nodes.AddRange(
+            //    UIRepository.Project.Networks.Select(n => new TreeNode(n.Name,
+            //        (NeuralNetworkService.GetInputProjectsForNetwork(UIRepository.Project.InputProjects.ToArray(), n))
+            //            .Select(p => new TreeNode(p.Name)).ToArray()
+            //    )).ToArray());
         }
         #endregion
     }

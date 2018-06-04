@@ -71,6 +71,7 @@ namespace Neural_Network.UI.Forms
                 OrderingNetwork = orderingNetwork,
                 ForecastingNetwork = forecastingNetwork
             };
+            UIRepository.Project.ProductionProjects.Add(production);
 
             if (orderingNetwork != null)
                 owner?.ShowNetwork(orderingNetwork);

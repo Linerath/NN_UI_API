@@ -13,13 +13,13 @@ namespace Neural_Network.UI.Forms
 {
     public partial class ProductionForm : Form
     {
-        private Production production;
+        public Production Production { get; private set; }
 
         public ProductionForm(Production production)
         {
             InitializeComponent();
 
-            this.production = production;
+            this.Production = production;
             NUDDetails.Value = production.Details;
             NUDSpeed.Value = production.Speed;
             NUDEmployeees.Value = production.Employees;
@@ -34,17 +34,17 @@ namespace Neural_Network.UI.Forms
         #endregion
 
         private void NUDDetails_ValueChanged(object sender, EventArgs e) =>
-            production.Details = (int)NUDDetails.Value;
+            Production.Details = (int)NUDDetails.Value;
 
         private void NUDSpeed_ValueChanged(object sender, EventArgs e) =>
-            production.Speed = (int)NUDSpeed.Value;
+            Production.Speed = (int)NUDSpeed.Value;
 
         private void NUDEmployeees_ValueChanged(object sender, EventArgs e) =>
-            production.Employees = (int)NUDEmployeees.Value;
+            Production.Employees = (int)NUDEmployeees.Value;
 
         private void NUDRhythm_ValueChanged(object sender, EventArgs e) =>
-            production.Rhythm = (int)NUDRhythm.Value;
+            Production.Rhythm = (int)NUDRhythm.Value;
         private void NUDTact_ValueChanged(object sender, EventArgs e) =>
-            production.Tact = (int)NUDTact.Value;
+            Production.Tact = (int)NUDTact.Value;
     }
 }
