@@ -35,16 +35,39 @@ namespace Neural_Network.UI.Shared
             Networks.Add(network);
             return Networks.Count() - 1;
         }
+
+        public void RemoveNetwork(int networkIndex)
+        {
+            if (networkIndex < 0 || networkIndex >= Networks.Count())
+                return;
+            RemoveInputProjects(networkIndex);
+            Networks.RemoveAt(networkIndex);
+        }
         public int AddInputProject(NeuralNetworkInputProject inputProject)
         {
             InputProjects.Add(inputProject);
             return InputProjects.Count() - 1;
+        }
+
+        public void RemoveInputProjects(int networkIndex)
+        {
+            if (networkIndex < 0 || networkIndex >= Networks.Count())
+                return;
+            for (int i = 0; i < InputProjects.Count(); i++)
+            {
+                if (InputProjects[i].Network == Networks[networkIndex])
+                    InputProjects.RemoveAt(i--);
+            }
         }
         public int AddProductionProject(Production production)
         {
             ProductionProjects.Add(production);
             return ProductionProjects.Count() - 1;
         }
+        //public int RemoveProductionProject(int? orderingNetworkIndex, int? forecastingNetworkIndex)
+        //{
+        //    if (orderingNetworkIndex.HasValue)
+        //}
 
         public bool TryOpen(String filePath)
         {

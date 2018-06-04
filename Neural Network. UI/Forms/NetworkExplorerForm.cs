@@ -51,7 +51,7 @@ namespace Neural_Network.UI.Forms
             {
                 var owner = Owner as MainMenuForm;
                 owner.CloseNetwork(networkIndex);
-                UIRepository.Project.Networks.RemoveAt(networkIndex);
+                UIRepository.Project.RemoveNetwork(networkIndex);
                 RefreshTree();
             }
         }

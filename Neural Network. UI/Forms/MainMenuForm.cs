@@ -361,13 +361,22 @@ namespace Neural_Network.UI.Forms
         }
         public void CloseNetwork(int networkIndex)
         {
-            int formNetworkIndex = GetNetworkFormIndex(networkIndex);
-            if (formNetworkIndex >= 0)
+            int networkFormIndex = GetNetworkFormIndex(networkIndex);
+            if (networkFormIndex >= 0)
             {
-                for (int i = formNetworkIndex; i < networkForms.Count(); i++)
+                // TODO: DECREASE INPUTPRJ NETWORK INDEX
+                for (int i = networkFormIndex; i < networkForms.Count(); i++)
+                {
                     networkForms[i].DecreaseNetworkIndex();
-                formActivatedHandler.UnregisterForm(networkForms[formNetworkIndex], true);
-                networkForms.RemoveAt(formNetworkIndex);
+                    DecreaseInputProjectsNetworkIndex(i);
+                }
+                formActivatedHandler.UnregisterForm(networkForms[networkFormIndex], true);
+                networkForms.RemoveAt(networkFormIndex);
+                CloseInputProjects(networkIndex);
+                for (int i = networkFormIndex; i < networkForms.Count(); i++)
+                {
+                    DecreaseInputProjectsNetworkIndex(i);
+                }
             }
         }
         public void RefreshNetwork(int networkIndex)
@@ -379,6 +388,26 @@ namespace Neural_Network.UI.Forms
             for (int i = 0; i < networkForms.Count(); i++)
             {
                 if (networkForms[i].NetworkIndex == networkIndex)
+                    return i;
+            }
+            return -1;
+        }
+        public int[] GetInputProjFormIndices(int networkIndex)
+        {
+            List<int> indices = new List<int>();
+            for (int i = 0; i < inputProjectForms.Count(); i++)
+            {
+                if (inputProjectForms[i].NetworkIndex == networkIndex)
+                    indices.Add(i);
+            }
+            return indices.ToArray();
+        }
+
+        public int GetInputProjFormIndex(int inputProjIndex)
+        {
+            for (int i = 0; i < inputProjectForms.Count(); i++)
+            {
+                if (inputProjectForms[i].InputProjIndex == inputProjIndex)
                     return i;
             }
             return -1;
@@ -405,6 +434,30 @@ namespace Neural_Network.UI.Forms
             inputProjectForms.Add(projForm);
             projForm.FullRefresh();
         }
+        public void CloseInputProjects(int networkIndex)
+        {
+            int[] inputProjIndices = GetInputProjFormIndices(networkIndex);
+            if (inputProjIndices.Length < 1)
+                return;
+            inputProjectForms.ForEach(x =>
+            {
+                if (x.NetworkIndex == networkIndex)
+                    x.Close();
+            });
+            for (int i = inputProjIndices[0]; i < inputProjectForms.Count(); i++)
+            {
+                inputProjectForms[i].NetworkIndex--;
+            }
+            inputProjectForms.RemoveRange(inputProjIndices[0], inputProjIndices.Length);
+        }
+        private void DecreaseInputProjectsNetworkIndex(int networkIndex)
+        {
+            inputProjectForms.ForEach(x =>
+            {
+                if (x.NetworkIndex == networkIndex)
+                    x.NetworkIndex--;
+            });
+        }
 
         public void ShowAllProductionProjects()
         {
@@ -420,7 +473,7 @@ namespace Neural_Network.UI.Forms
             };
             productionForm.Show();
             if (productionForms.Any() && !first)
-                productionForm.Location = new Point(productionForms.Last().Location.X + 20, productionForms.Last().Location.Y+20);
+                productionForm.Location = new Point(productionForms.Last().Location.X + 20, productionForms.Last().Location.Y + 20);
             else
                 productionForms.Add(productionForm);
         }

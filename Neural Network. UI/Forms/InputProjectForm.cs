@@ -14,16 +14,16 @@ namespace Neural_Network.UI.Forms
 {
     public partial class InputProjectForm : Form
     {
-        private int networkIndex;
-        private int inputProjIndex;
+        public int NetworkIndex { get; set; }
+        public int InputProjIndex { get; private set; }
         public TableViewSettings ViewSettings { get; private set; }
 
         public InputProjectForm(int networkIndex, int inputProjIndex)
         {
             InitializeComponent();
 
-            this.networkIndex = networkIndex;
-            this.inputProjIndex = inputProjIndex;
+            NetworkIndex = networkIndex;
+            InputProjIndex = inputProjIndex;
             ViewSettings = new TableViewSettings();
 
             MinimumSize = Size;
@@ -41,7 +41,7 @@ namespace Neural_Network.UI.Forms
         }
         public void RefreshProjects()
         {
-            var proj = UIRepository.Project.InputProjects[inputProjIndex];
+            var proj = UIRepository.Project.InputProjects[InputProjIndex];
 
             DGVInputFields.RowCount = 0;
             DGVOutputFields.RowCount = 0;
