@@ -28,9 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea8 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend8 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series8 = new System.Windows.Forms.DataVisualization.Charting.Series();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(TrainingForm));
             this.LCreationDate0 = new System.Windows.Forms.Label();
             this.LLearningEpochs1 = new System.Windows.Forms.Label();
@@ -110,7 +110,6 @@
             // 
             // BSelectFile
             // 
-            this.BSelectFile.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.BSelectFile.Location = new System.Drawing.Point(182, 115);
             this.BSelectFile.Name = "BSelectFile";
             this.BSelectFile.Size = new System.Drawing.Size(143, 38);
@@ -121,6 +120,9 @@
             // 
             // groupBox2
             // 
+            this.groupBox2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBox2.Controls.Add(this.BSelectFile);
             this.groupBox2.Controls.Add(this.label1);
             this.groupBox2.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -333,16 +335,16 @@
             this.CLearningChart.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            chartArea1.Name = "ChartArea1";
-            this.CLearningChart.ChartAreas.Add(chartArea1);
-            legend1.Name = "Legend1";
-            this.CLearningChart.Legends.Add(legend1);
+            chartArea8.Name = "ChartArea1";
+            this.CLearningChart.ChartAreas.Add(chartArea8);
+            legend8.Name = "Legend1";
+            this.CLearningChart.Legends.Add(legend8);
             this.CLearningChart.Location = new System.Drawing.Point(6, 21);
             this.CLearningChart.Name = "CLearningChart";
-            series1.ChartArea = "ChartArea1";
-            series1.Legend = "Legend1";
-            series1.Name = "Error";
-            this.CLearningChart.Series.Add(series1);
+            series8.ChartArea = "ChartArea1";
+            series8.Legend = "Legend1";
+            series8.Name = "Error";
+            this.CLearningChart.Series.Add(series8);
             this.CLearningChart.Size = new System.Drawing.Size(614, 286);
             this.CLearningChart.TabIndex = 2;
             this.CLearningChart.Visible = false;
@@ -350,7 +352,6 @@
             // BLearn
             // 
             this.BLearn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.BLearn.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.BLearn.Font = new System.Drawing.Font("Consolas", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BLearn.Location = new System.Drawing.Point(528, 529);
             this.BLearn.Name = "BLearn";

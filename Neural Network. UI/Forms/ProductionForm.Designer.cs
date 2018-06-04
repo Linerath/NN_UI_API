@@ -39,6 +39,8 @@
             this.NUDEmployeees = new System.Windows.Forms.NumericUpDown();
             this.LSpeed = new System.Windows.Forms.Label();
             this.NUDSpeed = new System.Windows.Forms.NumericUpDown();
+            this.LWarning = new System.Windows.Forms.Label();
+            this.button1 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.NUDDetails)).BeginInit();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.NUDTact)).BeginInit();
@@ -194,11 +196,32 @@
             this.NUDSpeed.TabIndex = 2;
             this.NUDSpeed.ValueChanged += new System.EventHandler(this.NUDSpeed_ValueChanged);
             // 
+            // LWarning
+            // 
+            this.LWarning.AutoSize = true;
+            this.LWarning.Font = new System.Drawing.Font("Consolas", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LWarning.Location = new System.Drawing.Point(669, 27);
+            this.LWarning.Name = "LWarning";
+            this.LWarning.Size = new System.Drawing.Size(63, 20);
+            this.LWarning.TabIndex = 4;
+            this.LWarning.Text = "label1";
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(12, 387);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(110, 48);
+            this.button1.TabIndex = 5;
+            this.button1.Text = "button1";
+            this.button1.UseVisualStyleBackColor = true;
+            // 
             // ProductionForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1016, 447);
+            this.Controls.Add(this.button1);
+            this.Controls.Add(this.LWarning);
             this.Controls.Add(this.groupBox1);
             this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.MaximizeBox = false;
@@ -216,6 +239,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.NUDEmployeees)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.NUDSpeed)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -232,5 +256,7 @@
         private System.Windows.Forms.NumericUpDown NUDTact;
         private System.Windows.Forms.Label LRhythm;
         private System.Windows.Forms.NumericUpDown NUDRhythm;
+        private System.Windows.Forms.Label LWarning;
+        private System.Windows.Forms.Button button1;
     }
 }

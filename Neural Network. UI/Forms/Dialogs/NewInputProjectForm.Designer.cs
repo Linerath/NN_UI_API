@@ -48,7 +48,6 @@
             // 
             // BOk
             // 
-            this.BOk.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.BOk.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BOk.Location = new System.Drawing.Point(226, 93);
             this.BOk.Name = "BOk";
@@ -86,7 +85,6 @@
             // 
             // BCancel
             // 
-            this.BCancel.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.BCancel.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BCancel.Location = new System.Drawing.Point(226, 129);
             this.BCancel.Name = "BCancel";
@@ -96,7 +94,7 @@
             this.BCancel.UseVisualStyleBackColor = true;
             this.BCancel.Click += new System.EventHandler(this.BCancel_Click);
             // 
-            // SelectNetworkForm
+            // NewInputProjectForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -112,7 +110,7 @@
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
-            this.Name = "SelectNetworkForm";
+            this.Name = "NewInputProjectForm";
             this.ShowIcon = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "New input project";

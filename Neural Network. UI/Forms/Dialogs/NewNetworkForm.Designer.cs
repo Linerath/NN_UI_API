@@ -41,9 +41,9 @@
             this.RBFeedforward = new System.Windows.Forms.RadioButton();
             this.radioButton2 = new System.Windows.Forms.RadioButton();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.LFile = new System.Windows.Forms.Label();
             this.BOpenFile = new System.Windows.Forms.Button();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.LFile = new System.Windows.Forms.Label();
             this.CBRandomWeights = new System.Windows.Forms.CheckBox();
             this.CBCreateAnother = new System.Windows.Forms.CheckBox();
             this.BCancel = new System.Windows.Forms.Button();
@@ -159,7 +159,6 @@
             // 
             // BOk
             // 
-            this.BOk.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.BOk.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BOk.Location = new System.Drawing.Point(334, 491);
             this.BOk.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
@@ -241,6 +240,17 @@
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "From file";
             // 
+            // LFile
+            // 
+            this.LFile.AutoSize = true;
+            this.LFile.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LFile.Location = new System.Drawing.Point(159, 73);
+            this.LFile.Name = "LFile";
+            this.LFile.Size = new System.Drawing.Size(56, 18);
+            this.LFile.TabIndex = 24;
+            this.LFile.Text = "label1";
+            this.LFile.Visible = false;
+            // 
             // BOpenFile
             // 
             this.BOpenFile.Enabled = false;
@@ -272,17 +282,6 @@
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Manual";
             // 
-            // LFile
-            // 
-            this.LFile.AutoSize = true;
-            this.LFile.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LFile.Location = new System.Drawing.Point(159, 73);
-            this.LFile.Name = "LFile";
-            this.LFile.Size = new System.Drawing.Size(56, 18);
-            this.LFile.TabIndex = 24;
-            this.LFile.Text = "label1";
-            this.LFile.Visible = false;
-            // 
             // CBRandomWeights
             // 
             this.CBRandomWeights.AutoSize = true;
@@ -308,7 +307,6 @@
             // 
             // BCancel
             // 
-            this.BCancel.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.BCancel.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BCancel.Location = new System.Drawing.Point(251, 491);
             this.BCancel.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
