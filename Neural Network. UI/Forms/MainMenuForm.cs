@@ -43,7 +43,7 @@ namespace Neural_Network.UI.Forms
         #region Events
         private void MainMenuForm_Load(object sender, EventArgs e)
         {
-            if (UIRepository.Project.TryOpen(@"D:\Programming\C#\NeuralNetwork_Core_UI\Neural Network. UI\bin\Debug\hades.nnproj"))
+            if (UIRepository.Project.TryOpen(@"E:\Programming\C#\Neural Network WF (Graduate Work)\Neural Network. UI\bin\Debug\hades.nnproj"))
             {
                 networkExplorerForm.RefreshTree();
                 ShowAllNetworks();
@@ -335,79 +335,57 @@ namespace Neural_Network.UI.Forms
 
         public void ShowAllNetworks()
         {
-            for (int i = 0; i < UIRepository.Project.NetworksCount; i++)
-                ShowNetwork(i, i == 0);
+            foreach (var v in UIRepository.Project.Networks)
+                ShowNetwork(v);
         }
-        public void ShowNetwork(int networkIndex, bool first = false)
+        public void ShowNetwork(FeedforwardNetworkSHL network)
         {
-            NetworkForm networkForm = new NetworkForm(networkIndex)
+            NetworkForm networkForm = new NetworkForm(network)
             {
                 Owner = this,
-                Text = UIRepository.Project.Networks[networkIndex].Name,
-                Tag = networkIndex.ToString(),
+                Text = network.Name,
             };
             formActivatedHandler.RegisterForm(networkForm, RefreshNetwork);
 
             networkForm.Show();
-            if (networkForms.Any() && !first)
-            {
-                if (networkForms.Count > networkForms.Count() - 1)
-                    networkForm.Location = new Point(networkForms.Last().Location.X + 20, networkForms.Last().Location.Y + 20);
-            }
+            if (networkForms.Any())
+                networkForm.Location = new Point(networkForms.Last().Location.X + 20, networkForms.Last().Location.Y + 20);
             else
                 networkForm.Location = new Point(networkExplorerForm.Location.X + networkExplorerForm.Size.Width - 5, networkExplorerForm.Location.Y);
             networkForms.Add(networkForm);
             networkForm.FullNetworkRefresh();
         }
-        public void CloseNetwork(int networkIndex)
+        public void CloseNetwork(FeedforwardNetworkSHL network)
         {
-            int networkFormIndex = GetNetworkFormIndex(networkIndex);
+            int networkFormIndex = GetNetworkFormIndex(network);
             if (networkFormIndex >= 0)
             {
-                // TODO: DECREASE INPUTPRJ NETWORK INDEX
-                for (int i = networkFormIndex; i < networkForms.Count(); i++)
-                {
-                    networkForms[i].DecreaseNetworkIndex();
-                    DecreaseInputProjectsNetworkIndex(i);
-                }
                 formActivatedHandler.UnregisterForm(networkForms[networkFormIndex], true);
+                CloseInputProjects(network);
                 networkForms.RemoveAt(networkFormIndex);
-                CloseInputProjects(networkIndex);
-                for (int i = networkFormIndex; i < networkForms.Count(); i++)
-                {
-                    DecreaseInputProjectsNetworkIndex(i);
-                }
             }
+            UIRepository.Project.RemoveNetwork(network);
+            networkExplorerForm.RefreshTree();
         }
-        public void RefreshNetwork(int networkIndex)
+        public void RefreshNetwork(FeedforwardNetworkSHL network)
         {
-            networkForms[networkIndex]?.FullNetworkRefresh();
+            networkForms[GetNetworkFormIndex(network)]?.FullNetworkRefresh();
         }
-        public int GetNetworkFormIndex(int networkIndex)
+
+        public int GetNetworkFormIndex(FeedforwardNetworkSHL network)
         {
             for (int i = 0; i < networkForms.Count(); i++)
             {
-                if (networkForms[i].NetworkIndex == networkIndex)
+                if (networkForms[i].Network == network)
                     return i;
             }
             return -1;
         }
-        public int[] GetInputProjFormIndices(int networkIndex)
-        {
-            List<int> indices = new List<int>();
-            for (int i = 0; i < inputProjectForms.Count(); i++)
-            {
-                if (inputProjectForms[i].NetworkIndex == networkIndex)
-                    indices.Add(i);
-            }
-            return indices.ToArray();
-        }
-
-        public int GetInputProjFormIndex(int inputProjIndex)
+        public int GetInputProjFormIndex(NeuralNetworkInputProject inputProj)
         {
             for (int i = 0; i < inputProjectForms.Count(); i++)
             {
-                if (inputProjectForms[i].InputProjIndex == inputProjIndex)
+                if (inputProjectForms[i].InputProj == inputProj)
                     return i;
             }
             return -1;
@@ -415,75 +393,72 @@ namespace Neural_Network.UI.Forms
 
         public void ShowAllInputProjects()
         {
-            for (int i = 0; i < UIRepository.Project.InputProjectsCount; i++)
-                ShowInputProject(NeuralNetworkService.GetNetworkIndexForInputProject(UIRepository.Project.InputProjects[i], UIRepository.Project.Networks.ToArray()), i, i == 0);
+            foreach (var v in UIRepository.Project.InputProjects)
+                ShowInputProject(v);
         }
-        public void ShowInputProject(int networkIndex, int inputProjIndex, bool first = false)
+        public void ShowInputProject(NeuralNetworkInputProject inputProj)
         {
-            InputProjectForm projForm = new InputProjectForm(networkIndex, inputProjIndex)
+            InputProjectForm projForm = new InputProjectForm(inputProj)
             {
                 Owner = this,
-                Text = UIRepository.Project.Networks[networkIndex].Name + ". " + UIRepository.Project.InputProjects[inputProjIndex].Name,
+                Text = inputProj.Network.Name + ". " + inputProj.Name,
             };
 
             projForm.Show();
-            if (inputProjectForms.Any() && !first)
+            if (inputProjectForms.Any())
                 projForm.Location = new Point(inputProjectForms.Last().Location.X + 20, inputProjectForms.Last().Location.Y + 20);
             else
                 projForm.Location = new Point(viewSettingsForm.Location.X + viewSettingsForm.Size.Width - 5, viewSettingsForm.Location.Y);
             inputProjectForms.Add(projForm);
             projForm.FullRefresh();
         }
-        public void CloseInputProjects(int networkIndex)
+        public void CloseInputProjects(FeedforwardNetworkSHL network)
         {
-            int[] inputProjIndices = GetInputProjFormIndices(networkIndex);
-            if (inputProjIndices.Length < 1)
-                return;
-            inputProjectForms.ForEach(x =>
+            for (int i = 0; i < inputProjectForms.Count(); i++)
             {
-                if (x.NetworkIndex == networkIndex)
-                    x.Close();
-            });
-            for (int i = inputProjIndices[0]; i < inputProjectForms.Count(); i++)
-            {
-                inputProjectForms[i].NetworkIndex--;
+                if (inputProjectForms[i].InputProj.Network == network)
+                {
+                    inputProjectForms[i].Close();
+                    UIRepository.Project.InputProjects.Remove(inputProjectForms[i].InputProj);
+                    inputProjectForms.RemoveAt(i--);
+                }
             }
-            inputProjectForms.RemoveRange(inputProjIndices[0], inputProjIndices.Length);
+            networkExplorerForm.RefreshTree();
         }
-        private void DecreaseInputProjectsNetworkIndex(int networkIndex)
+        public void CloseInputProject(NeuralNetworkInputProject inputProj)
         {
-            inputProjectForms.ForEach(x =>
-            {
-                if (x.NetworkIndex == networkIndex)
-                    x.NetworkIndex--;
-            });
+            var inputProjIndex = GetInputProjFormIndex(inputProj);
+            inputProjectForms[inputProjIndex].Close();
+            inputProjectForms.RemoveAt(inputProjIndex);
+            UIRepository.Project.InputProjects.Remove(inputProj);
+            networkExplorerForm.RefreshTree();
         }
 
         public void ShowAllProductionProjects()
         {
-            for (int i = 0; i < UIRepository.Project.ProductionProjectsCount; i++)
-                ShowProductionForm(i);
+            foreach (var v in UIRepository.Project.ProductionProjects)
+                ShowProductionForm(v);
         }
-        public void ShowProductionForm(int productionProjIndex, bool first = false)
+        public void ShowProductionForm(Production production)
         {
-            ProductionForm productionForm = new ProductionForm(productionProjIndex)
+            ProductionForm productionForm = new ProductionForm(production)
             {
                 Owner = this,
-                Text = UIRepository.Project.ProductionProjects[productionProjIndex].Name
+                Text = production.Name
             };
             productionForm.Show();
-            if (productionForms.Any() && !first)
+            if (productionForms.Any())
                 productionForm.Location = new Point(productionForms.Last().Location.X + 20, productionForms.Last().Location.Y + 20);
             else
                 productionForms.Add(productionForm);
         }
 
 
-        public void ShowTrainingForm(int networkIndex)
+        public void ShowTrainingForm(FeedforwardNetworkSHL network)
         {
             if (trainingForm != null)
             {
-                if (trainingForm.NetworkIndex == networkIndex)
+                if (trainingForm.Network == network)
                 {
                     MessageBox.Show("Training form is already opened!", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     trainingForm.Focus();
@@ -491,16 +466,15 @@ namespace Neural_Network.UI.Forms
                 }
                 trainingForm.Close();
             }
-            trainingForm = new TrainingForm(networkIndex)
+            trainingForm = new TrainingForm(network)
             {
                 Owner = this,
-                Text = UIRepository.Project.Networks[networkIndex].Name + ". Training",
-                Tag = networkIndex.ToString(),
+                Text = network.Name + ". Training",
             };
             formActivatedHandler.RegisterForm(trainingForm, RefreshTrainingFormTables);
             trainingForm.Show();
         }
-        public void RefreshTrainingFormTables(int networkIndex)
+        public void RefreshTrainingFormTables(FeedforwardNetworkSHL network)
         {
             trainingForm?.FullTablesRefresh();
         }

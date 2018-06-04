@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Neural_Network.Core.Implementation;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -12,6 +13,9 @@ namespace Neural_Network.UI.Forms
 {
     public partial class ViewSettingsForm : Form
     {
+        public FeedforwardNetworkSHL Network { get; set; }
+        public Action<FeedforwardNetworkSHL> OnPropertyChangeAction { get; set; }
+
         public ViewSettingsForm()
         {
             InitializeComponent();

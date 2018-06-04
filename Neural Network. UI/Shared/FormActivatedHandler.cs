@@ -16,14 +16,14 @@ namespace Neural_Network.UI.Shared
     {
         private ViewSettingsForm settingsForm;
         private List<Form> forms;
-        private List<Action<int>> OnPropertyChangedActions;
+        private List<Action<FeedforwardNetworkSHL>> OnPropertyChangedActions;
         private Form lastForm;
 
         public FormActivatedHandler(ViewSettingsForm settingsForm)
         {
             this.settingsForm = settingsForm ?? throw new ArgumentNullException(Exceptions.NULL_ARGUMENT + "(Form: ViewSettingsForm)");
             forms = new List<Form>();
-            OnPropertyChangedActions = new List<Action<int>>();
+            OnPropertyChangedActions = new List<Action<FeedforwardNetworkSHL>>();
 
             settingsForm.PGProperties.PropertyValueChanged += PGProperties_PropertyValueChanged;
         }
@@ -35,11 +35,10 @@ namespace Neural_Network.UI.Shared
 
             PropertyGrid propertyGrid = s as PropertyGrid;
 
-            String[] data = settingsForm.Tag.ToString().Split(' ');
-            int networkIndex = Int32.Parse(data[0]);
-            int index = Int32.Parse(data[1]);
+            var network = settingsForm.Network;
+            var action = settingsForm.OnPropertyChangeAction;
 
-            OnPropertyChangedActions[index](networkIndex);
+            action(network);
         }
 
         private void Form_Activated(object sender, EventArgs e)
@@ -54,17 +53,19 @@ namespace Neural_Network.UI.Shared
             if (activatedForm is NetworkForm networkForm)
             {
                 settingsForm.PGProperties.SelectedObject = networkForm.ViewSettings;
-                settingsForm.Tag = networkForm.NetworkIndex + " " + GetFormByNetworkIndex(networkForm.NetworkIndex, typeof(NetworkForm));
+                settingsForm.Network = networkForm.Network;
+                settingsForm.OnPropertyChangeAction = GetFormAction(activatedForm, typeof(NetworkForm));
             }
             else if (activatedForm is TrainingForm trainingForm)
             {
                 settingsForm.PGProperties.SelectedObject = trainingForm.ViewSettings;
-                settingsForm.Tag = trainingForm.NetworkIndex + " " + GetFormByNetworkIndex(trainingForm.NetworkIndex, typeof(TrainingForm));
+                settingsForm.Network = trainingForm.Network;
+                settingsForm.OnPropertyChangeAction = GetFormAction(activatedForm, typeof(TrainingForm));
             }
             lastForm = activatedForm;
         }
 
-        public void RegisterForm(Form form, Action<int> onPropertyChange)
+        public void RegisterForm(Form form, Action<FeedforwardNetworkSHL> onPropertyChange)
         {
             forms.Add(form);
             OnPropertyChangedActions.Add(onPropertyChange);
@@ -86,14 +87,14 @@ namespace Neural_Network.UI.Shared
             }
         }
 
-        private int GetFormByNetworkIndex(int networkIndex, Type formType)
+        private Action<FeedforwardNetworkSHL> GetFormAction(Form form, Type formType)
         {
             for (int i = 0; i < forms.Count(); i++)
             {
-                if (forms[i].Tag.ToString() == networkIndex.ToString() && forms[i].GetType() == formType)
-                    return i;
+                if (forms[i] == form && forms[i].GetType() == formType)
+                    return OnPropertyChangedActions[i];
             }
-            return -1;
+            return null;
         }
     }
 }

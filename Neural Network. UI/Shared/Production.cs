@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Neural_Network.Core.Implementation;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -15,7 +16,7 @@ namespace Neural_Network.UI.Shared
         public int Employees;
         public int Rhythm;
         public int Tact;
-        public int? OrderingNetworkIndex;
-        public int? ForecastingNetworkIndex;
+        public FeedforwardNetworkSHL OrderingNetwork;
+        public FeedforwardNetworkSHL ForecastingNetwork;
     }
 }

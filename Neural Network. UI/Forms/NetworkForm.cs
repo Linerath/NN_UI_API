@@ -16,18 +16,18 @@ namespace Neural_Network.UI.Forms
 {
     public partial class NetworkForm : Form
     {
-        public int NetworkIndex { get; private set; }
+        public FeedforwardNetworkSHL Network { get; private set; }
         public TableViewSettings ViewSettings { get; private set; }
 
         private DataGridView dgvInput;
         private DataGridView[] dgvHidden;
         private DataGridView dgvOutput;
 
-        public NetworkForm(int networkIndex)
+        public NetworkForm(FeedforwardNetworkSHL network)
         {
             InitializeComponent();
 
-            NetworkIndex = networkIndex;
+            Network = network;
             ViewSettings = new TableViewSettings();
 
             LocateTables();
@@ -92,52 +92,52 @@ namespace Neural_Network.UI.Forms
             if (ViewSettings.NeuronsSorting == NeuronsSorting.Horizontal)
             {
                 // Input layer
-                dgvInput.RowCount = UIRepository.Project.Networks[NetworkIndex].InputLayerSize;
+                dgvInput.RowCount = Network.InputLayerSize;
                 dgvInput.ColumnCount = 1;
-                for (int i = 0; i < UIRepository.Project.Networks[NetworkIndex].InputLayer.Length; i++)
-                    dgvInput[0, i].Value = UIRepository.Project.Networks[NetworkIndex].InputLayer[i][0];
+                for (int i = 0; i < Network.InputLayer.Length; i++)
+                    dgvInput[0, i].Value = Network.InputLayer[i][0];
 
                 // Hidden layer
                 for (int i = 0; i < dgvHidden.Length; i++)
                 {
-                    dgvHidden[i].RowCount = UIRepository.Project.Networks[NetworkIndex].HiddenLayerSize;
-                    dgvHidden[i].ColumnCount = UIRepository.Project.Networks[NetworkIndex].HiddenLayer.Max(x => x.InputCount);
-                    for (int j = 0; j < UIRepository.Project.Networks[NetworkIndex].HiddenLayerSize; j++)
-                        for (int k = 0; k < UIRepository.Project.Networks[NetworkIndex].HiddenLayer[j].InputCount; k++)
-                            dgvHidden[i][k, j].Value = Math.Round(UIRepository.Project.Networks[NetworkIndex].HiddenLayer[j][k], ViewSettings.DecimalPlaces);
+                    dgvHidden[i].RowCount = Network.HiddenLayerSize;
+                    dgvHidden[i].ColumnCount = Network.HiddenLayer.Max(x => x.InputCount);
+                    for (int j = 0; j < Network.HiddenLayerSize; j++)
+                        for (int k = 0; k < Network.HiddenLayer[j].InputCount; k++)
+                            dgvHidden[i][k, j].Value = Math.Round(Network.HiddenLayer[j][k], ViewSettings.DecimalPlaces);
                 }
 
                 // Output layer
-                dgvOutput.RowCount = UIRepository.Project.Networks[NetworkIndex].OutputLayerSize;
-                dgvOutput.ColumnCount = UIRepository.Project.Networks[NetworkIndex].OutputLayer.Max(x => x.InputCount);
-                for (int i = 0; i < UIRepository.Project.Networks[NetworkIndex].OutputLayerSize; i++)
-                    for (int j = 0; j < UIRepository.Project.Networks[NetworkIndex].OutputLayer[i].InputCount; j++)
-                        dgvOutput[j, i].Value = Math.Round(UIRepository.Project.Networks[NetworkIndex].OutputLayer[i][j], ViewSettings.DecimalPlaces);
+                dgvOutput.RowCount = Network.OutputLayerSize;
+                dgvOutput.ColumnCount = Network.OutputLayer.Max(x => x.InputCount);
+                for (int i = 0; i < Network.OutputLayerSize; i++)
+                    for (int j = 0; j < Network.OutputLayer[i].InputCount; j++)
+                        dgvOutput[j, i].Value = Math.Round(Network.OutputLayer[i][j], ViewSettings.DecimalPlaces);
             }
             else
             {
                 // Input layer
                 dgvInput.RowCount = 1;
-                dgvInput.ColumnCount = UIRepository.Project.Networks[NetworkIndex].InputLayerSize;
-                for (int i = 0; i < UIRepository.Project.Networks[NetworkIndex].InputLayer.Length; i++)
-                    dgvInput[i, 0].Value = UIRepository.Project.Networks[NetworkIndex].InputLayer[i][0];
+                dgvInput.ColumnCount = Network.InputLayerSize;
+                for (int i = 0; i < Network.InputLayer.Length; i++)
+                    dgvInput[i, 0].Value = Network.InputLayer[i][0];
 
                 // Hidden layer
                 for (int i = 0; i < dgvHidden.Length; i++)
                 {
-                    dgvHidden[i].RowCount = UIRepository.Project.Networks[NetworkIndex].HiddenLayer.Max(x => x.InputCount);
-                    dgvHidden[i].ColumnCount = UIRepository.Project.Networks[NetworkIndex].HiddenLayerSize;
-                    for (int j = 0; j < UIRepository.Project.Networks[NetworkIndex].HiddenLayerSize; j++)
-                        for (int k = 0; k < UIRepository.Project.Networks[NetworkIndex].HiddenLayer[j].InputCount; k++)
-                            dgvHidden[i][j, k].Value = Math.Round(UIRepository.Project.Networks[NetworkIndex].HiddenLayer[j][k], ViewSettings.DecimalPlaces);
+                    dgvHidden[i].RowCount = Network.HiddenLayer.Max(x => x.InputCount);
+                    dgvHidden[i].ColumnCount = Network.HiddenLayerSize;
+                    for (int j = 0; j < Network.HiddenLayerSize; j++)
+                        for (int k = 0; k < Network.HiddenLayer[j].InputCount; k++)
+                            dgvHidden[i][j, k].Value = Math.Round(Network.HiddenLayer[j][k], ViewSettings.DecimalPlaces);
                 }
 
                 // Output layer
-                dgvOutput.RowCount = UIRepository.Project.Networks[NetworkIndex].OutputLayer.Max(x => x.InputCount);
-                dgvOutput.ColumnCount = UIRepository.Project.Networks[NetworkIndex].OutputLayerSize;
-                for (int i = 0; i < UIRepository.Project.Networks[NetworkIndex].OutputLayerSize; i++)
-                    for (int j = 0; j < UIRepository.Project.Networks[NetworkIndex].OutputLayer[i].InputCount; j++)
-                        dgvOutput[i, j].Value = Math.Round(UIRepository.Project.Networks[NetworkIndex].OutputLayer[i][j], ViewSettings.DecimalPlaces);
+                dgvOutput.RowCount = Network.OutputLayer.Max(x => x.InputCount);
+                dgvOutput.ColumnCount = Network.OutputLayerSize;
+                for (int i = 0; i < Network.OutputLayerSize; i++)
+                    for (int j = 0; j < Network.OutputLayer[i].InputCount; j++)
+                        dgvOutput[i, j].Value = Math.Round(Network.OutputLayer[i][j], ViewSettings.DecimalPlaces);
             }
         }
         public void RefreshFont()
@@ -153,11 +153,6 @@ namespace Neural_Network.UI.Forms
             for (int i = 0; i < dgvHidden.Length; i++)
                 TableHandler.RefreshCellsAutoSize(dgvHidden[i], ViewSettings);
             TableHandler.RefreshCellsAutoSize(dgvOutput, ViewSettings);
-        }
-        public void DecreaseNetworkIndex()
-        {
-            NetworkIndex--;
-            Tag = NetworkIndex.ToString();
         }
         #endregion
     }

@@ -50,33 +50,33 @@ namespace Neural_Network.UI.Forms
             int detailsTypesCount = 3;
             //!!!!!!
 
-            int? orderingNetworkIndex, forecastingNetworkIndex;
-            orderingNetworkIndex = forecastingNetworkIndex = null;
+            FeedforwardNetworkSHL orderingNetwork, forecastingNetwork;
+            orderingNetwork = forecastingNetwork = null;
             if (CBOrdering.Checked)
             {
-                var network = new FeedforwardNetworkSHL(name + "_Ordering", inputCount, inputCount * 2, detailsTypesCount, Core.Functions.Sigmoid, 0.05);
-                network.SetAllRandomWeights();
-                orderingNetworkIndex = UIRepository.Project.AddNetwork(network);
+                orderingNetwork = new FeedforwardNetworkSHL(name + "_Ordering", inputCount, inputCount * 2, detailsTypesCount, Core.Functions.Sigmoid, 0.05);
+                orderingNetwork.SetAllRandomWeights();
+                UIRepository.Project.Networks.Add(orderingNetwork);
             }
             if (CBForecasting.Checked)
             {
-                var network = new FeedforwardNetworkSHL(name + "_Forecasting", inputCount, inputCount * 2, 2, Core.Functions.Sigmoid, 0.05);
-                network.SetAllRandomWeights();
-                forecastingNetworkIndex = UIRepository.Project.AddNetwork(network);
+                forecastingNetwork = new FeedforwardNetworkSHL(name + "_Forecasting", inputCount, inputCount * 2, 2, Core.Functions.Sigmoid, 0.05);
+                forecastingNetwork.SetAllRandomWeights();
+                UIRepository.Project.Networks.Add(forecastingNetwork);
             }
             var owner = Owner as MainMenuForm;
             var production = new Production
             {
                 Name = name,
-                OrderingNetworkIndex = orderingNetworkIndex,
-                ForecastingNetworkIndex = forecastingNetworkIndex
+                OrderingNetwork = orderingNetwork,
+                ForecastingNetwork = forecastingNetwork
             };
-            int productionProjIndex = UIRepository.Project.AddProductionProject(production);
-            if (orderingNetworkIndex.HasValue)
-                owner?.ShowNetwork(orderingNetworkIndex.Value);
-            if (forecastingNetworkIndex.HasValue)
-                owner?.ShowNetwork(forecastingNetworkIndex.Value);
-            owner?.ShowProductionForm(productionProjIndex);
+
+            if (orderingNetwork != null)
+                owner?.ShowNetwork(orderingNetwork);
+            if (forecastingNetwork != null)
+                owner?.ShowNetwork(forecastingNetwork);
+            owner?.ShowProductionForm(production);
 
             Close();
         }

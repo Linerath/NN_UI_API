@@ -1,4 +1,5 @@
-﻿using Neural_Network.UI.Shared;
+﻿using Neural_Network.Core.Implementation;
+using Neural_Network.UI.Shared;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -25,18 +26,16 @@ namespace Neural_Network.UI.Forms.Dialogs
         }
         private void BOk_Click(object sender, EventArgs e)
         {
-            int networkIndex = LBNetworks.SelectedIndex;
-
-            if (networkIndex >= 0)
-            {
-                var owner = Owner as MainMenuForm;
-                owner.ShowTrainingForm(networkIndex);
-
-                Close();
-            }
-            else
+            if (LBNetworks.SelectedIndex < 0)
             {
                 MessageBox.Show("Select network at first.");
+                return;
+            }
+            if (LBNetworks.SelectedItem is FeedforwardNetworkSHL network)
+            {
+                var owner = Owner as MainMenuForm;
+                owner.ShowTrainingForm(network);
+                Close();
             }
         }
         private void BCancel_Click(object sender, EventArgs e)
@@ -49,8 +48,8 @@ namespace Neural_Network.UI.Forms.Dialogs
         public void RefreshNetworks()
         {
             LBNetworks.Items.Clear();
-            LBNetworks.Items.AddRange(UIRepository.Project.Networks.Select(x => x.Name).ToArray());
-            if (UIRepository.Project.NetworksCount > 0)
+            LBNetworks.Items.AddRange(UIRepository.Project.Networks.ToArray());
+            if (LBNetworks.Items.Count > 0)
                 LBNetworks.SetSelected(0, true);
         }
         #endregion

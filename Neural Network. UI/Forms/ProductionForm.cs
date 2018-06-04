@@ -13,18 +13,18 @@ namespace Neural_Network.UI.Forms
 {
     public partial class ProductionForm : Form
     {
-        private int productionProjIndex;
+        private Production production;
 
-        public ProductionForm(int productionProjIndex)
+        public ProductionForm(Production production)
         {
             InitializeComponent();
 
-            this.productionProjIndex = productionProjIndex;
-            NUDDetails.Value = UIRepository.Project.ProductionProjects[productionProjIndex].Details;
-            NUDSpeed.Value = UIRepository.Project.ProductionProjects[productionProjIndex].Speed;
-            NUDEmployeees.Value = UIRepository.Project.ProductionProjects[productionProjIndex].Employees;
-            NUDRhythm.Value = UIRepository.Project.ProductionProjects[productionProjIndex].Rhythm;
-            NUDTact.Value = UIRepository.Project.ProductionProjects[productionProjIndex].Tact;
+            this.production = production;
+            NUDDetails.Value = production.Details;
+            NUDSpeed.Value = production.Speed;
+            NUDEmployeees.Value = production.Employees;
+            NUDRhythm.Value = production.Rhythm;
+            NUDTact.Value = production.Tact;
         }
 
         #region Events
@@ -34,17 +34,17 @@ namespace Neural_Network.UI.Forms
         #endregion
 
         private void NUDDetails_ValueChanged(object sender, EventArgs e) =>
-            UIRepository.Project.ProductionProjects[productionProjIndex].Details = (int)NUDDetails.Value;
+            production.Details = (int)NUDDetails.Value;
 
         private void NUDSpeed_ValueChanged(object sender, EventArgs e) =>
-            UIRepository.Project.ProductionProjects[productionProjIndex].Speed = (int)NUDSpeed.Value;
+            production.Speed = (int)NUDSpeed.Value;
 
         private void NUDEmployeees_ValueChanged(object sender, EventArgs e) =>
-            UIRepository.Project.ProductionProjects[productionProjIndex].Employees = (int)NUDEmployeees.Value;
+            production.Employees = (int)NUDEmployeees.Value;
 
         private void NUDRhythm_ValueChanged(object sender, EventArgs e) =>
-            UIRepository.Project.ProductionProjects[productionProjIndex].Rhythm = (int)NUDRhythm.Value;
+            production.Rhythm = (int)NUDRhythm.Value;
         private void NUDTact_ValueChanged(object sender, EventArgs e) =>
-            UIRepository.Project.ProductionProjects[productionProjIndex].Tact = (int)NUDTact.Value;
+            production.Tact = (int)NUDTact.Value;
     }
 }

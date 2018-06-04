@@ -228,7 +228,8 @@ namespace Neural_Network.Core.Implementation
 
         public override string ToString()
         {
-            return $"{Name} ({NetType.ToString()}). Creation Date: {CreationDate.ToString()}.";
+            return Name;
+            //return $"{Name} ({NetType.ToString()}). Creation Date: {CreationDate.ToString()}.";
         }
 
         public Neuron[] this[Layers layer]

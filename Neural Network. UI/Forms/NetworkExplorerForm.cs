@@ -32,12 +32,14 @@ namespace Neural_Network.UI.Forms
             if (TVNetworks.SelectedNode == null)
                 return;
             var networkIndex = TVNetworks.SelectedNode.Index;
+
             if (networkIndex < 0)
                 return;
 
-            var network = UIRepository.Project.Networks[networkIndex];
-
-            var dialogResult = MessageBox.Show(
+            if (TVNetworks.SelectedNode.Parent == null)
+            {
+                var network = UIRepository.Project.Networks[networkIndex];
+                var dialogResult = MessageBox.Show(
                 "Are you sure want to delete selected network:\n" + network.Name + " " +
                 network.InputLayerSize.ToString() + " " + network.HiddenLayerSize.ToString() + " " + network.OutputLayerSize.ToString() + ".\nCreated on " +
                 network.CreationDate.ToString(),
@@ -47,12 +49,32 @@ namespace Neural_Network.UI.Forms
                 MessageBoxDefaultButton.Button2
                 );
 
-            if (dialogResult == DialogResult.Yes)
+                if (dialogResult == DialogResult.Yes)
+                {
+                    var owner = Owner as MainMenuForm;
+                    owner.CloseNetwork(network);
+                }
+            }
+            else
             {
-                var owner = Owner as MainMenuForm;
-                owner.CloseNetwork(networkIndex);
-                UIRepository.Project.RemoveNetwork(networkIndex);
-                RefreshTree();
+                var parentIndex = TVNetworks.SelectedNode.Parent.Index;
+                var network = UIRepository.Project.Networks[parentIndex];
+                var inputProj = UIRepository.Project.GetNetworkInputProjects(network)[TVNetworks.SelectedNode.Index];
+
+                var dialogResult = MessageBox.Show(
+                "Are you sure want to delete selected input project:\n" + inputProj.Name + " " +
+                "\n" + inputProj.InputFieldsCount.ToString() + " " + inputProj.OutputFieldsCount.ToString(),
+                "Deleting",
+                MessageBoxButtons.YesNo,
+                MessageBoxIcon.Question,
+                MessageBoxDefaultButton.Button2
+                );
+
+                if (dialogResult == DialogResult.Yes)
+                {
+                    var owner = Owner as MainMenuForm;
+                    owner.CloseInputProject(inputProj);
+                }
             }
         }
         private void NetworkExplorerForm_FormClosing(object sender, FormClosingEventArgs e)

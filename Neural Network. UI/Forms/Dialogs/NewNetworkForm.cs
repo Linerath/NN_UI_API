@@ -39,13 +39,13 @@ namespace Neural_Network.UI.Forms.Dialogs
             int outputCount = (int)NUDOutput.Value;
 
             var network = new FeedforwardNetworkSHL(name, inputCount, hiddenCount, outputCount);
-            int index = UIRepository.Project.AddNetwork(network);
+            UIRepository.Project.Networks.Add(network);
 
             if (CBRandomWeights.Checked)
-                UIRepository.Project.Networks[index].SetAllRandomWeights();
+                network.SetAllRandomWeights();
 
             var owner = Owner as MainMenuForm;
-            owner?.ShowNetwork(index);
+            owner?.ShowNetwork(network);
 
             if (CBCreateAnother.Checked)
             {

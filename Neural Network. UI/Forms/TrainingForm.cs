@@ -18,15 +18,15 @@ namespace Neural_Network.UI.Forms
     {
         private List<double[]> inputSignals;
         private List<double[]> correctOutputSignals;
-        public int NetworkIndex { get; set; }
+        public FeedforwardNetworkSHL Network { get; set; }
         public TableViewSettings ViewSettings { get; private set; }
         private String FilePath { get; set; } = null;
 
-        public TrainingForm(int networkIndex)
+        public TrainingForm(FeedforwardNetworkSHL network)
         {
             inputSignals = new List<double[]>();
             correctOutputSignals = new List<double[]>();
-            NetworkIndex = networkIndex;
+            Network = network;
             ViewSettings = new TableViewSettings()
             {
                 NeuronsSorting = NeuronsSorting.Vertical,
@@ -38,8 +38,8 @@ namespace Neural_Network.UI.Forms
         #region Events
         private void TrainingForm_Load(object sender, EventArgs e)
         {
-            LCreationDate0.Text += "\n" + UIRepository.Project.Networks[NetworkIndex].CreationDate.ToString();
-            LLearningEpochs1.Text = UIRepository.Project.Networks[NetworkIndex].LearningEpochs.ToString();
+            LCreationDate0.Text += "\n" + Network.CreationDate.ToString();
+            LLearningEpochs1.Text = Network.LearningEpochs.ToString();
             MinimumSize = Size;
 
             FullTablesRefresh();
@@ -91,8 +91,8 @@ namespace Neural_Network.UI.Forms
         }
         private void NFBAdd_Click(object sender, EventArgs e)
         {
-            inputSignals.Add(new double[UIRepository.Project.Networks[NetworkIndex].InputLayerSize]);
-            correctOutputSignals.Add(new double[UIRepository.Project.Networks[NetworkIndex].OutputLayerSize]);
+            inputSignals.Add(new double[Network.InputLayerSize]);
+            correctOutputSignals.Add(new double[Network.OutputLayerSize]);
             FullTablesRefresh();
         }
         private void NFBRemove_Click(object sender, EventArgs e)
@@ -108,11 +108,9 @@ namespace Neural_Network.UI.Forms
             int epochs = (int)NUDEpochs.Value;
             bool randomize = CBRandomize.Checked;
 
-            var network = UIRepository.Project.Networks[NetworkIndex];
-
             PBLearningProgress.Maximum = epochs - 1;
             NeuralNetworkService.TrainNetwork(
-                network,
+                Network,
                 inputSignals, correctOutputSignals,
                 epochs,
                 learningRate,
@@ -124,7 +122,7 @@ namespace Neural_Network.UI.Forms
             LEndError1.Text = Math.Round(endError, 4).ToString();
 
             LCompleted1.Text = epochs.ToString();
-            LLearningEpochs1.Text = network.LearningEpochs.ToString();
+            LLearningEpochs1.Text = Network.LearningEpochs.ToString();
             GlobalNetworkRefresh();
         }
         #endregion
@@ -134,16 +132,16 @@ namespace Neural_Network.UI.Forms
         {
             if (inputSignals.Count() < 1)
             {
-                inputSignals.Add(new double[UIRepository.Project.Networks[NetworkIndex].InputLayerSize]);
-                correctOutputSignals.Add(new double[UIRepository.Project.Networks[NetworkIndex].OutputLayerSize]);
+                inputSignals.Add(new double[Network.InputLayerSize]);
+                correctOutputSignals.Add(new double[Network.OutputLayerSize]);
             }
 
             if (ViewSettings.NeuronsSorting == NeuronsSorting.Horizontal)
             {
                 DGVInputSignals.RowCount = inputSignals.Count();
-                DGVInputSignals.ColumnCount = UIRepository.Project.Networks[NetworkIndex].InputLayerSize;
+                DGVInputSignals.ColumnCount = Network.InputLayerSize;
                 DGVCorrectOutputSignals.RowCount = correctOutputSignals.Count();
-                DGVCorrectOutputSignals.ColumnCount = UIRepository.Project.Networks[NetworkIndex].OutputLayerSize;
+                DGVCorrectOutputSignals.ColumnCount = Network.OutputLayerSize;
 
                 for (int i = 0; i < inputSignals.Count(); i++)
                     for (int j = 0; j < inputSignals[i].Length; j++)
@@ -154,9 +152,9 @@ namespace Neural_Network.UI.Forms
             }
             else
             {
-                DGVInputSignals.RowCount = UIRepository.Project.Networks[NetworkIndex].InputLayerSize;
+                DGVInputSignals.RowCount = Network.InputLayerSize;
                 DGVInputSignals.ColumnCount = inputSignals.Count();
-                DGVCorrectOutputSignals.RowCount = UIRepository.Project.Networks[NetworkIndex].OutputLayerSize;
+                DGVCorrectOutputSignals.RowCount = Network.OutputLayerSize;
                 DGVCorrectOutputSignals.ColumnCount = correctOutputSignals.Count();
 
                 for (int i = 0; i < inputSignals.Count(); i++)
@@ -208,11 +206,11 @@ namespace Neural_Network.UI.Forms
                     MessageBox.Show("Incorrect file format. " + e.Message, "Error");
                     return false;
                 }
-                if (input.Length != UIRepository.Project.Networks[NetworkIndex].InputLayerSize)
-                    Array.Resize(ref input, UIRepository.Project.Networks[NetworkIndex].InputLayerSize);
+                if (input.Length != Network.InputLayerSize)
+                    Array.Resize(ref input, Network.InputLayerSize);
 
-                if (output.Length != UIRepository.Project.Networks[NetworkIndex].OutputLayerSize)
-                    Array.Resize(ref output, UIRepository.Project.Networks[NetworkIndex].OutputLayerSize);
+                if (output.Length != Network.OutputLayerSize)
+                    Array.Resize(ref output, Network.OutputLayerSize);
 
                 tempInput.Add(input);
                 tempOutput.Add(output);
@@ -250,7 +248,7 @@ namespace Neural_Network.UI.Forms
         private void GlobalNetworkRefresh()
         {
             var owner = Owner as MainMenuForm;
-            owner?.RefreshNetwork(NetworkIndex);
+            owner?.RefreshNetwork(Network);
         }
 
         private void SaveAs()
