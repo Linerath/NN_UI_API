@@ -44,6 +44,14 @@ namespace Neural_Network.UI.Forms
 
             FullTablesRefresh();
         }
+        private void TrainingForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (e.CloseReason == CloseReason.UserClosing)
+            {
+                e.Cancel = true;
+                Hide();
+            }
+        }
         private void BSelectFile_Click(object sender, EventArgs e)
         {
             OpenFileDialog ofd = new OpenFileDialog

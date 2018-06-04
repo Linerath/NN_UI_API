@@ -383,7 +383,6 @@
         private System.Windows.Forms.GroupBox GBProj;
         private System.Windows.Forms.Button BOpenProj;
         private System.Windows.Forms.Button BNewProj;
-        private System.Windows.Forms.Button BTraining;
         private System.Windows.Forms.Button BSaveProjAs;
         private System.Windows.Forms.Button BSaveProj;
         private System.Windows.Forms.ToolStripMenuItem networkExplorerToolStripMenuItem;
@@ -392,5 +391,6 @@
         private System.Windows.Forms.Button BNewInputProj;
         private System.Windows.Forms.Button BOpenInputProj;
         private System.Windows.Forms.Button BOpenNetwork;
+        private System.Windows.Forms.Button BTraining;
     }
 }

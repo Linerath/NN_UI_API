@@ -26,7 +26,7 @@ namespace Neural_Network.UI.Forms
         private List<NetworkForm> networkForms;
         private List<InputProjectForm> inputProjectForms;
         private List<ProductionForm> productionForms;
-        private TrainingForm trainingForm;
+        private List<TrainingForm> trainingForms;
         #endregion
         #region Shared
         private FormActivatedHandler formActivatedHandler;
@@ -228,13 +228,15 @@ namespace Neural_Network.UI.Forms
                 inputProjectForms.ForEach(x => x.Close());
             if (productionForms != null && productionForms.Any())
                 productionForms.ForEach(x => x.Close());
-            trainingForm?.Close();
+            if (trainingForms != null && trainingForms.Any())
+                trainingForms.ForEach(x => x.Close());
 
             (networkExplorerForm = new NetworkExplorerForm()).Owner = this;
             (viewSettingsForm = new ViewSettingsForm()).Owner = this;
             networkForms = new List<NetworkForm>();
             inputProjectForms = new List<InputProjectForm>();
             productionForms = new List<ProductionForm>();
+            trainingForms = new List<TrainingForm>();
 
             formActivatedHandler = new FormActivatedHandler(viewSettingsForm);
 
@@ -399,6 +401,15 @@ namespace Neural_Network.UI.Forms
             }
             return -1;
         }
+        public int GetTrainingFormIndex(FeedforwardNetworkSHL network)
+        {
+            for (int i = 0; i < trainingForms.Count(); i++)
+            {
+                if (trainingForms[i].Network == network)
+                    return i;
+            }
+            return -1;
+        }
 
         public void ShowAllInputProjects()
         {
@@ -472,37 +483,36 @@ namespace Neural_Network.UI.Forms
             networkExplorerForm.RefreshTree(true);
         }
 
-
         public void ShowTrainingForm(FeedforwardNetworkSHL network)
         {
-            if (trainingForm != null)
+            for (int i = 0; i < trainingForms.Count(); i++)
             {
-                if (trainingForm.Network == network)
+                if (trainingForms[i].Network == network)
                 {
-                    MessageBox.Show("Training form is already opened!", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    trainingForm.Focus();
+                    trainingForms[i].Show();
                     return;
                 }
-                trainingForm.Close();
             }
-            trainingForm = new TrainingForm(network)
+            //MessageBox.Show("Training form is already opened!", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            TrainingForm trainingForm = new TrainingForm(network)
             {
                 Owner = this,
                 Text = network.Name + ". Training",
             };
+            trainingForms.Add(trainingForm);
             formActivatedHandler.RegisterForm(trainingForm, RefreshTrainingFormTables);
             trainingForm.Show();
         }
         public void RefreshTrainingFormTables(FeedforwardNetworkSHL network)
         {
-            trainingForm?.FullTablesRefresh();
+            int index = GetTrainingFormIndex(network);
+            trainingForms[index].FullTablesRefresh();
         }
 
         public void RefreshProjName()
         {
             Text = UIRepository.Project.Name + " - Main Menu";
         }
-
         #endregion
     }
 }

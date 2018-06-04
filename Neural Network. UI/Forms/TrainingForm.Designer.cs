@@ -28,9 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea8 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend8 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series8 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea9 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend9 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series9 = new System.Windows.Forms.DataVisualization.Charting.Series();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(TrainingForm));
             this.LCreationDate0 = new System.Windows.Forms.Label();
             this.LLearningEpochs1 = new System.Windows.Forms.Label();
@@ -335,16 +335,16 @@
             this.CLearningChart.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            chartArea8.Name = "ChartArea1";
-            this.CLearningChart.ChartAreas.Add(chartArea8);
-            legend8.Name = "Legend1";
-            this.CLearningChart.Legends.Add(legend8);
+            chartArea9.Name = "ChartArea1";
+            this.CLearningChart.ChartAreas.Add(chartArea9);
+            legend9.Name = "Legend1";
+            this.CLearningChart.Legends.Add(legend9);
             this.CLearningChart.Location = new System.Drawing.Point(6, 21);
             this.CLearningChart.Name = "CLearningChart";
-            series8.ChartArea = "ChartArea1";
-            series8.Legend = "Legend1";
-            series8.Name = "Error";
-            this.CLearningChart.Series.Add(series8);
+            series9.ChartArea = "ChartArea1";
+            series9.Legend = "Legend1";
+            series9.Name = "Error";
+            this.CLearningChart.Series.Add(series9);
             this.CLearningChart.Size = new System.Drawing.Size(614, 286);
             this.CLearningChart.TabIndex = 2;
             this.CLearningChart.Visible = false;
@@ -539,6 +539,7 @@
             this.Name = "TrainingForm";
             this.ShowIcon = false;
             this.Text = "Training";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.TrainingForm_FormClosing);
             this.Load += new System.EventHandler(this.TrainingForm_Load);
             this.groupBox2.ResumeLayout(false);
             this.groupBox1.ResumeLayout(false);

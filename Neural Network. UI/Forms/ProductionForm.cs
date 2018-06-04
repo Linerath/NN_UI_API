@@ -1,4 +1,5 @@
-﻿using Neural_Network.UI.Shared;
+﻿using Neural_Network.UI.Forms.Dialogs;
+using Neural_Network.UI.Shared;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -85,6 +86,15 @@ namespace Neural_Network.UI.Forms
             Production.Rhythm = (int)NUDRhythm.Value;
         private void NUDTact_ValueChanged(object sender, EventArgs e) =>
             Production.Tact = (int)NUDTact.Value;
+
+        private void BTraining_Click(object sender, EventArgs e)
+        {
+            var owner = Owner as MainMenuForm;
+            if (Production.OrderingNetwork != null)
+                owner.ShowTrainingForm(Production.OrderingNetwork);
+            if (Production.ForecastingNetwork != null)
+                owner.ShowTrainingForm(Production.ForecastingNetwork);
+        }
         #endregion
 
         #region Methods

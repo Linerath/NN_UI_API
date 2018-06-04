@@ -117,4 +117,10 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="LTrainingInfo.Text" xml:space="preserve">
+    <value>На каждую задачу используется одна нейросеть.
+Перед тем как использовать нейросети, их необходимо обучить.
+Пожалуйста, составьте обучающую выборку минимум из 100 разносторонних примеров (чем больше, тем лучше) на каждую выполняемую задачу и обучайте нейросети минимум 1000 эпох (чем больше, тем лучше).
+</value>
+  </data>
 </root>
