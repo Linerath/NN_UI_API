@@ -32,10 +32,16 @@ namespace Neural_Network.UI.Shared
         [Category("Appearance")]
         public NeuronsSorting NeuronsSorting { get; set; } = NeuronsSorting.Horizontal;
 
-        [Browsable(false)]
-        public Form FollowedForm { get; set; }
+        [Category("Appearance")]
+        [DisplayName("Input table anchor")]
+        public AnchorStyles InputTableAnchor { get; set; } = AnchorStyles.Top | AnchorStyles.Right | AnchorStyles.Bottom | AnchorStyles.Left;
 
-        [Browsable(false)]
-        public FormRelativeLayout FollowedFormRelativeLayout { get; set; }
+        [Category("Appearance")]
+        [DisplayName("Hidden table anchors")]
+        public AnchorStyles[] HiddenTableAnchors { get; set; } = new AnchorStyles[] { AnchorStyles.Top | AnchorStyles.Right | AnchorStyles.Bottom | AnchorStyles.Left };
+
+        [Category("Appearance")]
+        [DisplayName("Output table anchor")]
+        public AnchorStyles OutputTableAnchor { get; set; } = AnchorStyles.Top | AnchorStyles.Right | AnchorStyles.Bottom | AnchorStyles.Left;
     }
 }

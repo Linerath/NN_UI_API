@@ -33,5 +33,10 @@ namespace Neural_Network.UI.Shared
                 col.DefaultCellStyle.Font = ViewSettings.Font;
             }
         }
+
+        public static void RefreshTableResize(DataGridView dataGridView, TableViewSettings viewSettings)
+        {
+
+        }
     }
 }

@@ -86,6 +86,7 @@ namespace Neural_Network.UI.Forms
             RefreshNetworkWeights();
             RefreshFont();
             RefreshCellsAutoSize();
+            RefreshTablesResizing();
         }
         public void RefreshNetworkWeights()
         {
@@ -153,6 +154,13 @@ namespace Neural_Network.UI.Forms
             for (int i = 0; i < dgvHidden.Length; i++)
                 TableHandler.RefreshCellsAutoSize(dgvHidden[i], ViewSettings);
             TableHandler.RefreshCellsAutoSize(dgvOutput, ViewSettings);
+        }
+        public void RefreshTablesResizing()
+        {
+            dgvInput.Anchor = ViewSettings.InputTableAnchor;
+            for (int i = 0; i < ViewSettings.HiddenTableAnchors.Length; i++)
+                dgvHidden[i].Anchor = ViewSettings.HiddenTableAnchors[i];
+            dgvOutput.Anchor = ViewSettings.OutputTableAnchor;
         }
         #endregion
     }
