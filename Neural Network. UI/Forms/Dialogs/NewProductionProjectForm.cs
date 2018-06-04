@@ -32,19 +32,42 @@ namespace Neural_Network.UI.Forms
                 return;
             }
 
-            bool details = CBDetails.Checked,
-                speed = CBSpeed.Checked,
-                employees = CBEmployees.Checked,
-                rhythm = CBRhythm.Checked,
-                tact = CBTact.Checked;
-            bool ordering = CBOrdering.Checked,
-                forecasting = CBForecasting.Checked;
+            bool detailsInclude = CBDetails.Checked,
+                speedInclude = CBSpeed.Checked,
+                employeesInclude = CBEmployees.Checked,
+                rhythmInclude = CBRhythm.Checked,
+                tactInclude = CBTact.Checked;
+            bool orderingInclude = CBOrdering.Checked,
+                forecastingInclude = CBForecasting.Checked;
 
-            int inputCount = Convert.ToInt32(details) +
-                Convert.ToInt32(speed) +
-                Convert.ToInt32(employees) +
-                Convert.ToInt32(rhythm) +
-                Convert.ToInt32(tact);
+            int inputCount = Convert.ToInt32(detailsInclude) +
+                Convert.ToInt32(speedInclude) +
+                Convert.ToInt32(employeesInclude) +
+                Convert.ToInt32(rhythmInclude) +
+                Convert.ToInt32(tactInclude);
+
+            int? details, speed, employees, rhythm, tact;
+            if (detailsInclude)
+                details = 0;
+            else
+                details = null;
+            if (speedInclude)
+                speed = 0;
+            else
+                speed = null;
+            if (employeesInclude)
+                employees = 0;
+            else
+                employees = null;
+            if (rhythmInclude)
+                rhythm = 0;
+            else
+                rhythm = null;
+            if (tactInclude)
+                tact = 0;
+            else
+                tact = null;
+
 
             //!!!!!!
             int detailsTypesCount = 3;
@@ -68,6 +91,11 @@ namespace Neural_Network.UI.Forms
             var production = new Production
             {
                 Name = name,
+                Details = details,
+                Speed = speed,
+                Employees = employees,
+                Rhythm = rhythm,
+                Tact = tact,
                 OrderingNetwork = orderingNetwork,
                 ForecastingNetwork = forecastingNetwork
             };
