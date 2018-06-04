@@ -14,14 +14,79 @@ namespace Neural_Network.UI.Forms
 {
     public partial class NewProductionProjectForm : Form
     {
+        private Dictionary<String, int> fields = new Dictionary<string, int>();
+        private List<Ability> abilities = new List<Ability>();
+        private List<CheckBox> fieldsCtrls = new List<CheckBox>();
+        private List<CheckBox> abilitiesCtrls = new List<CheckBox>();
+
         public NewProductionProjectForm()
         {
             InitializeComponent();
+
+            fields = UIRepository.ProductionFields;
+            abilities = UIRepository.Abilities;
         }
 
         private void NewProductionProjectForm_Load(object sender, EventArgs e)
         {
+            if (fields.Count() > 0)
+            {
+                CBFirstField.Text = fields.First().Key;
+                fieldsCtrls.Add(CBFirstField);
+            }
+            bool pass = true;
+            foreach (var f in fields)
+            {
+                if (pass)
+                {
+                    pass = false;
+                    continue;
+                }
+                CheckBox checkBox = new CheckBox()
+                {
+                    AutoSize = true,
+                    Checked = true,
+                    CheckState = CheckState.Checked,
+                    Font = new Font("Consolas", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0),
+                    Location = new Point(fieldsCtrls.Last().Location.X, fieldsCtrls.Last().Location.Y + fieldsCtrls.Last().Size.Height + 6),
+                    Size = new Size(40, 24),
+                    Text = f.Key,
+                    UseVisualStyleBackColor = true
+                };
+                fieldsCtrls.Add(checkBox);
+                GBFields.Controls.Add(checkBox);
+            }
+            if (abilities.Count() > 0)
+            {
+                CBFirstAbility.Text = abilities.First().Description;
+                abilitiesCtrls.Add(CBFirstAbility);
+            }
+            pass = true;
+            foreach (var a in abilities)
+            {
+                if (pass)
+                {
+                    pass = false;
+                    continue;
+                }
+                CheckBox checkBox = new CheckBox()
+                {
+                    AutoSize = true,
+                    Checked = true,
+                    CheckState = CheckState.Checked,
+                    Font = new Font("Consolas", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0),
+                    Location = new Point(abilitiesCtrls.Last().Location.X, abilitiesCtrls.Last().Location.Y + abilitiesCtrls.Last().Size.Height + 6),
+                    Size = new Size(40, 24),
+                    Text = a.Description,
+                    UseVisualStyleBackColor = true
+                };
+                abilitiesCtrls.Add(checkBox);
+                GBAbilities.Controls.Add(checkBox);
+            }
+
+            ClientSize = new Size(ClientSize.Width, GBFields.Height + 38);
         }
+
         private void BOk_Click(object sender, EventArgs e)
         {
             String name = TBName.Text.Trim();
@@ -32,50 +97,31 @@ namespace Neural_Network.UI.Forms
                 return;
             }
 
-            bool detailsInclude = CBDetails.Checked,
-                speedInclude = CBSpeed.Checked,
-                employeesInclude = CBEmployees.Checked,
-                rhythmInclude = CBRhythm.Checked,
-                tactInclude = CBTact.Checked;
-            bool orderingInclude = CBOrdering.Checked,
-                forecastingInclude = CBForecasting.Checked;
-
-            int inputCount = Convert.ToInt32(detailsInclude) +
-                Convert.ToInt32(speedInclude) +
-                Convert.ToInt32(employeesInclude) +
-                Convert.ToInt32(rhythmInclude) +
-                Convert.ToInt32(tactInclude);
-
-            int? details, speed, employees, rhythm, tact;
-            if (detailsInclude)
-                details = 0;
-            else
-                details = null;
-            if (speedInclude)
-                speed = 0;
-            else
-                speed = null;
-            if (employeesInclude)
-                employees = 0;
-            else
-                employees = null;
-            if (rhythmInclude)
-                rhythm = 0;
-            else
-                rhythm = null;
-            if (tactInclude)
-                tact = 0;
-            else
-                tact = null;
-
+            for (int i = 0; i < fieldsCtrls.Count(); i++)
+            {
+                if (!fieldsCtrls[i].Checked)
+                {
+                    fieldsCtrls.RemoveAt(i--);
+                    fields.Remove
+                }
+            }
+            for (int i = 0; i < abilitiesCtrls.Count(); i++)
+            {
+                if (!abilitiesCtrls[i].Checked)
+                    abilitiesCtrls.RemoveAt(i--);
+            }
+            FeedforwardNetworkSHL[] abilities = new FeedforwardNetworkSHL[abilitiesCtrls.Count()];
+            for (int i = 0; i < abilities.Length; i++)
+            {
+                abilities[i] = new FeedforwardNetworkSHL(name + "_" + abilities[i].Name, fieldsCtrls.Count(), fieldsCtrls.Count()*2, abilities[i]);
+            }
 
             //!!!!!!
             int detailsTypesCount = 3;
             //!!!!!!
 
-            FeedforwardNetworkSHL orderingNetwork, forecastingNetwork;
-            orderingNetwork = forecastingNetwork = null;
-            if (CBOrdering.Checked)
+
+            if (CBFirstAbility.Checked)
             {
                 orderingNetwork = new FeedforwardNetworkSHL(name + "_Ordering", inputCount, inputCount * 2, detailsTypesCount, Core.Functions.Sigmoid, 0.05);
                 orderingNetwork.SetAllRandomWeights();
