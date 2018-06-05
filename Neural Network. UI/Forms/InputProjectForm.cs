@@ -43,8 +43,8 @@ namespace Neural_Network.UI.Forms
             DGVInputFields.RowCount = 0;
             DGVOutputFields.RowCount = 0;
              
-            DGVInputFields.RowCount = InputProj.InputFieldsCount;
-            DGVOutputFields.RowCount = InputProj.OutputFieldsCount;
+            DGVInputFields.RowCount = InputProj.Network.InputLayerSize;
+            DGVOutputFields.RowCount = InputProj.Network.OutputLayerSize;
 
             for (int i = 0; i < DGVInputFields.RowCount; i++)
                 DGVInputFields[0, i].Value = (i + 1).ToString();

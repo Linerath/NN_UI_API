@@ -1,4 +1,5 @@
-﻿using Neural_Network.Core.Implementation;
+﻿using Neural_Network.Core.Extra;
+using Neural_Network.Core.Implementation;
 using Neural_Network.UI.Shared;
 using System;
 using System.Collections.Generic;
@@ -14,7 +15,7 @@ namespace Neural_Network.UI.Forms
 {
     public partial class NewProductionProjectForm : Form
     {
-        private List<Field> fields = new List<Field>();
+        private List<Shared.Field> fields = new List<Shared.Field>();
         private List<Ability> abilities = new List<Ability>();
         private List<CheckBox> fieldsCtrls = new List<CheckBox>();
         private List<CheckBox> abilitiesCtrls = new List<CheckBox>();
@@ -27,11 +28,102 @@ namespace Neural_Network.UI.Forms
             abilities = UIRepository.Abilities;
         }
 
+        #region Events
         private void NewProductionProjectForm_Load(object sender, EventArgs e)
         {
+            LoadFields();
+
+            if (GBFields.Height >= GBAbilities.Height)
+                ClientSize = new Size(ClientSize.Width, GBFields.Height + 38);
+            else
+                ClientSize = new Size(ClientSize.Width, GBAbilities.Height + 76);
+            MinimumSize = Size;
+        }
+
+        private void BOk_Click(object sender, EventArgs e)
+        {
+            String name = TBName.Text.Trim();
+            if (name == String.Empty)
+            {
+                MessageBox.Show("Invalid name.", "Error");
+                TBName.Focus();
+                return;
+            }
+
+            for (int i = 0; i < fieldsCtrls.Count(); i++)
+            {
+                if (!fieldsCtrls[i].Checked)
+                {
+                    fieldsCtrls.RemoveAt(i);
+                    fields.RemoveAt(i--);
+                }
+            }
+
+            for (int i = 0; i < abilitiesCtrls.Count(); i++)
+            {
+                if (!abilitiesCtrls[i].Checked)
+                {
+                    abilitiesCtrls.RemoveAt(i);
+                    abilities.RemoveAt(i--);
+                }
+            }
+
+            List<NeuralNetworkInputProject> inputProjects = new List<NeuralNetworkInputProject>();
+            List<FeedforwardNetworkSHL> abilitiesNets = new List<FeedforwardNetworkSHL>();
+            for (int i = 0; i < abilities.Count(); i++)
+            {
+                var network = new FeedforwardNetworkSHL(
+                    name + "_" + abilities[i].Name,
+                    fieldsCtrls.Count(),
+                    fieldsCtrls.Count() * 2,
+                    abilities[i].OutputCount,
+                    Core.Functions.Sigmoid, 0.05);
+                network.SetAllRandomWeights();
+                var inputProj = new NeuralNetworkInputProject(name + "_" + abilities[i].Name, network);
+
+                abilitiesNets.Add(network);
+                inputProjects.Add(inputProj);
+                UIRepository.Project.Networks.Add(network);
+                UIRepository.Project.InputProjects.Add(inputProj);
+            }
+
+            var owner = Owner as MainMenuForm;
+            var production = new Production
+            {
+                Name = name,
+                InputProjects = inputProjects,
+            };
+            UIRepository.Project.ProductionProjects.Add(production);
+
+            foreach (var n in abilitiesNets)
+                owner?.ShowNetwork(n);
+            owner?.ShowProductionForm(production);
+
+            Close();
+        }
+        #endregion
+
+        #region Methods
+        private void LoadFields()
+        {
+            CheckBox CreateCheckBox(String text, Point location)
+            {
+                return new CheckBox
+                {
+                    AutoSize = true,
+                    Checked = true,
+                    CheckState = CheckState.Checked,
+                    Font = new Font("Consolas", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0),
+                    Location = location,
+                    Size = new Size(40, 24),
+                    Text = text,
+                    UseVisualStyleBackColor = true
+                };
+            };
+
             if (fields.Count() > 0)
             {
-                CBFirstField.Text = fields.First().Key;
+                CBFirstField.Text = fields.First().Description;
                 fieldsCtrls.Add(CBFirstField);
             }
             bool pass = true;
@@ -42,17 +134,9 @@ namespace Neural_Network.UI.Forms
                     pass = false;
                     continue;
                 }
-                CheckBox checkBox = new CheckBox()
-                {
-                    AutoSize = true,
-                    Checked = true,
-                    CheckState = CheckState.Checked,
-                    Font = new Font("Consolas", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0),
-                    Location = new Point(fieldsCtrls.Last().Location.X, fieldsCtrls.Last().Location.Y + fieldsCtrls.Last().Size.Height + 6),
-                    Size = new Size(40, 24),
-                    Text = f.Key,
-                    UseVisualStyleBackColor = true
-                };
+                var location = new Point(fieldsCtrls.Last().Location.X, fieldsCtrls.Last().Location.Y + fieldsCtrls.Last().Size.Height + 6);
+                CheckBox checkBox = CreateCheckBox(f.Description, location);
+
                 fieldsCtrls.Add(checkBox);
                 GBFields.Controls.Add(checkBox);
             }
@@ -69,180 +153,13 @@ namespace Neural_Network.UI.Forms
                     pass = false;
                     continue;
                 }
-                CheckBox checkBox = new CheckBox()
-                {
-                    AutoSize = true,
-                    Checked = true,
-                    CheckState = CheckState.Checked,
-                    Font = new Font("Consolas", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0),
-                    Location = new Point(abilitiesCtrls.Last().Location.X, abilitiesCtrls.Last().Location.Y + abilitiesCtrls.Last().Size.Height + 6),
-                    Size = new Size(40, 24),
-                    Text = a.Description,
-                    UseVisualStyleBackColor = true
-                };
+                var location = new Point(abilitiesCtrls.Last().Location.X, abilitiesCtrls.Last().Location.Y + abilitiesCtrls.Last().Size.Height + 6);
+                CheckBox checkBox = CreateCheckBox(a.Description, location);
+
                 abilitiesCtrls.Add(checkBox);
                 GBAbilities.Controls.Add(checkBox);
             }
-
-            ClientSize = new Size(ClientSize.Width, GBFields.Height + 38);
         }
-
-        //private void BOk_Click(object sender, EventArgs e)
-        //{
-        //    String name = TBName.Text.Trim();
-        //    if (name == String.Empty)
-        //    {
-        //        if (pass)
-        //        {
-        //            pass = false;
-        //            continue;
-        //        }
-        //        CheckBox checkBox = new CheckBox()
-        //        {
-        //            AutoSize = true,
-        //            Checked = true,
-        //            CheckState = CheckState.Checked,
-        //            Font = new Font("Consolas", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0),
-        //            Location = new Point(abilitiesCtrls.Last().Location.X, abilitiesCtrls.Last().Location.Y + abilitiesCtrls.Last().Size.Height + 6),
-        //            Size = new Size(40, 24),
-        //            Text = a,
-        //            UseVisualStyleBackColor = true
-        //        };
-        //        abilitiesCtrls.Add(checkBox);
-        //        GBAbilities.Controls.Add(checkBox);
-        //    }
-
-        //    for (int i = 0; i < fieldsCtrls.Count(); i++)
-        //    {
-        //        if (!fieldsCtrls[i].Checked)
-        //        {
-        //            fieldsCtrls.RemoveAt(i--);
-        //            fields.Remove
-        //        }
-        //    }
-        //    for (int i = 0; i < abilitiesCtrls.Count(); i++)
-        //    {
-        //        if (!abilitiesCtrls[i].Checked)
-        //            abilitiesCtrls.RemoveAt(i--);
-        //    }
-        //    FeedforwardNetworkSHL[] abilities = new FeedforwardNetworkSHL[abilitiesCtrls.Count()];
-        //    for (int i = 0; i < abilities.Length; i++)
-        //    {
-        //        abilities[i] = new FeedforwardNetworkSHL(name + "_" + abilities[i].Name, fieldsCtrls.Count(), fieldsCtrls.Count()*2, abilities[i]);
-        //    }
-        //    ClientSize = new Size(ClientSize.Width, GBFields.Height + 38);
-        //}
-
-        private void BOk_Click(object sender, EventArgs e)
-        {
-            /*
-                String name = TBName.Text.Trim();
-                if (name == String.Empty)
-                {
-                    MessageBox.Show("Invalid name.", "Error");
-                    TBName.Focus();
-                    return;
-                }
-
-                int inputCount = Convert.ToInt32(detailsInclude) +
-                    Convert.ToInt32(speedInclude) +
-                    Convert.ToInt32(employeesInclude) +
-                    Convert.ToInt32(rhythmInclude) +
-                    Convert.ToInt32(tactInclude);
-
-                int? details, speed, employees, rhythm, tact;
-                if (detailsInclude)
-                    details = 0;
-                else
-                    details = null;
-                if (speedInclude)
-                    speed = 0;
-                else
-                    speed = null;
-                if (employeesInclude)
-                    employees = 0;
-                else
-                    employees = null;
-                if (rhythmInclude)
-                    rhythm = 0;
-                else
-                    rhythm = null;
-                if (tactInclude)
-                    tact = 0;
-                else
-                    tact = null;
->>>>>>> 7a563219e20adadefea0bc764ccbbef625c6cb6b
-
-
-<<<<<<< HEAD
-
-            if (CBFirstAbility.Checked)
-            {
-                orderingNetwork = new FeedforwardNetworkSHL(name + "_Ordering", inputCount, inputCount * 2, detailsTypesCount, Core.Functions.Sigmoid, 0.05);
-                orderingNetwork.SetAllRandomWeights();
-                UIRepository.Project.Networks.Add(orderingNetwork);
-            }
-            if (CBForecasting.Checked)
-            {
-                forecastingNetwork = new FeedforwardNetworkSHL(name + "_Forecasting", inputCount, inputCount * 2, 2, Core.Functions.Sigmoid, 0.05);
-                forecastingNetwork.SetAllRandomWeights();
-                UIRepository.Project.Networks.Add(forecastingNetwork);
-            }
-            var owner = Owner as MainMenuForm;
-            var production = new Production
-            {
-                Name = name,
-                Details = details,
-                Speed = speed,
-                Employees = employees,
-                Rhythm = rhythm,
-                Tact = tact,
-                OrderingNetwork = orderingNetwork,
-                ForecastingNetwork = forecastingNetwork
-            };
-            UIRepository.Project.ProductionProjects.Add(production);
-=======
-                //!!!!!!
-                int detailsTypesCount = 3;
-                //!!!!!!
-
-                FeedforwardNetworkSHL orderingNetwork, forecastingNetwork;
-                orderingNetwork = forecastingNetwork = null;
-                if (CBFirstAbility.Checked)
-                {
-                    orderingNetwork = new FeedforwardNetworkSHL(name + "_Ordering", inputCount, inputCount * 2, detailsTypesCount, Core.Functions.Sigmoid, 0.05);
-                    orderingNetwork.SetAllRandomWeights();
-                    UIRepository.Project.Networks.Add(orderingNetwork);
-                }
-                if (CBForecasting.Checked)
-                {
-                    forecastingNetwork = new FeedforwardNetworkSHL(name + "_Forecasting", inputCount, inputCount * 2, 2, Core.Functions.Sigmoid, 0.05);
-                    forecastingNetwork.SetAllRandomWeights();
-                    UIRepository.Project.Networks.Add(forecastingNetwork);
-                }
-                var owner = Owner as MainMenuForm;
-                var production = new Production
-                {
-                    Name = name,
-                    Details = details,
-                    Speed = speed,
-                    Employees = employees,
-                    Rhythm = rhythm,
-                    Tact = tact,
-                    OrderingNetwork = orderingNetwork,
-                    ForecastingNetwork = forecastingNetwork
-                };
-                UIRepository.Project.ProductionProjects.Add(production);
->>>>>>> 7a563219e20adadefea0bc764ccbbef625c6cb6b
-
-                if (orderingNetwork != null)
-                    owner?.ShowNetwork(orderingNetwork);
-                if (forecastingNetwork != null)
-                    owner?.ShowNetwork(forecastingNetwork);
-                owner?.ShowProductionForm(production);
-
-                Close();
-            */
-        }
+        #endregion
     }
 }

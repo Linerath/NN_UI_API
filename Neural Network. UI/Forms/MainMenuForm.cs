@@ -43,13 +43,13 @@ namespace Neural_Network.UI.Forms
         #region Events
         private void MainMenuForm_Load(object sender, EventArgs e)
         {
-            if (UIRepository.Project.TryOpen(@"E:\Programming\C#\Neural Network WF (Graduate Work)\Neural Network. UI\bin\Debug\wat.nnproj"))
-            {
-                networkExplorerForm.RefreshTree();
-                ShowAllNetworks();
-                ShowAllInputProjects();
-                ShowAllProductionProjects();
-            }
+            //if (UIRepository.Project.TryOpen(@"E:\Programming\C#\Neural Network WF (Graduate Work)\Neural Network. UI\bin\Debug\wat.nnproj"))
+            //{
+            //    networkExplorerForm.RefreshTree();
+            //    ShowAllNetworks();
+            //    ShowAllInputProjects();
+            //    ShowAllProductionProjects();
+            //}
         }
         private void BNewProj_Click(object sender, EventArgs e)
         {
@@ -474,8 +474,8 @@ namespace Neural_Network.UI.Forms
         }
         public void CloseProductionProject(Production production)
         {
-            CloseNetwork(production.OrderingNetwork);
-            CloseNetwork(production.ForecastingNetwork);
+            foreach (var proj in production.InputProjects)
+                CloseNetwork(proj.Network);
             var productionFormIndex = GetProductionProjFormIndex(production);
             productionForms[productionFormIndex].Close();
             productionForms.RemoveAt(productionFormIndex);

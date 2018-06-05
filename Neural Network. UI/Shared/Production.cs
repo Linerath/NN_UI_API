@@ -12,8 +12,6 @@ namespace Neural_Network.UI.Shared
     public class Production
     {
         public String Name { get; set; }
-        public NeuralNetworkInputProject InputProject { get; set; }
-        public FeedforwardNetworkSHL OrderingNetwork;
-        public FeedforwardNetworkSHL ForecastingNetwork;
+        public List<NeuralNetworkInputProject> InputProjects { get; set; }
     }
 }

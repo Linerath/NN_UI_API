@@ -69,7 +69,7 @@ namespace Neural_Network.UI.Forms
 
                     var dialogResult = MessageBox.Show(
                     "Are you sure want to delete selected input project:\n" + inputProj.Name + " " +
-                    "\n" + inputProj.InputFieldsCount.ToString() + " " + inputProj.OutputFieldsCount.ToString(),
+                    "\n" + inputProj.Network.InputLayerSize.ToString() + " " + inputProj.Network.OutputLayerSize.ToString(),
                     "Deleting",
                     MessageBoxButtons.YesNo,
                     MessageBoxIcon.Question,

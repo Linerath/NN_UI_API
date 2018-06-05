@@ -21,7 +21,7 @@ namespace Neural_Network.UI.Shared
         public static List<Ability> Abilities = new List<Ability>()
         {
             new Ability { Name = "Ordering",  Description ="Создание заказов на детали", OutputCount = 3 },
-            new Ability { Name = "Forecasting", Description = "Планирование выполнения", OutputCount = 3 }
+            new Ability { Name = "Forecasting", Description = "Планирование выполнения", OutputCount = 3 },
         };
     }
 

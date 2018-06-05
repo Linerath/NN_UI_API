@@ -458,15 +458,15 @@ namespace Neural_Network.Testing
             FeedforwardNetworkSHL network = new FeedforwardNetworkSHL(3, 4, 2);
             NeuralNetworkInputProject inputProject = new NeuralNetworkInputProject("Test name", network);
 
-            Console.WriteLine(inputProject.InputFieldsCount);
-            Console.WriteLine(inputProject.OutputFieldsCount);
+            Console.WriteLine(inputProject.Network.InputLayerSize);
+            Console.WriteLine(inputProject.Network.OutputLayerSize);
         }
         public static void CreatingFieldsTest()
         {
             FeedforwardNetworkSHL network = new FeedforwardNetworkSHL(3, 4, 2);
             NeuralNetworkInputProject inputProject = new NeuralNetworkInputProject("Test name", network);
 
-            inputProject.CreateField(Layers.Input, "MyField", 0);
+            inputProject.CreateField(Layers.Input, "MyField", network[Layers.Input][0]);
 
             //var f = inputProject[Layers.Input, 1];
             //Console.WriteLine(f.Name + " " + f.NeuronIndex);
