@@ -10,14 +10,13 @@ namespace Neural_Network.UI.Shared
     {
         public static Project Project { get; set; } = new Project();
 
-        public static Dictionary<String, int> ProductionFields = new Dictionary<string, int>()
+        public static List<Field> ProductionFields = new List<Field>()
         {
-            { "Детали", 0 },
-            { "Скорость потребления деталей", 0 },
-            { "Количество работников", 0 },
-            { "Ритм производства", 0 },
-            { "Такт производства", 0 },
-
+            new Field{ Description = "Детали"},
+            new Field { Description = "Скорость потребления деталей" },
+            new Field { Description = "Количество работников" },
+            new Field { Description = "Ритм производства" },
+            new Field { Description = "Такт производства" },
         };
         public static List<Ability> Abilities = new List<Ability>()
         {
