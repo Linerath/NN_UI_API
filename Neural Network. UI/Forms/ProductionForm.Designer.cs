@@ -31,13 +31,13 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ProductionForm));
             this.NUDField0 = new System.Windows.Forms.NumericUpDown();
             this.LField0 = new System.Windows.Forms.Label();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.GBFields = new System.Windows.Forms.GroupBox();
             this.LTrainingInfo = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.BTraining = new System.Windows.Forms.Button();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             ((System.ComponentModel.ISupportInitialize)(this.NUDField0)).BeginInit();
-            this.groupBox1.SuspendLayout();
+            this.GBFields.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -65,21 +65,21 @@
             this.LField0.TabIndex = 1;
             this.LField0.Text = "0";
             // 
-            // groupBox1
+            // GBFields
             // 
-            this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.GBFields.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
-            this.groupBox1.Controls.Add(this.LField0);
-            this.groupBox1.Controls.Add(this.NUDField0);
-            this.groupBox1.Font = new System.Drawing.Font("Consolas", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox1.Location = new System.Drawing.Point(12, 12);
-            this.groupBox1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.groupBox1.Size = new System.Drawing.Size(435, 646);
-            this.groupBox1.TabIndex = 3;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Current production state";
+            this.GBFields.Controls.Add(this.LField0);
+            this.GBFields.Controls.Add(this.NUDField0);
+            this.GBFields.Font = new System.Drawing.Font("Consolas", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.GBFields.Location = new System.Drawing.Point(12, 12);
+            this.GBFields.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.GBFields.Name = "GBFields";
+            this.GBFields.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.GBFields.Size = new System.Drawing.Size(435, 646);
+            this.GBFields.TabIndex = 3;
+            this.GBFields.TabStop = false;
+            this.GBFields.Text = "Current production state";
             // 
             // LTrainingInfo
             // 
@@ -134,7 +134,7 @@
             this.ClientSize = new System.Drawing.Size(1140, 669);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox2);
-            this.Controls.Add(this.groupBox1);
+            this.Controls.Add(this.GBFields);
             this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
@@ -144,8 +144,8 @@
             this.Text = "Production";
             this.Load += new System.EventHandler(this.ProductionForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.NUDField0)).EndInit();
-            this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
+            this.GBFields.ResumeLayout(false);
+            this.GBFields.PerformLayout();
             this.groupBox2.ResumeLayout(false);
             this.ResumeLayout(false);
 
@@ -155,7 +155,7 @@
 
         private System.Windows.Forms.NumericUpDown NUDField0;
         private System.Windows.Forms.Label LField0;
-        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.GroupBox GBFields;
         private System.Windows.Forms.Label LTrainingInfo;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.Button BTraining;

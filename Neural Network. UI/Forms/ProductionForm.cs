@@ -16,6 +16,9 @@ namespace Neural_Network.UI.Forms
     {
         public Production Production { get; private set; }
 
+        private List<NumericUpDown> fieldsCtrls = new List<NumericUpDown>();
+        //private List<CheckBox> abilitiesCtrls = new List<CheckBox>();
+
         public ProductionForm(Production production)
         {
             InitializeComponent();
@@ -26,6 +29,9 @@ namespace Neural_Network.UI.Forms
         #region Events
         private void ProductionForm_Load(object sender, EventArgs e)
         {
+            LoadFields();
+
+            MinimumSize = Size;
         }
 
         private void BTraining_Click(object sender, EventArgs e)
@@ -39,20 +45,50 @@ namespace Neural_Network.UI.Forms
         #region Methods
         private void LoadFields()
         {
-            CheckBox CreateCheckBox(String text, Point location)
+            NumericUpDown CreateField(double value, Point location)
             {
-                return new CheckBox
+                return new NumericUpDown
                 {
-                    AutoSize = true,
-                    Checked = true,
-                    CheckState = CheckState.Checked,
                     Font = new Font("Consolas", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0),
                     Location = location,
-                    Size = new Size(40, 24),
-                    Text = text,
-                    UseVisualStyleBackColor = true
+                    Margin = new Padding(3, 2, 3, 2),
+                    Maximum = new decimal(new int[] { 1000000, 0, 0, 0 }),
+                    Size = new Size(79, 23),
                 };
             };
+            Label CreateFieldLabel(String text, Point location)
+            {
+                return new Label
+                {
+                    AutoSize = true,
+                    Font = new Font("Consolas", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0),
+                    Location = location,
+                    Size = new Size(18, 20),
+                    Text = text,
+                };
+            };
+
+            if (Production.InputProjects.Count() > 0)
+            {
+                NUDField0.Value = (decimal)Production.InputProjects[0].InputLayerFields[0].Value;
+                LField0.Text = Production.InputProjects[0].InputLayerFields[0].Description;
+                fieldsCtrls.Add(NUDField0);
+
+                Label prevLabel = LField0;
+                for (int i = 0; i < Production.InputProjects[0].InputFieldsCount; i++)
+                {
+                    if (i == 0) continue;
+                    var location = new Point(fieldsCtrls.Last().Location.X, fieldsCtrls.Last().Location.Y + fieldsCtrls.Last().Size.Height + 4);
+                    var labelLocation = new Point(prevLabel.Location.X, prevLabel.Location.Y + prevLabel.Height + 11);
+                    NumericUpDown field = CreateField(Production.InputProjects[0].InputLayerFields[i].Value, location);
+                    Label label = CreateFieldLabel(Production.InputProjects[0].InputLayerFields[i].Description, labelLocation);
+                    prevLabel = label;
+
+                    fieldsCtrls.Add(field);
+                    GBFields.Controls.Add(field);
+                    GBFields.Controls.Add(label);
+                }
+            }
 
             /*
             if (Production.InputProjects.Count() > 0)

@@ -53,35 +53,32 @@ namespace Neural_Network.UI.Forms
             for (int i = 0; i < fieldsCtrls.Count(); i++)
             {
                 if (!fieldsCtrls[i].Checked)
-                {
-                    fieldsCtrls.RemoveAt(i);
                     fields.RemoveAt(i--);
-                }
             }
 
             for (int i = 0; i < abilitiesCtrls.Count(); i++)
             {
                 if (!abilitiesCtrls[i].Checked)
-                {
-                    abilitiesCtrls.RemoveAt(i);
                     abilities.RemoveAt(i--);
-                }
             }
 
             List<NeuralNetworkInputProject> inputProjects = new List<NeuralNetworkInputProject>();
-            List<FeedforwardNetworkSHL> abilitiesNets = new List<FeedforwardNetworkSHL>();
+            List<FeedforwardNetworkSHL> networks = new List<FeedforwardNetworkSHL>();
             for (int i = 0; i < abilities.Count(); i++)
             {
                 var network = new FeedforwardNetworkSHL(
                     name + "_" + abilities[i].Name,
-                    fieldsCtrls.Count(),
-                    fieldsCtrls.Count() * 2,
+                    fields.Count(),
+                    fields.Count() * 2,
                     abilities[i].OutputCount,
                     Core.Functions.Sigmoid, 0.05);
                 network.SetAllRandomWeights();
-                var inputProj = new NeuralNetworkInputProject(name + "_" + abilities[i].Name, network);
 
-                abilitiesNets.Add(network);
+                var inputProj = new NeuralNetworkInputProject(name + "_" + abilities[i].Name, network);
+                for (int j = 0; j < network.InputLayerSize; j++)
+                    inputProj.CreateField(Layers.Input, fields[j].Name, fields[j].Description, network[Layers.Input][j]);
+
+                networks.Add(network);
                 inputProjects.Add(inputProj);
                 UIRepository.Project.Networks.Add(network);
                 UIRepository.Project.InputProjects.Add(inputProj);
@@ -92,10 +89,11 @@ namespace Neural_Network.UI.Forms
             {
                 Name = name,
                 InputProjects = inputProjects,
+                InputValues = fields.Select(x => x.Value).ToArray(),
             };
             UIRepository.Project.ProductionProjects.Add(production);
 
-            foreach (var n in abilitiesNets)
+            foreach (var n in networks)
                 owner?.ShowNetwork(n);
             owner?.ShowProductionForm(production);
 

@@ -29,9 +29,9 @@ namespace Neural_Network.Core.Extra
         #endregion
 
         #region Not tested
-        public void CreateField(Layers layer, String name, Neuron neuron, bool replaceExistingField = true)
+        public void CreateField(Layers layer, String name, String description, Neuron neuron, double value = 0, bool replaceExistingField = true)
         {
-            CreateField(layer, new Field(name, neuron), replaceExistingField);
+            CreateField(layer, new Field(name, description, neuron, value), replaceExistingField);
         }
         public void CreateField(Layers layer, Field field, bool replaceExistingField = true)
         {
@@ -101,28 +101,27 @@ namespace Neural_Network.Core.Extra
                 RemoveField(layer, f);
         }
 
-        //public Field? this[Layers layer, int neuronIndex]
-        //{
-        //get
-        //{
-        //    if (layer == Layers.Hidden)
-        //        throw new ArgumentException("You do not have access to the hidden layer!");
+        public void SetInput(double[] values)
+        {
+            int untill = inputLayerFields.Count() <= values.Length ? inputLayerFields.Count() : values.Length;
+            for (int i = 0; i < untill; i++)
+                inputLayerFields[i].Value = values[i];
+        }
 
-        //    switch (layer)
-        //    {
-        //        case Layers.Input:
-        //            var existingFieldIndex = inputLayerFields.FindIndex(x => x.NeuronIndex == neuronIndex);
-        //            if (existingFieldIndex >= 0)
-        //                return inputLayerFields[existingFieldIndex];
-        //            else
-        //                return null;
-        //        case Layers.Output:
-        //            return outputLayerFields.Find(x => x.NeuronIndex == neuronIndex);
-        //        default:
-        //            return new Field("Not existing field", -1);
-        //    }
-        //}
-        //}
+        public Field[] InputLayerFields
+        {
+            get
+            {
+                return inputLayerFields.ToArray();
+            }
+        }
+        public Field[] OutputLayerFields
+        {
+            get
+            {
+                return outputLayerFields.ToArray();
+            }
+        }
         public int InputFieldsCount
         {
             get
@@ -144,14 +143,18 @@ namespace Neural_Network.Core.Extra
     public class Field
     {
         private String name;
+        private String description;
         private Neuron neuron;
+        public double Value { get; set; }
 
-        public Field(String name, Neuron neuron)
+        public Field(String name, String description, Neuron neuron, double value = 0)
         {
             if (String.IsNullOrWhiteSpace(name))
                 throw new ArgumentException("Invalid name");
             this.name = name;
+            this.description = description;
             this.neuron = neuron ?? throw new ArgumentNullException("neuron");
+            Value = value;
         }
 
         public String Name
@@ -165,6 +168,17 @@ namespace Neural_Network.Core.Extra
                 if (String.IsNullOrWhiteSpace(value))
                     throw new ArgumentException("Invalid name");
                 name = value;
+            }
+        }
+        public String Description
+        {
+            get
+            {
+                return description;
+            }
+            set
+            {
+                description = value;
             }
         }
         public Neuron Neuron

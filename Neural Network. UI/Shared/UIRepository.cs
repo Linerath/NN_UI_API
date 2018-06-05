@@ -12,11 +12,11 @@ namespace Neural_Network.UI.Shared
 
         public static List<Field> ProductionFields = new List<Field>()
         {
-            new Field{ Description = "Детали"},
-            new Field { Description = "Скорость потребления деталей" },
-            new Field { Description = "Количество работников" },
-            new Field { Description = "Ритм производства" },
-            new Field { Description = "Такт производства" },
+            new Field { Name = "Details", Description = "Детали", Value = 1337 },
+            new Field { Name = "Speed", Description = "Скорость потребления деталей-бомжатин" },
+            new Field { Name = "Employees", Description = "Количество работников" },
+            new Field { Name = "Rhythm", Description = "Ритм производства" },
+            new Field { Name = "Tact", Description = "Такт производства" },
         };
         public static List<Ability> Abilities = new List<Ability>()
         {
@@ -27,8 +27,9 @@ namespace Neural_Network.UI.Shared
 
     public class Field
     {
+        public String Name { get; set; }
         public String Description { get; set; }
-        public int Value { get; set; } = 0;
+        public double Value { get; set; } = 0;
     }
 
     public class Ability
