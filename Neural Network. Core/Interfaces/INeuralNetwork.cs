@@ -9,7 +9,7 @@ namespace Neural_Network.Core.Abstract
     public interface INeuralNetwork
     {
         void SetAllRandomWeights();
-        void Normalize(double[] signals);
+        double Normalize(double signal, double minValue, double maxValue, double intervalMin = 0, double intervalMax = 1);
         double[] GetResponse(double[] signals);
     }
 }

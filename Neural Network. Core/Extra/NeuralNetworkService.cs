@@ -71,7 +71,7 @@ namespace Neural_Network.Core.Extra
                 endErrors[i] = network.GetErrors(inputSignals[i], correctOutputSignals[i]).Average();
             endError += endErrors.Average();
         }
-        private static void Shuffle(List<double[]> input, List<double[]> output, Random random)
+        public static void Shuffle(List<double[]> input, List<double[]> output, Random random)
         {
             for (int i = input.Count() - 1; i >= 1; i--)
             {

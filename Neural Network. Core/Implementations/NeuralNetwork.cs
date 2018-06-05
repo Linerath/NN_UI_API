@@ -123,6 +123,20 @@ namespace Neural_Network.Core.Implementation
 
             return outputLayerSignals;
         }
+        public double[] GetResponseWithNormalization(double[] signals, double[] minValues, double[] maxValues, double intervalMin = 0, double intervalMax = 1)
+        {
+            if (signals == null)
+                throw new ArgumentNullException("Null argument (signals)");
+            if (minValues == null)
+                throw new ArgumentNullException("Null argument (minValues)");
+            if (maxValues == null)
+                throw new ArgumentNullException("Null argument (maxValues)");
+
+            for (int i = 0; i < signals.Length; i++)
+                signals[i] = Normalize(signals[i], minValues[i], maxValues[i]);
+
+            return GetResponse(signals);
+        }
         public double[] GetErrors(double[] signals, double[] expectedOutput)
         {
             if (signals == null)
@@ -220,9 +234,9 @@ namespace Neural_Network.Core.Implementation
             if (addEpoch)
                 LearningEpochs++;
         }
-        public void Normalize(double[] signals)
+        public double Normalize(double signal, double minValue, double maxValue, double intervalMin = 0, double intervalMax = 1)
         {
-            throw new NotImplementedException();
+            return ((signal - minValue) * (intervalMax - intervalMin)) / (maxValue - minValue) + intervalMin;
         }
         #endregion
 
@@ -304,56 +318,4 @@ namespace Neural_Network.Core.Implementation
             }
         }
     }
-
-    //internal sealed class FeedforwardNetwork
-    //{
-    //    public void Resize(Int32 layerIndex, Int32 newNeuronCount)
-    //    {
-    //        if (layerIndex < 0 || layerIndex >= LayerCount)
-    //            throw new ArgumentOutOfRangeException("Invalid layer index");
-    //        if (newNeuronCount < 0)
-    //            throw new ArgumentException("Invalid size.");
-
-    //        if (layerIndex == 0)
-    //        {
-    //            if (newNeuronCount > inputLayer.Count)
-    //            {
-    //                while (newNeuronCount > inputLayer.Count)
-    //                    inputLayer.Add(new OldNeuron(1));
-    //            }
-    //            else if (newNeuronCount < inputLayer.Count)
-    //            {
-    //                while (newNeuronCount < inputLayer.Count)
-    //                    inputLayer.RemoveAt(inputLayer.Count - 1);
-    //            }
-    //        }
-    //        else if (layerIndex == 1)
-    //        {
-    //            if (newNeuronCount > hiddenLayer.Count)
-    //            {
-    //                while (newNeuronCount > hiddenLayer.Count)
-    //                    hiddenLayer.Add(new OldNeuron(inputLayer.Count, true));
-    //            }
-    //            else if (newNeuronCount < hiddenLayer.Count)
-    //            {
-    //                while (newNeuronCount < hiddenLayer.Count)
-    //                    hiddenLayer.RemoveAt(hiddenLayer.Count - 1);
-    //            }
-    //        }
-    //        else if (layerIndex == 2)
-    //        {
-    //            if (newNeuronCount > outputLayer.Count)
-    //            {
-    //                while (newNeuronCount > outputLayer.Count)
-    //                    outputLayer.Add(new OldNeuron(hiddenLayer.Count, true));
-    //            }
-    //            else if (newNeuronCount < outputLayer.Count)
-    //            {
-    //                while (newNeuronCount < outputLayer.Count)
-    //                    outputLayer.RemoveAt(outputLayer.Count - 1);
-    //            }
-    //        }
-    //    }
-
-    //}
 }
