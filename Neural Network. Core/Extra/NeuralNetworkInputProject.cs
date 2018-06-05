@@ -29,34 +29,24 @@ namespace Neural_Network.Core.Extra
         #endregion
 
         #region Not tested
-        public void CreateField(Layers layer, String name, int neuronIndex, bool replaceExistingField = true)
+        public void CreateField(Layers layer, String name, Neuron neuron, bool replaceExistingField = true)
         {
-            if (layer == Layers.Hidden)
-                throw new ArgumentException("You cannot create fields for the hidden layer");
-
-            CreateField(layer, new Field(name, neuronIndex), replaceExistingField);
+            CreateField(layer, new Field(name, neuron), replaceExistingField);
         }
         public void CreateField(Layers layer, Field field, bool replaceExistingField = true)
         {
             if (layer == Layers.Hidden)
-                throw new ArgumentException("You cannot create fields for the hidden layer");
+                throw new ArgumentException("You haven't access for the hidden layer");
 
+            int existingFieldIndex;
             switch (layer)
             {
                 case Layers.Input:
-                    var existingFieldIndex = inputLayerFields.FindIndex(x => x.NeuronIndex == field.NeuronIndex);
+                    existingFieldIndex = inputLayerFields.FindIndex(x => x.Neuron == field.Neuron);
                     if (existingFieldIndex >= 0)
                     {
-                        Console.WriteLine("Field already exists!");
                         if (replaceExistingField)
-                        {
                             inputLayerFields[existingFieldIndex] = field;
-                            Console.WriteLine("Replaced!");
-                        }
-                        else
-                        {
-
-                        }
                     }
                     else
                     {
@@ -64,72 +54,104 @@ namespace Neural_Network.Core.Extra
                     }
                     break;
                 case Layers.Output:
-                    outputLayerFields.Add(field);
+                    existingFieldIndex = outputLayerFields.FindIndex(x => x.Neuron == field.Neuron);
+                    if (existingFieldIndex >= 0)
+                    {
+                        if (replaceExistingField)
+                            outputLayerFields[existingFieldIndex] = field;
+                    }
+                    else
+                    {
+                        outputLayerFields.Add(field);
+                    }
                     break;
             }
         }
-        public void RemoveField(Layers layer, String name, int neuronIndex)
-        {
-
-        }
         public void RemoveField(Layers layer, Field field)
         {
+            if (layer == Layers.Hidden)
+                throw new ArgumentException("You haven't access for the hidden layer");
 
+            switch (layer)
+            {
+                case Layers.Input:
+                    inputLayerFields.Remove(field);
+                    break;
+                case Layers.Output:
+                    outputLayerFields.Remove(field);
+                    break;
+            }
+        }
+        public void RemoveField(Layers layer, String name)
+        {
+            if (layer == Layers.Hidden)
+                throw new ArgumentException("You haven't access for the hidden layer");
+
+            List<Field> fields = new List<Field>();
+            switch (layer)
+            {
+                case Layers.Input:
+                    fields = inputLayerFields.FindAll(x => x.Name == name);
+                    break;
+                case Layers.Output:
+                    fields = outputLayerFields.FindAll(x => x.Name == name);
+                    break;
+            }
+            foreach (var f in fields)
+                RemoveField(layer, f);
         }
 
         //public Field? this[Layers layer, int neuronIndex]
         //{
-            //get
-            //{
-            //    if (layer == Layers.Hidden)
-            //        throw new ArgumentException("You do not have access to the hidden layer!");
+        //get
+        //{
+        //    if (layer == Layers.Hidden)
+        //        throw new ArgumentException("You do not have access to the hidden layer!");
 
-            //    switch (layer)
-            //    {
-            //        case Layers.Input:
-            //            var existingFieldIndex = inputLayerFields.FindIndex(x => x.NeuronIndex == neuronIndex);
-            //            if (existingFieldIndex >= 0)
-            //                return inputLayerFields[existingFieldIndex];
-            //            else
-            //                return null;
-            //        case Layers.Output:
-            //            return outputLayerFields.Find(x => x.NeuronIndex == neuronIndex);
-            //        default:
-            //            return new Field("Not existing field", -1);
-            //    }
-            //}
+        //    switch (layer)
+        //    {
+        //        case Layers.Input:
+        //            var existingFieldIndex = inputLayerFields.FindIndex(x => x.NeuronIndex == neuronIndex);
+        //            if (existingFieldIndex >= 0)
+        //                return inputLayerFields[existingFieldIndex];
+        //            else
+        //                return null;
+        //        case Layers.Output:
+        //            return outputLayerFields.Find(x => x.NeuronIndex == neuronIndex);
+        //        default:
+        //            return new Field("Not existing field", -1);
+        //    }
+        //}
         //}
         public int InputFieldsCount
         {
             get
             {
-                //return inputLayerFields.Count();
-                return Network.InputLayerSize;
+                return inputLayerFields.Count();
             }
         }
         public int OutputFieldsCount
         {
             get
             {
-                return Network.OutputLayerSize;
-                //return outputLayerFields.Count();
+                return outputLayerFields.Count();
             }
         }
         #endregion
     }
 
     [Serializable]
-    public struct Field
+    public class Field
     {
         private String name;
-        private int neuronIndex;
+        private Neuron neuron;
 
-        public Field(String name, int neuronIndex)
+        public Field(String name, Neuron neuron)
         {
             if (String.IsNullOrWhiteSpace(name))
                 throw new ArgumentException("Invalid name");
             this.name = name;
-            this.neuronIndex = (neuronIndex >= 0) ? neuronIndex : throw new IndexOutOfRangeException("Index out of range.");
+            this.neuron = neuron ?? throw new ArgumentNullException("neuron");
         }
 
         public String Name
@@ -145,17 +167,15 @@ namespace Neural_Network.Core.Extra
                 name = value;
             }
         }
-        public int NeuronIndex
+        public Neuron Neuron
         {
             get
             {
-                return neuronIndex;
+                return neuron;
             }
             set
             {
-                if (value < 0)
-                    throw new IndexOutOfRangeException("Index out of range (NeuronIndex)");
-                neuronIndex = value;
+                neuron = value ?? throw new ArgumentNullException("neuron");
             }
         }
     }
