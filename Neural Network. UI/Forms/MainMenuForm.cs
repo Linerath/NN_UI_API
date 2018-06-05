@@ -85,27 +85,6 @@ namespace Neural_Network.UI.Forms
             //ShowNetwork(networkIndex);
             //networkExplorerForm.RefreshTree();
         }
-        private void BOpenNetwork_Click(object sender, EventArgs e)
-        {
-            MessageBox.Show("In development", "Warning");
-            return;
-            OpenFileDialog ofd = new OpenFileDialog
-            {
-                InitialDirectory = Directory.GetCurrentDirectory()
-            };
-
-            if (ofd.ShowDialog() == DialogResult.OK)
-            {
-                try
-                {
-
-                }
-                catch (IOException exp)
-                {
-                    MessageBox.Show("IOexception was thrown. Message: " + exp.Message);
-                }
-            }
-        }
         private void BNewInputProj_Click(object sender, EventArgs e)
         {
             if (UIRepository.Project.NetworksCount < 1)
@@ -123,11 +102,6 @@ namespace Neural_Network.UI.Forms
                 networkExplorerForm.RefreshTree();
             };
             newInputProjectForm.ShowDialog();
-        }
-        private void BOpenInputProj_Click(object sender, EventArgs e)
-        {
-            MessageBox.Show("In development", "Warning");
-            return;
         }
         private void BTraining_Click(object sender, EventArgs e)
         {
@@ -469,14 +443,15 @@ namespace Neural_Network.UI.Forms
             productionForm.Show();
             if (productionForms.Any())
                 productionForm.Location = new Point(productionForms.Last().Location.X + 20, productionForms.Last().Location.Y + 20);
-            else
-                productionForms.Add(productionForm);
+            productionForms.Add(productionForm);
         }
         public void CloseProductionProject(Production production)
         {
             foreach (var proj in production.InputProjects)
                 CloseNetwork(proj.Network);
             var productionFormIndex = GetProductionProjFormIndex(production);
+            if (productionFormIndex < 0)
+                return;
             productionForms[productionFormIndex].Close();
             productionForms.RemoveAt(productionFormIndex);
             UIRepository.Project.ProductionProjects.Remove(production);

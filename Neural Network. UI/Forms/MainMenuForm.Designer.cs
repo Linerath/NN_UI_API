@@ -40,11 +40,9 @@
             this.viewSettingsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.BNewNetwork = new System.Windows.Forms.Button();
             this.GBNetwork = new System.Windows.Forms.GroupBox();
-            this.BOpenNetwork = new System.Windows.Forms.Button();
             this.GBInputProj = new System.Windows.Forms.GroupBox();
-            this.BOpenInputProj = new System.Windows.Forms.Button();
             this.BNewInputProj = new System.Windows.Forms.Button();
-            this.GBActions = new System.Windows.Forms.GroupBox();
+            this.GBTraining = new System.Windows.Forms.GroupBox();
             this.BProduction = new System.Windows.Forms.Button();
             this.BTraining = new System.Windows.Forms.Button();
             this.GBProj = new System.Windows.Forms.GroupBox();
@@ -52,11 +50,13 @@
             this.BSaveProj = new System.Windows.Forms.Button();
             this.BOpenProj = new System.Windows.Forms.Button();
             this.BNewProj = new System.Windows.Forms.Button();
+            this.GBProduction = new System.Windows.Forms.GroupBox();
             this.MainMenu.SuspendLayout();
             this.GBNetwork.SuspendLayout();
             this.GBInputProj.SuspendLayout();
-            this.GBActions.SuspendLayout();
+            this.GBTraining.SuspendLayout();
             this.GBProj.SuspendLayout();
+            this.GBProduction.SuspendLayout();
             this.SuspendLayout();
             // 
             // MainMenu
@@ -146,7 +146,7 @@
             this.BNewNetwork.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(229)))), ((int)(((byte)(229)))), ((int)(((byte)(229)))));
             this.BNewNetwork.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.BNewNetwork.Font = new System.Drawing.Font("Consolas", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BNewNetwork.Location = new System.Drawing.Point(15, 24);
+            this.BNewNetwork.Location = new System.Drawing.Point(40, 24);
             this.BNewNetwork.Name = "BNewNetwork";
             this.BNewNetwork.Size = new System.Drawing.Size(40, 35);
             this.BNewNetwork.TabIndex = 1;
@@ -155,7 +155,6 @@
             // 
             // GBNetwork
             // 
-            this.GBNetwork.Controls.Add(this.BOpenNetwork);
             this.GBNetwork.Controls.Add(this.BNewNetwork);
             this.GBNetwork.Location = new System.Drawing.Point(233, 31);
             this.GBNetwork.Name = "GBNetwork";
@@ -164,48 +163,15 @@
             this.GBNetwork.TabStop = false;
             this.GBNetwork.Text = "Neural network";
             // 
-            // BOpenNetwork
-            // 
-            this.BOpenNetwork.BackColor = System.Drawing.Color.Transparent;
-            this.BOpenNetwork.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("BOpenNetwork.BackgroundImage")));
-            this.BOpenNetwork.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.BOpenNetwork.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(210)))), ((int)(((byte)(210)))), ((int)(((byte)(210)))));
-            this.BOpenNetwork.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(229)))), ((int)(((byte)(229)))), ((int)(((byte)(229)))));
-            this.BOpenNetwork.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.BOpenNetwork.Font = new System.Drawing.Font("Consolas", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BOpenNetwork.Location = new System.Drawing.Point(61, 24);
-            this.BOpenNetwork.Name = "BOpenNetwork";
-            this.BOpenNetwork.Size = new System.Drawing.Size(40, 35);
-            this.BOpenNetwork.TabIndex = 2;
-            this.BOpenNetwork.UseVisualStyleBackColor = false;
-            this.BOpenNetwork.Click += new System.EventHandler(this.BOpenNetwork_Click);
-            // 
             // GBInputProj
             // 
-            this.GBInputProj.Controls.Add(this.BOpenInputProj);
             this.GBInputProj.Controls.Add(this.BNewInputProj);
             this.GBInputProj.Location = new System.Drawing.Point(364, 31);
             this.GBInputProj.Name = "GBInputProj";
-            this.GBInputProj.Size = new System.Drawing.Size(125, 72);
+            this.GBInputProj.Size = new System.Drawing.Size(111, 72);
             this.GBInputProj.TabIndex = 4;
             this.GBInputProj.TabStop = false;
             this.GBInputProj.Text = "Input project";
-            // 
-            // BOpenInputProj
-            // 
-            this.BOpenInputProj.BackColor = System.Drawing.Color.Transparent;
-            this.BOpenInputProj.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("BOpenInputProj.BackgroundImage")));
-            this.BOpenInputProj.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.BOpenInputProj.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(210)))), ((int)(((byte)(210)))), ((int)(((byte)(210)))));
-            this.BOpenInputProj.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(229)))), ((int)(((byte)(229)))), ((int)(((byte)(229)))));
-            this.BOpenInputProj.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.BOpenInputProj.Font = new System.Drawing.Font("Consolas", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BOpenInputProj.Location = new System.Drawing.Point(61, 24);
-            this.BOpenInputProj.Name = "BOpenInputProj";
-            this.BOpenInputProj.Size = new System.Drawing.Size(40, 35);
-            this.BOpenInputProj.TabIndex = 7;
-            this.BOpenInputProj.UseVisualStyleBackColor = false;
-            this.BOpenInputProj.Click += new System.EventHandler(this.BOpenInputProj_Click);
             // 
             // BNewInputProj
             // 
@@ -216,22 +182,22 @@
             this.BNewInputProj.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(229)))), ((int)(((byte)(229)))), ((int)(((byte)(229)))));
             this.BNewInputProj.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.BNewInputProj.Font = new System.Drawing.Font("Consolas", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BNewInputProj.Location = new System.Drawing.Point(15, 24);
+            this.BNewInputProj.Location = new System.Drawing.Point(31, 24);
             this.BNewInputProj.Name = "BNewInputProj";
             this.BNewInputProj.Size = new System.Drawing.Size(40, 35);
             this.BNewInputProj.TabIndex = 6;
             this.BNewInputProj.UseVisualStyleBackColor = false;
             this.BNewInputProj.Click += new System.EventHandler(this.BNewInputProj_Click);
             // 
-            // GBActions
+            // GBTraining
             // 
-            this.GBActions.Controls.Add(this.BProduction);
-            this.GBActions.Controls.Add(this.BTraining);
-            this.GBActions.Location = new System.Drawing.Point(495, 31);
-            this.GBActions.Name = "GBActions";
-            this.GBActions.Size = new System.Drawing.Size(119, 72);
-            this.GBActions.TabIndex = 5;
-            this.GBActions.TabStop = false;
+            this.GBTraining.Controls.Add(this.BTraining);
+            this.GBTraining.Location = new System.Drawing.Point(583, 31);
+            this.GBTraining.Name = "GBTraining";
+            this.GBTraining.Size = new System.Drawing.Size(84, 72);
+            this.GBTraining.TabIndex = 5;
+            this.GBTraining.TabStop = false;
+            this.GBTraining.Text = "Training";
             // 
             // BProduction
             // 
@@ -242,7 +208,7 @@
             this.BProduction.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(229)))), ((int)(((byte)(229)))), ((int)(((byte)(229)))));
             this.BProduction.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.BProduction.Font = new System.Drawing.Font("Consolas", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BProduction.Location = new System.Drawing.Point(61, 24);
+            this.BProduction.Location = new System.Drawing.Point(27, 24);
             this.BProduction.Name = "BProduction";
             this.BProduction.Size = new System.Drawing.Size(40, 35);
             this.BProduction.TabIndex = 5;
@@ -258,7 +224,7 @@
             this.BTraining.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(229)))), ((int)(((byte)(229)))), ((int)(((byte)(229)))));
             this.BTraining.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.BTraining.Font = new System.Drawing.Font("Consolas", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BTraining.Location = new System.Drawing.Point(15, 24);
+            this.BTraining.Location = new System.Drawing.Point(21, 24);
             this.BTraining.Name = "BTraining";
             this.BTraining.Size = new System.Drawing.Size(40, 35);
             this.BTraining.TabIndex = 4;
@@ -339,13 +305,24 @@
             this.BNewProj.UseVisualStyleBackColor = false;
             this.BNewProj.Click += new System.EventHandler(this.BNewProj_Click);
             // 
+            // GBProduction
+            // 
+            this.GBProduction.Controls.Add(this.BProduction);
+            this.GBProduction.Location = new System.Drawing.Point(481, 31);
+            this.GBProduction.Name = "GBProduction";
+            this.GBProduction.Size = new System.Drawing.Size(96, 72);
+            this.GBProduction.TabIndex = 6;
+            this.GBProduction.TabStop = false;
+            this.GBProduction.Text = "Production";
+            // 
             // MainMenuForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1348, 122);
+            this.Controls.Add(this.GBProduction);
             this.Controls.Add(this.GBProj);
-            this.Controls.Add(this.GBActions);
+            this.Controls.Add(this.GBTraining);
             this.Controls.Add(this.GBInputProj);
             this.Controls.Add(this.GBNetwork);
             this.Controls.Add(this.MainMenu);
@@ -360,8 +337,9 @@
             this.MainMenu.PerformLayout();
             this.GBNetwork.ResumeLayout(false);
             this.GBInputProj.ResumeLayout(false);
-            this.GBActions.ResumeLayout(false);
+            this.GBTraining.ResumeLayout(false);
             this.GBProj.ResumeLayout(false);
+            this.GBProduction.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -379,7 +357,7 @@
         private System.Windows.Forms.ToolStripMenuItem openProjToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem saveProjToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem saveProjAsToolStripMenuItem;
-        private System.Windows.Forms.GroupBox GBActions;
+        private System.Windows.Forms.GroupBox GBTraining;
         private System.Windows.Forms.GroupBox GBProj;
         private System.Windows.Forms.Button BOpenProj;
         private System.Windows.Forms.Button BNewProj;
@@ -389,8 +367,7 @@
         private System.Windows.Forms.ToolStripMenuItem viewSettingsToolStripMenuItem;
         private System.Windows.Forms.Button BProduction;
         private System.Windows.Forms.Button BNewInputProj;
-        private System.Windows.Forms.Button BOpenInputProj;
-        private System.Windows.Forms.Button BOpenNetwork;
         private System.Windows.Forms.Button BTraining;
+        private System.Windows.Forms.GroupBox GBProduction;
     }
 }
