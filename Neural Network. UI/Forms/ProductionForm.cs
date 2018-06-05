@@ -54,6 +54,7 @@ namespace Neural_Network.UI.Forms
                     Margin = new Padding(3, 2, 3, 2),
                     Maximum = new decimal(new int[] { 1000000, 0, 0, 0 }),
                     Size = new Size(79, 23),
+                    Value = (decimal)value,
                 };
             };
             Label CreateFieldLabel(String text, Point location)
@@ -79,7 +80,7 @@ namespace Neural_Network.UI.Forms
                 {
                     if (i == 0) continue;
                     var location = new Point(fieldsCtrls.Last().Location.X, fieldsCtrls.Last().Location.Y + fieldsCtrls.Last().Size.Height + 4);
-                    var labelLocation = new Point(prevLabel.Location.X, prevLabel.Location.Y + prevLabel.Height + 11);
+                    var labelLocation = new Point(prevLabel.Location.X, prevLabel.Location.Y + prevLabel.Height + 10);
                     NumericUpDown field = CreateField(Production.InputProjects[0].InputLayerFields[i].Value, location);
                     Label label = CreateFieldLabel(Production.InputProjects[0].InputLayerFields[i].Description, labelLocation);
                     prevLabel = label;

@@ -35,7 +35,8 @@ namespace Neural_Network.Testing
             //FeedforwardNetworkTests.SetWeights();
             //FeedforwardNetworkTests.Leaur0();
             //FeedforwardNetworkTests.Learn1();
-            FeedforwardNetworkTests.Learn2();
+            //FeedforwardNetworkTests.Learn2();
+            FeedforwardNetworkTests.Learn3();
             #endregion
 
             #region NeuralNetworkInputProjectTests
@@ -179,10 +180,10 @@ namespace Neural_Network.Testing
         public static void Response1()
         {
             FeedforwardNetworkSHL f = new FeedforwardNetworkSHL(3, 3, 3, Functions.Sigmoid);
-            
-            f.SetWeights(Layers.Hidden, 0, new double[]{ 0.9, 0.3, 0.4 });
-            f.SetWeights(Layers.Hidden, 1, new double[]{ 0.2, 0.8, 0.2 });
-            f.SetWeights(Layers.Hidden, 2, new double[]{ 0.1, 0.5, 0.6 });
+
+            f.SetWeights(Layers.Hidden, 0, new double[] { 0.9, 0.3, 0.4 });
+            f.SetWeights(Layers.Hidden, 1, new double[] { 0.2, 0.8, 0.2 });
+            f.SetWeights(Layers.Hidden, 2, new double[] { 0.1, 0.5, 0.6 });
 
             f.SetWeights(Layers.Output, 0, new double[] { 0.3, 0.7, 0.5 });
             f.SetWeights(Layers.Output, 1, new double[] { 0.6, 0.5, 0.2 });
@@ -200,9 +201,9 @@ namespace Neural_Network.Testing
         public static void Response2()
         {
             FeedforwardNetworkSHL f = new FeedforwardNetworkSHL(3, 2, 1, Functions.Sigmoid);
-            
-            f.SetWeights(Layers.Hidden, 0, new double[]{ 0.79, 0.44, 0.43 });
-            f.SetWeights(Layers.Hidden, 1, new double[]{ 0.85, 0.43, 0.29 });
+
+            f.SetWeights(Layers.Hidden, 0, new double[] { 0.79, 0.44, 0.43 });
+            f.SetWeights(Layers.Hidden, 1, new double[] { 0.85, 0.43, 0.29 });
 
             f.SetWeights(Layers.Output, 0, new double[] { 0.5, 0.52 });
 
@@ -218,10 +219,10 @@ namespace Neural_Network.Testing
         public static void Response3()
         {
             FeedforwardNetworkSHL f = new FeedforwardNetworkSHL(2, 3, 2, Functions.Sigmoid);
-            
-            f.SetWeights(Layers.Hidden, 0, new double[]{ 0.3, 0.1 });
-            f.SetWeights(Layers.Hidden, 1, new double[]{ 0.2, 0.4 });
-            f.SetWeights(Layers.Hidden, 2, new double[]{ 0.6, 0.5 });
+
+            f.SetWeights(Layers.Hidden, 0, new double[] { 0.3, 0.1 });
+            f.SetWeights(Layers.Hidden, 1, new double[] { 0.2, 0.4 });
+            f.SetWeights(Layers.Hidden, 2, new double[] { 0.6, 0.5 });
 
             f.SetWeights(Layers.Output, 0, new double[] { 0.7, 0.3, 0.5 });
             f.SetWeights(Layers.Output, 1, new double[] { 0.7, 0.1, 0.2 });
@@ -342,6 +343,40 @@ namespace Neural_Network.Testing
             Console.WriteLine(new String('/', 100) + "\n");
             ShowResponseAndError(f, in0, out0, false);
             ShowResponseAndError(f, in1, out1, false);
+        }
+        public static void Learn3()
+        {
+            FeedforwardNetworkSHL f = new FeedforwardNetworkSHL(5, 10, 1, Functions.Sigmoid);
+
+            f.SetAllRandomWeights();
+
+            double[][] inputData = new double[][]
+            {
+                new double[] { 0.1,  },
+            };
+            double[][] outputData = new double[][]
+            {
+                new double[] { },
+            };
+
+            //ShowNetwork(f);
+            ShowResponseAndError(f, inputData[0], outputData[0]);
+            ShowResponseAndError(f, inputData[1], outputData[1]);
+
+            Random random = new Random();
+            for (int i = 0; i < 10000; i++)
+            {
+                for (int j = 0; j < inputData.Length; j++)
+                    f.Learn(inputData[j], outputData[j]);
+                NeuralNetworkService.Shuffle(inputData.ToList(), outputData.ToList(), random);
+            }
+
+            //ShowNetwork(f);
+            Console.WriteLine(new String('/', 100));
+            Console.WriteLine("Learnt...");
+            Console.WriteLine(new String('/', 100) + "\n");
+            ShowResponseAndError(f, inputData[0], outputData[0], false);
+            ShowResponseAndError(f, inputData[1], outputData[1], false);
         }
 
         public static void PrintNetwork(FeedforwardNetworkSHL n, StreamWriter sw)
@@ -466,7 +501,7 @@ namespace Neural_Network.Testing
             FeedforwardNetworkSHL network = new FeedforwardNetworkSHL(3, 4, 2);
             NeuralNetworkInputProject inputProject = new NeuralNetworkInputProject("Test name", network);
 
-            inputProject.CreateField(Layers.Input, "MyField", network[Layers.Input][0]);
+            inputProject.CreateField(Layers.Input, "MyField", "MyField", network[Layers.Input][0]);
 
             //var f = inputProject[Layers.Input, 1];
             //Console.WriteLine(f.Name + " " + f.NeuronIndex);

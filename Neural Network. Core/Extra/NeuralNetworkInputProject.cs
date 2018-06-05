@@ -193,4 +193,9 @@ namespace Neural_Network.Core.Extra
             }
         }
     }
+
+    public enum OutputType
+    {
+        OneOfN,
+    }
 }
