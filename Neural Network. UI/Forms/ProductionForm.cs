@@ -17,10 +17,12 @@ namespace Neural_Network.UI.Forms
     {
         public Production Production { get; private set; }
         private NetworkFunction? selectedNetworkSection;
+        private bool calculate = false;
 
         private List<NumericUpDown> fieldsCtrls = new List<NumericUpDown>();
         private List<Panel> sectionsCtrls = new List<Panel>();
         private List<Label> sectionLabelsCtrls = new List<Label>();
+        private List<FeedforwardNetworkSHL> notTrainedNets = new List<FeedforwardNetworkSHL>();
 
         public ProductionForm(Production production)
         {
@@ -39,6 +41,15 @@ namespace Neural_Network.UI.Forms
             CheckEpochs();
 
             MinimumSize = Size;
+            calculate = true;
+        }
+        private void NUDField_ValueChanged(object sender, EventArgs e)
+        {
+            if (!calculate)
+                return;
+
+            double[] input = fieldsCtrls.Select(x => (double)x.Value).ToArray();
+            //Production.InputValues = input;
         }
         private void LSection_Click(object sender, EventArgs e)
         {
@@ -63,8 +74,8 @@ namespace Neural_Network.UI.Forms
         private void BTraining_Click(object sender, EventArgs e)
         {
             var owner = Owner as MainMenuForm;
-            foreach (var proj in Production.InputProjects)
-                owner?.ShowTrainingForm(proj.Network);
+            foreach (var network in notTrainedNets)
+                owner?.ShowTrainingForm(network, CheckEpochs);
         }
         #endregion
 
@@ -73,7 +84,7 @@ namespace Neural_Network.UI.Forms
         {
             NumericUpDown CreateField(double value, Point location)
             {
-                return new NumericUpDown
+                NumericUpDown nud = new NumericUpDown
                 {
                     Font = new Font("Consolas", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0),
                     Location = location,
@@ -82,6 +93,8 @@ namespace Neural_Network.UI.Forms
                     Size = new Size(79, 23),
                     Value = (decimal)value,
                 };
+                nud.ValueChanged += NUDField_ValueChanged;
+                return nud;
             };
             Label CreateFieldLabel(String text, Point location)
             {
@@ -152,7 +165,7 @@ namespace Neural_Network.UI.Forms
                 }
             }
         }
-        private void CheckEpochs()
+        public void CheckEpochs()
         {
             List<FeedforwardNetworkSHL> notTrainedNets = new List<FeedforwardNetworkSHL>();
             for (int i = 0; i < Production.InputProjects.Count(); i++)
@@ -164,6 +177,9 @@ namespace Neural_Network.UI.Forms
                 selectedNetworkSection = null;
             else
                 selectedNetworkSection = NetworkFunction.FailureChance;
+
+            this.notTrainedNets = notTrainedNets;
+
             LoadPanel();
         }
         private void LoadPanel()

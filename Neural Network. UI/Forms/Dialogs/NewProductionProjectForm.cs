@@ -85,16 +85,23 @@ namespace Neural_Network.UI.Forms
             List<FeedforwardNetworkSHL> networks = new List<FeedforwardNetworkSHL>();
             for (int i = 0; i < abilities.Count(); i++)
             {
+                int inputCount = fields.Count();
+                switch (abilities[i].NetworkFunction)
+                {
+                    case NetworkFunction.AssessmentOfCompleting:
+                        inputCount += 2;
+                        break;
+                }
                 var network = new FeedforwardNetworkSHL(
                     name + "_" + abilities[i].NetworkFunction.ToString(),
-                    fields.Count(),
+                    inputCount,
                     fields.Count() * 2,
                     abilities[i].OutputCount,
                     Core.Functions.Sigmoid, 0.05);
                 network.SetAllRandomWeights();
 
                 var inputProj = new NeuralNetworkInputProject(name + "_" + abilities[i].NetworkFunction.ToString(), network);
-                for (int j = 0; j < network.InputLayerSize; j++)
+                for (int j = 0; j < fields.Count(); j++)
                     inputProj.CreateField(Layers.Input, fields[j].Name, fields[j].Description, network[Layers.Input][j]);
 
                 networks.Add(network);

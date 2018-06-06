@@ -32,6 +32,7 @@ namespace Neural_Network.UI.Shared
         }
     }
 
+    [Serializable]
     public class NetworkOutput
     {
         public NetworkFunction NetworkFunction { get; set; }

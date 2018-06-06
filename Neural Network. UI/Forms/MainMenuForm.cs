@@ -43,13 +43,13 @@ namespace Neural_Network.UI.Forms
         #region Events
         private void MainMenuForm_Load(object sender, EventArgs e)
         {
-            //if (UIRepository.Project.TryOpen(@"E:\Programming\C#\Neural Network WF (Graduate Work)\Neural Network. UI\bin\Debug\wat.nnproj"))
-            //{
-            //    networkExplorerForm.RefreshTree();
-            //    ShowAllNetworks();
-            //    ShowAllInputProjects();
-            //    ShowAllProductionProjects();
-            //}
+            if (UIRepository.Project.TryOpen(@"E:\Programming\C#\Neural Network WF (Graduate Work)\Neural Network. UI\bin\Debug\1.nnproj"))
+            {
+                networkExplorerForm.RefreshTree();
+                ShowAllNetworks();
+                ShowAllInputProjects();
+                ShowAllProductionProjects();
+            }
         }
         private void BNewProj_Click(object sender, EventArgs e)
         {
@@ -458,7 +458,7 @@ namespace Neural_Network.UI.Forms
             networkExplorerForm.RefreshTree(true);
         }
 
-        public void ShowTrainingForm(FeedforwardNetworkSHL network)
+        public void ShowTrainingForm(FeedforwardNetworkSHL network, Action trainingEndAction = null)
         {
             for (int i = 0; i < trainingForms.Count(); i++)
             {
@@ -469,7 +469,7 @@ namespace Neural_Network.UI.Forms
                 }
             }
             //MessageBox.Show("Training form is already opened!", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            TrainingForm trainingForm = new TrainingForm(network)
+            TrainingForm trainingForm = new TrainingForm(network, trainingEndAction)
             {
                 Owner = this,
                 Text = network.Name + ". Training",

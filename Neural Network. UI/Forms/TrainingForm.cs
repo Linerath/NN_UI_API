@@ -21,8 +21,9 @@ namespace Neural_Network.UI.Forms
         public FeedforwardNetworkSHL Network { get; set; }
         public TableViewSettings ViewSettings { get; private set; }
         private String FilePath { get; set; } = null;
+        private Action trainingEndAction;
 
-        public TrainingForm(FeedforwardNetworkSHL network)
+        public TrainingForm(FeedforwardNetworkSHL network, Action trainingEndAction = null)
         {
             inputSignals = new List<double[]>();
             correctOutputSignals = new List<double[]>();
@@ -31,6 +32,7 @@ namespace Neural_Network.UI.Forms
             {
                 NeuronsSorting = NeuronsSorting.Vertical,
             };
+            this.trainingEndAction = trainingEndAction;
 
             InitializeComponent();
         }
@@ -132,6 +134,8 @@ namespace Neural_Network.UI.Forms
             LCompleted1.Text = epochs.ToString();
             LLearningEpochs1.Text = Network.LearningEpochs.ToString();
             GlobalNetworkRefresh();
+
+            trainingEndAction?.Invoke();
         }
         #endregion
 

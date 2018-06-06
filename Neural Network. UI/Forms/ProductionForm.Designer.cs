@@ -118,6 +118,7 @@
             this.NUDField0.Name = "NUDField0";
             this.NUDField0.Size = new System.Drawing.Size(105, 27);
             this.NUDField0.TabIndex = 0;
+            this.NUDField0.ValueChanged += new System.EventHandler(this.NUDField_ValueChanged);
             // 
             // GBBody
             // 
@@ -136,7 +137,7 @@
             // 
             this.PNotTrained.Controls.Add(this.BTraining);
             this.PNotTrained.Controls.Add(this.LTrainingInfo);
-            this.PNotTrained.Location = new System.Drawing.Point(472, 477);
+            this.PNotTrained.Location = new System.Drawing.Point(483, 355);
             this.PNotTrained.Name = "PNotTrained";
             this.PNotTrained.Size = new System.Drawing.Size(215, 232);
             this.PNotTrained.TabIndex = 0;
@@ -149,6 +150,7 @@
             this.BTraining.TabIndex = 7;
             this.BTraining.Text = "Перейти к обучению";
             this.BTraining.UseVisualStyleBackColor = true;
+            this.BTraining.Click += new System.EventHandler(this.BTraining_Click);
             // 
             // LTrainingInfo
             // 
@@ -191,6 +193,7 @@
             // 
             // PBFailureChance
             // 
+            this.PBFailureChance.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.PBFailureChance.Location = new System.Drawing.Point(3, 69);
             this.PBFailureChance.Name = "PBFailureChance";
             this.PBFailureChance.Size = new System.Drawing.Size(535, 45);
@@ -212,10 +215,12 @@
             // 
             // progressBar1
             // 
+            this.progressBar1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.progressBar1.Location = new System.Drawing.Point(3, 216);
             this.progressBar1.Name = "progressBar1";
             this.progressBar1.Size = new System.Drawing.Size(535, 45);
             this.progressBar1.TabIndex = 3;
+            this.progressBar1.Value = 100;
             // 
             // LEvaluation
             // 
@@ -307,7 +312,6 @@
             this.ClientSize = new System.Drawing.Size(1356, 669);
             this.Controls.Add(this.tableLayoutPanel1);
             this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "ProductionForm";
             this.ShowIcon = false;
