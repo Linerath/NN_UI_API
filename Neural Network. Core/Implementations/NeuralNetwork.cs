@@ -107,7 +107,7 @@ namespace Neural_Network.Core.Implementation
         public double[] GetResponse(double[] signals)
         {
             if (signals == null)
-                throw new ArgumentNullException("Null argument (signals)");
+                throw new ArgumentNullException("signals");
 
             double[] hiddenLayerSignals = new double[HiddenLayerSize];
             for (int i = 0; i < HiddenLayerSize; i++)
@@ -126,11 +126,11 @@ namespace Neural_Network.Core.Implementation
         public double[] GetResponseWithNormalization(double[] signals, double[] minValues, double[] maxValues, double intervalMin = 0, double intervalMax = 1)
         {
             if (signals == null)
-                throw new ArgumentNullException("Null argument (signals)");
+                throw new ArgumentNullException("signals");
             if (minValues == null)
-                throw new ArgumentNullException("Null argument (minValues)");
+                throw new ArgumentNullException("minValues");
             if (maxValues == null)
-                throw new ArgumentNullException("Null argument (maxValues)");
+                throw new ArgumentNullException("maxValues");
 
             for (int i = 0; i < signals.Length; i++)
                 signals[i] = Normalize(signals[i], minValues[i], maxValues[i]);
@@ -200,6 +200,17 @@ namespace Neural_Network.Core.Implementation
             LearningRate = learningRate;
             Learn(signals, expectedOutputs, addEpoch);
         }
+        public void LearnWithNormalization(
+            double[] signals,
+            double[] minValues,
+            double[] maxValues,
+            double[] expectedOutputs,
+            double learningRate,
+            double intervalMin = 0, double intervalMax = 1, bool addEpoch = false)
+        {
+            LearningRate = learningRate;
+            LearnWithNormalization(signals, minValues, maxValues, expectedOutputs, intervalMin, intervalMax, addEpoch);
+        }
         public void Learn(double[] signals, double[] expectedOutputs, bool addEpoch = false)
         {
             if (signals == null)
@@ -234,6 +245,55 @@ namespace Neural_Network.Core.Implementation
             if (addEpoch)
                 LearningEpochs++;
         }
+        public void LearnWithNormalization(
+            double[] signals,
+            double[] minValues,
+            double[] maxValues,
+            double[] expectedOutputs,
+            double intervalMin = 0, double intervalMax = 1, bool addEpoch = false)
+        {
+            if (signals == null)
+                throw new ArgumentNullException("signals");
+            if (minValues == null)
+                throw new ArgumentNullException("minValues");
+            if (maxValues == null)
+                throw new ArgumentNullException("maxValues");
+
+            int hiddenCount = hiddenLayer.Count();
+            int outputCount = outputLayer.Count();
+
+            for (int i = 0; i < signals.Length; i++)
+                signals[i] = Normalize(signals[i], minValues[i], maxValues[i]);
+
+            // 0
+            double[] hiddenLayerSignals = new double[hiddenCount];
+            for (int i = 0; i < hiddenCount; i++)
+                hiddenLayerSignals[i] = hiddenLayer[i].GetResponse(signals);
+
+            double[] outputLayerSignals = new double[outputCount];
+            for (int i = 0; i < outputCount; i++)
+                outputLayerSignals[i] = outputLayer[i].GetResponse(hiddenLayerSignals);
+
+            // 1
+            double[] outputErrors = new double[outputCount];
+            for (int i = 0; i < outputErrors.Length; i++)
+                outputErrors[i] = expectedOutputs[i] - outputLayerSignals[i];
+
+            double[] hiddenErrors = GetHiddenLayerErorrs(outputErrors);
+
+            // 2
+            for (int i = 0; i < outputCount; i++)
+                outputLayer[i].Learn(hiddenLayerSignals, outputErrors[i], learningRate);
+
+            for (int i = 0; i < hiddenCount; i++)
+                hiddenLayer[i].Learn(signals, hiddenErrors[i], learningRate);
+
+            if (addEpoch)
+                LearningEpochs++;
+        }
+
+
+
         public double Normalize(double signal, double minValue, double maxValue, double intervalMin = 0, double intervalMax = 1)
         {
             return ((signal - minValue) * (intervalMax - intervalMin)) / (maxValue - minValue) + intervalMin;
@@ -313,7 +373,7 @@ namespace Neural_Network.Core.Implementation
             }
             set
             {
-                learningRate = (value > 0 && value <= 1) ? 
+                learningRate = (value > 0 && value <= 1) ?
                     value : throw new ArgumentException("Learning rate must be in the interval (0;1]");
             }
         }
