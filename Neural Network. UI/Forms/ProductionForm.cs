@@ -19,14 +19,16 @@ namespace Neural_Network.UI.Forms
         private NetworkFunction? selectedNetworkSection;
 
         private List<NumericUpDown> fieldsCtrls = new List<NumericUpDown>();
-        private List<Label> sectionsCtrls = new List<Label>();
-        //private List<CheckBox> abilitiesCtrls = new List<CheckBox>();
+        private List<Panel> sectionsCtrls = new List<Panel>();
+        private List<Label> sectionLabelsCtrls = new List<Label>();
 
         public ProductionForm(Production production)
         {
             InitializeComponent();
 
             Production = production;
+            foreach (var p in GBBody.Controls.OfType<Panel>())
+                sectionsCtrls.Add(p);
         }
 
         #region Events
@@ -37,6 +39,25 @@ namespace Neural_Network.UI.Forms
             CheckEpochs();
 
             MinimumSize = Size;
+        }
+        private void LSection_Click(object sender, EventArgs e)
+        {
+            if (selectedNetworkSection == null)
+                return;
+
+            Label section = sender as Label;
+            if (section == null)
+                return;
+
+            for (int i = 0; i < sectionLabelsCtrls.Count(); i++)
+            {
+                if (section == sectionLabelsCtrls[i])
+                {
+                    selectedNetworkSection = section.Tag as NetworkFunction?;
+                    LoadPanel();
+                    break;
+                }
+            }
         }
 
         private void BTraining_Click(object sender, EventArgs e)
@@ -97,31 +118,36 @@ namespace Neural_Network.UI.Forms
         }
         private void LoadSections()
         {
-            Label CreateLabel(String text, Point location)
+            sectionLabelsCtrls.Add(null);
+            Label CreateLabel(String text, Point location, object tag)
             {
-                return new Label
+                var label = new Label
                 {
                     BackColor = SystemColors.Control,
                     Location = location,
                     Text = text,
                     TextAlign = ContentAlignment.MiddleLeft,
-                    Dock = DockStyle.Top
-            };
+                    Dock = DockStyle.Top,
+                    Tag = tag
+                };
+                label.Click += LSection_Click;
+                return label;
             };
 
             if (Production.NetworksOutputs.Count() > 0)
             {
                 LFunction0.Text = Production.NetworksOutputs[0].Description;
-                sectionsCtrls.Add(LFunction0);
+                LFunction0.Tag = Production.NetworksOutputs[0].NetworkFunction;
+                sectionLabelsCtrls.Add(LFunction0);
 
                 Label prevSection = LFunction0;
                 for (int i = 1; i < Production.NetworksOutputs.Count(); i++)
                 {
                     var location = new Point(prevSection.Location.X, prevSection.Location.Y + prevSection.Height);
-                    Label section = CreateLabel(Production.NetworksOutputs[i].Description, location);
+                    Label section = CreateLabel(Production.NetworksOutputs[i].Description, location, Production.NetworksOutputs[i].NetworkFunction);
                     prevSection = section;
 
-                    sectionsCtrls.Add(section);
+                    sectionLabelsCtrls.Add(section);
                     GBSections.Controls.Add(section);
                 }
             }
@@ -136,27 +162,42 @@ namespace Neural_Network.UI.Forms
             }
             if (notTrainedNets.Count() > 0)
                 selectedNetworkSection = null;
+            else
+                selectedNetworkSection = NetworkFunction.FailureChance;
             LoadPanel();
         }
         private void LoadPanel()
         {
-            foreach (var panel in GBBody.Controls.OfType<Panel>())
+            for (int i = 0; i < sectionsCtrls.Count(); i++)
             {
-                if (selectedNetworkSection.HasValue)
+                bool curr = false;
+                switch (selectedNetworkSection)
                 {
-
+                    case NetworkFunction.FailureChance:
+                        if (sectionsCtrls[i] == PFailureChance)
+                            curr = true;
+                        break;
+                    case NetworkFunction.AssessmentOfCompleting:
+                        if (sectionsCtrls[i] == PAssessmentOfCompleting)
+                            curr = true;
+                        break;
+                    case null:
+                        if (sectionsCtrls[i] == PNotTrained)
+                            curr = true;
+                        break;
+                }
+                if (curr)
+                {
+                    sectionsCtrls[i].Visible = true;
+                    sectionsCtrls[i].Dock = DockStyle.Fill;
+                    if (sectionLabelsCtrls[i] != null)
+                        sectionLabelsCtrls[i].BackColor = Color.Orange;
                 }
                 else
                 {
-                    if (panel == PNotTrained)
-                    {
-                        panel.Visible = true;
-                        panel.Dock = DockStyle.Fill;
-                    }
-                    else
-                    {
-                        panel.Visible = false;
-                    }
+                    sectionsCtrls[i].Visible = false;
+                    if (sectionLabelsCtrls[i] != null)
+                        sectionLabelsCtrls[i].BackColor = SystemColors.Control;
                 }
             }
         }
