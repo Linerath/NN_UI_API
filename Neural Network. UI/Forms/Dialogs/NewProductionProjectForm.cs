@@ -16,7 +16,7 @@ namespace Neural_Network.UI.Forms
     public partial class NewProductionProjectForm : Form
     {
         private List<Shared.Field> fields = new List<Shared.Field>();
-        private List<Ability> abilities = new List<Ability>();
+        private List<NetworkOutput> abilities = new List<NetworkOutput>();
         private List<CheckBox> fieldsCtrls = new List<CheckBox>();
         private List<CheckBox> abilitiesCtrls = new List<CheckBox>();
 
@@ -50,16 +50,35 @@ namespace Neural_Network.UI.Forms
                 return;
             }
 
+            var checkedCount = abilitiesCtrls.Where(x => x.Checked).Count();
+            if (checkedCount < 1)
+            {
+                MessageBox.Show("Please, select at least one ability", "Warning");
+                return;
+            }
+            checkedCount = fieldsCtrls.Where(x => x.Checked).Count();
+            if (checkedCount < 1)
+            {
+                MessageBox.Show("Please, select at least one input parameter", "Warning");
+                return;
+            }
+
             for (int i = 0; i < fieldsCtrls.Count(); i++)
             {
                 if (!fieldsCtrls[i].Checked)
+                {
+                    fieldsCtrls.RemoveAt(i);
                     fields.RemoveAt(i--);
+                }
             }
 
             for (int i = 0; i < abilitiesCtrls.Count(); i++)
             {
                 if (!abilitiesCtrls[i].Checked)
+                {
+                    abilitiesCtrls.RemoveAt(i);
                     abilities.RemoveAt(i--);
+                }
             }
 
             List<NeuralNetworkInputProject> inputProjects = new List<NeuralNetworkInputProject>();
@@ -67,14 +86,14 @@ namespace Neural_Network.UI.Forms
             for (int i = 0; i < abilities.Count(); i++)
             {
                 var network = new FeedforwardNetworkSHL(
-                    name + "_" + abilities[i].Name,
+                    name + "_" + abilities[i].NetworkFunction.ToString(),
                     fields.Count(),
                     fields.Count() * 2,
                     abilities[i].OutputCount,
                     Core.Functions.Sigmoid, 0.05);
                 network.SetAllRandomWeights();
 
-                var inputProj = new NeuralNetworkInputProject(name + "_" + abilities[i].Name, network);
+                var inputProj = new NeuralNetworkInputProject(name + "_" + abilities[i].NetworkFunction.ToString(), network);
                 for (int j = 0; j < network.InputLayerSize; j++)
                     inputProj.CreateField(Layers.Input, fields[j].Name, fields[j].Description, network[Layers.Input][j]);
 
@@ -89,6 +108,7 @@ namespace Neural_Network.UI.Forms
             {
                 Name = name,
                 InputProjects = inputProjects,
+                NetworksOutputs = abilities,
                 InputValues = fields.Select(x => x.Value).ToArray(),
             };
             UIRepository.Project.ProductionProjects.Add(production);
@@ -142,20 +162,17 @@ namespace Neural_Network.UI.Forms
             {
                 CBFirstAbility.Text = abilities.First().Description;
                 abilitiesCtrls.Add(CBFirstAbility);
-            }
-            pass = true;
-            foreach (var a in abilities)
-            {
-                if (pass)
-                {
-                    pass = false;
-                    continue;
-                }
-                var location = new Point(abilitiesCtrls.Last().Location.X, abilitiesCtrls.Last().Location.Y + abilitiesCtrls.Last().Size.Height + 6);
-                CheckBox checkBox = CreateCheckBox(a.Description, location);
 
-                abilitiesCtrls.Add(checkBox);
-                GBAbilities.Controls.Add(checkBox);
+                CheckBox prevCheckBox = CBFirstAbility;
+                for (int i = 1; i < abilities.Count(); i++)
+                {
+                    var location = new Point(prevCheckBox.Location.X, prevCheckBox.Location.Y + prevCheckBox.Size.Height + 6);
+                    CheckBox checkBox = CreateCheckBox(abilities[i].Description, location);
+                    prevCheckBox = checkBox;
+
+                    abilitiesCtrls.Add(checkBox);
+                    GBAbilities.Controls.Add(checkBox);
+                }
             }
         }
         #endregion

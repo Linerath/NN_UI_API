@@ -1,4 +1,5 @@
-﻿using Neural_Network.UI.Forms.Dialogs;
+﻿using Neural_Network.Core.Implementation;
+using Neural_Network.UI.Forms.Dialogs;
 using Neural_Network.UI.Shared;
 using System;
 using System.Collections.Generic;
@@ -15,8 +16,10 @@ namespace Neural_Network.UI.Forms
     public partial class ProductionForm : Form
     {
         public Production Production { get; private set; }
+        private NetworkFunction? selectedNetworkSection;
 
         private List<NumericUpDown> fieldsCtrls = new List<NumericUpDown>();
+        private List<Label> sectionsCtrls = new List<Label>();
         //private List<CheckBox> abilitiesCtrls = new List<CheckBox>();
 
         public ProductionForm(Production production)
@@ -30,6 +33,8 @@ namespace Neural_Network.UI.Forms
         private void ProductionForm_Load(object sender, EventArgs e)
         {
             LoadFields();
+            LoadSections();
+            CheckEpochs();
 
             MinimumSize = Size;
         }
@@ -76,9 +81,8 @@ namespace Neural_Network.UI.Forms
                 fieldsCtrls.Add(NUDField0);
 
                 Label prevLabel = LField0;
-                for (int i = 0; i < Production.InputProjects[0].InputFieldsCount; i++)
+                for (int i = 1; i < Production.InputProjects[0].InputFieldsCount; i++)
                 {
-                    if (i == 0) continue;
                     var location = new Point(fieldsCtrls.Last().Location.X, fieldsCtrls.Last().Location.Y + fieldsCtrls.Last().Size.Height + 4);
                     var labelLocation = new Point(prevLabel.Location.X, prevLabel.Location.Y + prevLabel.Height + 10);
                     NumericUpDown field = CreateField(Production.InputProjects[0].InputLayerFields[i].Value, location);
@@ -90,47 +94,71 @@ namespace Neural_Network.UI.Forms
                     GBFields.Controls.Add(label);
                 }
             }
-
-            /*
-            if (Production.InputProjects.Count() > 0)
+        }
+        private void LoadSections()
+        {
+            Label CreateLabel(String text, Point location)
             {
-                CBFirstField.Text = fields.First().Description;
-                fieldsCtrls.Add(CBFirstField);
-            }
-            bool pass = true;
-            foreach (var f in fields)
-            {
-                if (pass)
+                return new Label
                 {
-                    pass = false;
-                    continue;
-                }
-                var location = new Point(fieldsCtrls.Last().Location.X, fieldsCtrls.Last().Location.Y + fieldsCtrls.Last().Size.Height + 6);
-                CheckBox checkBox = CreateCheckBox(f.Description, location);
+                    BackColor = SystemColors.Control,
+                    Location = location,
+                    Text = text,
+                    TextAlign = ContentAlignment.MiddleLeft,
+                    Dock = DockStyle.Top
+            };
+            };
 
-                fieldsCtrls.Add(checkBox);
-                GBFields.Controls.Add(checkBox);
-            }
-            if (abilities.Count() > 0)
+            if (Production.NetworksOutputs.Count() > 0)
             {
-                CBFirstAbility.Text = abilities.First().Description;
-                abilitiesCtrls.Add(CBFirstAbility);
-            }
-            pass = true;
-            foreach (var a in abilities)
-            {
-                if (pass)
+                LFunction0.Text = Production.NetworksOutputs[0].Description;
+                sectionsCtrls.Add(LFunction0);
+
+                Label prevSection = LFunction0;
+                for (int i = 1; i < Production.NetworksOutputs.Count(); i++)
                 {
-                    pass = false;
-                    continue;
-                }
-                var location = new Point(abilitiesCtrls.Last().Location.X, abilitiesCtrls.Last().Location.Y + abilitiesCtrls.Last().Size.Height + 6);
-                CheckBox checkBox = CreateCheckBox(a.Description, location);
+                    var location = new Point(prevSection.Location.X, prevSection.Location.Y + prevSection.Height);
+                    Label section = CreateLabel(Production.NetworksOutputs[i].Description, location);
+                    prevSection = section;
 
-                abilitiesCtrls.Add(checkBox);
-                GBAbilities.Controls.Add(checkBox);
+                    sectionsCtrls.Add(section);
+                    GBSections.Controls.Add(section);
+                }
             }
-            */
+        }
+        private void CheckEpochs()
+        {
+            List<FeedforwardNetworkSHL> notTrainedNets = new List<FeedforwardNetworkSHL>();
+            for (int i = 0; i < Production.InputProjects.Count(); i++)
+            {
+                if (Production.InputProjects[i].Network.LearningEpochs < 1000)
+                    notTrainedNets.Add(Production.InputProjects[i].Network);
+            }
+            if (notTrainedNets.Count() > 0)
+                selectedNetworkSection = null;
+            LoadPanel();
+        }
+        private void LoadPanel()
+        {
+            foreach (var panel in GBBody.Controls.OfType<Panel>())
+            {
+                if (selectedNetworkSection.HasValue)
+                {
+
+                }
+                else
+                {
+                    if (panel == PNotTrained)
+                    {
+                        panel.Visible = true;
+                        panel.Dock = DockStyle.Fill;
+                    }
+                    else
+                    {
+                        panel.Visible = false;
+                    }
+                }
+            }
         }
         #endregion
     }

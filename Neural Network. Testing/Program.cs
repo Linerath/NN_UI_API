@@ -36,7 +36,8 @@ namespace Neural_Network.Testing
             //FeedforwardNetworkTests.Leaur0();
             //FeedforwardNetworkTests.Learn1();
             //FeedforwardNetworkTests.Learn2();
-            FeedforwardNetworkTests.Learn3();
+            //FeedforwardNetworkTests.Learn3();
+            FeedforwardNetworkTests.Normalize0();
             #endregion
 
             #region NeuralNetworkInputProjectTests
@@ -350,9 +351,22 @@ namespace Neural_Network.Testing
 
             f.SetAllRandomWeights();
 
+            // 10250 деталей
+            // 327 деталей на холодос
+            // 557 деталей в час
+            // 5 работников
             double[][] inputData = new double[][]
             {
-                new double[] { 0.1,  },
+                new double[] { 10250, 327, 557, 5 },
+                new double[] { 10250, 327, 557, 5 },
+            };
+            double[][] minValues = new double[][]
+            {
+                new double[] {  }
+            };
+            double[][] maxValues = new double[][]
+            {
+                new double[] {  }
             };
             double[][] outputData = new double[][]
             {
@@ -367,6 +381,7 @@ namespace Neural_Network.Testing
             for (int i = 0; i < 10000; i++)
             {
                 for (int j = 0; j < inputData.Length; j++)
+                    //f.LearnWithNormalization(inputData[j], outputData[j]);
                     f.Learn(inputData[j], outputData[j]);
                 NeuralNetworkService.Shuffle(inputData.ToList(), outputData.ToList(), random);
             }
@@ -377,6 +392,19 @@ namespace Neural_Network.Testing
             Console.WriteLine(new String('/', 100) + "\n");
             ShowResponseAndError(f, inputData[0], outputData[0], false);
             ShowResponseAndError(f, inputData[1], outputData[1], false);
+        }
+
+        public static void Normalize0()
+        {
+            FeedforwardNetworkSHL f = new FeedforwardNetworkSHL(5, 10, 1, Functions.Sigmoid);
+
+            f.SetAllRandomWeights();
+
+            double[] signals = new double[] { 10250, 327, 557, 5 };
+            double[] minValues = new double[] { 100, 10, 35, 0 };
+            double[] maxValues = new double[] { 23000, 500, 999, 10 };
+
+            f.GetResponseWithNormalization(signals, minValues, maxValues);
         }
 
         public static void PrintNetwork(FeedforwardNetworkSHL n, StreamWriter sw)

@@ -13,15 +13,16 @@ namespace Neural_Network.UI.Shared
         public static List<Field> ProductionFields = new List<Field>()
         {
             new Field { Name = "Details", Description = "Детали", Value = 1337 },
+            new Field { Name = "DetailsCount", Description = "Количество деталей на холодильник", Value = 1337 },
             new Field { Name = "Speed", Description = "Скорость потребления деталей" },
             new Field { Name = "Employees", Description = "Количество работников", Value = 15 },
             new Field { Name = "Rhythm", Description = "Ритм производства" },
             new Field { Name = "Tact", Description = "Такт производства", Value = 228 },
         };
-        public static List<Ability> Abilities = new List<Ability>()
+        public static List<NetworkOutput> Abilities = new List<NetworkOutput>()
         {
-            new Ability { Name = "Forecasting", Description = "Оценка реальности выполнения", OutputCount = 3 },
-            new Ability { Name = "Ordering",  Description ="Создание заказов на детали", OutputCount = 3 },
+            new NetworkOutput { NetworkFunction = NetworkFunction.FailureChance, Description = "Вероятность сбоя" ,OutputCount = 1 },
+            new NetworkOutput{ NetworkFunction = NetworkFunction.AssessmentOfCompleting, Description = "Оценка реальности выполнения", OutputCount = 1},
         };
     }
 
@@ -30,12 +31,5 @@ namespace Neural_Network.UI.Shared
         public String Name { get; set; }
         public String Description { get; set; }
         public double Value { get; set; } = 0;
-    }
-
-    public class Ability
-    {
-        public String Name { get; set; }
-        public String Description { get; set; }
-        public int OutputCount { get; set; }
     }
 }

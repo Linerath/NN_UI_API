@@ -14,6 +14,7 @@ namespace Neural_Network.UI.Shared
     {
         public String Name { get; set; }
         public List<NeuralNetworkInputProject> InputProjects { get; set; }
+        public List<NetworkOutput> NetworksOutputs { get; set; }
         private double[] inputValues;
 
         public double[] InputValues
@@ -29,5 +30,18 @@ namespace Neural_Network.UI.Shared
                     proj.SetInput(value);
             }
         }
+    }
+
+    public class NetworkOutput
+    {
+        public NetworkFunction NetworkFunction { get; set; }
+        public String Description { get; set; }
+        public int OutputCount { get; set; }
+    }
+
+    public enum NetworkFunction
+    {
+        FailureChance,
+        AssessmentOfCompleting
     }
 }
