@@ -40,17 +40,22 @@
             this.PFailureChance = new System.Windows.Forms.Panel();
             this.LFailureStatus = new System.Windows.Forms.Label();
             this.LFailureChance = new System.Windows.Forms.Label();
-            this.PBFailureChance = new System.Windows.Forms.ProgressBar();
             this.PAssessmentOfCompleting = new System.Windows.Forms.Panel();
-            this.progressBar1 = new System.Windows.Forms.ProgressBar();
-            this.LEvaluation = new System.Windows.Forms.Label();
+            this.LCompletingChance = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.NUDSupposedTime = new System.Windows.Forms.NumericUpDown();
-            this.BEvaluate = new System.Windows.Forms.Button();
+            this.NUDSupposedTime0 = new System.Windows.Forms.NumericUpDown();
+            this.BEvaluateCompleting = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
-            this.NUDSupposedCount = new System.Windows.Forms.NumericUpDown();
+            this.NUDSupposedCount0 = new System.Windows.Forms.NumericUpDown();
             this.GBSections = new System.Windows.Forms.GroupBox();
             this.LFunction0 = new System.Windows.Forms.Label();
+            this.PSaleChance = new System.Windows.Forms.Panel();
+            this.LSaleChance = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.NUDSupposedTime1 = new System.Windows.Forms.NumericUpDown();
+            this.BEvaluateSale = new System.Windows.Forms.Button();
+            this.label5 = new System.Windows.Forms.Label();
+            this.NUDSupposedCount1 = new System.Windows.Forms.NumericUpDown();
             this.tableLayoutPanel1.SuspendLayout();
             this.GBFields.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.NUDField0)).BeginInit();
@@ -58,9 +63,12 @@
             this.PNotTrained.SuspendLayout();
             this.PFailureChance.SuspendLayout();
             this.PAssessmentOfCompleting.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.NUDSupposedTime)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.NUDSupposedCount)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.NUDSupposedTime0)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.NUDSupposedCount0)).BeginInit();
             this.GBSections.SuspendLayout();
+            this.PSaleChance.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.NUDSupposedTime1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.NUDSupposedCount1)).BeginInit();
             this.SuspendLayout();
             // 
             // tableLayoutPanel1
@@ -68,7 +76,7 @@
             this.tableLayoutPanel1.ColumnCount = 3;
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 45F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 55F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 350F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 400F));
             this.tableLayoutPanel1.Controls.Add(this.GBFields, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.GBBody, 1, 0);
             this.tableLayoutPanel1.Controls.Add(this.GBSections, 2, 0);
@@ -77,7 +85,7 @@
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 1;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(1356, 669);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(1523, 669);
             this.tableLayoutPanel1.TabIndex = 0;
             // 
             // GBFields
@@ -90,7 +98,7 @@
             this.GBFields.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.GBFields.Name = "GBFields";
             this.GBFields.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.GBFields.Size = new System.Drawing.Size(446, 665);
+            this.GBFields.Size = new System.Drawing.Size(499, 665);
             this.GBFields.TabIndex = 11;
             this.GBFields.TabStop = false;
             this.GBFields.Text = "Current production state";
@@ -125,11 +133,12 @@
             this.GBBody.Controls.Add(this.PNotTrained);
             this.GBBody.Controls.Add(this.PFailureChance);
             this.GBBody.Controls.Add(this.PAssessmentOfCompleting);
+            this.GBBody.Controls.Add(this.PSaleChance);
             this.GBBody.Dock = System.Windows.Forms.DockStyle.Fill;
             this.GBBody.Font = new System.Drawing.Font("Consolas", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.GBBody.Location = new System.Drawing.Point(455, 3);
+            this.GBBody.Location = new System.Drawing.Point(508, 3);
             this.GBBody.Name = "GBBody";
-            this.GBBody.Size = new System.Drawing.Size(547, 663);
+            this.GBBody.Size = new System.Drawing.Size(611, 663);
             this.GBBody.TabIndex = 11;
             this.GBBody.TabStop = false;
             // 
@@ -137,7 +146,7 @@
             // 
             this.PNotTrained.Controls.Add(this.BTraining);
             this.PNotTrained.Controls.Add(this.LTrainingInfo);
-            this.PNotTrained.Location = new System.Drawing.Point(483, 355);
+            this.PNotTrained.Location = new System.Drawing.Point(105, 500);
             this.PNotTrained.Name = "PNotTrained";
             this.PNotTrained.Size = new System.Drawing.Size(215, 232);
             this.PNotTrained.TabIndex = 0;
@@ -167,10 +176,9 @@
             // 
             this.PFailureChance.Controls.Add(this.LFailureStatus);
             this.PFailureChance.Controls.Add(this.LFailureChance);
-            this.PFailureChance.Controls.Add(this.PBFailureChance);
-            this.PFailureChance.Location = new System.Drawing.Point(24, 535);
+            this.PFailureChance.Location = new System.Drawing.Point(307, 309);
             this.PFailureChance.Name = "PFailureChance";
-            this.PFailureChance.Size = new System.Drawing.Size(419, 243);
+            this.PFailureChance.Size = new System.Drawing.Size(259, 111);
             this.PFailureChance.TabIndex = 8;
             // 
             // LFailureStatus
@@ -191,45 +199,27 @@
             this.LFailureChance.TabIndex = 1;
             this.LFailureChance.Text = "Failure chance:";
             // 
-            // PBFailureChance
-            // 
-            this.PBFailureChance.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.PBFailureChance.Location = new System.Drawing.Point(3, 69);
-            this.PBFailureChance.Name = "PBFailureChance";
-            this.PBFailureChance.Size = new System.Drawing.Size(535, 45);
-            this.PBFailureChance.TabIndex = 0;
-            // 
             // PAssessmentOfCompleting
             // 
-            this.PAssessmentOfCompleting.Controls.Add(this.progressBar1);
-            this.PAssessmentOfCompleting.Controls.Add(this.LEvaluation);
+            this.PAssessmentOfCompleting.Controls.Add(this.LCompletingChance);
             this.PAssessmentOfCompleting.Controls.Add(this.label2);
-            this.PAssessmentOfCompleting.Controls.Add(this.NUDSupposedTime);
-            this.PAssessmentOfCompleting.Controls.Add(this.BEvaluate);
+            this.PAssessmentOfCompleting.Controls.Add(this.NUDSupposedTime0);
+            this.PAssessmentOfCompleting.Controls.Add(this.BEvaluateCompleting);
             this.PAssessmentOfCompleting.Controls.Add(this.label1);
-            this.PAssessmentOfCompleting.Controls.Add(this.NUDSupposedCount);
-            this.PAssessmentOfCompleting.Location = new System.Drawing.Point(66, 44);
+            this.PAssessmentOfCompleting.Controls.Add(this.NUDSupposedCount0);
+            this.PAssessmentOfCompleting.Location = new System.Drawing.Point(119, 73);
             this.PAssessmentOfCompleting.Name = "PAssessmentOfCompleting";
             this.PAssessmentOfCompleting.Size = new System.Drawing.Size(419, 243);
             this.PAssessmentOfCompleting.TabIndex = 9;
             // 
-            // progressBar1
+            // LCompletingChance
             // 
-            this.progressBar1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.progressBar1.Location = new System.Drawing.Point(3, 216);
-            this.progressBar1.Name = "progressBar1";
-            this.progressBar1.Size = new System.Drawing.Size(535, 45);
-            this.progressBar1.TabIndex = 3;
-            this.progressBar1.Value = 100;
-            // 
-            // LEvaluation
-            // 
-            this.LEvaluation.AutoSize = true;
-            this.LEvaluation.Location = new System.Drawing.Point(3, 190);
-            this.LEvaluation.Name = "LEvaluation";
-            this.LEvaluation.Size = new System.Drawing.Size(216, 20);
-            this.LEvaluation.TabIndex = 5;
-            this.LEvaluation.Text = "Вероятность выполнения:";
+            this.LCompletingChance.AutoSize = true;
+            this.LCompletingChance.Location = new System.Drawing.Point(3, 173);
+            this.LCompletingChance.Name = "LCompletingChance";
+            this.LCompletingChance.Size = new System.Drawing.Size(216, 20);
+            this.LCompletingChance.TabIndex = 5;
+            this.LCompletingChance.Text = "Вероятность выполнения:";
             // 
             // label2
             // 
@@ -240,26 +230,27 @@
             this.label2.TabIndex = 4;
             this.label2.Text = "Время:";
             // 
-            // NUDSupposedTime
+            // NUDSupposedTime0
             // 
-            this.NUDSupposedTime.Location = new System.Drawing.Point(308, 59);
-            this.NUDSupposedTime.Maximum = new decimal(new int[] {
+            this.NUDSupposedTime0.Location = new System.Drawing.Point(308, 59);
+            this.NUDSupposedTime0.Maximum = new decimal(new int[] {
             1000000,
             0,
             0,
             0});
-            this.NUDSupposedTime.Name = "NUDSupposedTime";
-            this.NUDSupposedTime.Size = new System.Drawing.Size(94, 27);
-            this.NUDSupposedTime.TabIndex = 3;
+            this.NUDSupposedTime0.Name = "NUDSupposedTime0";
+            this.NUDSupposedTime0.Size = new System.Drawing.Size(94, 27);
+            this.NUDSupposedTime0.TabIndex = 3;
             // 
-            // BEvaluate
+            // BEvaluateCompleting
             // 
-            this.BEvaluate.Location = new System.Drawing.Point(208, 109);
-            this.BEvaluate.Name = "BEvaluate";
-            this.BEvaluate.Size = new System.Drawing.Size(128, 45);
-            this.BEvaluate.TabIndex = 2;
-            this.BEvaluate.Text = "Оценить";
-            this.BEvaluate.UseVisualStyleBackColor = true;
+            this.BEvaluateCompleting.Location = new System.Drawing.Point(208, 109);
+            this.BEvaluateCompleting.Name = "BEvaluateCompleting";
+            this.BEvaluateCompleting.Size = new System.Drawing.Size(128, 45);
+            this.BEvaluateCompleting.TabIndex = 2;
+            this.BEvaluateCompleting.Text = "Оценить";
+            this.BEvaluateCompleting.UseVisualStyleBackColor = true;
+            this.BEvaluateCompleting.Click += new System.EventHandler(this.BEvaluateCompleting_Click);
             // 
             // label1
             // 
@@ -270,26 +261,26 @@
             this.label1.TabIndex = 1;
             this.label1.Text = "Предполагаемый выпуск:";
             // 
-            // NUDSupposedCount
+            // NUDSupposedCount0
             // 
-            this.NUDSupposedCount.Location = new System.Drawing.Point(308, 26);
-            this.NUDSupposedCount.Maximum = new decimal(new int[] {
+            this.NUDSupposedCount0.Location = new System.Drawing.Point(308, 26);
+            this.NUDSupposedCount0.Maximum = new decimal(new int[] {
             1000000,
             0,
             0,
             0});
-            this.NUDSupposedCount.Name = "NUDSupposedCount";
-            this.NUDSupposedCount.Size = new System.Drawing.Size(94, 27);
-            this.NUDSupposedCount.TabIndex = 0;
+            this.NUDSupposedCount0.Name = "NUDSupposedCount0";
+            this.NUDSupposedCount0.Size = new System.Drawing.Size(94, 27);
+            this.NUDSupposedCount0.TabIndex = 0;
             // 
             // GBSections
             // 
             this.GBSections.Controls.Add(this.LFunction0);
             this.GBSections.Dock = System.Windows.Forms.DockStyle.Fill;
             this.GBSections.Font = new System.Drawing.Font("Consolas", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.GBSections.Location = new System.Drawing.Point(1008, 3);
+            this.GBSections.Location = new System.Drawing.Point(1125, 3);
             this.GBSections.Name = "GBSections";
-            this.GBSections.Size = new System.Drawing.Size(345, 663);
+            this.GBSections.Size = new System.Drawing.Size(395, 663);
             this.GBSections.TabIndex = 12;
             this.GBSections.TabStop = false;
             // 
@@ -299,17 +290,90 @@
             this.LFunction0.Dock = System.Windows.Forms.DockStyle.Top;
             this.LFunction0.Location = new System.Drawing.Point(3, 23);
             this.LFunction0.Name = "LFunction0";
-            this.LFunction0.Size = new System.Drawing.Size(339, 30);
+            this.LFunction0.Size = new System.Drawing.Size(389, 30);
             this.LFunction0.TabIndex = 0;
             this.LFunction0.Text = "<- Function0";
             this.LFunction0.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.LFunction0.Click += new System.EventHandler(this.LSection_Click);
             // 
+            // PSaleChance
+            // 
+            this.PSaleChance.Controls.Add(this.LSaleChance);
+            this.PSaleChance.Controls.Add(this.label4);
+            this.PSaleChance.Controls.Add(this.NUDSupposedTime1);
+            this.PSaleChance.Controls.Add(this.BEvaluateSale);
+            this.PSaleChance.Controls.Add(this.label5);
+            this.PSaleChance.Controls.Add(this.NUDSupposedCount1);
+            this.PSaleChance.Location = new System.Drawing.Point(374, 500);
+            this.PSaleChance.Name = "PSaleChance";
+            this.PSaleChance.Size = new System.Drawing.Size(419, 243);
+            this.PSaleChance.TabIndex = 10;
+            // 
+            // LSaleChance
+            // 
+            this.LSaleChance.AutoSize = true;
+            this.LSaleChance.Location = new System.Drawing.Point(3, 173);
+            this.LSaleChance.Name = "LSaleChance";
+            this.LSaleChance.Size = new System.Drawing.Size(171, 20);
+            this.LSaleChance.TabIndex = 5;
+            this.LSaleChance.Text = "Вероятность сбыта:";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(225, 61);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(63, 20);
+            this.label4.TabIndex = 4;
+            this.label4.Text = "Время:";
+            // 
+            // NUDSupposedTime1
+            // 
+            this.NUDSupposedTime1.Location = new System.Drawing.Point(308, 59);
+            this.NUDSupposedTime1.Maximum = new decimal(new int[] {
+            1000000,
+            0,
+            0,
+            0});
+            this.NUDSupposedTime1.Name = "NUDSupposedTime1";
+            this.NUDSupposedTime1.Size = new System.Drawing.Size(94, 27);
+            this.NUDSupposedTime1.TabIndex = 3;
+            // 
+            // BEvaluateSale
+            // 
+            this.BEvaluateSale.Location = new System.Drawing.Point(208, 109);
+            this.BEvaluateSale.Name = "BEvaluateSale";
+            this.BEvaluateSale.Size = new System.Drawing.Size(128, 45);
+            this.BEvaluateSale.TabIndex = 2;
+            this.BEvaluateSale.Text = "Оценить";
+            this.BEvaluateSale.UseVisualStyleBackColor = true;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(56, 28);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(207, 20);
+            this.label5.TabIndex = 1;
+            this.label5.Text = "Предполагаемый выпуск:";
+            // 
+            // NUDSupposedCount1
+            // 
+            this.NUDSupposedCount1.Location = new System.Drawing.Point(308, 26);
+            this.NUDSupposedCount1.Maximum = new decimal(new int[] {
+            1000000,
+            0,
+            0,
+            0});
+            this.NUDSupposedCount1.Name = "NUDSupposedCount1";
+            this.NUDSupposedCount1.Size = new System.Drawing.Size(94, 27);
+            this.NUDSupposedCount1.TabIndex = 0;
+            // 
             // ProductionForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1356, 669);
+            this.ClientSize = new System.Drawing.Size(1523, 669);
             this.Controls.Add(this.tableLayoutPanel1);
             this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.MinimizeBox = false;
@@ -328,9 +392,13 @@
             this.PFailureChance.PerformLayout();
             this.PAssessmentOfCompleting.ResumeLayout(false);
             this.PAssessmentOfCompleting.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.NUDSupposedTime)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.NUDSupposedCount)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.NUDSupposedTime0)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.NUDSupposedCount0)).EndInit();
             this.GBSections.ResumeLayout(false);
+            this.PSaleChance.ResumeLayout(false);
+            this.PSaleChance.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.NUDSupposedTime1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.NUDSupposedCount1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -348,16 +416,21 @@
         private System.Windows.Forms.Button BTraining;
         private System.Windows.Forms.Label LTrainingInfo;
         private System.Windows.Forms.Panel PFailureChance;
-        private System.Windows.Forms.ProgressBar PBFailureChance;
         private System.Windows.Forms.Label LFailureStatus;
         private System.Windows.Forms.Label LFailureChance;
         private System.Windows.Forms.Panel PAssessmentOfCompleting;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.NumericUpDown NUDSupposedCount;
-        private System.Windows.Forms.Button BEvaluate;
+        private System.Windows.Forms.NumericUpDown NUDSupposedCount0;
+        private System.Windows.Forms.Button BEvaluateCompleting;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.NumericUpDown NUDSupposedTime;
-        private System.Windows.Forms.Label LEvaluation;
-        private System.Windows.Forms.ProgressBar progressBar1;
+        private System.Windows.Forms.NumericUpDown NUDSupposedTime0;
+        private System.Windows.Forms.Label LCompletingChance;
+        private System.Windows.Forms.Panel PSaleChance;
+        private System.Windows.Forms.Label LSaleChance;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.NumericUpDown NUDSupposedTime1;
+        private System.Windows.Forms.Button BEvaluateSale;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.NumericUpDown NUDSupposedCount1;
     }
 }

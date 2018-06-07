@@ -77,6 +77,11 @@ namespace Neural_Network.UI.Forms
             foreach (var network in notTrainedNets)
                 owner?.ShowTrainingForm(network, CheckEpochs);
         }
+
+        private void BEvaluate_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show(Size.ToString());
+        }
         #endregion
 
         #region Methods
@@ -179,7 +184,6 @@ namespace Neural_Network.UI.Forms
                 selectedNetworkSection = NetworkFunction.FailureChance;
 
             this.notTrainedNets = notTrainedNets;
-
             LoadPanel();
         }
         private void LoadPanel()
@@ -195,6 +199,10 @@ namespace Neural_Network.UI.Forms
                         break;
                     case NetworkFunction.AssessmentOfCompleting:
                         if (sectionsCtrls[i] == PAssessmentOfCompleting)
+                            curr = true;
+                        break;
+                    case NetworkFunction.SaleChance:
+                        if (sectionsCtrls[i] == PSaleChance)
                             curr = true;
                         break;
                     case null:
@@ -218,5 +226,10 @@ namespace Neural_Network.UI.Forms
             }
         }
         #endregion
+
+        private void BEvaluateCompleting_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

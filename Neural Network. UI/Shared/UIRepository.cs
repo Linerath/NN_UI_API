@@ -21,8 +21,9 @@ namespace Neural_Network.UI.Shared
         };
         public static List<NetworkOutput> Abilities = new List<NetworkOutput>()
         {
-            new NetworkOutput { NetworkFunction = NetworkFunction.FailureChance, Description = "Вероятность сбоя" ,OutputCount = 1 },
-            new NetworkOutput{ NetworkFunction = NetworkFunction.AssessmentOfCompleting, Description = "Оценка реальности выполнения", OutputCount = 1},
+            new NetworkOutput { NetworkFunction = NetworkFunction.FailureChance, Description = "Вероятность сбоя", OutputCount = 1 },
+            new NetworkOutput { NetworkFunction = NetworkFunction.AssessmentOfCompleting, Description = "Оценка реальности выполнения плана", OutputCount = 1},
+            new NetworkOutput { NetworkFunction = NetworkFunction.SaleChance, Description = "Оценка реальности сбыта продукции", OutputCount = 1},
         };
     }
 

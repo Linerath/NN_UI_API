@@ -58,7 +58,7 @@
             this.BOk.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.BOk.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.BOk.Font = new System.Drawing.Font("Consolas", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BOk.Location = new System.Drawing.Point(830, 126);
+            this.BOk.Location = new System.Drawing.Point(914, 126);
             this.BOk.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.BOk.Name = "BOk";
             this.BOk.Size = new System.Drawing.Size(89, 31);
@@ -73,7 +73,7 @@
             this.TBName.Location = new System.Drawing.Point(12, 34);
             this.TBName.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.TBName.Name = "TBName";
-            this.TBName.Size = new System.Drawing.Size(369, 27);
+            this.TBName.Size = new System.Drawing.Size(425, 27);
             this.TBName.TabIndex = 7;
             this.TBName.Text = "Производство холодильников";
             // 
@@ -109,11 +109,11 @@
             this.GBFields.AutoSize = true;
             this.GBFields.Controls.Add(this.CBFirstField);
             this.GBFields.Font = new System.Drawing.Font("Consolas", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.GBFields.Location = new System.Drawing.Point(388, 34);
+            this.GBFields.Location = new System.Drawing.Point(447, 24);
             this.GBFields.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.GBFields.Name = "GBFields";
             this.GBFields.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.GBFields.Size = new System.Drawing.Size(437, 121);
+            this.GBFields.Size = new System.Drawing.Size(461, 132);
             this.GBFields.TabIndex = 12;
             this.GBFields.TabStop = false;
             this.GBFields.Text = "Input parameters";
@@ -129,7 +129,7 @@
             this.GBAbilities.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.GBAbilities.Name = "GBAbilities";
             this.GBAbilities.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.GBAbilities.Size = new System.Drawing.Size(371, 76);
+            this.GBAbilities.Size = new System.Drawing.Size(409, 76);
             this.GBAbilities.TabIndex = 13;
             this.GBAbilities.TabStop = false;
             this.GBAbilities.Text = "Abilities";
@@ -138,7 +138,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(931, 167);
+            this.ClientSize = new System.Drawing.Size(1015, 167);
             this.Controls.Add(this.GBAbilities);
             this.Controls.Add(this.GBFields);
             this.Controls.Add(this.label2);

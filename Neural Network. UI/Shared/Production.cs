@@ -43,6 +43,7 @@ namespace Neural_Network.UI.Shared
     public enum NetworkFunction
     {
         FailureChance,
-        AssessmentOfCompleting
+        AssessmentOfCompleting,
+        SaleChance,
     }
 }
