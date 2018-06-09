@@ -37,7 +37,7 @@ namespace Neural_Network.Core.Implementation
         public const double RANDOM_MIN_VALUE = 0.1;
         public const double RANDOM_MAX_VALUE = 0.9;
 
-        public FeedforwardNetworkSHL(String name, int inputLayerSize, int hiddenLayerSize, int outputLayerSize, Functions activationFunction = Functions.None, double learningRate = 0.1)
+        public FeedforwardNetworkSHL(String name, int inputLayerSize, int hiddenLayerSize, int outputLayerSize, Functions activationFunction = Functions.Sigmoid, double learningRate = 0.02)
             : this(inputLayerSize, hiddenLayerSize, outputLayerSize, activationFunction, learningRate)
         {
             Name = name;
@@ -132,17 +132,16 @@ namespace Neural_Network.Core.Implementation
             if (maxValues == null)
                 throw new ArgumentNullException("maxValues");
 
-            for (int i = 0; i < signals.Length; i++)
-                signals[i] = Normalize(signals[i], minValues[i], maxValues[i]);
+            var signalsCopy = Normalize(signals, minValues, maxValues);
 
-            return GetResponse(signals);
+            return GetResponse(signalsCopy);
         }
         public double[] GetErrors(double[] signals, double[] expectedOutput)
         {
             if (signals == null)
-                throw new ArgumentNullException("Null argument (signals)");
+                throw new ArgumentNullException("signals");
             if (expectedOutput == null)
-                throw new ArgumentNullException("Null argument (signals)");
+                throw new ArgumentNullException("expectedOutput");
             if (expectedOutput.Length < OutputLayerSize)
                 throw new ArgumentException("Expected output signals count must be equal to output layer size");
 
@@ -166,6 +165,46 @@ namespace Neural_Network.Core.Implementation
 
             return errors;
         }
+        public double[] GetErrorsNormalize(
+            double[] signals,
+            double[] minValues,
+            double[] maxValues,
+            double[] expectedOutput)
+        {
+            if (signals == null)
+                throw new ArgumentNullException("signals");
+            if (minValues == null)
+                throw new ArgumentNullException("minValues");
+            if (maxValues == null)
+                throw new ArgumentNullException("maxValues");
+            if (expectedOutput == null)
+                throw new ArgumentNullException("expectedOutput");
+            if (expectedOutput.Length < OutputLayerSize)
+                throw new ArgumentException("Expected output signals count must be equal to output layer size");
+
+            var signalsCopy = Normalize(signals, minValues, maxValues);
+
+            double[] hiddenLayerSignals = new double[HiddenLayerSize];
+            for (int i = 0; i < HiddenLayerSize; i++)
+            {
+                hiddenLayerSignals[i] = hiddenLayer[i].GetResponse(signalsCopy);
+            }
+
+            double[] outputLayerSignals = new double[OutputLayerSize];
+            for (int i = 0; i < OutputLayerSize; i++)
+            {
+                outputLayerSignals[i] = outputLayer[i].GetResponse(hiddenLayerSignals);
+            }
+
+            double[] errors = new double[expectedOutput.Length];
+            for (int i = 0; i < expectedOutput.Length; i++)
+            {
+                errors[i] = Math.Abs(expectedOutput[i] - outputLayerSignals[i]);
+            }
+
+            return errors;
+        }
+
         // FOR MULTILAYER
         //private double[] GetHiddenLayerErorrs(double[] nextLayerErrors, double[,] nextLayerWeights)
         //{
@@ -200,7 +239,7 @@ namespace Neural_Network.Core.Implementation
             LearningRate = learningRate;
             Learn(signals, expectedOutputs, addEpoch);
         }
-        public void LearnWithNormalization(
+        public void LearnNormalize(
             double[] signals,
             double[] minValues,
             double[] maxValues,
@@ -209,7 +248,7 @@ namespace Neural_Network.Core.Implementation
             double intervalMin = 0, double intervalMax = 1, bool addEpoch = false)
         {
             LearningRate = learningRate;
-            LearnWithNormalization(signals, minValues, maxValues, expectedOutputs, intervalMin, intervalMax, addEpoch);
+            LearnNormalize(signals, minValues, maxValues, expectedOutputs, intervalMin, intervalMax, addEpoch);
         }
         public void Learn(double[] signals, double[] expectedOutputs, bool addEpoch = false)
         {
@@ -226,18 +265,32 @@ namespace Neural_Network.Core.Implementation
 
             double[] outputLayerSignals = new double[outputCount];
             for (int i = 0; i < outputCount; i++)
+            {
+                if (outputLayer[i][0] > 1)
+                    Console.WriteLine();
                 outputLayerSignals[i] = outputLayer[i].GetResponse(hiddenLayerSignals);
+                if (outputLayerSignals[i] > 10)
+                    Console.WriteLine();
+            }
 
             // 1
             double[] outputErrors = new double[outputCount];
             for (int i = 0; i < outputErrors.Length; i++)
+            {
                 outputErrors[i] = expectedOutputs[i] - outputLayerSignals[i];
+                if (outputErrors[i] > 10)
+                    Console.WriteLine();
+            }
 
             double[] hiddenErrors = GetHiddenLayerErorrs(outputErrors);
 
             // 2
             for (int i = 0; i < outputCount; i++)
+            {
                 outputLayer[i].Learn(hiddenLayerSignals, outputErrors[i], learningRate);
+                if (outputLayer[i][0] > 10)
+                    Console.WriteLine();
+            }
 
             for (int i = 0; i < hiddenCount; i++)
                 hiddenLayer[i].Learn(signals, hiddenErrors[i], learningRate);
@@ -245,7 +298,7 @@ namespace Neural_Network.Core.Implementation
             if (addEpoch)
                 LearningEpochs++;
         }
-        public void LearnWithNormalization(
+        public void LearnNormalize(
             double[] signals,
             double[] minValues,
             double[] maxValues,
@@ -258,17 +311,18 @@ namespace Neural_Network.Core.Implementation
                 throw new ArgumentNullException("minValues");
             if (maxValues == null)
                 throw new ArgumentNullException("maxValues");
+            if (expectedOutputs == null)
+                throw new ArgumentNullException("expectedOutputs");
 
             int hiddenCount = hiddenLayer.Count();
             int outputCount = outputLayer.Count();
 
-            for (int i = 0; i < signals.Length; i++)
-                signals[i] = Normalize(signals[i], minValues[i], maxValues[i]);
-
+            var signalsCopy = Normalize(signals, minValues, maxValues);
+            
             // 0
             double[] hiddenLayerSignals = new double[hiddenCount];
             for (int i = 0; i < hiddenCount; i++)
-                hiddenLayerSignals[i] = hiddenLayer[i].GetResponse(signals);
+                hiddenLayerSignals[i] = hiddenLayer[i].GetResponse(signalsCopy);
 
             double[] outputLayerSignals = new double[outputCount];
             for (int i = 0; i < outputCount; i++)
@@ -286,14 +340,23 @@ namespace Neural_Network.Core.Implementation
                 outputLayer[i].Learn(hiddenLayerSignals, outputErrors[i], learningRate);
 
             for (int i = 0; i < hiddenCount; i++)
-                hiddenLayer[i].Learn(signals, hiddenErrors[i], learningRate);
+                hiddenLayer[i].Learn(signalsCopy, hiddenErrors[i], learningRate);
 
             if (addEpoch)
                 LearningEpochs++;
         }
 
 
+        public double[] Normalize(double[] signals, double[] minValues, double[] maxValues)
+        {
+            var signalsCopy = new double[signals.Length];
+            signals.CopyTo(signalsCopy, 0);
 
+            for (int i = 0; i < signalsCopy.Length; i++)
+                signalsCopy[i] = Normalize(signalsCopy[i], minValues[i], maxValues[i]);
+
+            return signalsCopy;
+        }
         public double Normalize(double signal, double minValue, double maxValue, double intervalMin = 0, double intervalMax = 1)
         {
             return ((signal - minValue) * (intervalMax - intervalMin)) / (maxValue - minValue) + intervalMin;

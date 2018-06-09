@@ -9,6 +9,7 @@ using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -17,6 +18,8 @@ namespace Neural_Network.UI.Forms
     public partial class TrainingForm : Form
     {
         private List<double[]> inputSignals;
+        private List<double[]> minInputSignals;
+        private List<double[]> maxInputSignals;
         private List<double[]> correctOutputSignals;
         public FeedforwardNetworkSHL Network { get; set; }
         public TableViewSettings ViewSettings { get; private set; }
@@ -26,6 +29,8 @@ namespace Neural_Network.UI.Forms
         public TrainingForm(FeedforwardNetworkSHL network, Action trainingEndAction = null)
         {
             inputSignals = new List<double[]>();
+            minInputSignals = new List<double[]>();
+            maxInputSignals = new List<double[]>();
             correctOutputSignals = new List<double[]>();
             Network = network;
             ViewSettings = new TableViewSettings()
@@ -112,21 +117,23 @@ namespace Neural_Network.UI.Forms
             correctOutputSignals.RemoveAt(correctOutputSignals.Count() - 1);
             FullTablesRefresh();
         }
-        private void BLearn_Click(object sender, EventArgs e)
+        private void BTrain_Click(object sender, EventArgs e)
         {
             double learningRate = (double)NUDLearningRate.Value;
             int epochs = (int)NUDEpochs.Value;
             bool randomize = CBRandomize.Checked;
 
-            PBLearningProgress.Maximum = epochs - 1;
-            NeuralNetworkService.TrainNetwork(
+            PBLearningProgres.Maximum = epochs - 1;
+            NeuralNetworkService.TrainNetworkNormalize(
                 Network,
-                inputSignals, correctOutputSignals,
+                inputSignals,
+                minInputSignals, maxInputSignals,
+                correctOutputSignals,
                 epochs,
                 learningRate,
                 randomize,
                 out double startError, out double endError,
-                x => PBLearningProgress.Value = x);
+                x => PBLearningProgres.Value = x);
 
             LStartError1.Text = Math.Round(startError, 4).ToString();
             LEndError1.Text = Math.Round(endError, 4).ToString();
@@ -145,6 +152,8 @@ namespace Neural_Network.UI.Forms
             if (inputSignals.Count() < 1)
             {
                 inputSignals.Add(new double[Network.InputLayerSize]);
+                minInputSignals.Add(new double[Network.InputLayerSize]);
+                maxInputSignals.Add(new double[Network.InputLayerSize]);
                 correctOutputSignals.Add(new double[Network.OutputLayerSize]);
             }
 
@@ -152,12 +161,22 @@ namespace Neural_Network.UI.Forms
             {
                 DGVInputSignals.RowCount = inputSignals.Count();
                 DGVInputSignals.ColumnCount = Network.InputLayerSize;
+                DGVMinInputSignals.RowCount = minInputSignals.Count();
+                DGVMinInputSignals.ColumnCount = Network.InputLayerSize;
+                DGVMaxInputSignals.RowCount = maxInputSignals.Count();
+                DGVMaxInputSignals.ColumnCount = Network.InputLayerSize;
                 DGVCorrectOutputSignals.RowCount = correctOutputSignals.Count();
                 DGVCorrectOutputSignals.ColumnCount = Network.OutputLayerSize;
 
                 for (int i = 0; i < inputSignals.Count(); i++)
+                {
                     for (int j = 0; j < inputSignals[i].Length; j++)
+                    {
                         DGVInputSignals[j, i].Value = Math.Round(inputSignals[i][j], ViewSettings.DecimalPlaces).ToString();
+                        DGVMinInputSignals[j, i].Value = Math.Round(minInputSignals[i][j], ViewSettings.DecimalPlaces).ToString();
+                        DGVMaxInputSignals[j, i].Value = Math.Round(maxInputSignals[i][j], ViewSettings.DecimalPlaces).ToString();
+                    }
+                }
                 for (int i = 0; i < correctOutputSignals.Count(); i++)
                     for (int j = 0; j < correctOutputSignals[i].Length; j++)
                         DGVCorrectOutputSignals[j, i].Value = Math.Round(correctOutputSignals[i][j], ViewSettings.DecimalPlaces).ToString();
@@ -166,12 +185,22 @@ namespace Neural_Network.UI.Forms
             {
                 DGVInputSignals.RowCount = Network.InputLayerSize;
                 DGVInputSignals.ColumnCount = inputSignals.Count();
+                DGVMinInputSignals.RowCount = Network.InputLayerSize;
+                DGVMinInputSignals.ColumnCount = minInputSignals.Count();
+                DGVMaxInputSignals.RowCount = Network.InputLayerSize;
+                DGVMaxInputSignals.ColumnCount = maxInputSignals.Count();
                 DGVCorrectOutputSignals.RowCount = Network.OutputLayerSize;
                 DGVCorrectOutputSignals.ColumnCount = correctOutputSignals.Count();
 
                 for (int i = 0; i < inputSignals.Count(); i++)
+                {
                     for (int j = 0; j < inputSignals[i].Length; j++)
+                    {
                         DGVInputSignals[i, j].Value = Math.Round(inputSignals[i][j], ViewSettings.DecimalPlaces).ToString();
+                        DGVMinInputSignals[i, j].Value = Math.Round(minInputSignals[i][j], ViewSettings.DecimalPlaces).ToString();
+                        DGVMaxInputSignals[i, j].Value = Math.Round(maxInputSignals[i][j], ViewSettings.DecimalPlaces).ToString();
+                    }
+                }
                 for (int i = 0; i < correctOutputSignals.Count(); i++)
                     for (int j = 0; j < correctOutputSignals[i].Length; j++)
                         DGVCorrectOutputSignals[i, j].Value = Math.Round(correctOutputSignals[i][j], ViewSettings.DecimalPlaces).ToString();
@@ -189,6 +218,8 @@ namespace Neural_Network.UI.Forms
             double[] input, output;
             int count = 0;
             List<double[]> tempInput = new List<double[]>();
+            List<double[]> tempMinInput = new List<double[]>();
+            List<double[]> tempMaxInput = new List<double[]>();
             List<double[]> tempOutput = new List<double[]>();
 
             while ((startIndex = text.IndexOf('{')) >= 0 && (endIndex = text.IndexOf('}')) >= 0)
@@ -199,13 +230,26 @@ namespace Neural_Network.UI.Forms
                     return false;
                 }
                 var example = text.Substring(startIndex + 1, endIndex - startIndex - 1);
-                if (!example.Contains(':'))
+                if (!example.Contains(':') || !example.Contains('(') || !example.Contains(')') || !example.Contains('-'))
                 {
                     MessageBox.Show("Incorrect file format.", "Error");
                     return false;
                 }
                 var exampleTemp = example.Split(':');
                 var inputTemp = exampleTemp[0].Split(',');
+                var min = new double[inputTemp.Length];
+                var max = new double[inputTemp.Length];
+                for (int i = 0; i < inputTemp.Length; i++)
+                {
+                    inputTemp[i] = Regex.Replace(inputTemp[i], @"\s+", "");
+                    
+                    var temp = inputTemp[i].Substring(inputTemp[i].IndexOf('(') + 1);
+                    var minMaxTemp = temp.Remove(temp.IndexOf(')')).Split('-');
+                    inputTemp[i] = inputTemp[i].Remove(inputTemp[i].IndexOf('('));
+                    min[i] = Double.Parse(minMaxTemp[0]);
+                    max[i] = Double.Parse(minMaxTemp[1]);
+                }
+
                 var outputTemp = exampleTemp[1].Split(',');
 
                 try
@@ -219,13 +263,21 @@ namespace Neural_Network.UI.Forms
                     return false;
                 }
                 if (input.Length != Network.InputLayerSize)
+                {
                     Array.Resize(ref input, Network.InputLayerSize);
+                    Array.Resize(ref min, Network.InputLayerSize);
+                    Array.Resize(ref max, Network.InputLayerSize);
+
+                }
 
                 if (output.Length != Network.OutputLayerSize)
                     Array.Resize(ref output, Network.OutputLayerSize);
 
                 tempInput.Add(input);
+                tempMinInput.Add(min);
+                tempMaxInput.Add(max);
                 tempOutput.Add(output);
+                
                 count++;
 
                 text = text.Remove(startIndex, endIndex - startIndex + 1);
@@ -236,7 +288,10 @@ namespace Neural_Network.UI.Forms
                 return false;
             }
             inputSignals = tempInput;
+            minInputSignals = tempMinInput;
+            maxInputSignals = tempMaxInput;
             correctOutputSignals = tempOutput;
+
             return true;
         }
 
@@ -249,11 +304,15 @@ namespace Neural_Network.UI.Forms
         private void RefreshFont()
         {
             TableHandler.RefreshFont(DGVInputSignals, ViewSettings);
+            TableHandler.RefreshFont(DGVMinInputSignals, ViewSettings);
+            TableHandler.RefreshFont(DGVMaxInputSignals, ViewSettings);
             TableHandler.RefreshFont(DGVCorrectOutputSignals, ViewSettings);
         }
         public void RefreshCellsAutoSize()
         {
             TableHandler.RefreshCellsAutoSize(DGVInputSignals, ViewSettings);
+            TableHandler.RefreshCellsAutoSize(DGVMinInputSignals, ViewSettings);
+            TableHandler.RefreshCellsAutoSize(DGVMaxInputSignals, ViewSettings);
             TableHandler.RefreshCellsAutoSize(DGVCorrectOutputSignals, ViewSettings);
         }
 

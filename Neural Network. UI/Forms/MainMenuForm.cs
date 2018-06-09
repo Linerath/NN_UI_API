@@ -1,4 +1,4 @@
-﻿//#define TEST_MODE
+﻿#define TEST_MODE
 
 using Neural_Network.UI.Constants;
 using Neural_Network.UI.Shared;
@@ -50,7 +50,7 @@ namespace Neural_Network.UI.Forms
             {
                 networkExplorerForm.RefreshTree();
                 ShowAllNetworks();
-                ShowAllInputProjects();
+                //ShowAllInputProjects();
                 ShowAllProductionProjects();
             }
 #endif
