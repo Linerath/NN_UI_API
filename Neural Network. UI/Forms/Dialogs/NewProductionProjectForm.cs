@@ -104,7 +104,16 @@ namespace Neural_Network.UI.Forms
 
                 var inputProj = new NeuralNetworkInputProject(name + "_" + abilities[i].NetworkFunction.ToString(), network);
                 for (int j = 0; j < fields.Count(); j++)
-                    inputProj.CreateField(Layers.Input, fields[j].Name, fields[j].Description, network[Layers.Input][j]);
+                    inputProj.CreateField(Layers.Input, fields[j].Name, fields[j].Description, network[Layers.Input][j], fields[j].Value, fields[j].MinValue, fields[j].MaxValue);
+
+                switch (abilities[i].NetworkFunction)
+                {
+                    case NetworkFunction.AssessmentOfCompleting:
+                    case NetworkFunction.SaleChance:
+                        inputProj.CreateField(Layers.Input, "SupposedCount", "Предполагаемый выпуск", network[Layers.Input][network.InputLayerSize - 2], minValue: 0, maxValue: 5000);
+                        inputProj.CreateField(Layers.Input, "SupposedTime", "Время", network[Layers.Input][network.InputLayerSize - 1], minValue: 0, maxValue: 1000);
+                        break;
+                }
 
                 networks.Add(network);
                 inputProjects.Add(inputProj);
@@ -113,13 +122,13 @@ namespace Neural_Network.UI.Forms
             }
 
             var owner = Owner as MainMenuForm;
-            var production = new Production
+            var production = new Production(fields.Count())
             {
                 Name = name,
                 InputProjects = inputProjects,
                 NetworksOutputs = abilities,
             };
-            production.SetInput(fields.Select(x => x.Value).ToArray(), recalculate: false);
+            production.SetInput( fields.Select(x => x.Value).ToArray());
             UIRepository.Project.ProductionProjects.Add(production);
 
             foreach (var n in networks)

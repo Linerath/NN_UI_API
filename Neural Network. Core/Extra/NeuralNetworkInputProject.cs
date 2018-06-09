@@ -11,17 +11,19 @@ namespace Neural_Network.Core.Extra
     public class NeuralNetworkInputProject
     {
         public String Name { get; set; }
-
         public FeedforwardNetworkSHL Network { get; set; }
         private List<Field> inputLayerFields;
         private List<Field> outputLayerFields;
 
         public NeuralNetworkInputProject(String name, FeedforwardNetworkSHL network)
         {
+            if (network == null)
+                throw new ArgumentNullException("network");
+
             inputLayerFields = new List<Field>();
             outputLayerFields = new List<Field>();
 
-            Name = name;
+            Name = name ?? throw new ArgumentNullException("name");
             Network = network ?? throw new ArgumentNullException("FeedforwardNetworkSHL");
         }
 
@@ -29,9 +31,9 @@ namespace Neural_Network.Core.Extra
         #endregion
 
         #region Not tested
-        public void CreateField(Layers layer, String name, String description, Neuron neuron, double value = 0, bool replaceExistingField = true)
+        public void CreateField(Layers layer, String name, String description, Neuron neuron, double value = 0, double minValue = 0, double maxValue = 1, bool replaceExistingField = true)
         {
-            CreateField(layer, new Field(name, description, neuron, value), replaceExistingField);
+            CreateField(layer, new Field(name, description, neuron, value, minValue, maxValue), replaceExistingField);
         }
         public void CreateField(Layers layer, Field field, bool replaceExistingField = true)
         {
@@ -104,13 +106,32 @@ namespace Neural_Network.Core.Extra
         public double[] SetInput(double[] values)
         {
             int untill = inputLayerFields.Count() <= values.Length ? inputLayerFields.Count() : values.Length;
+
             for (int i = 0; i < untill; i++)
                 inputLayerFields[i].Value = values[i];
 
-            double[] response = Network.GetResponse(values);
+            var minValues = GetMinValues();
+            var maxValues = GetMaxValues();
+
+            double[] response = Network.GetResponseWithNormalization(values, minValues, maxValues);
             for (int i = 0; i < outputLayerFields.Count(); i++)
                 outputLayerFields[i].Value = response[i];
             return response;
+        }
+
+        public double[] GetMinValues()
+        {
+            double[] min = new double[inputLayerFields.Count()];
+            for (int i = 0; i < inputLayerFields.Count(); i++)
+                min[i] = inputLayerFields[i].MinValue;
+            return min;
+        }
+        public double[] GetMaxValues()
+        {
+            double[] max = new double[inputLayerFields.Count()];
+            for (int i = 0; i < inputLayerFields.Count(); i++)
+                max[i] = inputLayerFields[i].MaxValue;
+            return max;
         }
 
         public Field[] InputLayerFields
@@ -151,8 +172,10 @@ namespace Neural_Network.Core.Extra
         private String description;
         private Neuron neuron;
         public double Value { get; set; }
+        public double MinValue { get; set; }
+        public double MaxValue { get; set; }
 
-        public Field(String name, String description, Neuron neuron, double value = 0)
+        public Field(String name, String description, Neuron neuron, double value = 0, double minValue = 0, double maxValue = 1)
         {
             if (String.IsNullOrWhiteSpace(name))
                 throw new ArgumentException("Invalid name");
@@ -160,6 +183,8 @@ namespace Neural_Network.Core.Extra
             this.description = description;
             this.neuron = neuron ?? throw new ArgumentNullException("neuron");
             Value = value;
+            MinValue = minValue;
+            MaxValue = maxValue;
         }
 
         public String Name

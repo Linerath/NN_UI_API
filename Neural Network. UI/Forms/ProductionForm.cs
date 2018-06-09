@@ -1,4 +1,5 @@
-﻿using Neural_Network.Core.Implementation;
+﻿using Neural_Network.Core.Extra;
+using Neural_Network.Core.Implementation;
 using Neural_Network.UI.Forms.Dialogs;
 using Neural_Network.UI.Shared;
 using System;
@@ -17,7 +18,8 @@ namespace Neural_Network.UI.Forms
     {
         public Production Production { get; private set; }
         private NetworkFunction? selectedNetworkSection;
-        private bool calculate = false;
+        private bool readFields = false;
+        private double[] commonInput;
 
         private List<NumericUpDown> fieldsCtrls = new List<NumericUpDown>();
         private List<Panel> sectionsCtrls = new List<Panel>();
@@ -29,6 +31,7 @@ namespace Neural_Network.UI.Forms
             InitializeComponent();
 
             Production = production;
+            commonInput = new double[Production.Input.Length];
             foreach (var p in GBBody.Controls.OfType<Panel>())
                 sectionsCtrls.Add(p);
         }
@@ -41,15 +44,12 @@ namespace Neural_Network.UI.Forms
             CheckEpochs();
 
             MinimumSize = Size;
-            calculate = true;
+            readFields = true;
         }
         private void NUDField_ValueChanged(object sender, EventArgs e)
         {
-            if (!calculate)
-                return;
-
-            double[] input = fieldsCtrls.Select(x => (double)x.Value).ToArray();
-            //Production.InputValues = input;
+            if (readFields)
+                RefreshCommonInput();
         }
         private void LSection_Click(object sender, EventArgs e)
         {
@@ -78,9 +78,44 @@ namespace Neural_Network.UI.Forms
                 owner?.ShowTrainingForm(network, CheckEpochs);
         }
 
-        private void BEvaluate_Click(object sender, EventArgs e)
+        private void BEvaluateCompleting_Click(object sender, EventArgs e)
         {
-            MessageBox.Show(Size.ToString());
+            double[] additionalInput = new double[]
+            {
+                (double)NUDSupposedCount0.Value,
+                (double)NUDSupposedTime0.Value,
+            };
+
+            NeuralNetworkInputProject inputProj = null;
+            try
+            {
+                inputProj = Production.InputProjects[Production.NetworksOutputs.FindIndex(x => x.NetworkFunction == NetworkFunction.AssessmentOfCompleting)];
+                if (inputProj == null)
+                    throw new Exception();
+            }
+            catch
+            {
+                MessageBox.Show("An error has occured.", "Error");
+                return;
+            }
+            var output = Production.GetOutput(inputProj, commonInput, additionalInput);
+            try
+            {
+                LCompletingChance.Text = output[0].ToString();
+            }
+            catch
+            {
+                MessageBox.Show("An error has occured.", "Error");
+                return;
+            }
+        }
+        private void BEvaluateSale_Click(object sender, EventArgs e)
+        {
+
+        }
+        private void BEvaluateFailure_Click(object sender, EventArgs e)
+        {
+
         }
         #endregion
 
@@ -116,6 +151,7 @@ namespace Neural_Network.UI.Forms
             if (Production.InputProjects.Count() > 0)
             {
                 NUDField0.Value = (decimal)Production.Input[0];
+                commonInput[0] = Production.Input[0];
                 LField0.Text = Production.InputProjects[0].InputLayerFields[0].Description;
                 fieldsCtrls.Add(NUDField0);
 
@@ -125,6 +161,7 @@ namespace Neural_Network.UI.Forms
                     var location = new Point(fieldsCtrls.Last().Location.X, fieldsCtrls.Last().Location.Y + fieldsCtrls.Last().Size.Height + 4);
                     var labelLocation = new Point(prevLabel.Location.X, prevLabel.Location.Y + prevLabel.Height + 10);
                     NumericUpDown field = CreateField(Production.Input[i], location);
+                    commonInput[i] = Production.Input[i];
                     Label label = CreateFieldLabel(Production.InputProjects[0].InputLayerFields[i].Description, labelLocation);
                     prevLabel = label;
 
@@ -182,6 +219,7 @@ namespace Neural_Network.UI.Forms
                 selectedNetworkSection = null;
             else
                 selectedNetworkSection = NetworkFunction.FailureChance;
+            selectedNetworkSection = NetworkFunction.FailureChance;
 
             LoadPanel();
         }
@@ -224,11 +262,12 @@ namespace Neural_Network.UI.Forms
                 }
             }
         }
-        #endregion
 
-        private void BEvaluateCompleting_Click(object sender, EventArgs e)
+        private void RefreshCommonInput()
         {
-
+            for (int i = 0; i < commonInput.Length; i++)
+                commonInput[i] = (double)fieldsCtrls[i].Value;
         }
+        #endregion
     }
 }

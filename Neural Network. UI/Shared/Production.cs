@@ -16,22 +16,37 @@ namespace Neural_Network.UI.Shared
         public List<NeuralNetworkInputProject> InputProjects { get; set; }
         public List<NetworkOutput> NetworksOutputs { get; set; }
         public double[] Input { get; private set; }
-        public double[] AdditionalInput { get; private set; }
         public double[] Output { get; private set; }
 
-        public void SetInput(double[] commonInput = null, double[] additionalInput = null, bool recalculate = true)
+        public Production(int commonInputSize)
+        {
+            Input = new double[commonInputSize];
+        }
+
+        public void SetInput(double[] commonInput = null)
         {
             if (commonInput != null)
-                Input = commonInput;
-            if (additionalInput != null)
-                AdditionalInput = additionalInput;
+                commonInput.CopyTo(Input, 0);
+            else
+                throw new ArgumentNullException("commonInput");
+        }
+
+        public double[] GetOutput(NeuralNetworkInputProject inputProj, double[] commonInput = null, double[] additionalInput = null, bool recalculate = true)
+        {
+            if (commonInput != null)
+                commonInput.CopyTo(Input, 0);
+            else
+                throw new ArgumentNullException("commonInput");
             if (recalculate)
             {
-                double[] signals = Input.Concat(AdditionalInput).ToArray();
-                foreach (var v in InputProjects)
-                    Output = v.SetInput(signals);
+                double[] signals = Input.Concat(additionalInput).ToArray();
+                Output = inputProj.SetInput(signals);
+                return Output;
             }
+            return null;
         }
+
+
     }
 
     [Serializable]
