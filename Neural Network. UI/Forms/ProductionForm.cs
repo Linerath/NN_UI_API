@@ -115,7 +115,7 @@ namespace Neural_Network.UI.Forms
 
             if (Production.InputProjects.Count() > 0)
             {
-                NUDField0.Value = (decimal)Production.InputProjects[0].InputLayerFields[0].Value;
+                NUDField0.Value = (decimal)Production.Input[0];
                 LField0.Text = Production.InputProjects[0].InputLayerFields[0].Description;
                 fieldsCtrls.Add(NUDField0);
 
@@ -124,7 +124,7 @@ namespace Neural_Network.UI.Forms
                 {
                     var location = new Point(fieldsCtrls.Last().Location.X, fieldsCtrls.Last().Location.Y + fieldsCtrls.Last().Size.Height + 4);
                     var labelLocation = new Point(prevLabel.Location.X, prevLabel.Location.Y + prevLabel.Height + 10);
-                    NumericUpDown field = CreateField(Production.InputProjects[0].InputLayerFields[i].Value, location);
+                    NumericUpDown field = CreateField(Production.Input[i], location);
                     Label label = CreateFieldLabel(Production.InputProjects[0].InputLayerFields[i].Description, labelLocation);
                     prevLabel = label;
 
@@ -182,7 +182,6 @@ namespace Neural_Network.UI.Forms
                 selectedNetworkSection = null;
             else
                 selectedNetworkSection = NetworkFunction.FailureChance;
-            selectedNetworkSection = NetworkFunction.FailureChance;
 
             LoadPanel();
         }

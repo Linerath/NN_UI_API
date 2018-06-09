@@ -101,11 +101,16 @@ namespace Neural_Network.Core.Extra
                 RemoveField(layer, f);
         }
 
-        public void SetInput(double[] values)
+        public double[] SetInput(double[] values)
         {
             int untill = inputLayerFields.Count() <= values.Length ? inputLayerFields.Count() : values.Length;
             for (int i = 0; i < untill; i++)
                 inputLayerFields[i].Value = values[i];
+
+            double[] response = Network.GetResponse(values);
+            for (int i = 0; i < outputLayerFields.Count(); i++)
+                outputLayerFields[i].Value = response[i];
+            return response;
         }
 
         public Field[] InputLayerFields

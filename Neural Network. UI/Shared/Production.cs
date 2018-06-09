@@ -15,19 +15,21 @@ namespace Neural_Network.UI.Shared
         public String Name { get; set; }
         public List<NeuralNetworkInputProject> InputProjects { get; set; }
         public List<NetworkOutput> NetworksOutputs { get; set; }
-        private double[] inputValues;
+        public double[] Input { get; private set; }
+        public double[] AdditionalInput { get; private set; }
+        public double[] Output { get; private set; }
 
-        public double[] InputValues
+        public void SetInput(double[] commonInput = null, double[] additionalInput = null, bool recalculate = true)
         {
-            get
+            if (commonInput != null)
+                Input = commonInput;
+            if (additionalInput != null)
+                AdditionalInput = additionalInput;
+            if (recalculate)
             {
-                return inputValues;
-            }
-            set
-            {
-                inputValues = value;
-                foreach (var proj in InputProjects)
-                    proj.SetInput(value);
+                double[] signals = Input.Concat(AdditionalInput).ToArray();
+                foreach (var v in InputProjects)
+                    Output = v.SetInput(signals);
             }
         }
     }

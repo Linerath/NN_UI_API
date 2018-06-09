@@ -118,8 +118,8 @@ namespace Neural_Network.UI.Forms
                 Name = name,
                 InputProjects = inputProjects,
                 NetworksOutputs = abilities,
-                InputValues = fields.Select(x => x.Value).ToArray(),
             };
+            production.SetInput(fields.Select(x => x.Value).ToArray(), recalculate: false);
             UIRepository.Project.ProductionProjects.Add(production);
 
             foreach (var n in networks)
