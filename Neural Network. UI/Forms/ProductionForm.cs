@@ -172,7 +172,7 @@ namespace Neural_Network.UI.Forms
         }
         public void CheckEpochs()
         {
-            List<FeedforwardNetworkSHL> notTrainedNets = new List<FeedforwardNetworkSHL>();
+            notTrainedNets = new List<FeedforwardNetworkSHL>();
             for (int i = 0; i < Production.InputProjects.Count(); i++)
             {
                 if (Production.InputProjects[i].Network.LearningEpochs < 1000)
@@ -182,8 +182,8 @@ namespace Neural_Network.UI.Forms
                 selectedNetworkSection = null;
             else
                 selectedNetworkSection = NetworkFunction.FailureChance;
+            selectedNetworkSection = NetworkFunction.FailureChance;
 
-            this.notTrainedNets = notTrainedNets;
             LoadPanel();
         }
         private void LoadPanel()

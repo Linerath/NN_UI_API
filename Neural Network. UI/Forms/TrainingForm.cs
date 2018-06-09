@@ -232,13 +232,15 @@ namespace Neural_Network.UI.Forms
             text = text.Trim();
 
             int startIndex, endIndex;
-            double[] input, output;
+            double[] input, output, min, max;
+            min = max = null;
             int count = 0;
             List<double[]> tempInput = new List<double[]>();
             List<double[]> tempMinInput = new List<double[]>();
             List<double[]> tempMaxInput = new List<double[]>();
             List<double[]> tempOutput = new List<double[]>();
 
+            bool boundsRead = false;
             while ((startIndex = text.IndexOf('{')) >= 0 && (endIndex = text.IndexOf('}')) >= 0)
             {
                 if (startIndex >= endIndex)
@@ -247,25 +249,46 @@ namespace Neural_Network.UI.Forms
                     return false;
                 }
                 var example = text.Substring(startIndex + 1, endIndex - startIndex - 1);
-                if (!example.Contains(':') || !example.Contains('(') || !example.Contains(')') || !example.Contains('-'))
+                example = Regex.Replace(example, @"\s+", "");
+                if (!boundsRead)
+                {
+                    if (!example.Contains('-'))
+                    {
+                        MessageBox.Show("Incorrect file format.", "Error");
+                        return false;
+                    }
+                    var boundsTemp = example.Split(',');
+                    min = new double[boundsTemp.Length];
+                    max = new double[boundsTemp.Length];
+                    for (int i = 0; i < boundsTemp.Length; i++)
+                    {
+                        var minMaxTemp = boundsTemp[i].Split('-');
+                        min[i] = Double.Parse(minMaxTemp[0]);
+                        max[i] = Double.Parse(minMaxTemp[1]);
+                    }
+
+                    if (min.Length != Network.InputLayerSize)
+                    {
+                        Array.Resize(ref min, Network.InputLayerSize);
+                        Array.Resize(ref max, Network.InputLayerSize);
+                    }
+
+                    tempMinInput.Add(min);
+                    tempMaxInput.Add(max);
+
+                    text = text.Remove(startIndex, endIndex - startIndex + 1);
+
+                    boundsRead = true;
+
+                    continue;
+                }
+                if (!example.Contains(':'))
                 {
                     MessageBox.Show("Incorrect file format.", "Error");
                     return false;
                 }
                 var exampleTemp = example.Split(':');
                 var inputTemp = exampleTemp[0].Split(',');
-                var min = new double[inputTemp.Length];
-                var max = new double[inputTemp.Length];
-                for (int i = 0; i < inputTemp.Length; i++)
-                {
-                    inputTemp[i] = Regex.Replace(inputTemp[i], @"\s+", "");
-                    
-                    var temp = inputTemp[i].Substring(inputTemp[i].IndexOf('(') + 1);
-                    var minMaxTemp = temp.Remove(temp.IndexOf(')')).Split('-');
-                    inputTemp[i] = inputTemp[i].Remove(inputTemp[i].IndexOf('('));
-                    min[i] = Double.Parse(minMaxTemp[0]);
-                    max[i] = Double.Parse(minMaxTemp[1]);
-                }
 
                 var outputTemp = exampleTemp[1].Split(',');
 
@@ -280,19 +303,12 @@ namespace Neural_Network.UI.Forms
                     return false;
                 }
                 if (input.Length != Network.InputLayerSize)
-                {
                     Array.Resize(ref input, Network.InputLayerSize);
-                    Array.Resize(ref min, Network.InputLayerSize);
-                    Array.Resize(ref max, Network.InputLayerSize);
-
-                }
 
                 if (output.Length != Network.OutputLayerSize)
                     Array.Resize(ref output, Network.OutputLayerSize);
 
                 tempInput.Add(input);
-                tempMinInput.Add(min);
-                tempMaxInput.Add(max);
                 tempOutput.Add(output);
                 
                 count++;

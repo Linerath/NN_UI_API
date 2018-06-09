@@ -91,6 +91,9 @@ namespace Neural_Network.UI.Forms
                     case NetworkFunction.AssessmentOfCompleting:
                         inputCount += 2;
                         break;
+                    case NetworkFunction.SaleChance:
+                        inputCount += 2;
+                        break;
                 }
                 var network = new FeedforwardNetworkSHL(
                     name + "_" + abilities[i].NetworkFunction.ToString(),

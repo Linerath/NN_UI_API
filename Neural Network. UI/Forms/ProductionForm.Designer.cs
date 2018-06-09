@@ -47,8 +47,6 @@
             this.BEvaluateCompleting = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.NUDSupposedCount0 = new System.Windows.Forms.NumericUpDown();
-            this.GBSections = new System.Windows.Forms.GroupBox();
-            this.LFunction0 = new System.Windows.Forms.Label();
             this.PSaleChance = new System.Windows.Forms.Panel();
             this.LSaleChance = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
@@ -56,6 +54,8 @@
             this.BEvaluateSale = new System.Windows.Forms.Button();
             this.label5 = new System.Windows.Forms.Label();
             this.NUDSupposedCount1 = new System.Windows.Forms.NumericUpDown();
+            this.GBSections = new System.Windows.Forms.GroupBox();
+            this.LFunction0 = new System.Windows.Forms.Label();
             this.tableLayoutPanel1.SuspendLayout();
             this.GBFields.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.NUDField0)).BeginInit();
@@ -65,10 +65,10 @@
             this.PAssessmentOfCompleting.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.NUDSupposedTime0)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.NUDSupposedCount0)).BeginInit();
-            this.GBSections.SuspendLayout();
             this.PSaleChance.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.NUDSupposedTime1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.NUDSupposedCount1)).BeginInit();
+            this.GBSections.SuspendLayout();
             this.SuspendLayout();
             // 
             // tableLayoutPanel1
@@ -146,7 +146,7 @@
             // 
             this.PNotTrained.Controls.Add(this.BTraining);
             this.PNotTrained.Controls.Add(this.LTrainingInfo);
-            this.PNotTrained.Location = new System.Drawing.Point(105, 500);
+            this.PNotTrained.Location = new System.Drawing.Point(390, 440);
             this.PNotTrained.Name = "PNotTrained";
             this.PNotTrained.Size = new System.Drawing.Size(215, 232);
             this.PNotTrained.TabIndex = 0;
@@ -224,7 +224,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(225, 61);
+            this.label2.Location = new System.Drawing.Point(3, 61);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(63, 20);
             this.label2.TabIndex = 4;
@@ -232,7 +232,7 @@
             // 
             // NUDSupposedTime0
             // 
-            this.NUDSupposedTime0.Location = new System.Drawing.Point(308, 59);
+            this.NUDSupposedTime0.Location = new System.Drawing.Point(250, 61);
             this.NUDSupposedTime0.Maximum = new decimal(new int[] {
             1000000,
             0,
@@ -244,7 +244,7 @@
             // 
             // BEvaluateCompleting
             // 
-            this.BEvaluateCompleting.Location = new System.Drawing.Point(208, 109);
+            this.BEvaluateCompleting.Location = new System.Drawing.Point(7, 116);
             this.BEvaluateCompleting.Name = "BEvaluateCompleting";
             this.BEvaluateCompleting.Size = new System.Drawing.Size(128, 45);
             this.BEvaluateCompleting.TabIndex = 2;
@@ -255,7 +255,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(56, 28);
+            this.label1.Location = new System.Drawing.Point(3, 28);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(207, 20);
             this.label1.TabIndex = 1;
@@ -263,7 +263,7 @@
             // 
             // NUDSupposedCount0
             // 
-            this.NUDSupposedCount0.Location = new System.Drawing.Point(308, 26);
+            this.NUDSupposedCount0.Location = new System.Drawing.Point(250, 26);
             this.NUDSupposedCount0.Maximum = new decimal(new int[] {
             1000000,
             0,
@@ -272,6 +272,79 @@
             this.NUDSupposedCount0.Name = "NUDSupposedCount0";
             this.NUDSupposedCount0.Size = new System.Drawing.Size(94, 27);
             this.NUDSupposedCount0.TabIndex = 0;
+            // 
+            // PSaleChance
+            // 
+            this.PSaleChance.Controls.Add(this.LSaleChance);
+            this.PSaleChance.Controls.Add(this.label4);
+            this.PSaleChance.Controls.Add(this.NUDSupposedTime1);
+            this.PSaleChance.Controls.Add(this.BEvaluateSale);
+            this.PSaleChance.Controls.Add(this.label5);
+            this.PSaleChance.Controls.Add(this.NUDSupposedCount1);
+            this.PSaleChance.Location = new System.Drawing.Point(17, 440);
+            this.PSaleChance.Name = "PSaleChance";
+            this.PSaleChance.Size = new System.Drawing.Size(275, 214);
+            this.PSaleChance.TabIndex = 10;
+            // 
+            // LSaleChance
+            // 
+            this.LSaleChance.AutoSize = true;
+            this.LSaleChance.Location = new System.Drawing.Point(3, 173);
+            this.LSaleChance.Name = "LSaleChance";
+            this.LSaleChance.Size = new System.Drawing.Size(171, 20);
+            this.LSaleChance.TabIndex = 5;
+            this.LSaleChance.Text = "Вероятность сбыта:";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(3, 61);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(63, 20);
+            this.label4.TabIndex = 4;
+            this.label4.Text = "Время:";
+            // 
+            // NUDSupposedTime1
+            // 
+            this.NUDSupposedTime1.Location = new System.Drawing.Point(250, 61);
+            this.NUDSupposedTime1.Maximum = new decimal(new int[] {
+            1000000,
+            0,
+            0,
+            0});
+            this.NUDSupposedTime1.Name = "NUDSupposedTime1";
+            this.NUDSupposedTime1.Size = new System.Drawing.Size(94, 27);
+            this.NUDSupposedTime1.TabIndex = 3;
+            // 
+            // BEvaluateSale
+            // 
+            this.BEvaluateSale.Location = new System.Drawing.Point(7, 116);
+            this.BEvaluateSale.Name = "BEvaluateSale";
+            this.BEvaluateSale.Size = new System.Drawing.Size(128, 45);
+            this.BEvaluateSale.TabIndex = 2;
+            this.BEvaluateSale.Text = "Оценить";
+            this.BEvaluateSale.UseVisualStyleBackColor = true;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(3, 28);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(207, 20);
+            this.label5.TabIndex = 1;
+            this.label5.Text = "Предполагаемый выпуск:";
+            // 
+            // NUDSupposedCount1
+            // 
+            this.NUDSupposedCount1.Location = new System.Drawing.Point(250, 26);
+            this.NUDSupposedCount1.Maximum = new decimal(new int[] {
+            1000000,
+            0,
+            0,
+            0});
+            this.NUDSupposedCount1.Name = "NUDSupposedCount1";
+            this.NUDSupposedCount1.Size = new System.Drawing.Size(94, 27);
+            this.NUDSupposedCount1.TabIndex = 0;
             // 
             // GBSections
             // 
@@ -295,79 +368,6 @@
             this.LFunction0.Text = "<- Function0";
             this.LFunction0.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.LFunction0.Click += new System.EventHandler(this.LSection_Click);
-            // 
-            // PSaleChance
-            // 
-            this.PSaleChance.Controls.Add(this.LSaleChance);
-            this.PSaleChance.Controls.Add(this.label4);
-            this.PSaleChance.Controls.Add(this.NUDSupposedTime1);
-            this.PSaleChance.Controls.Add(this.BEvaluateSale);
-            this.PSaleChance.Controls.Add(this.label5);
-            this.PSaleChance.Controls.Add(this.NUDSupposedCount1);
-            this.PSaleChance.Location = new System.Drawing.Point(374, 500);
-            this.PSaleChance.Name = "PSaleChance";
-            this.PSaleChance.Size = new System.Drawing.Size(419, 243);
-            this.PSaleChance.TabIndex = 10;
-            // 
-            // LSaleChance
-            // 
-            this.LSaleChance.AutoSize = true;
-            this.LSaleChance.Location = new System.Drawing.Point(3, 173);
-            this.LSaleChance.Name = "LSaleChance";
-            this.LSaleChance.Size = new System.Drawing.Size(171, 20);
-            this.LSaleChance.TabIndex = 5;
-            this.LSaleChance.Text = "Вероятность сбыта:";
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(225, 61);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(63, 20);
-            this.label4.TabIndex = 4;
-            this.label4.Text = "Время:";
-            // 
-            // NUDSupposedTime1
-            // 
-            this.NUDSupposedTime1.Location = new System.Drawing.Point(308, 59);
-            this.NUDSupposedTime1.Maximum = new decimal(new int[] {
-            1000000,
-            0,
-            0,
-            0});
-            this.NUDSupposedTime1.Name = "NUDSupposedTime1";
-            this.NUDSupposedTime1.Size = new System.Drawing.Size(94, 27);
-            this.NUDSupposedTime1.TabIndex = 3;
-            // 
-            // BEvaluateSale
-            // 
-            this.BEvaluateSale.Location = new System.Drawing.Point(208, 109);
-            this.BEvaluateSale.Name = "BEvaluateSale";
-            this.BEvaluateSale.Size = new System.Drawing.Size(128, 45);
-            this.BEvaluateSale.TabIndex = 2;
-            this.BEvaluateSale.Text = "Оценить";
-            this.BEvaluateSale.UseVisualStyleBackColor = true;
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(56, 28);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(207, 20);
-            this.label5.TabIndex = 1;
-            this.label5.Text = "Предполагаемый выпуск:";
-            // 
-            // NUDSupposedCount1
-            // 
-            this.NUDSupposedCount1.Location = new System.Drawing.Point(308, 26);
-            this.NUDSupposedCount1.Maximum = new decimal(new int[] {
-            1000000,
-            0,
-            0,
-            0});
-            this.NUDSupposedCount1.Name = "NUDSupposedCount1";
-            this.NUDSupposedCount1.Size = new System.Drawing.Size(94, 27);
-            this.NUDSupposedCount1.TabIndex = 0;
             // 
             // ProductionForm
             // 
@@ -394,11 +394,11 @@
             this.PAssessmentOfCompleting.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.NUDSupposedTime0)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.NUDSupposedCount0)).EndInit();
-            this.GBSections.ResumeLayout(false);
             this.PSaleChance.ResumeLayout(false);
             this.PSaleChance.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.NUDSupposedTime1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.NUDSupposedCount1)).EndInit();
+            this.GBSections.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }

@@ -18,6 +18,7 @@ namespace Neural_Network.UI.Shared
             new Field { Name = "Employees", Description = "Количество работников", Value = 15 },
             new Field { Name = "Rhythm", Description = "Ритм производства" },
             new Field { Name = "Tact", Description = "Такт производства", Value = 228 },
+            new Field { Name = "DefectPercentage", Description = "Процент брака", Value = 100 },
         };
         public static List<NetworkOutput> Abilities = new List<NetworkOutput>()
         {
