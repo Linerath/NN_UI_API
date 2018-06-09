@@ -71,6 +71,48 @@ namespace Neural_Network.Core.Extra
                 endErrors[i] = network.GetErrors(inputSignals[i], correctOutputSignals[i]).Average();
             endError += endErrors.Average();
         }
+        public static void TrainNetworkNormalize(
+            FeedforwardNetworkSHL network,
+            List<double[]> inputSignals,
+            List<double[]> minValues,
+            List<double[]> maxValues,
+            List<double[]> correctOutputSignals,
+            int epochs,
+            double learningRate,
+            bool randomize,
+            out double startError,
+            out double endError,
+            Action<int> progressAction)
+        {
+            startError = 0;
+            endError = 0;
+
+            double[] startErrors = new double[correctOutputSignals.Count()];
+
+            for (int i = 0; i < inputSignals.Count(); i++)
+                inputSignals[i] = network.Normalize(inputSignals[i], minValues[i], maxValues[i]);
+            
+            for (int i = 0; i < inputSignals.Count(); i++)
+                startErrors[i] = network.GetErrors(inputSignals[i], correctOutputSignals[i]).Average();
+            startError = startErrors.Average();
+
+            Random random = new Random();
+            for (int i = 0; i < epochs; i++)
+            {
+                if (randomize)
+                    Shuffle(inputSignals, correctOutputSignals, random);
+
+                for (int j = 0; j < inputSignals.Count(); j++)
+                    network.Learn(inputSignals[j], correctOutputSignals[j], learningRate: learningRate, addEpoch: (j == inputSignals.Count() - 1));
+
+                progressAction?.Invoke(i);
+            }
+
+            double[] endErrors = new double[correctOutputSignals.Count()];
+            for (int i = 0; i < inputSignals.Count(); i++)
+                endErrors[i] = network.GetErrors(inputSignals[i], correctOutputSignals[i]).Average();
+            endError += endErrors.Average();
+        }
         public static void Shuffle(List<double[]> input, List<double[]> output, Random random)
         {
             for (int i = input.Count() - 1; i >= 1; i--)

@@ -96,8 +96,7 @@ namespace Neural_Network.UI.Forms
                     name + "_" + abilities[i].NetworkFunction.ToString(),
                     inputCount,
                     fields.Count() * 2,
-                    abilities[i].OutputCount,
-                    Core.Functions.Sigmoid, 0.05);
+                    abilities[i].OutputCount);
                 network.SetAllRandomWeights();
 
                 var inputProj = new NeuralNetworkInputProject(name + "_" + abilities[i].NetworkFunction.ToString(), network);

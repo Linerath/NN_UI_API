@@ -21,7 +21,7 @@ namespace Neural_Network.Core
         private double[] weights;
         private double bias;
 
-        public Neuron(int inputCount, Functions activationFunction = Functions.None)
+        public Neuron(int inputCount, Functions activationFunction = Functions.Sigmoid)
         {
             if (inputCount < 1)
                 throw new ArgumentException("Neuron input count cannot be less than 1.");
@@ -103,7 +103,11 @@ namespace Neural_Network.Core
             double response = GetResponse(signals);
             double delta = -error * response * (1 - response);
             for (int i = 0; i < weights.Length; i++)
+            {
+                if (learningRate * (signals[i] * delta) > 1)
+                    Console.WriteLine();
                 weights[i] = weights[i] - learningRate * (signals[i] * delta);
+            }
         }
         #endregion
 
