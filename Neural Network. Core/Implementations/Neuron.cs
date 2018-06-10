@@ -16,10 +16,8 @@ namespace Neural_Network.Core
     [Serializable]
     public sealed class Neuron : INeuron
     {
-        public Functions ActivationFunction { get; private set; }
-
         private double[] weights;
-        private double bias;
+        public Functions ActivationFunction { get; private set; }
 
         public Neuron(int inputCount, Functions activationFunction = Functions.Sigmoid)
         {
@@ -77,6 +75,13 @@ namespace Neural_Network.Core
 
             return response;
         }
+        public void Learn(double[] signals, double error, double learningRate)
+        {
+            double response = GetResponse(signals);
+            double delta = -error * response * (1 - response);
+            for (int i = 0; i < weights.Length; i++)
+                weights[i] = weights[i] - learningRate * (signals[i] * delta);
+        }
         public void Resize(int newSize)
         {
             if (newSize < 1)
@@ -84,6 +89,8 @@ namespace Neural_Network.Core
 
             Array.Resize(ref weights, newSize);
         }
+
+
         private double ApplyActivationFunction(double signal)
         {
             switch (ActivationFunction)
@@ -96,19 +103,7 @@ namespace Neural_Network.Core
         }
         #endregion
 
-
         #region Not tested
-        public void Learn(double[] signals, double error, double learningRate)
-        {
-            double response = GetResponse(signals);
-            double delta = -error * response * (1 - response);
-            for (int i = 0; i < weights.Length; i++)
-            {
-                if (learningRate * (signals[i] * delta) > 1)
-                    Console.WriteLine();
-                weights[i] = weights[i] - learningRate * (signals[i] * delta);
-            }
-        }
         #endregion
 
         public int InputCount => weights.Length;
