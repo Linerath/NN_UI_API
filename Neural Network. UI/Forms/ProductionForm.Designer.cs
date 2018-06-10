@@ -414,6 +414,7 @@
             this.ShowIcon = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Production";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.ProductionForm_FormClosing);
             this.Load += new System.EventHandler(this.ProductionForm_Load);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.GBFields.ResumeLayout(false);

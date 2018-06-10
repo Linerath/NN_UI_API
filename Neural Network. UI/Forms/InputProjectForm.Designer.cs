@@ -29,23 +29,23 @@
         private void InitializeComponent()
         {
             this.DGVInputFields = new System.Windows.Forms.DataGridView();
-            this.LInput = new System.Windows.Forms.Label();
             this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column2 = new System.Windows.Forms.DataGridViewComboBoxColumn();
+            this.LInput = new System.Windows.Forms.Label();
             this.LOutput = new System.Windows.Forms.Label();
             this.DGVOutputFields = new System.Windows.Forms.DataGridView();
             this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewComboBoxColumn1 = new System.Windows.Forms.DataGridViewComboBoxColumn();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-            this.panel1 = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.panel1 = new System.Windows.Forms.Panel();
             ((System.ComponentModel.ISupportInitialize)(this.DGVInputFields)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.DGVOutputFields)).BeginInit();
             this.tableLayoutPanel1.SuspendLayout();
-            this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
+            this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // DGVInputFields
@@ -70,18 +70,6 @@
             this.DGVInputFields.Size = new System.Drawing.Size(344, 168);
             this.DGVInputFields.TabIndex = 0;
             // 
-            // LInput
-            // 
-            this.LInput.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.LInput.AutoSize = true;
-            this.LInput.Location = new System.Drawing.Point(3, 0);
-            this.LInput.Name = "LInput";
-            this.LInput.Size = new System.Drawing.Size(189, 20);
-            this.LInput.TabIndex = 1;
-            this.LInput.Text = "Network input fields";
-            // 
             // Column3
             // 
             this.Column3.HeaderText = "№";
@@ -105,6 +93,18 @@
             this.Column2.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             this.Column2.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
             this.Column2.Width = 130;
+            // 
+            // LInput
+            // 
+            this.LInput.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.LInput.AutoSize = true;
+            this.LInput.Location = new System.Drawing.Point(3, 0);
+            this.LInput.Name = "LInput";
+            this.LInput.Size = new System.Drawing.Size(189, 20);
+            this.LInput.TabIndex = 1;
+            this.LInput.Text = "Network input fields";
             // 
             // LOutput
             // 
@@ -182,16 +182,6 @@
             this.tableLayoutPanel1.Size = new System.Drawing.Size(701, 196);
             this.tableLayoutPanel1.TabIndex = 4;
             // 
-            // panel1
-            // 
-            this.panel1.Controls.Add(this.DGVInputFields);
-            this.panel1.Controls.Add(this.LInput);
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel1.Location = new System.Drawing.Point(3, 3);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(344, 190);
-            this.panel1.TabIndex = 5;
-            // 
             // panel2
             // 
             this.panel2.Controls.Add(this.DGVOutputFields);
@@ -201,6 +191,16 @@
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(345, 190);
             this.panel2.TabIndex = 6;
+            // 
+            // panel1
+            // 
+            this.panel1.Controls.Add(this.DGVInputFields);
+            this.panel1.Controls.Add(this.LInput);
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel1.Location = new System.Drawing.Point(3, 3);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(344, 190);
+            this.panel1.TabIndex = 5;
             // 
             // InputProjectForm
             // 
@@ -216,13 +216,14 @@
             this.ShowIcon = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
             this.Text = "Input Projects";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.InputProjectForm_FormClosing);
             ((System.ComponentModel.ISupportInitialize)(this.DGVInputFields)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.DGVOutputFields)).EndInit();
             this.tableLayoutPanel1.ResumeLayout(false);
-            this.panel1.ResumeLayout(false);
-            this.panel1.PerformLayout();
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
             this.ResumeLayout(false);
 
         }

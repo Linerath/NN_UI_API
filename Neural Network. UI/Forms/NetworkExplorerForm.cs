@@ -1,4 +1,5 @@
 ﻿using Neural_Network.Core.Extra;
+using Neural_Network.Core.Implementation;
 using Neural_Network.UI.Shared;
 using System;
 using System.Collections.Generic;
@@ -25,26 +26,28 @@ namespace Neural_Network.UI.Forms
         }
         private void NFBView_Click(object sender, EventArgs e)
         {
-
+            ProcessSelected(
+                (network) =>
+                {
+                    var owner = Owner as MainMenuForm;
+                    owner.ShowNetwork(network);
+                },
+                (inputProj) =>
+                {
+                    var owner = Owner as MainMenuForm;
+                    owner.ShowInputProject(inputProj);
+                },
+                (prod) =>
+                {
+                    var owner = Owner as MainMenuForm;
+                    owner.ShowProductionForm(prod);
+                });
         }
         private void BRemove_Click(object sender, EventArgs e)
         {
-            if (TVNetworks.SelectedNode == null || TVNetworks.SelectedNode.Parent == null)
-                return;
-
-            TreeNode node = TVNetworks.SelectedNode;
-            while (node.Parent != null)
-                node = node.Parent;
-
-            var index = TVNetworks.SelectedNode.Index;
-            if (index < 0)
-                return;
-
-            if (node.Text == "Neural networks")
-            {
-                if (TVNetworks.SelectedNode.Parent.Parent == null)
+            ProcessSelected(
+                (network) =>
                 {
-                    var network = UIRepository.Project.Networks[index];
                     var dialogResult = MessageBox.Show(
                     "Are you sure want to delete selected network:\n" + network.Name + " " +
                     network.InputLayerSize.ToString() + " " + network.HiddenLayerSize.ToString() + " " + network.OutputLayerSize.ToString() + ".\nCreated on " +
@@ -60,13 +63,9 @@ namespace Neural_Network.UI.Forms
                         var owner = Owner as MainMenuForm;
                         owner.CloseNetwork(network);
                     }
-                }
-                else
+                },
+                (inputProj) =>
                 {
-                    var parentIndex = TVNetworks.SelectedNode.Parent.Index;
-                    var network = UIRepository.Project.Networks[parentIndex];
-                    var inputProj = UIRepository.Project.GetNetworkInputProjects(network)[TVNetworks.SelectedNode.Index];
-
                     var dialogResult = MessageBox.Show(
                     "Are you sure want to delete selected input project:\n" + inputProj.Name + " " +
                     "\n" + inputProj.Network.InputLayerSize.ToString() + " " + inputProj.Network.OutputLayerSize.ToString(),
@@ -81,25 +80,23 @@ namespace Neural_Network.UI.Forms
                         var owner = Owner as MainMenuForm;
                         owner.CloseInputProject(inputProj);
                     }
-                }
-            }
-            else if (node.Text == "Productions")
-            {
-                var production = UIRepository.Project.ProductionProjects[index];
-                var dialogResult = MessageBox.Show(
-                    "Are you sure want to delete selected production project:\n" + production.Name,
+                },
+                (prod) =>
+                {
+                    var dialogResult = MessageBox.Show(
+                    "Are you sure want to delete selected production project:\n" + prod.Name,
                     "Deleting",
                     MessageBoxButtons.YesNo,
                     MessageBoxIcon.Question,
                     MessageBoxDefaultButton.Button2
                     );
 
-                if (dialogResult == DialogResult.Yes)
-                {
-                    var owner = Owner as MainMenuForm;
-                    owner.CloseProductionProject(production);
-                }
-            }
+                    if (dialogResult == DialogResult.Yes)
+                    {
+                        var owner = Owner as MainMenuForm;
+                        owner.CloseProductionProject(prod);
+                    }
+                });
         }
         private void NetworkExplorerForm_FormClosing(object sender, FormClosingEventArgs e)
         {
@@ -147,6 +144,46 @@ namespace Neural_Network.UI.Forms
             //        (NeuralNetworkService.GetInputProjectsForNetwork(UIRepository.Project.InputProjects.ToArray(), n))
             //            .Select(p => new TreeNode(p.Name)).ToArray()
             //    )).ToArray());
+        }
+        public void ProcessSelected(
+            Action<FeedforwardNetworkSHL> networkAction,
+            Action<NeuralNetworkInputProject> inputProjAction,
+            Action<Production> productionAction)
+        {
+            if (TVNetworks.SelectedNode == null || TVNetworks.SelectedNode.Parent == null)
+                return;
+
+            TreeNode node = TVNetworks.SelectedNode;
+            while (node.Parent != null)
+                node = node.Parent;
+
+            var index = TVNetworks.SelectedNode.Index;
+            if (index < 0)
+                return;
+
+            if (node.Text == "Neural networks")
+            {
+                if (TVNetworks.SelectedNode.Parent.Parent == null)
+                {
+                    var network = UIRepository.Project.Networks[index];
+
+                    networkAction(network);
+                }
+                else
+                {
+                    var parentIndex = TVNetworks.SelectedNode.Parent.Index;
+                    var network = UIRepository.Project.Networks[parentIndex];
+                    var inputProj = UIRepository.Project.GetNetworkInputProjects(network)[TVNetworks.SelectedNode.Index];
+
+                    inputProjAction(inputProj);
+                }
+            }
+            else if (node.Text == "Productions")
+            {
+                var production = UIRepository.Project.ProductionProjects[index];
+
+                productionAction(production);
+            }
         }
         #endregion
     }

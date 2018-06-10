@@ -39,6 +39,14 @@ namespace Neural_Network.UI.Forms
             //double value = Double.Parse(DGVLayer[e.ColumnIndex, e.RowIndex].Value.ToString());
             //UIRepository.Project.Networks[NetworkIndex][layer][e.RowIndex][e.ColumnIndex] = value;
         }
+        private void NetworkForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (e.CloseReason == CloseReason.UserClosing)
+            {
+                e.Cancel = true;
+                Hide();
+            }
+        }
         #endregion
 
         #region Methods

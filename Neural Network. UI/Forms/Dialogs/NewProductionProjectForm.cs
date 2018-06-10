@@ -98,7 +98,7 @@ namespace Neural_Network.UI.Forms
                 var network = new FeedforwardNetworkSHL(
                     name + "_" + abilities[i].NetworkFunction.ToString(),
                     inputCount,
-                    fields.Count() * 2,
+                    inputCount * 2 + 1,
                     abilities[i].OutputCount);
                 network.SetAllRandomWeights();
 

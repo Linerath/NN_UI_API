@@ -117,6 +117,14 @@ namespace Neural_Network.UI.Forms
         {
 
         }
+        private void ProductionForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (e.CloseReason == CloseReason.UserClosing)
+            {
+                e.Cancel = true;
+                Hide();
+            }
+        }
         #endregion
 
         #region Methods

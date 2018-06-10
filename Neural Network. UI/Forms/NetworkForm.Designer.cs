@@ -56,6 +56,7 @@
             this.Name = "NetworkForm";
             this.ShowIcon = false;
             this.Text = "Network Form";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.NetworkForm_FormClosing);
             this.ResumeLayout(false);
 
         }

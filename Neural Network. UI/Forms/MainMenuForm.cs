@@ -240,6 +240,15 @@ namespace Neural_Network.UI.Forms
         }
         public void ShowNetwork(FeedforwardNetworkSHL network)
         {
+            foreach (var n in networkForms)
+            {
+                if (n.Network == network)
+                {
+                    n.Show();
+                    return;
+                }
+            }
+
             NetworkForm networkForm = new NetworkForm(network)
             {
                 Owner = this,
@@ -316,6 +325,15 @@ namespace Neural_Network.UI.Forms
         }
         public void ShowInputProject(NeuralNetworkInputProject inputProj)
         {
+            foreach (var p in inputProjectForms)
+            {
+                if (p.InputProj == inputProj)
+                {
+                    p.Show();
+                    return;
+                }
+            }
+
             InputProjectForm projForm = new InputProjectForm(inputProj)
             {
                 Owner = this,
@@ -359,6 +377,15 @@ namespace Neural_Network.UI.Forms
         }
         public void ShowProductionForm(Production production)
         {
+            foreach (var p in productionForms)
+            {
+                if (p.Production == production)
+                {
+                    p.Show();
+                    return;
+                }
+            }
+
             ProductionForm productionForm = new ProductionForm(production)
             {
                 Owner = this,
