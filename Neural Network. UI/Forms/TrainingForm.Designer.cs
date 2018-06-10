@@ -346,11 +346,11 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.DGVCorrectOutputSignals.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.DGVCorrectOutputSignals.ColumnHeadersVisible = false;
-            this.DGVCorrectOutputSignals.Location = new System.Drawing.Point(291, 3);
+            this.DGVCorrectOutputSignals.Location = new System.Drawing.Point(522, 3);
             this.DGVCorrectOutputSignals.Name = "DGVCorrectOutputSignals";
             this.DGVCorrectOutputSignals.RowHeadersVisible = false;
             this.DGVCorrectOutputSignals.RowTemplate.Height = 24;
-            this.DGVCorrectOutputSignals.Size = new System.Drawing.Size(282, 367);
+            this.DGVCorrectOutputSignals.Size = new System.Drawing.Size(417, 367);
             this.DGVCorrectOutputSignals.TabIndex = 10;
             // 
             // DGVInputSignals
@@ -367,7 +367,7 @@
             this.DGVInputSignals.Name = "DGVInputSignals";
             this.DGVInputSignals.RowHeadersVisible = false;
             this.DGVInputSignals.RowTemplate.Height = 24;
-            this.DGVInputSignals.Size = new System.Drawing.Size(282, 367);
+            this.DGVInputSignals.Size = new System.Drawing.Size(513, 367);
             this.DGVInputSignals.TabIndex = 9;
             // 
             // tableLayoutPanel1
@@ -376,10 +376,10 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.tableLayoutPanel1.ColumnCount = 4;
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 44.95413F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 36.69725F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 9.174312F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 9.174312F));
             this.tableLayoutPanel1.Controls.Add(this.DGVMaxInputSignals, 3, 0);
             this.tableLayoutPanel1.Controls.Add(this.DGVInputSignals, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.DGVCorrectOutputSignals, 1, 0);
@@ -401,11 +401,11 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.DGVMaxInputSignals.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.DGVMaxInputSignals.ColumnHeadersVisible = false;
-            this.DGVMaxInputSignals.Location = new System.Drawing.Point(867, 3);
+            this.DGVMaxInputSignals.Location = new System.Drawing.Point(1050, 3);
             this.DGVMaxInputSignals.Name = "DGVMaxInputSignals";
             this.DGVMaxInputSignals.RowHeadersVisible = false;
             this.DGVMaxInputSignals.RowTemplate.Height = 24;
-            this.DGVMaxInputSignals.Size = new System.Drawing.Size(285, 367);
+            this.DGVMaxInputSignals.Size = new System.Drawing.Size(102, 367);
             this.DGVMaxInputSignals.TabIndex = 11;
             // 
             // DGVMinInputSignals
@@ -418,11 +418,11 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.DGVMinInputSignals.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.DGVMinInputSignals.ColumnHeadersVisible = false;
-            this.DGVMinInputSignals.Location = new System.Drawing.Point(579, 3);
+            this.DGVMinInputSignals.Location = new System.Drawing.Point(945, 3);
             this.DGVMinInputSignals.Name = "DGVMinInputSignals";
             this.DGVMinInputSignals.RowHeadersVisible = false;
             this.DGVMinInputSignals.RowTemplate.Height = 24;
-            this.DGVMinInputSignals.Size = new System.Drawing.Size(282, 367);
+            this.DGVMinInputSignals.Size = new System.Drawing.Size(99, 367);
             this.DGVMinInputSignals.TabIndex = 10;
             // 
             // NFBRandomize1

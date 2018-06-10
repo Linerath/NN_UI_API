@@ -38,6 +38,10 @@ namespace Neural_Network.UI.Forms
             else
                 ClientSize = new Size(ClientSize.Width, GBAbilities.Height + 76);
             MinimumSize = Size;
+
+#if DEBUG
+            BOk.PerformClick();
+#endif
         }
 
         private void BOk_Click(object sender, EventArgs e)
@@ -128,7 +132,7 @@ namespace Neural_Network.UI.Forms
                 InputProjects = inputProjects,
                 NetworksOutputs = abilities,
             };
-            production.SetInput( fields.Select(x => x.Value).ToArray());
+            production.SetInput(fields.Select(x => x.Value).ToArray());
             UIRepository.Project.ProductionProjects.Add(production);
 
             foreach (var n in networks)

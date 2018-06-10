@@ -35,6 +35,7 @@
             // 
             // BCancel
             // 
+            this.BCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.BCancel.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BCancel.Location = new System.Drawing.Point(226, 48);
             this.BCancel.Name = "BCancel";
@@ -46,6 +47,9 @@
             // 
             // LBNetworks
             // 
+            this.LBNetworks.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.LBNetworks.FormattingEnabled = true;
             this.LBNetworks.ItemHeight = 20;
             this.LBNetworks.Location = new System.Drawing.Point(12, 12);
@@ -55,6 +59,7 @@
             // 
             // BOk
             // 
+            this.BOk.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.BOk.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BOk.Location = new System.Drawing.Point(226, 12);
             this.BOk.Name = "BOk";
@@ -73,7 +78,6 @@
             this.Controls.Add(this.LBNetworks);
             this.Controls.Add(this.BOk);
             this.Font = new System.Drawing.Font("Consolas", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.MaximizeBox = false;
             this.MinimizeBox = false;

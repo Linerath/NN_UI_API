@@ -34,8 +34,8 @@ namespace Neural_Network.Core.Implementation
         private double learningRate;
         public int LearningEpochs { get; private set; }
 
-        public const double RANDOM_MIN_VALUE = 0.1;
-        public const double RANDOM_MAX_VALUE = 0.9;
+        public const double RANDOM_MIN_VALUE = 0.01;
+        public const double RANDOM_MAX_VALUE = 0.99;
 
         public FeedforwardNetworkSHL(String name, int inputLayerSize, int hiddenLayerSize, int outputLayerSize, Functions activationFunction = Functions.Sigmoid, double learningRate = 0.02)
             : this(inputLayerSize, hiddenLayerSize, outputLayerSize, activationFunction, learningRate)
@@ -265,32 +265,18 @@ namespace Neural_Network.Core.Implementation
 
             double[] outputLayerSignals = new double[outputCount];
             for (int i = 0; i < outputCount; i++)
-            {
-                if (outputLayer[i][0] > 1)
-                    Console.WriteLine();
                 outputLayerSignals[i] = outputLayer[i].GetResponse(hiddenLayerSignals);
-                if (outputLayerSignals[i] > 10)
-                    Console.WriteLine();
-            }
 
             // 1
             double[] outputErrors = new double[outputCount];
             for (int i = 0; i < outputErrors.Length; i++)
-            {
                 outputErrors[i] = expectedOutputs[i] - outputLayerSignals[i];
-                if (outputErrors[i] > 10)
-                    Console.WriteLine();
-            }
 
             double[] hiddenErrors = GetHiddenLayerErorrs(outputErrors);
 
             // 2
             for (int i = 0; i < outputCount; i++)
-            {
                 outputLayer[i].Learn(hiddenLayerSignals, outputErrors[i], learningRate);
-                if (outputLayer[i][0] > 10)
-                    Console.WriteLine();
-            }
 
             for (int i = 0; i < hiddenCount; i++)
                 hiddenLayer[i].Learn(signals, hiddenErrors[i], learningRate);

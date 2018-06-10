@@ -262,9 +262,9 @@
             0});
             this.NUDSupposedTime0.Name = "NUDSupposedTime0";
             this.NUDSupposedTime0.Size = new System.Drawing.Size(105, 27);
-            this.NUDSupposedTime0.TabIndex = 3;
+            this.NUDSupposedTime0.TabIndex = 2;
             this.NUDSupposedTime0.Value = new decimal(new int[] {
-            137,
+            110,
             0,
             0,
             0});
@@ -274,7 +274,7 @@
             this.BEvaluateCompleting.Location = new System.Drawing.Point(7, 116);
             this.BEvaluateCompleting.Name = "BEvaluateCompleting";
             this.BEvaluateCompleting.Size = new System.Drawing.Size(128, 45);
-            this.BEvaluateCompleting.TabIndex = 2;
+            this.BEvaluateCompleting.TabIndex = 4;
             this.BEvaluateCompleting.Text = "Оценить";
             this.BEvaluateCompleting.UseVisualStyleBackColor = true;
             this.BEvaluateCompleting.Click += new System.EventHandler(this.BEvaluateCompleting_Click);
@@ -300,7 +300,7 @@
             this.NUDSupposedCount0.Size = new System.Drawing.Size(105, 27);
             this.NUDSupposedCount0.TabIndex = 0;
             this.NUDSupposedCount0.Value = new decimal(new int[] {
-            1000,
+            100,
             0,
             0,
             0});
@@ -346,14 +346,14 @@
             0});
             this.NUDSupposedTime1.Name = "NUDSupposedTime1";
             this.NUDSupposedTime1.Size = new System.Drawing.Size(105, 27);
-            this.NUDSupposedTime1.TabIndex = 3;
+            this.NUDSupposedTime1.TabIndex = 2;
             // 
             // BEvaluateSale
             // 
             this.BEvaluateSale.Location = new System.Drawing.Point(7, 116);
             this.BEvaluateSale.Name = "BEvaluateSale";
             this.BEvaluateSale.Size = new System.Drawing.Size(128, 45);
-            this.BEvaluateSale.TabIndex = 2;
+            this.BEvaluateSale.TabIndex = 3;
             this.BEvaluateSale.Text = "Оценить";
             this.BEvaluateSale.UseVisualStyleBackColor = true;
             this.BEvaluateSale.Click += new System.EventHandler(this.BEvaluateSale_Click);

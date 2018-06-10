@@ -1,6 +1,4 @@
-﻿#define TEST_MODE
-
-using Neural_Network.UI.Constants;
+﻿using Neural_Network.UI.Constants;
 using Neural_Network.UI.Shared;
 using System;
 using System.Collections.Generic;
@@ -45,7 +43,7 @@ namespace Neural_Network.UI.Forms
         #region Events
         private void MainMenuForm_Load(object sender, EventArgs e)
         {
-#if TEST_MODE
+#if DEBUG
             if (UIRepository.Project.TryOpen(@"E:\Programming\C#\Neural Network WF (Graduate Work)\Neural Network. UI\bin\Debug\1.nnproj"))
             {
                 networkExplorerForm.RefreshTree();
@@ -53,6 +51,8 @@ namespace Neural_Network.UI.Forms
                 //ShowAllInputProjects();
                 ShowAllProductionProjects();
             }
+
+            BProduction.PerformClick();
 #endif
         }
         private void BNewProj_Click(object sender, EventArgs e)

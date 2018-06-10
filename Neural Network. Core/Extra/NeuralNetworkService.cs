@@ -74,8 +74,8 @@ namespace Neural_Network.Core.Extra
         public static void TrainNetworkNormalize(
             FeedforwardNetworkSHL network,
             List<double[]> inputSignals,
-            List<double[]> minValues,
-            List<double[]> maxValues,
+            double[] minValues,
+            double[] maxValues,
             List<double[]> correctOutputSignals,
             int epochs,
             double learningRate,
@@ -90,7 +90,7 @@ namespace Neural_Network.Core.Extra
             double[] startErrors = new double[correctOutputSignals.Count()];
 
             for (int i = 0; i < inputSignals.Count(); i++)
-                inputSignals[i] = network.Normalize(inputSignals[i], minValues[i], maxValues[i]);
+                inputSignals[i] = network.Normalize(inputSignals[i], minValues, maxValues);
             
             for (int i = 0; i < inputSignals.Count(); i++)
                 startErrors[i] = network.GetErrors(inputSignals[i], correctOutputSignals[i]).Average();
