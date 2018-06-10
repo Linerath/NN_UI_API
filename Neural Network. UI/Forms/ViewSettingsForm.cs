@@ -1,4 +1,4 @@
-﻿using Neural_Network.Core.Implementation;
+﻿ using Neural_Network.Core.Implementation;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
