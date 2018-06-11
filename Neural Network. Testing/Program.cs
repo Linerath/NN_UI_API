@@ -33,12 +33,16 @@ namespace Neural_Network.Testing
             //FeedforwardNetworkTests.Response3();
             //FeedforwardNetworkTests.PrintResponse();
             //FeedforwardNetworkTests.SetWeights();
-            //FeedforwardNetworkTests.Leaur0();
+            //FeedforwardNetworkTests.Learn0();
             //FeedforwardNetworkTests.Learn1();
             //FeedforwardNetworkTests.Learn2();
             //FeedforwardNetworkTests.Learn3();
             //FeedforwardNetworkTests.Normalize0();
-            FeedforwardNetworkTests.Learn4();
+            //FeedforwardNetworkTests.Learn4();
+            FeedforwardNetworkTests.Learn5();
+
+            //FeedforwardNetworkTests.XOR();
+            //FeedforwardNetworkTests.OR();
             #endregion
 
             #region NeuralNetworkInputProjectTests
@@ -339,12 +343,12 @@ namespace Neural_Network.Testing
                 f.Learn(in1, out1);
             }
 
-            //ShowNetwork(f);
             Console.WriteLine(new String('/', 100));
             Console.WriteLine("Learnt...");
             Console.WriteLine(new String('/', 100) + "\n");
             ShowResponseAndError(f, in0, out0, false);
             ShowResponseAndError(f, in1, out1, false);
+            ShowNetwork(f);
         }
         public static void Learn3()
         {
@@ -396,7 +400,7 @@ namespace Neural_Network.Testing
         }
         public static void Learn4()
         {
-            FeedforwardNetworkSHL f = new FeedforwardNetworkSHL(9, 19, 2, Functions.Sigmoid);
+            FeedforwardNetworkSHL f = new FeedforwardNetworkSHL(9, 19, 2, Functions.Sigmoid, 0.01);
 
             f.SetAllRandomWeights();
 
@@ -473,11 +477,11 @@ namespace Neural_Network.Testing
             ShowResponseAndError(f, testInputData[1], testOutputData[1]);
 
             Random random = new Random();
-            for (int i = 0; i < 1000; i++)
+            for (int i = 0; i < 10000; i++)
             {
                 for (int j = 0; j < inputData.Length; j++)
                     //f.LearnWithNormalization(inputData[j], outputData[j]);
-                    f.Learn(inputData[j], outputData[j]);
+                    f.LearnNew(inputData[j], outputData[j]);
                 NeuralNetworkService.Shuffle(inputData.ToList(), outputData.ToList(), random);
             }
 
@@ -487,6 +491,216 @@ namespace Neural_Network.Testing
             Console.WriteLine(new String('/', 100) + "\n");
             ShowResponseAndError(f, testInputData[0], testOutputData[0], false);
             ShowResponseAndError(f, testInputData[1], testOutputData[1], false);
+        }
+        public static void Learn5()
+        {
+            FeedforwardNetworkSHL f = new FeedforwardNetworkSHL(9, 19, 2, Functions.Sigmoid, 0.02);
+
+            f.SetAllRandomWeights();
+
+            double[][] inputData = new double[][]
+            {
+                new double[] { 30000, 93, 89, 15, 1.1, 1, 3, 300, 310 },
+                new double[] { 60000, 93, 89, 15, 1.1, 1, 3, 600, 620 },
+                new double[] { 15000, 93, 89, 15, 1.1, 1, 3, 150, 155 },
+                new double[] { 30000, 93, 89, 15, 1.1, 1, 3, 300, 310 },
+                new double[] { 30000, 93, 89, 15, 1.1, 1, 3, 300, 310 },
+                new double[] { 10000, 93, 89, 15, 1.1, 1, 3, 100, 110 },
+                new double[] { 10000, 93, 89, 10, 1.1, 1, 3, 100, 110 },
+                new double[] { 15000, 93, 89, 10, 1.1, 1, 3, 100, 105 },
+                new double[] { 1000, 93, 89, 10, 1.1, 1, 3, 9, 9 },
+                new double[] { 1000, 93, 89, 10, 1.1, 1, 3, 9, 9 },
+                new double[] { 15000, 100, 89, 15, 1.1, 1, 3, 150, 155 },
+                new double[] { 15000, 100, 100, 15, 1.1, 1, 3, 150, 150 },
+                new double[] { 20000, 90, 88, 15, 1.1, 1, 3, 190, 200 },
+                new double[] { 20000, 90, 88, 15, 1.1, 1, 3, 100, 200 },
+                new double[] { 20000, 90, 88, 15, 1.1, 1, 3, 50, 200 },
+                new double[] { 20000, 100, 88, 15, 1.1, 1, 3, 200, 200 },
+                new double[] { 20000, 100, 88, 15, 1.1, 1, 3, 200, 200 },
+                new double[] { 15000, 100, 88, 15, 1.1, 1, 3, 50, 100 },
+                new double[] { 10000, 88, 83, 15, 1.1, 1, 3, 40, 50 },
+                new double[] { 5000, 88, 83, 15, 1.1, 1, 3, 40, 50 },
+
+                new double[] { 30000, 93, 89, 15, 1.1, 1, 90, 300, 310 },
+                new double[] { 60000, 93, 89, 15, 1.1, 1, 90, 600, 620 },
+                new double[] { 15000, 93, 89, 15, 1.1, 1, 90, 150, 155 },
+                new double[] { 30000, 93, 89, 15, 1.1, 1, 90, 300, 310 },
+                new double[] { 30000, 93, 89, 15, 1.1, 1, 90, 300, 310 },
+                new double[] { 10000, 93, 89, 15, 1.1, 1, 90, 100, 110 },
+                new double[] { 10000, 93, 89, 10, 1.1, 1, 90, 100, 110 },
+                new double[] { 15000, 93, 89, 10, 1.1, 1, 90, 100, 105 },
+                new double[] { 1000, 93, 89, 10, 1.1, 1, 90, 9, 9 },
+                new double[] { 1000, 93, 89, 10, 1.1, 1, 90, 9, 9 },
+                new double[] { 15000, 100, 89, 15, 1.1, 1, 90, 150, 155 },
+                new double[] { 15000, 100, 100, 15, 1.1, 1, 90, 150, 150 },
+                new double[] { 20000, 90, 88, 15, 1.1, 1, 90, 190, 200 },
+                new double[] { 20000, 90, 88, 15, 1.1, 1, 90, 100, 200 },
+                new double[] { 20000, 90, 88, 15, 1.1, 1, 90, 50, 200 },
+                new double[] { 20000, 100, 88, 15, 1.1, 1, 90, 200, 200 },
+                new double[] { 20000, 100, 88, 15, 1.1, 1, 90, 200, 200 },
+                new double[] { 15000, 100, 88, 15, 1.1, 1, 90, 50, 100 },
+                new double[] { 10000, 88, 83, 15, 1.1, 1, 90, 40, 50 },
+                new double[] { 5000, 88, 83, 15, 1.1, 1, 90, 40, 50 },
+            };
+            double[] minValues = new double[] { 0, 0, 0, 0, 0, 0, 0, 0, 0 };
+            double[] maxValues = new double[] { 100000, 200, 200, 50, 5, 1.50, 100, 5000, 1000 };
+            double[][] outputData = new double[][]
+            {
+                new double[] { 1, 0 },
+                new double[] { 1, 0 },
+                new double[] { 1, 0 },
+                new double[] { 1, 0 },
+                new double[] { 1, 0 },
+                new double[] { 1, 0 },
+                new double[] { 1, 0 },
+                new double[] { 1, 0 },
+                new double[] { 1, 0 },
+                new double[] { 1, 0 },
+                new double[] { 1, 0 },
+                new double[] { 1, 0 },
+                new double[] { 1, 0 },
+                new double[] { 1, 0 },
+                new double[] { 1, 0 },
+                new double[] { 0, 0 },
+                new double[] { 1, 0 },
+                new double[] { 1, 0 },
+                new double[] { 1, 0 },
+                new double[] { 1, 0 },
+
+                new double[] { 0, 1 },
+                new double[] { 0, 1 },
+                new double[] { 0, 1 },
+                new double[] { 0, 1 },
+                new double[] { 0, 1 },
+                new double[] { 0, 1 },
+                new double[] { 0, 1 },
+                new double[] { 0, 1 },
+                new double[] { 0, 1 },
+                new double[] { 0, 1 },
+                new double[] { 0, 1 },
+                new double[] { 0, 1 },
+                new double[] { 0, 1 },
+                new double[] { 0, 1 },
+                new double[] { 0, 1 },
+                new double[] { 0, 0 },
+                new double[] { 0, 1 },
+                new double[] { 0, 1 },
+                new double[] { 0, 1 },
+                new double[] { 0, 1 },
+            };
+
+            for (int i = 0; i < inputData.Length; i++)
+            {
+                inputData[i] = f.Normalize(inputData[i], minValues, maxValues);
+            }
+
+            //ShowNetwork(f);
+            ShowResponseAndError(f, inputData[0], outputData[0]);
+            ShowResponseAndError(f, inputData[23], outputData[23]);
+
+            Random random = new Random();
+            for (int i = 0; i < 10000; i++)
+            {
+                for (int j = 0; j < inputData.Length; j++)
+                    //f.LearnWithNormalization(inputData[j], outputData[j]);
+                    f.LearnNew(inputData[j], outputData[j]);
+                NeuralNetworkService.Shuffle(inputData.ToList(), outputData.ToList(), random);
+            }
+
+            //ShowNetwork(f);
+            Console.WriteLine(new String('/', 100));
+            Console.WriteLine("Learnt...");
+            Console.WriteLine(new String('/', 100) + "\n");
+            ShowResponseAndError(f, inputData[0], outputData[0], false);
+            ShowResponseAndError(f, inputData[23], outputData[23], false);
+        }
+
+        public static void XOR()
+        {
+            FeedforwardNetworkSHL f = new FeedforwardNetworkSHL(2, 5, 1, Functions.Sigmoid, 0.1);
+            f.SetAllRandomWeights();
+
+            double[][] inputData = new double[][]
+            {
+                new double[] { 0, 0 },
+                new double[] { 1, 0 },
+                new double[] { 0, 1 },
+                new double[] { 1, 1 },
+            };
+            double[][] outputData = new double[][]
+            {
+                new double[] { 0 },
+                new double[] { 1 },
+                new double[] { 1 },
+                new double[] { 0 },
+            };
+
+            //ShowResponseAndError(f, inputData[0], outputData[0]);
+            //ShowResponseAndError(f, inputData[1], outputData[1]);
+            //ShowResponseAndError(f, inputData[2], outputData[2]);
+            //ShowResponseAndError(f, inputData[3], outputData[3]);
+
+            Random random = new Random();
+            for (int i = 0; i < 10000; i++)
+            {
+                for (int j = 0; j < inputData.Length; j++)
+                    f.LearnNew(inputData[j], outputData[j]);
+                NeuralNetworkService.Shuffle(inputData.ToList(), outputData.ToList(), random);
+            }
+
+            //ShowNetwork(f);
+            //Console.WriteLine(new String('/', 100));
+            //Console.WriteLine("Learnt...");
+            //Console.WriteLine(new String('/', 100) + "\n");
+            ShowResponseAndError(f, inputData[0], outputData[0], false);
+            ShowResponseAndError(f, inputData[1], outputData[1], false);
+            ShowResponseAndError(f, inputData[2], outputData[2], false);
+            ShowResponseAndError(f, inputData[3], outputData[3], false);
+
+            //ShowNetwork(f);
+        }
+        public static void OR()
+        {
+            FeedforwardNetworkSHL f = new FeedforwardNetworkSHL(2, 5, 1, Functions.Sigmoid, 0.1);
+            f.SetAllRandomWeights();
+
+            double[][] inputData = new double[][]
+            {
+                new double[] { 0, 0},
+                new double[] { 1, 0},
+                new double[] { 0, 1},
+                new double[] { 1, 1},
+            };
+            double[][] outputData = new double[][]
+            {
+                new double[] { 0 },
+                new double[] { 1 },
+                new double[] { 1},
+                new double[] { 1 },
+            };
+
+            //ShowNetwork(f);
+            ShowResponseAndError(f, inputData[0], outputData[0]);
+            ShowResponseAndError(f, inputData[1], outputData[1]);
+            ShowResponseAndError(f, inputData[2], outputData[2]);
+            ShowResponseAndError(f, inputData[3], outputData[3]);
+
+            Random random = new Random();
+            for (int i = 0; i < 10000; i++)
+            {
+                for (int j = 0; j < inputData.Length; j++)
+                    f.LearnNew(inputData[j], outputData[j]);
+                NeuralNetworkService.Shuffle(inputData.ToList(), outputData.ToList(), random);
+            }
+
+            //ShowNetwork(f);
+            Console.WriteLine(new String('/', 100));
+            Console.WriteLine("Learnt...");
+            Console.WriteLine(new String('/', 100) + "\n");
+            ShowResponseAndError(f, inputData[0], outputData[0], false);
+            ShowResponseAndError(f, inputData[1], outputData[1], false);
+            ShowResponseAndError(f, inputData[2], outputData[2], false);
+            ShowResponseAndError(f, inputData[3], outputData[3], false);
         }
 
         public static void Normalize0()
@@ -607,6 +821,13 @@ namespace Neural_Network.Testing
             Console.Write(new String('*', 50));
             Console.WriteLine("\n");
         }
+        public static void ShowXOR(FeedforwardNetworkSHL f, double[] signals, double[] expectedOutputs, bool round = true)
+        {
+            var rs = f.GetResponse(signals);
+
+            Console.WriteLine(signals[0] + " XOR " + signals[1] + " = " + rs[0]);
+        }
+
     }
 
     static class NeuralNetworkInputProjectTests
