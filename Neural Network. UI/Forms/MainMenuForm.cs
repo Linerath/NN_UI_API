@@ -57,8 +57,27 @@ namespace Neural_Network.UI.Forms
         }
         private void BNewProj_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("In development", "Warning");
-            return;
+            var dialogResult = MessageBox.Show(
+                "Are you sure want to create new project?",
+                "New project",
+                MessageBoxButtons.YesNo,
+                MessageBoxIcon.Question,
+                MessageBoxDefaultButton.Button2);
+            if (dialogResult == DialogResult.Yes)
+            {
+                if (UIRepository.Project.Networks.Count() > 0)
+                {
+                    var result = MessageBox.Show(
+                        "Save current project?",
+                        "Saving",
+                        MessageBoxButtons.YesNo,
+                        MessageBoxIcon.Question,
+                        MessageBoxDefaultButton.Button1);
+                    if (result == DialogResult.Yes)
+                        saveProjToolStripMenuItem.PerformClick();
+                    NewProject();
+                }
+            }
         }
         private void BOpenProj_Click(object sender, EventArgs e)
         {
@@ -147,7 +166,7 @@ namespace Neural_Network.UI.Forms
             {
                 if (UIRepository.Project.TryOpen(ofd.FileName))
                 {
-                    NewProject();
+                    NewProject(false);
                     networkExplorerForm.RefreshTree();
                     ShowAllNetworks();
                     ShowAllInputProjects();
@@ -195,7 +214,7 @@ namespace Neural_Network.UI.Forms
 
         #region Methods
 
-        private void NewProject()
+        private void NewProject(bool newProject = true)
         {
             networkExplorerForm?.Close();
             viewSettingsForm?.Close();
@@ -221,7 +240,12 @@ namespace Neural_Network.UI.Forms
             networkExplorerForm.Show();
             viewSettingsForm.Show();
 
+            if (newProject)
+                UIRepository.Project = new Project();
+
             DefaultFormsLayout();
+
+            networkExplorerForm.RefreshTree();
         }
 
         private void DefaultFormsLayout()
@@ -230,7 +254,7 @@ namespace Neural_Network.UI.Forms
             networkExplorerForm.Location = new Point(Location.X, Location.Y + Height);
             viewSettingsForm.Location = new Point(Location.X, networkExplorerForm.Location.Y + networkExplorerForm.Height);
 
-            Size = new Size(Screen.PrimaryScreen.Bounds.Width, Size.Height);
+            //Size = new Size(Screen.PrimaryScreen.Bounds.Width, Size.Height);
         }
 
         public void ShowAllNetworks()
@@ -269,6 +293,7 @@ namespace Neural_Network.UI.Forms
             int networkFormIndex = GetNetworkFormIndex(network);
             if (networkFormIndex >= 0)
             {
+                CloseTrainingForm(network);
                 formActivatedHandler.UnregisterForm(networkForms[networkFormIndex], true);
                 CloseInputProjects(network);
                 networkForms.RemoveAt(networkFormIndex);
@@ -364,10 +389,13 @@ namespace Neural_Network.UI.Forms
         public void CloseInputProject(NeuralNetworkInputProject inputProj)
         {
             var inputProjIndex = GetInputProjFormIndex(inputProj);
-            inputProjectForms[inputProjIndex].Close();
-            inputProjectForms.RemoveAt(inputProjIndex);
-            UIRepository.Project.InputProjects.Remove(inputProj);
-            networkExplorerForm.RefreshTree(true);
+            if (inputProjIndex >= 0)
+            {
+                inputProjectForms[inputProjIndex].Close();
+                inputProjectForms.RemoveAt(inputProjIndex);
+                UIRepository.Project.InputProjects.Remove(inputProj);
+                networkExplorerForm.RefreshTree(true);
+            }
         }
 
         public void ShowAllProductionProjects()
@@ -398,15 +426,16 @@ namespace Neural_Network.UI.Forms
         }
         public void CloseProductionProject(Production production)
         {
-            foreach (var proj in production.InputProjects)
-                CloseNetwork(proj.Network);
             var productionFormIndex = GetProductionProjFormIndex(production);
-            if (productionFormIndex < 0)
-                return;
-            productionForms[productionFormIndex].Close();
-            productionForms.RemoveAt(productionFormIndex);
-            UIRepository.Project.ProductionProjects.Remove(production);
-            networkExplorerForm.RefreshTree(true);
+            if (productionFormIndex >= 0)
+            {
+                foreach (var proj in production.InputProjects)
+                    CloseNetwork(proj.Network);
+                productionForms[productionFormIndex].Close();
+                productionForms.RemoveAt(productionFormIndex);
+                UIRepository.Project.ProductionProjects.Remove(production);
+                networkExplorerForm.RefreshTree(true);
+            }
         }
 
         public void ShowTrainingForm(FeedforwardNetworkSHL network, Action trainingEndAction = null)
@@ -428,6 +457,15 @@ namespace Neural_Network.UI.Forms
             trainingForms.Add(trainingForm);
             formActivatedHandler.RegisterForm(trainingForm, RefreshTrainingFormTables);
             trainingForm.Show();
+        }
+        public void CloseTrainingForm(FeedforwardNetworkSHL network)
+        {
+            int trainingFormIndex = GetTrainingFormIndex(network);
+            if (trainingFormIndex >= 0)
+            {
+                trainingForms[trainingFormIndex].Close();
+                trainingForms.RemoveAt(trainingFormIndex);
+            }
         }
         public void RefreshTrainingFormTables(FeedforwardNetworkSHL network)
         {

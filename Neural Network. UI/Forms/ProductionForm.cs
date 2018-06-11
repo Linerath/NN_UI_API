@@ -227,7 +227,9 @@ namespace Neural_Network.UI.Forms
                 selectedNetworkSection = null;
             else
                 selectedNetworkSection = NetworkFunction.FailureChance;
+#if DEBUG
             selectedNetworkSection = NetworkFunction.FailureChance;
+#endif
 
             LoadPanel();
         }
