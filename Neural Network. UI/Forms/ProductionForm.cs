@@ -24,7 +24,6 @@ namespace Neural_Network.UI.Forms
         private List<NumericUpDown> fieldsCtrls = new List<NumericUpDown>();
         private List<Panel> sectionsCtrls = new List<Panel>();
         private List<Label> sectionLabelsCtrls = new List<Label>();
-        private List<FeedforwardNetworkSHL> notTrainedNets = new List<FeedforwardNetworkSHL>();
 
         public ProductionForm(Production production)
         {
@@ -41,7 +40,7 @@ namespace Neural_Network.UI.Forms
         {
             LoadFields();
             LoadSections();
-            CheckEpochs();
+            LoadRandomSectionPanel();
 
             MinimumSize = Size;
             readFields = true;
@@ -64,7 +63,9 @@ namespace Neural_Network.UI.Forms
             {
                 if (section == sectionLabelsCtrls[i])
                 {
-                    selectedNetworkSection = section.Tag as NetworkFunction?;
+                    var func = section.Tag as NetworkFunction?;
+                    if (func.HasValue)
+                        TrySelect(func.Value);
                     LoadPanel();
                     break;
                 }
@@ -74,8 +75,8 @@ namespace Neural_Network.UI.Forms
         private void BTraining_Click(object sender, EventArgs e)
         {
             var owner = Owner as MainMenuForm;
-            foreach (var network in notTrainedNets)
-                owner?.ShowTrainingForm(network, CheckEpochs);
+            foreach (var proj in Production.InputProjects)
+                owner?.ShowTrainingForm(proj.Network, LoadRandomSectionPanel);
         }
 
         private void BEvaluateCompleting_Click(object sender, EventArgs e)
@@ -215,23 +216,33 @@ namespace Neural_Network.UI.Forms
                 }
             }
         }
-        public void CheckEpochs()
+        public bool TrySelect(NetworkFunction? networkFunction, bool assignNotSelected = false)
         {
-            notTrainedNets = new List<FeedforwardNetworkSHL>();
+            if (networkFunction == null)
+            {
+                if (assignNotSelected)
+                    selectedNetworkSection = null;
+                return false;
+            }
             for (int i = 0; i < Production.InputProjects.Count(); i++)
             {
-                if (Production.InputProjects[i].Network.LearningEpochs < 1000)
-                    notTrainedNets.Add(Production.InputProjects[i].Network);
+                if (Production.NetworksOutputs[i].NetworkFunction == networkFunction)
+                {
+                    if (Production.InputProjects[i].Network.LearningEpochs >= 1000)
+                    {
+                        selectedNetworkSection = networkFunction;
+                        return true;
+                    }
+                    else
+                    {
+                        if (assignNotSelected)
+                            selectedNetworkSection = null;
+                        return false;
+                    }
+                }
             }
-            if (notTrainedNets.Count() > 0)
-                selectedNetworkSection = null;
-            else
-                selectedNetworkSection = NetworkFunction.FailureChance;
-#if DEBUG
-            selectedNetworkSection = NetworkFunction.FailureChance;
-#endif
-
-            LoadPanel();
+            selectedNetworkSection = null;
+            return false;
         }
         private void LoadPanel()
         {
@@ -271,6 +282,15 @@ namespace Neural_Network.UI.Forms
                         sectionLabelsCtrls[i].BackColor = SystemColors.Control;
                 }
             }
+        }
+        private void LoadRandomSectionPanel()
+        {
+            if (TrySelect(NetworkFunction.AssessmentOfCompleting) ||
+                TrySelect(NetworkFunction.FailureChance) ||
+                TrySelect(NetworkFunction.SaleChance, true))
+                LoadPanel();
+            else
+                LoadPanel();
         }
 
         private void RefreshCommonInput()

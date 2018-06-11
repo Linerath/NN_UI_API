@@ -54,13 +54,13 @@
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.DGVMaxInputSignals = new System.Windows.Forms.DataGridView();
             this.DGVMinInputSignals = new System.Windows.Forms.DataGridView();
+            this.NFBRandomize2 = new Neural_Network.UI.Shared.Controls.NonFocusButton();
             this.NFBRandomize1 = new Neural_Network.UI.Shared.Controls.NonFocusButton();
             this.NFBSave = new Neural_Network.UI.Shared.Controls.NonFocusButton();
             this.NFBRandomize0 = new Neural_Network.UI.Shared.Controls.NonFocusButton();
             this.NFBSaveAs = new Neural_Network.UI.Shared.Controls.NonFocusButton();
             this.NFBRemove = new Neural_Network.UI.Shared.Controls.NonFocusButton();
             this.NFBAdd = new Neural_Network.UI.Shared.Controls.NonFocusButton();
-            this.NFBRandomize2 = new Neural_Network.UI.Shared.Controls.NonFocusButton();
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.NUDLearningRate)).BeginInit();
@@ -310,7 +310,7 @@
             this.NUDEpochs.Size = new System.Drawing.Size(98, 27);
             this.NUDEpochs.TabIndex = 5;
             this.NUDEpochs.Value = new decimal(new int[] {
-            10,
+            1000,
             0,
             0,
             0});
@@ -425,6 +425,22 @@
             this.DGVMinInputSignals.Size = new System.Drawing.Size(99, 367);
             this.DGVMinInputSignals.TabIndex = 10;
             // 
+            // NFBRandomize2
+            // 
+            this.NFBRandomize2.BackColor = System.Drawing.Color.Transparent;
+            this.NFBRandomize2.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("NFBRandomize2.BackgroundImage")));
+            this.NFBRandomize2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.NFBRandomize2.FlatAppearance.BorderSize = 0;
+            this.NFBRandomize2.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(210)))), ((int)(((byte)(210)))), ((int)(((byte)(210)))));
+            this.NFBRandomize2.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(229)))), ((int)(((byte)(229)))), ((int)(((byte)(229)))));
+            this.NFBRandomize2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.NFBRandomize2.Location = new System.Drawing.Point(255, 219);
+            this.NFBRandomize2.Name = "NFBRandomize2";
+            this.NFBRandomize2.Size = new System.Drawing.Size(34, 30);
+            this.NFBRandomize2.TabIndex = 18;
+            this.NFBRandomize2.UseVisualStyleBackColor = false;
+            this.NFBRandomize2.Click += new System.EventHandler(this.NFBRandomize2_Click);
+            // 
             // NFBRandomize1
             // 
             this.NFBRandomize1.BackColor = System.Drawing.Color.Transparent;
@@ -520,22 +536,6 @@
             this.NFBAdd.TabIndex = 12;
             this.NFBAdd.UseVisualStyleBackColor = false;
             this.NFBAdd.Click += new System.EventHandler(this.NFBAdd_Click);
-            // 
-            // NFBRandomize2
-            // 
-            this.NFBRandomize2.BackColor = System.Drawing.Color.Transparent;
-            this.NFBRandomize2.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("NFBRandomize2.BackgroundImage")));
-            this.NFBRandomize2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.NFBRandomize2.FlatAppearance.BorderSize = 0;
-            this.NFBRandomize2.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(210)))), ((int)(((byte)(210)))), ((int)(((byte)(210)))));
-            this.NFBRandomize2.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(229)))), ((int)(((byte)(229)))), ((int)(((byte)(229)))));
-            this.NFBRandomize2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.NFBRandomize2.Location = new System.Drawing.Point(255, 219);
-            this.NFBRandomize2.Name = "NFBRandomize2";
-            this.NFBRandomize2.Size = new System.Drawing.Size(34, 30);
-            this.NFBRandomize2.TabIndex = 18;
-            this.NFBRandomize2.UseVisualStyleBackColor = false;
-            this.NFBRandomize2.Click += new System.EventHandler(this.NFBRandomize2_Click);
             // 
             // TrainingForm
             // 
