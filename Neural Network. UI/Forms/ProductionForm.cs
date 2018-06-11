@@ -101,7 +101,7 @@ namespace Neural_Network.UI.Forms
             var output = Production.GetOutput(inputProj, commonInput, additionalInput);
             try
             {
-                LCompletingChance.Text = output[0].ToString();
+                LCompletingChance.Text = output[0].ToString() + " ; " + output[1].ToString();
             }
             catch
             {
