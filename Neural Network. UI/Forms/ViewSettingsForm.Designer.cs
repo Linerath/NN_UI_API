@@ -39,7 +39,7 @@
             this.PLayers.Dock = System.Windows.Forms.DockStyle.Fill;
             this.PLayers.Location = new System.Drawing.Point(0, 0);
             this.PLayers.Name = "PLayers";
-            this.PLayers.Size = new System.Drawing.Size(282, 423);
+            this.PLayers.Size = new System.Drawing.Size(282, 303);
             this.PLayers.TabIndex = 1;
             // 
             // PGProperties
@@ -47,16 +47,15 @@
             this.PGProperties.Dock = System.Windows.Forms.DockStyle.Fill;
             this.PGProperties.Location = new System.Drawing.Point(0, 0);
             this.PGProperties.Name = "PGProperties";
-            this.PGProperties.Size = new System.Drawing.Size(282, 423);
+            this.PGProperties.Size = new System.Drawing.Size(282, 303);
             this.PGProperties.TabIndex = 2;
             // 
             // ViewSettingsForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(282, 423);
+            this.ClientSize = new System.Drawing.Size(282, 303);
             this.Controls.Add(this.PLayers);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "ViewSettingsForm";

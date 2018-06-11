@@ -34,8 +34,8 @@ namespace Neural_Network.UI.Forms
                 },
                 (inputProj) =>
                 {
-                    var owner = Owner as MainMenuForm;
-                    owner.ShowInputProject(inputProj);
+                    //var owner = Owner as MainMenuForm;
+                    //owner.ShowInputProject(inputProj);
                 },
                 (prod) =>
                 {

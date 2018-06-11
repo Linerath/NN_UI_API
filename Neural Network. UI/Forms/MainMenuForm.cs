@@ -250,11 +250,15 @@ namespace Neural_Network.UI.Forms
 
         private void DefaultFormsLayout()
         {
+            int expHeight = (int)((Screen.PrimaryScreen.WorkingArea.Height - Size.Height) * 0.4);
+            int settingsHeight = (int)((Screen.PrimaryScreen.WorkingArea.Height - Size.Height) * 0.6);
+
+
             DesktopLocation = new Point(0, 0);
             networkExplorerForm.Location = new Point(Location.X, Location.Y + Height);
+            networkExplorerForm.Size = new Size(networkExplorerForm.Size.Width, expHeight);
             viewSettingsForm.Location = new Point(Location.X, networkExplorerForm.Location.Y + networkExplorerForm.Height);
-
-            //Size = new Size(Screen.PrimaryScreen.Bounds.Width, Size.Height);
+            viewSettingsForm.Size = new Size(viewSettingsForm.Size.Width, settingsHeight);
         }
 
         public void ShowAllNetworks()

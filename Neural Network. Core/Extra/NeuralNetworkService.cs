@@ -103,7 +103,7 @@ namespace Neural_Network.Core.Extra
                     Shuffle(inputSignals, correctOutputSignals, random);
 
                 for (int j = 0; j < inputSignals.Count(); j++)
-                    network.Learn(inputSignals[j], correctOutputSignals[j], learningRate: learningRate, addEpoch: (j == inputSignals.Count() - 1));
+                    network.LearnNew(inputSignals[j], correctOutputSignals[j], learningRate: learningRate, addEpoch: (j == inputSignals.Count() - 1));
 
                 progressAction?.Invoke(i);
             }

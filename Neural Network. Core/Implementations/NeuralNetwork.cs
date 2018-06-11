@@ -252,6 +252,11 @@ namespace Neural_Network.Core.Implementation
             LearningRate = learningRate;
             Learn(signals, expectedOutputs, addEpoch);
         }
+        public void LearnNew(double[] signals, double[] expectedOutputs, double learningRate, bool addEpoch = false)
+        {
+            LearningRate = learningRate;
+            LearnNew(signals, expectedOutputs, addEpoch);
+        }
         public void Learn(double[] signals, double[] expectedOutputs, bool addEpoch = false)
         {
             if (signals == null)

@@ -494,7 +494,7 @@ namespace Neural_Network.Testing
         }
         public static void Learn5()
         {
-            FeedforwardNetworkSHL f = new FeedforwardNetworkSHL(9, 19, 2, Functions.Sigmoid, 0.02);
+            FeedforwardNetworkSHL f = new FeedforwardNetworkSHL(9, 19, 1, Functions.Sigmoid, 0.05);
 
             f.SetAllRandomWeights();
 
@@ -546,47 +546,47 @@ namespace Neural_Network.Testing
             double[] maxValues = new double[] { 100000, 200, 200, 50, 5, 1.50, 100, 5000, 1000 };
             double[][] outputData = new double[][]
             {
-                new double[] { 1, 0 },
-                new double[] { 1, 0 },
-                new double[] { 1, 0 },
-                new double[] { 1, 0 },
-                new double[] { 1, 0 },
-                new double[] { 1, 0 },
-                new double[] { 1, 0 },
-                new double[] { 1, 0 },
-                new double[] { 1, 0 },
-                new double[] { 1, 0 },
-                new double[] { 1, 0 },
-                new double[] { 1, 0 },
-                new double[] { 1, 0 },
-                new double[] { 1, 0 },
-                new double[] { 1, 0 },
-                new double[] { 0, 0 },
-                new double[] { 1, 0 },
-                new double[] { 1, 0 },
-                new double[] { 1, 0 },
-                new double[] { 1, 0 },
+                new double[] { 1 },
+                new double[] { 1 },
+                new double[] { 1 },
+                new double[] { 1 },
+                new double[] { 1 },
+                new double[] { 1 },
+                new double[] { 1 },
+                new double[] { 1 },
+                new double[] { 1 },
+                new double[] { 1 },
+                new double[] { 1 },
+                new double[] { 1 },
+                new double[] { 1 },
+                new double[] { 1 },
+                new double[] { 1 },
+                new double[] { 0 },
+                new double[] { 1 },
+                new double[] { 1 },
+                new double[] { 1 },
+                new double[] { 1 },
 
-                new double[] { 0, 1 },
-                new double[] { 0, 1 },
-                new double[] { 0, 1 },
-                new double[] { 0, 1 },
-                new double[] { 0, 1 },
-                new double[] { 0, 1 },
-                new double[] { 0, 1 },
-                new double[] { 0, 1 },
-                new double[] { 0, 1 },
-                new double[] { 0, 1 },
-                new double[] { 0, 1 },
-                new double[] { 0, 1 },
-                new double[] { 0, 1 },
-                new double[] { 0, 1 },
-                new double[] { 0, 1 },
-                new double[] { 0, 0 },
-                new double[] { 0, 1 },
-                new double[] { 0, 1 },
-                new double[] { 0, 1 },
-                new double[] { 0, 1 },
+                new double[] { 0 },
+                new double[] { 0 },
+                new double[] { 0 },
+                new double[] { 0 },
+                new double[] { 0 },
+                new double[] { 0 },
+                new double[] { 0 },
+                new double[] { 0 },
+                new double[] { 0 },
+                new double[] { 0 },
+                new double[] { 0 },
+                new double[] { 0 },
+                new double[] { 0 },
+                new double[] { 0 },
+                new double[] { 0 },
+                new double[] { 0 },
+                new double[] { 0 },
+                new double[] { 0 },
+                new double[] { 0 },
+                new double[] { 0 },
             };
 
             for (int i = 0; i < inputData.Length; i++)
@@ -607,12 +607,12 @@ namespace Neural_Network.Testing
                 NeuralNetworkService.Shuffle(inputData.ToList(), outputData.ToList(), random);
             }
 
-            //ShowNetwork(f);
             Console.WriteLine(new String('/', 100));
             Console.WriteLine("Learnt...");
             Console.WriteLine(new String('/', 100) + "\n");
             ShowResponseAndError(f, inputData[0], outputData[0], false);
             ShowResponseAndError(f, inputData[23], outputData[23], false);
+            ShowNetwork(f);
         }
 
         public static void XOR()
