@@ -10,7 +10,7 @@ namespace Neural_Network.Core.Extra
     [Serializable]
     public class NeuralNetworkInputProject
     {
-        public String Name { get; set; }
+        public String Name { get; set;  }
         public FeedforwardNetworkSHL Network { get; set; }
         private List<Field> inputLayerFields;
         private List<Field> outputLayerFields;

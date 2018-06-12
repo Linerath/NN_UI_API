@@ -13,7 +13,7 @@ namespace Neural_Network.UI.Shared
         public static List<Field> ProductionFields = new List<Field>()
         {
             new Field { Name = "Details", Description = "Детали", Value = 10000, MinValue = 0, MaxValue = 100000 },
-            new Field { Name = "DetailsCount", Description = "Количество деталей на холодильник", Value = 93, MinValue = 0, MaxValue = 200 },
+            new Field { Name = "DetailsCount", Description = "Количество деталей на холод.", Value = 93, MinValue = 0, MaxValue = 200 },
             new Field { Name = "Speed", Description = "Скорость потребления деталей", Value = 89, MinValue = 155, MaxValue = 200 },
             new Field { Name = "Employees", Description = "Количество работников", Value = 15, MinValue = 0, MaxValue = 50 },
             new Field { Name = "Rhythm", Description = "Ритм производства", Value = 1, MinValue = 0, MaxValue = 5 },

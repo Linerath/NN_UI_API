@@ -78,16 +78,17 @@
             this.tableLayoutPanel1.ColumnCount = 3;
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 45F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 55F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 400F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 300F));
             this.tableLayoutPanel1.Controls.Add(this.GBFields, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.GBBody, 1, 0);
             this.tableLayoutPanel1.Controls.Add(this.GBSections, 2, 0);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
+            this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 1;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(1523, 669);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(1142, 544);
             this.tableLayoutPanel1.TabIndex = 0;
             // 
             // GBFields
@@ -96,11 +97,11 @@
             this.GBFields.Controls.Add(this.NUDField0);
             this.GBFields.Dock = System.Windows.Forms.DockStyle.Fill;
             this.GBFields.Font = new System.Drawing.Font("Consolas", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.GBFields.Location = new System.Drawing.Point(3, 2);
-            this.GBFields.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.GBFields.Location = new System.Drawing.Point(2, 2);
+            this.GBFields.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.GBFields.Name = "GBFields";
-            this.GBFields.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.GBFields.Size = new System.Drawing.Size(499, 665);
+            this.GBFields.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.GBFields.Size = new System.Drawing.Size(374, 540);
             this.GBFields.TabIndex = 11;
             this.GBFields.TabStop = false;
             this.GBFields.Text = "Current production state";
@@ -109,24 +110,26 @@
             // 
             this.LField0.AutoSize = true;
             this.LField0.Font = new System.Drawing.Font("Consolas", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LField0.Location = new System.Drawing.Point(128, 47);
+            this.LField0.Location = new System.Drawing.Point(117, 39);
+            this.LField0.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.LField0.Name = "LField0";
-            this.LField0.Size = new System.Drawing.Size(18, 20);
+            this.LField0.Size = new System.Drawing.Size(16, 17);
             this.LField0.TabIndex = 1;
             this.LField0.Text = "0";
             // 
             // NUDField0
             // 
+            this.NUDField0.DecimalPlaces = 2;
             this.NUDField0.Font = new System.Drawing.Font("Consolas", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.NUDField0.Location = new System.Drawing.Point(17, 45);
-            this.NUDField0.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.NUDField0.Location = new System.Drawing.Point(13, 37);
+            this.NUDField0.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.NUDField0.Maximum = new decimal(new int[] {
             1000000,
             0,
             0,
             0});
             this.NUDField0.Name = "NUDField0";
-            this.NUDField0.Size = new System.Drawing.Size(105, 27);
+            this.NUDField0.Size = new System.Drawing.Size(100, 23);
             this.NUDField0.TabIndex = 0;
             this.NUDField0.ValueChanged += new System.EventHandler(this.NUDField_ValueChanged);
             // 
@@ -138,9 +141,11 @@
             this.GBBody.Controls.Add(this.PSaleChance);
             this.GBBody.Dock = System.Windows.Forms.DockStyle.Fill;
             this.GBBody.Font = new System.Drawing.Font("Consolas", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.GBBody.Location = new System.Drawing.Point(508, 3);
+            this.GBBody.Location = new System.Drawing.Point(380, 2);
+            this.GBBody.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.GBBody.Name = "GBBody";
-            this.GBBody.Size = new System.Drawing.Size(611, 663);
+            this.GBBody.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.GBBody.Size = new System.Drawing.Size(459, 540);
             this.GBBody.TabIndex = 11;
             this.GBBody.TabStop = false;
             // 
@@ -148,16 +153,18 @@
             // 
             this.PNotTrained.Controls.Add(this.BTraining);
             this.PNotTrained.Controls.Add(this.LTrainingInfo);
-            this.PNotTrained.Location = new System.Drawing.Point(390, 440);
+            this.PNotTrained.Location = new System.Drawing.Point(292, 358);
+            this.PNotTrained.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.PNotTrained.Name = "PNotTrained";
-            this.PNotTrained.Size = new System.Drawing.Size(215, 232);
+            this.PNotTrained.Size = new System.Drawing.Size(161, 188);
             this.PNotTrained.TabIndex = 0;
             // 
             // BTraining
             // 
-            this.BTraining.Location = new System.Drawing.Point(179, 188);
+            this.BTraining.Location = new System.Drawing.Point(134, 153);
+            this.BTraining.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.BTraining.Name = "BTraining";
-            this.BTraining.Size = new System.Drawing.Size(193, 56);
+            this.BTraining.Size = new System.Drawing.Size(145, 46);
             this.BTraining.TabIndex = 7;
             this.BTraining.Text = "Перейти к обучению";
             this.BTraining.UseVisualStyleBackColor = true;
@@ -168,8 +175,9 @@
             this.LTrainingInfo.Dock = System.Windows.Forms.DockStyle.Top;
             this.LTrainingInfo.Font = new System.Drawing.Font("Consolas", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.LTrainingInfo.Location = new System.Drawing.Point(0, 0);
+            this.LTrainingInfo.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.LTrainingInfo.Name = "LTrainingInfo";
-            this.LTrainingInfo.Size = new System.Drawing.Size(215, 132);
+            this.LTrainingInfo.Size = new System.Drawing.Size(161, 107);
             this.LTrainingInfo.TabIndex = 6;
             this.LTrainingInfo.Text = resources.GetString("LTrainingInfo.Text");
             this.LTrainingInfo.TextAlign = System.Drawing.ContentAlignment.TopCenter;
@@ -179,16 +187,18 @@
             this.PFailureChance.Controls.Add(this.BEvaluateFailure);
             this.PFailureChance.Controls.Add(this.LFailureStatus);
             this.PFailureChance.Controls.Add(this.LFailureChance);
-            this.PFailureChance.Location = new System.Drawing.Point(307, 309);
+            this.PFailureChance.Location = new System.Drawing.Point(230, 251);
+            this.PFailureChance.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.PFailureChance.Name = "PFailureChance";
-            this.PFailureChance.Size = new System.Drawing.Size(259, 111);
+            this.PFailureChance.Size = new System.Drawing.Size(194, 90);
             this.PFailureChance.TabIndex = 8;
             // 
             // BEvaluateFailure
             // 
-            this.BEvaluateFailure.Location = new System.Drawing.Point(7, 80);
+            this.BEvaluateFailure.Location = new System.Drawing.Point(5, 65);
+            this.BEvaluateFailure.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.BEvaluateFailure.Name = "BEvaluateFailure";
-            this.BEvaluateFailure.Size = new System.Drawing.Size(128, 45);
+            this.BEvaluateFailure.Size = new System.Drawing.Size(96, 37);
             this.BEvaluateFailure.TabIndex = 6;
             this.BEvaluateFailure.Text = "Оценить";
             this.BEvaluateFailure.UseVisualStyleBackColor = true;
@@ -197,18 +207,20 @@
             // LFailureStatus
             // 
             this.LFailureStatus.AutoSize = true;
-            this.LFailureStatus.Location = new System.Drawing.Point(3, 10);
+            this.LFailureStatus.Location = new System.Drawing.Point(2, 8);
+            this.LFailureStatus.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.LFailureStatus.Name = "LFailureStatus";
-            this.LFailureStatus.Size = new System.Drawing.Size(243, 20);
+            this.LFailureStatus.Size = new System.Drawing.Size(216, 17);
             this.LFailureStatus.TabIndex = 2;
             this.LFailureStatus.Text = "Current production status:";
             // 
             // LFailureChance
             // 
             this.LFailureChance.AutoSize = true;
-            this.LFailureChance.Location = new System.Drawing.Point(3, 46);
+            this.LFailureChance.Location = new System.Drawing.Point(2, 37);
+            this.LFailureChance.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.LFailureChance.Name = "LFailureChance";
-            this.LFailureChance.Size = new System.Drawing.Size(144, 20);
+            this.LFailureChance.Size = new System.Drawing.Size(128, 17);
             this.LFailureChance.TabIndex = 1;
             this.LFailureChance.Text = "Failure chance:";
             // 
@@ -221,47 +233,52 @@
             this.PAssessmentOfCompleting.Controls.Add(this.BEvaluateCompleting);
             this.PAssessmentOfCompleting.Controls.Add(this.label1);
             this.PAssessmentOfCompleting.Controls.Add(this.NUDSupposedCount0);
-            this.PAssessmentOfCompleting.Location = new System.Drawing.Point(119, 73);
+            this.PAssessmentOfCompleting.Location = new System.Drawing.Point(89, 59);
+            this.PAssessmentOfCompleting.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.PAssessmentOfCompleting.Name = "PAssessmentOfCompleting";
-            this.PAssessmentOfCompleting.Size = new System.Drawing.Size(419, 243);
+            this.PAssessmentOfCompleting.Size = new System.Drawing.Size(314, 197);
             this.PAssessmentOfCompleting.TabIndex = 9;
             // 
             // LCompletingChance
             // 
             this.LCompletingChance.AutoSize = true;
-            this.LCompletingChance.Location = new System.Drawing.Point(246, 173);
+            this.LCompletingChance.Location = new System.Drawing.Point(184, 141);
+            this.LCompletingChance.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.LCompletingChance.Name = "LCompletingChance";
-            this.LCompletingChance.Size = new System.Drawing.Size(0, 20);
+            this.LCompletingChance.Size = new System.Drawing.Size(0, 17);
             this.LCompletingChance.TabIndex = 6;
             // 
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(3, 173);
+            this.label6.Location = new System.Drawing.Point(2, 141);
+            this.label6.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(216, 20);
+            this.label6.Size = new System.Drawing.Size(192, 17);
             this.label6.TabIndex = 5;
             this.label6.Text = "Вероятность выполнения:";
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(3, 61);
+            this.label2.Location = new System.Drawing.Point(2, 50);
+            this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(63, 20);
+            this.label2.Size = new System.Drawing.Size(56, 17);
             this.label2.TabIndex = 4;
             this.label2.Text = "Время:";
             // 
             // NUDSupposedTime0
             // 
-            this.NUDSupposedTime0.Location = new System.Drawing.Point(250, 61);
+            this.NUDSupposedTime0.Location = new System.Drawing.Point(188, 50);
+            this.NUDSupposedTime0.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.NUDSupposedTime0.Maximum = new decimal(new int[] {
             1000000,
             0,
             0,
             0});
             this.NUDSupposedTime0.Name = "NUDSupposedTime0";
-            this.NUDSupposedTime0.Size = new System.Drawing.Size(105, 27);
+            this.NUDSupposedTime0.Size = new System.Drawing.Size(79, 23);
             this.NUDSupposedTime0.TabIndex = 2;
             this.NUDSupposedTime0.Value = new decimal(new int[] {
             110,
@@ -271,9 +288,10 @@
             // 
             // BEvaluateCompleting
             // 
-            this.BEvaluateCompleting.Location = new System.Drawing.Point(7, 116);
+            this.BEvaluateCompleting.Location = new System.Drawing.Point(5, 94);
+            this.BEvaluateCompleting.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.BEvaluateCompleting.Name = "BEvaluateCompleting";
-            this.BEvaluateCompleting.Size = new System.Drawing.Size(128, 45);
+            this.BEvaluateCompleting.Size = new System.Drawing.Size(96, 37);
             this.BEvaluateCompleting.TabIndex = 4;
             this.BEvaluateCompleting.Text = "Оценить";
             this.BEvaluateCompleting.UseVisualStyleBackColor = true;
@@ -282,22 +300,24 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(3, 28);
+            this.label1.Location = new System.Drawing.Point(2, 23);
+            this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(207, 20);
+            this.label1.Size = new System.Drawing.Size(184, 17);
             this.label1.TabIndex = 1;
             this.label1.Text = "Предполагаемый выпуск:";
             // 
             // NUDSupposedCount0
             // 
-            this.NUDSupposedCount0.Location = new System.Drawing.Point(250, 26);
+            this.NUDSupposedCount0.Location = new System.Drawing.Point(188, 21);
+            this.NUDSupposedCount0.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.NUDSupposedCount0.Maximum = new decimal(new int[] {
             1000000,
             0,
             0,
             0});
             this.NUDSupposedCount0.Name = "NUDSupposedCount0";
-            this.NUDSupposedCount0.Size = new System.Drawing.Size(105, 27);
+            this.NUDSupposedCount0.Size = new System.Drawing.Size(79, 23);
             this.NUDSupposedCount0.TabIndex = 0;
             this.NUDSupposedCount0.Value = new decimal(new int[] {
             100,
@@ -313,46 +333,51 @@
             this.PSaleChance.Controls.Add(this.BEvaluateSale);
             this.PSaleChance.Controls.Add(this.label5);
             this.PSaleChance.Controls.Add(this.NUDSupposedCount1);
-            this.PSaleChance.Location = new System.Drawing.Point(17, 440);
+            this.PSaleChance.Location = new System.Drawing.Point(13, 358);
+            this.PSaleChance.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.PSaleChance.Name = "PSaleChance";
-            this.PSaleChance.Size = new System.Drawing.Size(275, 214);
+            this.PSaleChance.Size = new System.Drawing.Size(206, 174);
             this.PSaleChance.TabIndex = 10;
             // 
             // LSaleChance
             // 
             this.LSaleChance.AutoSize = true;
-            this.LSaleChance.Location = new System.Drawing.Point(3, 173);
+            this.LSaleChance.Location = new System.Drawing.Point(2, 141);
+            this.LSaleChance.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.LSaleChance.Name = "LSaleChance";
-            this.LSaleChance.Size = new System.Drawing.Size(171, 20);
+            this.LSaleChance.Size = new System.Drawing.Size(152, 17);
             this.LSaleChance.TabIndex = 5;
             this.LSaleChance.Text = "Вероятность сбыта:";
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(3, 61);
+            this.label4.Location = new System.Drawing.Point(2, 50);
+            this.label4.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(63, 20);
+            this.label4.Size = new System.Drawing.Size(56, 17);
             this.label4.TabIndex = 4;
             this.label4.Text = "Время:";
             // 
             // NUDSupposedTime1
             // 
-            this.NUDSupposedTime1.Location = new System.Drawing.Point(250, 61);
+            this.NUDSupposedTime1.Location = new System.Drawing.Point(188, 50);
+            this.NUDSupposedTime1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.NUDSupposedTime1.Maximum = new decimal(new int[] {
             1000000,
             0,
             0,
             0});
             this.NUDSupposedTime1.Name = "NUDSupposedTime1";
-            this.NUDSupposedTime1.Size = new System.Drawing.Size(105, 27);
+            this.NUDSupposedTime1.Size = new System.Drawing.Size(79, 23);
             this.NUDSupposedTime1.TabIndex = 2;
             // 
             // BEvaluateSale
             // 
-            this.BEvaluateSale.Location = new System.Drawing.Point(7, 116);
+            this.BEvaluateSale.Location = new System.Drawing.Point(5, 94);
+            this.BEvaluateSale.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.BEvaluateSale.Name = "BEvaluateSale";
-            this.BEvaluateSale.Size = new System.Drawing.Size(128, 45);
+            this.BEvaluateSale.Size = new System.Drawing.Size(96, 37);
             this.BEvaluateSale.TabIndex = 3;
             this.BEvaluateSale.Text = "Оценить";
             this.BEvaluateSale.UseVisualStyleBackColor = true;
@@ -361,22 +386,24 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(3, 28);
+            this.label5.Location = new System.Drawing.Point(2, 23);
+            this.label5.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(207, 20);
+            this.label5.Size = new System.Drawing.Size(184, 17);
             this.label5.TabIndex = 1;
             this.label5.Text = "Предполагаемый выпуск:";
             // 
             // NUDSupposedCount1
             // 
-            this.NUDSupposedCount1.Location = new System.Drawing.Point(250, 26);
+            this.NUDSupposedCount1.Location = new System.Drawing.Point(188, 21);
+            this.NUDSupposedCount1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.NUDSupposedCount1.Maximum = new decimal(new int[] {
             1000000,
             0,
             0,
             0});
             this.NUDSupposedCount1.Name = "NUDSupposedCount1";
-            this.NUDSupposedCount1.Size = new System.Drawing.Size(105, 27);
+            this.NUDSupposedCount1.Size = new System.Drawing.Size(79, 23);
             this.NUDSupposedCount1.TabIndex = 0;
             // 
             // GBSections
@@ -384,9 +411,11 @@
             this.GBSections.Controls.Add(this.LFunction0);
             this.GBSections.Dock = System.Windows.Forms.DockStyle.Fill;
             this.GBSections.Font = new System.Drawing.Font("Consolas", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.GBSections.Location = new System.Drawing.Point(1125, 3);
+            this.GBSections.Location = new System.Drawing.Point(843, 2);
+            this.GBSections.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.GBSections.Name = "GBSections";
-            this.GBSections.Size = new System.Drawing.Size(395, 663);
+            this.GBSections.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.GBSections.Size = new System.Drawing.Size(297, 540);
             this.GBSections.TabIndex = 12;
             this.GBSections.TabStop = false;
             // 
@@ -394,9 +423,10 @@
             // 
             this.LFunction0.BackColor = System.Drawing.SystemColors.Control;
             this.LFunction0.Dock = System.Windows.Forms.DockStyle.Top;
-            this.LFunction0.Location = new System.Drawing.Point(3, 23);
+            this.LFunction0.Location = new System.Drawing.Point(2, 18);
+            this.LFunction0.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.LFunction0.Name = "LFunction0";
-            this.LFunction0.Size = new System.Drawing.Size(389, 30);
+            this.LFunction0.Size = new System.Drawing.Size(293, 24);
             this.LFunction0.TabIndex = 0;
             this.LFunction0.Text = "<- Function0";
             this.LFunction0.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -404,11 +434,11 @@
             // 
             // ProductionForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1523, 669);
+            this.ClientSize = new System.Drawing.Size(1142, 544);
             this.Controls.Add(this.tableLayoutPanel1);
-            this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.MinimizeBox = false;
             this.Name = "ProductionForm";
             this.ShowIcon = false;

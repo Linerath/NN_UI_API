@@ -131,16 +131,18 @@ namespace Neural_Network.UI.Forms
         #region Methods
         private void LoadFields()
         {
-            NumericUpDown CreateField(double value, Point location)
+            NumericUpDown CreateField(double value, double minimum, double maximum, Point location)
             {
                 NumericUpDown nud = new NumericUpDown
                 {
                     Font = new Font("Consolas", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0),
                     Location = location,
                     Margin = new Padding(3, 2, 3, 2),
-                    Maximum = new decimal(new int[] { 1000000, 0, 0, 0 }),
-                    Size = new Size(79, 23),
+                    Size = new Size(100, 23),
                     Value = (decimal)value,
+                    Minimum = (decimal)minimum,
+                    Maximum = (decimal)maximum,
+                    DecimalPlaces = 2,
                 };
                 nud.ValueChanged += NUDField_ValueChanged;
                 return nud;
@@ -169,7 +171,7 @@ namespace Neural_Network.UI.Forms
                 {
                     var location = new Point(fieldsCtrls.Last().Location.X, fieldsCtrls.Last().Location.Y + fieldsCtrls.Last().Size.Height + 4);
                     var labelLocation = new Point(prevLabel.Location.X, prevLabel.Location.Y + prevLabel.Height + 10);
-                    NumericUpDown field = CreateField(Production.Input[i], location);
+                    NumericUpDown field = CreateField(Production.Input[i], Production.InputProjects[0].InputLayerFields[i].MinValue, Production.InputProjects[0].InputLayerFields[i].MaxValue, location);
                     commonInput[i] = Production.Input[i];
                     Label label = CreateFieldLabel(Production.InputProjects[0].InputLayerFields[i].Description, labelLocation);
                     prevLabel = label;
