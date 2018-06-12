@@ -82,6 +82,7 @@ namespace Neural_Network.Core
             for (int i = 0; i < weights.Length; i++)
                 weights[i] = weights[i] - learningRate * (signals[i] * delta);
         }
+
         public void LearnNew(double[] signals, double error, double learningRate)
         {
             double response = GetResponse(signals);
@@ -89,6 +90,7 @@ namespace Neural_Network.Core
             for (int i = 0; i < weights.Length; i++)
                 weights[i] = weights[i] + learningRate * (signals[i] * delta);
         }
+
         public void Resize(int newSize)
         {
             if (newSize < 1)

@@ -102,7 +102,7 @@ namespace Neural_Network.UI.Forms
             var output = Production.GetOutput(inputProj, commonInput, additionalInput);
             try
             {
-                LCompletingChance.Text = output[0].ToString() + " ; " + output[1].ToString();
+                LCompletingChance1.Text = output[0].ToString();
             }
             catch
             {
@@ -112,11 +112,59 @@ namespace Neural_Network.UI.Forms
         }
         private void BEvaluateSale_Click(object sender, EventArgs e)
         {
+            double[] additionalInput = new double[]
+            {
+                (double)NUDSupposedCount1.Value,
+                (double)NUDSupposedTime1.Value,
+            };
 
+            NeuralNetworkInputProject inputProj = null;
+            try
+            {
+                inputProj = Production.InputProjects[Production.NetworksOutputs.FindIndex(x => x.NetworkFunction == NetworkFunction.SaleChance)];
+                if (inputProj == null)
+                    throw new Exception();
+            }
+            catch
+            {
+                MessageBox.Show("An error has occured.", "Error");
+                return;
+            }
+            var output = Production.GetOutput(inputProj, commonInput, additionalInput);
+            try
+            {
+                LSaleChance1.Text = output[0].ToString();
+            }
+            catch
+            {
+                MessageBox.Show("An error has occured.", "Error");
+                return;
+            }
         }
         private void BEvaluateFailure_Click(object sender, EventArgs e)
         {
-
+            NeuralNetworkInputProject inputProj = null;
+            try
+            {
+                inputProj = Production.InputProjects[Production.NetworksOutputs.FindIndex(x => x.NetworkFunction == NetworkFunction.FailureChance)];
+                if (inputProj == null)
+                    throw new Exception();
+            }
+            catch
+            {
+                MessageBox.Show("An error has occured.", "Error");
+                return;
+            }
+            var output = Production.GetOutput(inputProj, commonInput);
+            try
+            {
+                LFailureChance1.Text = output[0].ToString();
+            }
+            catch
+            {
+                MessageBox.Show("An error has occured.", "Error");
+                return;
+            }
         }
         private void ProductionForm_FormClosing(object sender, FormClosingEventArgs e)
         {
