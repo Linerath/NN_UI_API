@@ -177,7 +177,7 @@
             this.LTrainingInfo.Location = new System.Drawing.Point(0, 0);
             this.LTrainingInfo.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.LTrainingInfo.Name = "LTrainingInfo";
-            this.LTrainingInfo.Size = new System.Drawing.Size(161, 107);
+            this.LTrainingInfo.Size = new System.Drawing.Size(161, 158);
             this.LTrainingInfo.TabIndex = 6;
             this.LTrainingInfo.Text = resources.GetString("LTrainingInfo.Text");
             this.LTrainingInfo.TextAlign = System.Drawing.ContentAlignment.TopCenter;

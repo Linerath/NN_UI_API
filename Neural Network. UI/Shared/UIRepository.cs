@@ -14,8 +14,10 @@ namespace Neural_Network.UI.Shared
         {
             new Field { Name = "Details", Description = "Детали", Value = 10000, MinValue = 0, MaxValue = 100000 },
             new Field { Name = "DetailsCount", Description = "Количество деталей на холод.", Value = 93, MinValue = 0, MaxValue = 200 },
-            new Field { Name = "Speed", Description = "Скорость потребления деталей", Value = 89, MinValue = 155, MaxValue = 200 },
-            new Field { Name = "Employees", Description = "Количество работников", Value = 15, MinValue = 0, MaxValue = 50 },
+            new Field { Name = "DetailsOutSpeed", Description = "Скорость потребления деталей, ч.", Value = 89, MinValue = 0, MaxValue = 1000 },
+            new Field { Name = "DetailsInSpeed", Description = "Скорость прихода деталей, ч.", Value = 89, MinValue = 0, MaxValue = 1000 },
+            new Field { Name = "Employees", Description = "Количество работников", Value = 15, MinValue = 0, MaxValue = 100 },
+            new Field { Name = "LinesCount", Description = "Количество рабочих линий", Value = 15, MinValue = 0, MaxValue = 50 },
             new Field { Name = "Rhythm", Description = "Ритм производства", Value = 1, MinValue = 0, MaxValue = 5 },
             new Field { Name = "Tact", Description = "Такт производства", Value = 1, MinValue = 0, MaxValue = 1.50 },
             new Field { Name = "DefectPercentage", Description = "Процент брака", Value = 2, MinValue = 0, MaxValue = 100 },
