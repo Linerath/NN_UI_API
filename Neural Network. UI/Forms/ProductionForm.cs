@@ -335,7 +335,7 @@ namespace Neural_Network.UI.Forms
                 else
                 {
                     sectionsCtrls[i].Visible = false;
-                    if (sectionLabelsCtrls[i] != null)
+                    if (i < sectionLabelsCtrls.Count() && sectionLabelsCtrls[i] != null)
                         sectionLabelsCtrls[i].BackColor = SystemColors.Control;
                 }
             }

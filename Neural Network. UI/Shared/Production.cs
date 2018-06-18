@@ -39,7 +39,11 @@ namespace Neural_Network.UI.Shared
                 throw new ArgumentNullException("commonInput");
             if (recalculate)
             {
-                double[] signals = Input.Concat(additionalInput).ToArray();
+                double[] signals;
+                if (additionalInput != null)
+                    signals = Input.Concat(additionalInput).ToArray();
+                else
+                    signals = Input;
                 Output = inputProj.SetInput(signals);
                 return Output;
             }
