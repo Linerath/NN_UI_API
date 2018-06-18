@@ -102,7 +102,14 @@ namespace Neural_Network.UI.Forms
             var output = Production.GetOutput(inputProj, commonInput, additionalInput);
             try
             {
-                LCompletingChance1.Text = output[0].ToString();
+                var chance = Math.Round(output[0] * 100, 0);
+                LCompletingChance1.Text = chance.ToString() + "%";
+                if (chance < 30)
+                    LCompletingChance1.ForeColor = Color.Red;
+                else if (chance >= 30 && chance < 70)
+                    LCompletingChance1.ForeColor = Color.Orange;
+                else if (chance >= 70)
+                    LCompletingChance1.ForeColor = Color.Green;
             }
             catch
             {

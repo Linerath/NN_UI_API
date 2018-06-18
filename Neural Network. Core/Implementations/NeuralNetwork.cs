@@ -332,7 +332,10 @@ namespace Neural_Network.Core.Implementation
             signals.CopyTo(signalsCopy, 0);
 
             for (int i = 0; i < signalsCopy.Length; i++)
+            {
                 signalsCopy[i] = Normalize(signalsCopy[i], minValues[i], maxValues[i]);
+                
+            }
 
             return signalsCopy;
         }

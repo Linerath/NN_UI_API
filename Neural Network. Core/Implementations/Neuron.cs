@@ -27,35 +27,7 @@ namespace Neural_Network.Core
             weights = new double[inputCount];
             ActivationFunction = activationFunction;
         }
-        
-        #region Tested
-        public void SetWeights(double[] newWeights)
-        {
-            if (newWeights == null)
-                throw new ArgumentNullException("newWeights");
 
-            int length = newWeights.Length;
-            if (weights.Length < length)
-                length = weights.Length;
-
-            for (int i = 0; i < length; i++)
-                weights[i] = newWeights[i];
-        }
-        public void SetRandomWeights(Random random, double minValue, double maxValue)
-        {
-            for (int i = 0; i < weights.Length; i++)
-                weights[i] = (random.NextDouble() * (maxValue - minValue) + minValue);
-        }
-        public double[] GetWeights()
-        {
-            double[] copy = new double[weights.Length];
-            weights.CopyTo(copy, 0);
-            return copy;
-        }
-        public double GetWeightsSum()
-        {
-            return weights.Sum();
-        }
         public double GetResponse(double[] signals)
         {
             if (signals == null)
@@ -75,6 +47,7 @@ namespace Neural_Network.Core
 
             return response;
         }
+        
         public void Learn(double[] signals, double error, double learningRate)
         {
             double response = GetResponse(signals);
@@ -82,13 +55,41 @@ namespace Neural_Network.Core
             for (int i = 0; i < weights.Length; i++)
                 weights[i] = weights[i] - learningRate * (signals[i] * delta);
         }
-
         public void LearnNew(double[] signals, double error, double learningRate)
         {
             double response = GetResponse(signals);
             double delta = error * response * (1 - response);
             for (int i = 0; i < weights.Length; i++)
                 weights[i] = weights[i] + learningRate * (signals[i] * delta);
+        }
+
+        public void SetWeights(double[] newWeights)
+        {
+            if (newWeights == null)
+                throw new ArgumentNullException("newWeights");
+
+            int length = newWeights.Length;
+            if (weights.Length < length)
+                length = weights.Length;
+
+            for (int i = 0; i < length; i++)
+                weights[i] = newWeights[i];
+        }
+        public void SetRandomWeights(Random random, double minValue, double maxValue)
+        {
+            for (int i = 0; i < weights.Length; i++)
+                weights[i] = (random.NextDouble() * (maxValue - minValue) + minValue);
+        }
+
+        public double[] GetWeights()
+        {
+            double[] copy = new double[weights.Length];
+            weights.CopyTo(copy, 0);
+            return copy;
+        }
+        public double GetWeightsSum()
+        {
+            return weights.Sum();
         }
 
         public void Resize(int newSize)
@@ -98,7 +99,6 @@ namespace Neural_Network.Core
 
             Array.Resize(ref weights, newSize);
         }
-
 
         private double ApplyActivationFunction(double signal)
         {
@@ -110,10 +110,7 @@ namespace Neural_Network.Core
                     return signal;
             }
         }
-        #endregion
 
-        #region Not tested
-        #endregion
 
         public int InputCount => weights.Length;
         public double this[int index]

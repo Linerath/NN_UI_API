@@ -40,9 +40,6 @@
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.RBFeedforward = new System.Windows.Forms.RadioButton();
             this.radioButton2 = new System.Windows.Forms.RadioButton();
-            this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.LFile = new System.Windows.Forms.Label();
-            this.BOpenFile = new System.Windows.Forms.Button();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.CBRandomWeights = new System.Windows.Forms.CheckBox();
             this.CBCreateAnother = new System.Windows.Forms.CheckBox();
@@ -51,7 +48,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.NUDHidden)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.NUDInput)).BeginInit();
             this.groupBox1.SuspendLayout();
-            this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -160,7 +156,7 @@
             // BOk
             // 
             this.BOk.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BOk.Location = new System.Drawing.Point(334, 491);
+            this.BOk.Location = new System.Drawing.Point(336, 360);
             this.BOk.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.BOk.Name = "BOk";
             this.BOk.Size = new System.Drawing.Size(77, 32);
@@ -223,44 +219,10 @@
             this.radioButton2.Location = new System.Drawing.Point(19, 57);
             this.radioButton2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.radioButton2.Name = "radioButton2";
-            this.radioButton2.Size = new System.Drawing.Size(300, 24);
+            this.radioButton2.Size = new System.Drawing.Size(363, 24);
             this.radioButton2.TabIndex = 1;
-            this.radioButton2.Text = "Other types are in development";
+            this.radioButton2.Text = "Create your own and implement interf.";
             this.radioButton2.UseVisualStyleBackColor = true;
-            // 
-            // groupBox2
-            // 
-            this.groupBox2.Controls.Add(this.LFile);
-            this.groupBox2.Controls.Add(this.BOpenFile);
-            this.groupBox2.Font = new System.Drawing.Font("Consolas", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox2.Location = new System.Drawing.Point(12, 12);
-            this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(399, 125);
-            this.groupBox2.TabIndex = 23;
-            this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "From file";
-            // 
-            // LFile
-            // 
-            this.LFile.AutoSize = true;
-            this.LFile.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LFile.Location = new System.Drawing.Point(159, 73);
-            this.LFile.Name = "LFile";
-            this.LFile.Size = new System.Drawing.Size(56, 18);
-            this.LFile.TabIndex = 24;
-            this.LFile.Text = "label1";
-            this.LFile.Visible = false;
-            // 
-            // BOpenFile
-            // 
-            this.BOpenFile.Enabled = false;
-            this.BOpenFile.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BOpenFile.Location = new System.Drawing.Point(136, 26);
-            this.BOpenFile.Name = "BOpenFile";
-            this.BOpenFile.Size = new System.Drawing.Size(110, 35);
-            this.BOpenFile.TabIndex = 23;
-            this.BOpenFile.Text = "Open file";
-            this.BOpenFile.UseVisualStyleBackColor = true;
             // 
             // groupBox3
             // 
@@ -275,7 +237,7 @@
             this.groupBox3.Controls.Add(this.NUDInput);
             this.groupBox3.Controls.Add(this.NUDHidden);
             this.groupBox3.Font = new System.Drawing.Font("Consolas", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox3.Location = new System.Drawing.Point(12, 143);
+            this.groupBox3.Location = new System.Drawing.Point(14, 12);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Size = new System.Drawing.Size(399, 340);
             this.groupBox3.TabIndex = 24;
@@ -298,7 +260,7 @@
             // 
             this.CBCreateAnother.AutoSize = true;
             this.CBCreateAnother.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.CBCreateAnother.Location = new System.Drawing.Point(22, 497);
+            this.CBCreateAnother.Location = new System.Drawing.Point(24, 366);
             this.CBCreateAnother.Name = "CBCreateAnother";
             this.CBCreateAnother.Size = new System.Drawing.Size(174, 22);
             this.CBCreateAnother.TabIndex = 23;
@@ -308,7 +270,7 @@
             // BCancel
             // 
             this.BCancel.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BCancel.Location = new System.Drawing.Point(251, 491);
+            this.BCancel.Location = new System.Drawing.Point(253, 360);
             this.BCancel.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.BCancel.Name = "BCancel";
             this.BCancel.Size = new System.Drawing.Size(77, 32);
@@ -321,11 +283,10 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(425, 534);
+            this.ClientSize = new System.Drawing.Size(425, 405);
             this.Controls.Add(this.BCancel);
             this.Controls.Add(this.CBCreateAnother);
             this.Controls.Add(this.groupBox3);
-            this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.BOk);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.MaximizeBox = false;
@@ -340,8 +301,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.NUDInput)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
-            this.groupBox2.ResumeLayout(false);
-            this.groupBox2.PerformLayout();
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
             this.ResumeLayout(false);
@@ -363,10 +322,7 @@
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.RadioButton RBFeedforward;
         private System.Windows.Forms.RadioButton radioButton2;
-        private System.Windows.Forms.GroupBox groupBox2;
-        private System.Windows.Forms.Button BOpenFile;
         private System.Windows.Forms.GroupBox groupBox3;
-        private System.Windows.Forms.Label LFile;
         private System.Windows.Forms.CheckBox CBRandomWeights;
         public System.Windows.Forms.CheckBox CBCreateAnother;
         private System.Windows.Forms.Button BCancel;

@@ -38,6 +38,7 @@
             this.BTraining = new System.Windows.Forms.Button();
             this.LTrainingInfo = new System.Windows.Forms.Label();
             this.PFailureChance = new System.Windows.Forms.Panel();
+            this.LFailureChance1 = new System.Windows.Forms.Label();
             this.BEvaluateFailure = new System.Windows.Forms.Button();
             this.LFailureChance0 = new System.Windows.Forms.Label();
             this.PAssessmentOfCompleting = new System.Windows.Forms.Panel();
@@ -49,6 +50,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.NUDSupposedCount0 = new System.Windows.Forms.NumericUpDown();
             this.PSaleChance = new System.Windows.Forms.Panel();
+            this.LSaleChance1 = new System.Windows.Forms.Label();
             this.LSaleChance0 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.NUDSupposedTime1 = new System.Windows.Forms.NumericUpDown();
@@ -57,8 +59,6 @@
             this.NUDSupposedCount1 = new System.Windows.Forms.NumericUpDown();
             this.GBSections = new System.Windows.Forms.GroupBox();
             this.LFunction0 = new System.Windows.Forms.Label();
-            this.LFailureChance1 = new System.Windows.Forms.Label();
-            this.LSaleChance1 = new System.Windows.Forms.Label();
             this.tableLayoutPanel1.SuspendLayout();
             this.GBFields.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.NUDField0)).BeginInit();
@@ -79,7 +79,7 @@
             this.tableLayoutPanel1.ColumnCount = 3;
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 45F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 55F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 400F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 401F));
             this.tableLayoutPanel1.Controls.Add(this.GBFields, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.GBBody, 1, 0);
             this.tableLayoutPanel1.Controls.Add(this.GBSections, 2, 0);
@@ -89,7 +89,7 @@
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 1;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(1523, 670);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(1523, 509);
             this.tableLayoutPanel1.TabIndex = 0;
             // 
             // GBFields
@@ -102,7 +102,7 @@
             this.GBFields.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.GBFields.Name = "GBFields";
             this.GBFields.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.GBFields.Size = new System.Drawing.Size(499, 666);
+            this.GBFields.Size = new System.Drawing.Size(498, 505);
             this.GBFields.TabIndex = 11;
             this.GBFields.TabStop = false;
             this.GBFields.Text = "Current production state";
@@ -141,11 +141,11 @@
             this.GBBody.Controls.Add(this.PSaleChance);
             this.GBBody.Dock = System.Windows.Forms.DockStyle.Fill;
             this.GBBody.Font = new System.Drawing.Font("Consolas", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.GBBody.Location = new System.Drawing.Point(508, 2);
+            this.GBBody.Location = new System.Drawing.Point(507, 2);
             this.GBBody.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.GBBody.Name = "GBBody";
             this.GBBody.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.GBBody.Size = new System.Drawing.Size(611, 666);
+            this.GBBody.Size = new System.Drawing.Size(611, 505);
             this.GBBody.TabIndex = 11;
             this.GBBody.TabStop = false;
             // 
@@ -153,7 +153,7 @@
             // 
             this.PNotTrained.Controls.Add(this.BTraining);
             this.PNotTrained.Controls.Add(this.LTrainingInfo);
-            this.PNotTrained.Location = new System.Drawing.Point(389, 441);
+            this.PNotTrained.Location = new System.Drawing.Point(432, 443);
             this.PNotTrained.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.PNotTrained.Name = "PNotTrained";
             this.PNotTrained.Size = new System.Drawing.Size(215, 231);
@@ -191,6 +191,14 @@
             this.PFailureChance.Name = "PFailureChance";
             this.PFailureChance.Size = new System.Drawing.Size(259, 111);
             this.PFailureChance.TabIndex = 8;
+            // 
+            // LFailureChance1
+            // 
+            this.LFailureChance1.AutoSize = true;
+            this.LFailureChance1.Location = new System.Drawing.Point(173, 8);
+            this.LFailureChance1.Name = "LFailureChance1";
+            this.LFailureChance1.Size = new System.Drawing.Size(0, 20);
+            this.LFailureChance1.TabIndex = 7;
             // 
             // BEvaluateFailure
             // 
@@ -318,11 +326,19 @@
             this.PSaleChance.Controls.Add(this.BEvaluateSale);
             this.PSaleChance.Controls.Add(this.label5);
             this.PSaleChance.Controls.Add(this.NUDSupposedCount1);
-            this.PSaleChance.Location = new System.Drawing.Point(17, 441);
+            this.PSaleChance.Location = new System.Drawing.Point(6, 269);
             this.PSaleChance.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.PSaleChance.Name = "PSaleChance";
             this.PSaleChance.Size = new System.Drawing.Size(275, 214);
             this.PSaleChance.TabIndex = 10;
+            // 
+            // LSaleChance1
+            // 
+            this.LSaleChance1.AutoSize = true;
+            this.LSaleChance1.Location = new System.Drawing.Point(200, 174);
+            this.LSaleChance1.Name = "LSaleChance1";
+            this.LSaleChance1.Size = new System.Drawing.Size(0, 20);
+            this.LSaleChance1.TabIndex = 8;
             // 
             // LSaleChance0
             // 
@@ -393,11 +409,11 @@
             this.GBSections.Controls.Add(this.LFunction0);
             this.GBSections.Dock = System.Windows.Forms.DockStyle.Fill;
             this.GBSections.Font = new System.Drawing.Font("Consolas", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.GBSections.Location = new System.Drawing.Point(1125, 2);
+            this.GBSections.Location = new System.Drawing.Point(1124, 2);
             this.GBSections.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.GBSections.Name = "GBSections";
             this.GBSections.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.GBSections.Size = new System.Drawing.Size(395, 666);
+            this.GBSections.Size = new System.Drawing.Size(396, 505);
             this.GBSections.TabIndex = 12;
             this.GBSections.TabStop = false;
             // 
@@ -407,33 +423,17 @@
             this.LFunction0.Dock = System.Windows.Forms.DockStyle.Top;
             this.LFunction0.Location = new System.Drawing.Point(3, 22);
             this.LFunction0.Name = "LFunction0";
-            this.LFunction0.Size = new System.Drawing.Size(389, 30);
+            this.LFunction0.Size = new System.Drawing.Size(390, 30);
             this.LFunction0.TabIndex = 0;
             this.LFunction0.Text = "<- Function0";
             this.LFunction0.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.LFunction0.Click += new System.EventHandler(this.LSection_Click);
             // 
-            // LFailureChance1
-            // 
-            this.LFailureChance1.AutoSize = true;
-            this.LFailureChance1.Location = new System.Drawing.Point(173, 8);
-            this.LFailureChance1.Name = "LFailureChance1";
-            this.LFailureChance1.Size = new System.Drawing.Size(0, 20);
-            this.LFailureChance1.TabIndex = 7;
-            // 
-            // LSaleChance1
-            // 
-            this.LSaleChance1.AutoSize = true;
-            this.LSaleChance1.Location = new System.Drawing.Point(200, 174);
-            this.LSaleChance1.Name = "LSaleChance1";
-            this.LSaleChance1.Size = new System.Drawing.Size(0, 20);
-            this.LSaleChance1.TabIndex = 8;
-            // 
             // ProductionForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1523, 670);
+            this.ClientSize = new System.Drawing.Size(1523, 509);
             this.Controls.Add(this.tableLayoutPanel1);
             this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.MinimizeBox = false;
