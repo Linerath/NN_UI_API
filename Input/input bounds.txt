@@ -1,0 +1,10 @@
+Details: 0-10000
+Count: 0-200
+Speed : 0-200
+Employees: 0-50
+Rhythm (интервал между выпуском единицы продукции): 0-5
+Tact: 0-1.50
+Defect: 0-100
+
+SupposedCount: 0-5000
+Time: 0-1000

@@ -153,7 +153,7 @@
             // 
             this.PNotTrained.Controls.Add(this.BTraining);
             this.PNotTrained.Controls.Add(this.LTrainingInfo);
-            this.PNotTrained.Location = new System.Drawing.Point(432, 443);
+            this.PNotTrained.Location = new System.Drawing.Point(381, 443);
             this.PNotTrained.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.PNotTrained.Name = "PNotTrained";
             this.PNotTrained.Size = new System.Drawing.Size(215, 231);
@@ -229,7 +229,7 @@
             this.PAssessmentOfCompleting.Controls.Add(this.BEvaluateCompleting);
             this.PAssessmentOfCompleting.Controls.Add(this.label1);
             this.PAssessmentOfCompleting.Controls.Add(this.NUDSupposedCount0);
-            this.PAssessmentOfCompleting.Location = new System.Drawing.Point(119, 73);
+            this.PAssessmentOfCompleting.Location = new System.Drawing.Point(23, 46);
             this.PAssessmentOfCompleting.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.PAssessmentOfCompleting.Name = "PAssessmentOfCompleting";
             this.PAssessmentOfCompleting.Size = new System.Drawing.Size(419, 242);
