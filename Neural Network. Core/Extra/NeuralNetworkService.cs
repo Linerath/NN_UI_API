@@ -60,7 +60,7 @@ namespace Neural_Network.Core.Extra
 
                 for (int j = 0; j < inputSignals.Count(); j++)
                 {
-                    network.Learn(inputSignals[j], correctOutputSignals[j], learningRate, (j == inputSignals.Count() - 1));
+                    network.Learn_Old(inputSignals[j], correctOutputSignals[j], learningRate, (j == inputSignals.Count() - 1));
                 }
 
                 progressAction?.Invoke(i);
@@ -103,7 +103,7 @@ namespace Neural_Network.Core.Extra
                     Shuffle(inputSignals, correctOutputSignals, random);
 
                 for (int j = 0; j < inputSignals.Count(); j++)
-                    network.LearnNew(inputSignals[j], correctOutputSignals[j], learningRate: learningRate, addEpoch: (j == inputSignals.Count() - 1));
+                    network.Learn(inputSignals[j], correctOutputSignals[j], learningRate: learningRate, addEpoch: (j == inputSignals.Count() - 1));
 
                 progressAction?.Invoke(i);
             }

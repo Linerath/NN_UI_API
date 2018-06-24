@@ -48,14 +48,14 @@ namespace Neural_Network.Core
             return response;
         }
         
-        public void Learn(double[] signals, double error, double learningRate)
+        public void Learn_Old(double[] signals, double error, double learningRate)
         {
             double response = GetResponse(signals);
             double delta = -error * response * (1 - response);
             for (int i = 0; i < weights.Length; i++)
                 weights[i] = weights[i] - learningRate * (signals[i] * delta);
         }
-        public void LearnNew(double[] signals, double error, double learningRate)
+        public void Learn(double[] signals, double error, double learningRate)
         {
             double response = GetResponse(signals);
             double delta = error * response * (1 - response);

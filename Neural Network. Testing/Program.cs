@@ -302,14 +302,14 @@ namespace Neural_Network.Testing
 
             for (int i = 0; i < 5000; i++)
             {
-                f.Learn(new double[] { x, x, x }, new double[] { x });
-                f.Learn(new double[] { x, x, y }, new double[] { y });
-                f.Learn(new double[] { x, y, x }, new double[] { x });
-                f.Learn(new double[] { x, y, y }, new double[] { y });
-                f.Learn(new double[] { y, x, x }, new double[] { x });
-                f.Learn(new double[] { y, x, y }, new double[] { y });
-                f.Learn(new double[] { y, y, x }, new double[] { x });
-                f.Learn(new double[] { y, y, y }, new double[] { y });
+                f.Learn_Old(new double[] { x, x, x }, new double[] { x });
+                f.Learn_Old(new double[] { x, x, y }, new double[] { y });
+                f.Learn_Old(new double[] { x, y, x }, new double[] { x });
+                f.Learn_Old(new double[] { x, y, y }, new double[] { y });
+                f.Learn_Old(new double[] { y, x, x }, new double[] { x });
+                f.Learn_Old(new double[] { y, x, y }, new double[] { y });
+                f.Learn_Old(new double[] { y, y, x }, new double[] { x });
+                f.Learn_Old(new double[] { y, y, y }, new double[] { y });
             }
 
             ShowNetwork(f);
@@ -339,8 +339,8 @@ namespace Neural_Network.Testing
 
             for (int i = 0; i < 10000; i++)
             {
-                f.Learn(in0, out0);
-                f.Learn(in1, out1);
+                f.Learn_Old(in0, out0);
+                f.Learn_Old(in1, out1);
             }
 
             Console.WriteLine(new String('/', 100));
@@ -387,7 +387,7 @@ namespace Neural_Network.Testing
             {
                 for (int j = 0; j < inputData.Length; j++)
                     //f.LearnWithNormalization(inputData[j], outputData[j]);
-                    f.Learn(inputData[j], outputData[j]);
+                    f.Learn_Old(inputData[j], outputData[j]);
                 NeuralNetworkService.Shuffle(inputData.ToList(), outputData.ToList(), random);
             }
 
@@ -481,7 +481,7 @@ namespace Neural_Network.Testing
             {
                 for (int j = 0; j < inputData.Length; j++)
                     //f.LearnWithNormalization(inputData[j], outputData[j]);
-                    f.LearnNew(inputData[j], outputData[j]);
+                    f.Learn(inputData[j], outputData[j]);
                 NeuralNetworkService.Shuffle(inputData.ToList(), outputData.ToList(), random);
             }
 
@@ -603,7 +603,7 @@ namespace Neural_Network.Testing
             {
                 for (int j = 0; j < inputData.Length; j++)
                     //f.LearnWithNormalization(inputData[j], outputData[j]);
-                    f.LearnNew(inputData[j], outputData[j]);
+                    f.Learn(inputData[j], outputData[j]);
                 NeuralNetworkService.Shuffle(inputData.ToList(), outputData.ToList(), random);
             }
 
@@ -644,7 +644,7 @@ namespace Neural_Network.Testing
             for (int i = 0; i < 10000; i++)
             {
                 for (int j = 0; j < inputData.Length; j++)
-                    f.LearnNew(inputData[j], outputData[j]);
+                    f.Learn(inputData[j], outputData[j]);
                 NeuralNetworkService.Shuffle(inputData.ToList(), outputData.ToList(), random);
             }
 
@@ -689,7 +689,7 @@ namespace Neural_Network.Testing
             for (int i = 0; i < 10000; i++)
             {
                 for (int j = 0; j < inputData.Length; j++)
-                    f.LearnNew(inputData[j], outputData[j]);
+                    f.Learn(inputData[j], outputData[j]);
                 NeuralNetworkService.Shuffle(inputData.ToList(), outputData.ToList(), random);
             }
 

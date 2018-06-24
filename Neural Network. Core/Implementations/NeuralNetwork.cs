@@ -205,22 +205,6 @@ namespace Neural_Network.Core.Implementation
             return errors;
         }
 
-        // FOR MULTILAYER
-        //private double[] GetHiddenLayerErorrs(double[] nextLayerErrors, double[,] nextLayerWeights)
-        //{
-        //    int count = hiddenLayer.Count();
-        //    double[] errors = new double[count];
-        //    double[] outputLayerWeightsSum = outputLayer.Select(x => x.GetWeightsSum()).ToArray();
-
-        //    for (int i = 0; i < count; i++)
-        //    {
-        //        for (int j = 0; j < outputLayer.Count(); j++)
-        //        {
-        //            errors[i] += (nextLayerErrors[j] * nextLayerWeights[j, i]) / outputLayerWeightsSum[j];
-        //        }
-        //    }
-        //    return errors;
-        //}
         private double[] GetHiddenLayerErorrs(double[] nextLayerErrors)
         {
             int count = hiddenLayer.Count();
@@ -247,17 +231,17 @@ namespace Neural_Network.Core.Implementation
             }
             return errors;
         }
+        public void Learn_Old(double[] signals, double[] expectedOutputs, double learningRate, bool addEpoch = false)
+        {
+            LearningRate = learningRate;
+            Learn_Old(signals, expectedOutputs, addEpoch);
+        }
         public void Learn(double[] signals, double[] expectedOutputs, double learningRate, bool addEpoch = false)
         {
             LearningRate = learningRate;
             Learn(signals, expectedOutputs, addEpoch);
         }
-        public void LearnNew(double[] signals, double[] expectedOutputs, double learningRate, bool addEpoch = false)
-        {
-            LearningRate = learningRate;
-            LearnNew(signals, expectedOutputs, addEpoch);
-        }
-        public void Learn(double[] signals, double[] expectedOutputs, bool addEpoch = false)
+        public void Learn_Old(double[] signals, double[] expectedOutputs, bool addEpoch = false)
         {
             if (signals == null)
                 throw new ArgumentNullException("signals");
@@ -283,15 +267,15 @@ namespace Neural_Network.Core.Implementation
 
             // 2
             for (int i = 0; i < outputCount; i++)
-                outputLayer[i].Learn(hiddenLayerSignals, outputErrors[i], learningRate);
+                outputLayer[i].Learn_Old(hiddenLayerSignals, outputErrors[i], learningRate);
 
             for (int i = 0; i < hiddenCount; i++)
-                hiddenLayer[i].Learn(signals, hiddenErrors[i], learningRate);
+                hiddenLayer[i].Learn_Old(signals, hiddenErrors[i], learningRate);
 
             if (addEpoch)
                 LearningEpochs++;
         }
-        public void LearnNew(double[] signals, double[] expectedOutputs, bool addEpoch = false)
+        public void Learn(double[] signals, double[] expectedOutputs, bool addEpoch = false)
         {
             if (signals == null)
                 throw new ArgumentNullException("signals");
@@ -317,10 +301,10 @@ namespace Neural_Network.Core.Implementation
 
             // 2
             for (int i = 0; i < outputCount; i++)
-                outputLayer[i].LearnNew(hiddenLayerSignals, outputErrors[i], learningRate);
+                outputLayer[i].Learn(hiddenLayerSignals, outputErrors[i], learningRate);
 
             for (int i = 0; i < hiddenCount; i++)
-                hiddenLayer[i].LearnNew(signals, hiddenErrors[i], learningRate);
+                hiddenLayer[i].Learn(signals, hiddenErrors[i], learningRate);
 
             if (addEpoch)
                 LearningEpochs++;
