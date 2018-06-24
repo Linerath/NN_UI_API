@@ -241,7 +241,12 @@
             // 
             // BOpenProj
             // 
-            this.BOpenProj.BackColor = System.Drawing.Color.Yellow;
+            this.BOpenProj.BackColor = System.Drawing.Color.Transparent;
+            this.BOpenProj.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("BOpenProj.BackgroundImage")));
+            this.BOpenProj.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.BOpenProj.FlatAppearance.BorderSize = 0;
+            this.BOpenProj.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(210)))), ((int)(((byte)(210)))), ((int)(((byte)(210)))));
+            this.BOpenProj.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(229)))), ((int)(((byte)(229)))), ((int)(((byte)(229)))));
             this.BOpenProj.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.BOpenProj.Font = new System.Drawing.Font("Consolas", 10.8F, System.Drawing.FontStyle.Bold);
             this.BOpenProj.Location = new System.Drawing.Point(61, 25);
@@ -249,14 +254,17 @@
             this.BOpenProj.Name = "BOpenProj";
             this.BOpenProj.Size = new System.Drawing.Size(40, 34);
             this.BOpenProj.TabIndex = 2;
-            this.BOpenProj.Text = "O";
             this.BOpenProj.UseVisualStyleBackColor = false;
             this.BOpenProj.Click += new System.EventHandler(this.BOpenProj_Click);
             // 
             // BNewProj
             // 
-            this.BNewProj.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
-            this.BNewProj.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.BNewProj.BackColor = System.Drawing.Color.Transparent;
+            this.BNewProj.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("BNewProj.BackgroundImage")));
+            this.BNewProj.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.BNewProj.FlatAppearance.BorderSize = 0;
+            this.BNewProj.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(210)))), ((int)(((byte)(210)))), ((int)(((byte)(210)))));
+            this.BNewProj.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(229)))), ((int)(((byte)(229)))), ((int)(((byte)(229)))));
             this.BNewProj.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.BNewProj.Font = new System.Drawing.Font("Consolas", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BNewProj.Location = new System.Drawing.Point(15, 25);
@@ -264,7 +272,6 @@
             this.BNewProj.Name = "BNewProj";
             this.BNewProj.Size = new System.Drawing.Size(40, 34);
             this.BNewProj.TabIndex = 1;
-            this.BNewProj.Text = "N";
             this.BNewProj.UseVisualStyleBackColor = false;
             this.BNewProj.Click += new System.EventHandler(this.BNewProj_Click);
             // 
