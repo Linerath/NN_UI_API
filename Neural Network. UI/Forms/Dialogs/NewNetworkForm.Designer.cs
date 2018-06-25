@@ -55,17 +55,18 @@
             // 
             this.LOutputLayer.AutoSize = true;
             this.LOutputLayer.Font = new System.Drawing.Font("Consolas", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LOutputLayer.Location = new System.Drawing.Point(6, 244);
+            this.LOutputLayer.Location = new System.Drawing.Point(4, 198);
+            this.LOutputLayer.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.LOutputLayer.Name = "LOutputLayer";
-            this.LOutputLayer.Size = new System.Drawing.Size(126, 20);
+            this.LOutputLayer.Size = new System.Drawing.Size(112, 17);
             this.LOutputLayer.TabIndex = 21;
             this.LOutputLayer.Text = "Output layer:";
             // 
             // NUDOutput
             // 
             this.NUDOutput.Font = new System.Drawing.Font("Consolas", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.NUDOutput.Location = new System.Drawing.Point(155, 242);
-            this.NUDOutput.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.NUDOutput.Location = new System.Drawing.Point(116, 197);
+            this.NUDOutput.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.NUDOutput.Maximum = new decimal(new int[] {
             15,
             0,
@@ -77,7 +78,7 @@
             0,
             0});
             this.NUDOutput.Name = "NUDOutput";
-            this.NUDOutput.Size = new System.Drawing.Size(58, 27);
+            this.NUDOutput.Size = new System.Drawing.Size(44, 23);
             this.NUDOutput.TabIndex = 20;
             this.NUDOutput.Value = new decimal(new int[] {
             2,
@@ -89,17 +90,18 @@
             // 
             this.LHiddenLayer.AutoSize = true;
             this.LHiddenLayer.Font = new System.Drawing.Font("Consolas", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LHiddenLayer.Location = new System.Drawing.Point(6, 213);
+            this.LHiddenLayer.Location = new System.Drawing.Point(4, 173);
+            this.LHiddenLayer.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.LHiddenLayer.Name = "LHiddenLayer";
-            this.LHiddenLayer.Size = new System.Drawing.Size(126, 20);
+            this.LHiddenLayer.Size = new System.Drawing.Size(112, 17);
             this.LHiddenLayer.TabIndex = 19;
             this.LHiddenLayer.Text = "Hidden layer:";
             // 
             // NUDHidden
             // 
             this.NUDHidden.Font = new System.Drawing.Font("Consolas", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.NUDHidden.Location = new System.Drawing.Point(155, 211);
-            this.NUDHidden.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.NUDHidden.Location = new System.Drawing.Point(116, 171);
+            this.NUDHidden.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.NUDHidden.Maximum = new decimal(new int[] {
             15,
             0,
@@ -111,7 +113,7 @@
             0,
             0});
             this.NUDHidden.Name = "NUDHidden";
-            this.NUDHidden.Size = new System.Drawing.Size(58, 27);
+            this.NUDHidden.Size = new System.Drawing.Size(44, 23);
             this.NUDHidden.TabIndex = 18;
             this.NUDHidden.Value = new decimal(new int[] {
             3,
@@ -123,17 +125,18 @@
             // 
             this.LInputLayer.AutoSize = true;
             this.LInputLayer.Font = new System.Drawing.Font("Consolas", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LInputLayer.Location = new System.Drawing.Point(6, 182);
+            this.LInputLayer.Location = new System.Drawing.Point(4, 148);
+            this.LInputLayer.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.LInputLayer.Name = "LInputLayer";
-            this.LInputLayer.Size = new System.Drawing.Size(117, 20);
+            this.LInputLayer.Size = new System.Drawing.Size(104, 17);
             this.LInputLayer.TabIndex = 17;
             this.LInputLayer.Text = "Input layer:";
             // 
             // NUDInput
             // 
             this.NUDInput.Font = new System.Drawing.Font("Consolas", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.NUDInput.Location = new System.Drawing.Point(155, 180);
-            this.NUDInput.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.NUDInput.Location = new System.Drawing.Point(116, 146);
+            this.NUDInput.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.NUDInput.Maximum = new decimal(new int[] {
             15,
             0,
@@ -145,7 +148,7 @@
             0,
             0});
             this.NUDInput.Name = "NUDInput";
-            this.NUDInput.Size = new System.Drawing.Size(58, 27);
+            this.NUDInput.Size = new System.Drawing.Size(44, 23);
             this.NUDInput.TabIndex = 16;
             this.NUDInput.Value = new decimal(new int[] {
             2,
@@ -156,10 +159,10 @@
             // BOk
             // 
             this.BOk.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BOk.Location = new System.Drawing.Point(336, 360);
-            this.BOk.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.BOk.Location = new System.Drawing.Point(252, 292);
+            this.BOk.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.BOk.Name = "BOk";
-            this.BOk.Size = new System.Drawing.Size(77, 32);
+            this.BOk.Size = new System.Drawing.Size(58, 26);
             this.BOk.TabIndex = 15;
             this.BOk.Text = "OK";
             this.BOk.UseVisualStyleBackColor = true;
@@ -169,19 +172,20 @@
             // 
             this.LName.AutoSize = true;
             this.LName.Font = new System.Drawing.Font("Consolas", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LName.Location = new System.Drawing.Point(6, 30);
+            this.LName.Location = new System.Drawing.Point(4, 24);
+            this.LName.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.LName.Name = "LName";
-            this.LName.Size = new System.Drawing.Size(54, 20);
+            this.LName.Size = new System.Drawing.Size(48, 17);
             this.LName.TabIndex = 14;
             this.LName.Text = "Name:";
             // 
             // TBName
             // 
             this.TBName.Font = new System.Drawing.Font("Consolas", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TBName.Location = new System.Drawing.Point(70, 27);
-            this.TBName.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.TBName.Location = new System.Drawing.Point(52, 22);
+            this.TBName.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.TBName.Name = "TBName";
-            this.TBName.Size = new System.Drawing.Size(192, 27);
+            this.TBName.Size = new System.Drawing.Size(145, 23);
             this.TBName.TabIndex = 13;
             this.TBName.Text = "Net";
             // 
@@ -190,11 +194,11 @@
             this.groupBox1.Controls.Add(this.RBFeedforward);
             this.groupBox1.Controls.Add(this.radioButton2);
             this.groupBox1.Font = new System.Drawing.Font("Consolas", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox1.Location = new System.Drawing.Point(10, 67);
-            this.groupBox1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.groupBox1.Location = new System.Drawing.Point(8, 54);
+            this.groupBox1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.groupBox1.Size = new System.Drawing.Size(377, 98);
+            this.groupBox1.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.groupBox1.Size = new System.Drawing.Size(283, 80);
             this.groupBox1.TabIndex = 12;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Network type";
@@ -203,10 +207,10 @@
             // 
             this.RBFeedforward.AutoSize = true;
             this.RBFeedforward.Checked = true;
-            this.RBFeedforward.Location = new System.Drawing.Point(19, 29);
-            this.RBFeedforward.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.RBFeedforward.Location = new System.Drawing.Point(14, 24);
+            this.RBFeedforward.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.RBFeedforward.Name = "RBFeedforward";
-            this.RBFeedforward.Size = new System.Drawing.Size(246, 24);
+            this.RBFeedforward.Size = new System.Drawing.Size(218, 21);
             this.RBFeedforward.TabIndex = 0;
             this.RBFeedforward.TabStop = true;
             this.RBFeedforward.Text = "Feedforward (Perceptron)";
@@ -216,12 +220,12 @@
             // 
             this.radioButton2.AutoSize = true;
             this.radioButton2.Enabled = false;
-            this.radioButton2.Location = new System.Drawing.Point(19, 57);
-            this.radioButton2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.radioButton2.Location = new System.Drawing.Point(14, 46);
+            this.radioButton2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.radioButton2.Name = "radioButton2";
-            this.radioButton2.Size = new System.Drawing.Size(363, 24);
+            this.radioButton2.Size = new System.Drawing.Size(266, 21);
             this.radioButton2.TabIndex = 1;
-            this.radioButton2.Text = "Create your own and implement interf.";
+            this.radioButton2.Text = "Make your own (INeuralNetwork)";
             this.radioButton2.UseVisualStyleBackColor = true;
             // 
             // groupBox3
@@ -237,9 +241,11 @@
             this.groupBox3.Controls.Add(this.NUDInput);
             this.groupBox3.Controls.Add(this.NUDHidden);
             this.groupBox3.Font = new System.Drawing.Font("Consolas", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox3.Location = new System.Drawing.Point(14, 12);
+            this.groupBox3.Location = new System.Drawing.Point(10, 10);
+            this.groupBox3.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(399, 340);
+            this.groupBox3.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.groupBox3.Size = new System.Drawing.Size(299, 276);
             this.groupBox3.TabIndex = 24;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Manual";
@@ -249,9 +255,10 @@
             this.CBRandomWeights.AutoSize = true;
             this.CBRandomWeights.Checked = true;
             this.CBRandomWeights.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.CBRandomWeights.Location = new System.Drawing.Point(10, 291);
+            this.CBRandomWeights.Location = new System.Drawing.Point(8, 236);
+            this.CBRandomWeights.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.CBRandomWeights.Name = "CBRandomWeights";
-            this.CBRandomWeights.Size = new System.Drawing.Size(157, 24);
+            this.CBRandomWeights.Size = new System.Drawing.Size(139, 21);
             this.CBRandomWeights.TabIndex = 22;
             this.CBRandomWeights.Text = "Random weights";
             this.CBRandomWeights.UseVisualStyleBackColor = true;
@@ -260,9 +267,10 @@
             // 
             this.CBCreateAnother.AutoSize = true;
             this.CBCreateAnother.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.CBCreateAnother.Location = new System.Drawing.Point(24, 366);
+            this.CBCreateAnother.Location = new System.Drawing.Point(18, 297);
+            this.CBCreateAnother.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.CBCreateAnother.Name = "CBCreateAnother";
-            this.CBCreateAnother.Size = new System.Drawing.Size(174, 22);
+            this.CBCreateAnother.Size = new System.Drawing.Size(152, 18);
             this.CBCreateAnother.TabIndex = 23;
             this.CBCreateAnother.Text = "Create another one";
             this.CBCreateAnother.UseVisualStyleBackColor = true;
@@ -270,10 +278,10 @@
             // BCancel
             // 
             this.BCancel.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BCancel.Location = new System.Drawing.Point(253, 360);
-            this.BCancel.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.BCancel.Location = new System.Drawing.Point(190, 292);
+            this.BCancel.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.BCancel.Name = "BCancel";
-            this.BCancel.Size = new System.Drawing.Size(77, 32);
+            this.BCancel.Size = new System.Drawing.Size(58, 26);
             this.BCancel.TabIndex = 25;
             this.BCancel.Text = "Cancel";
             this.BCancel.UseVisualStyleBackColor = true;
@@ -281,14 +289,15 @@
             // 
             // NewNetworkForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(425, 405);
+            this.ClientSize = new System.Drawing.Size(319, 329);
             this.Controls.Add(this.BCancel);
             this.Controls.Add(this.CBCreateAnother);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.BOk);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "NewNetworkForm";

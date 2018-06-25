@@ -142,6 +142,14 @@ namespace Neural_Network.UI.Forms
         }
         private void BProduction_Click(object sender, EventArgs e)
         {
+            UIRepository.ReadProductionFields();
+            if (UIRepository.ProductionFields == null || UIRepository.ProductionFields.Count() < 1)
+            {
+                MessageBox.Show("There are no input fields. Please, add fields to file 'input_fields.txt'.\nPattern: { Name, Description, MinValue, MaxValue, DefaultValue }...", "Error");
+                if (!File.Exists("input_fields.txt"))
+                    File.Create("input_fields.txt");
+                return;
+            }
             NewProductionProjectForm newProductionProjectForm = new NewProductionProjectForm
             {
                 Owner = this
