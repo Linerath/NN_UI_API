@@ -58,7 +58,7 @@ namespace Neural_Network.Core
         public void Learn(double[] signals, double error, double learningRate)
         {
             double response = GetResponse(signals);
-            double delta = error * response * (1 - response);
+            double delta = error * GetDerivative(response);
             for (int i = 0; i < weights.Length; i++)
                 weights[i] = weights[i] + learningRate * (signals[i] * delta);
         }
@@ -110,7 +110,16 @@ namespace Neural_Network.Core
                     return signal;
             }
         }
-
+        private double GetDerivative(double signal)
+        {
+            switch (ActivationFunction)
+            {
+                case Functions.Sigmoid:
+                    return (signal * (1 - signal));
+                default:
+                    return signal;
+            }
+        }
 
         public int InputCount => weights.Length;
         public double this[int index]
